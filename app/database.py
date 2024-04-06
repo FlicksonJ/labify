@@ -1,6 +1,6 @@
 import bcrypt  # Import secure hashing library
 from itsdangerous import URLSafeTimedSerializer
-from PyQt6.QtSql import QSqlDatabase, QSqlQuery
+from PySide6.QtSql import QSqlDatabase, QSqlQuery
 
 serializer = URLSafeTimedSerializer("DrrOEWvcDHPycjnfsRv-r1WMWqObSXSsRmpnf438Rbk")
 

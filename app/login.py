@@ -1,7 +1,7 @@
-from PyQt6.QtWidgets import (QApplication, QWidget,
-                             QVBoxLayout, QHBoxLayout, QLabel,
-                             QLineEdit, QPushButton, QMessageBox)
-from PyQt6.QtSql import QSqlQuery
+from PySide6.QtWidgets import (QApplication, QWidget,
+                            QVBoxLayout, QHBoxLayout, QLabel,
+                            QLineEdit, QPushButton, QMessageBox)
+from PySide6.QtSql import QSqlQuery
 
 from app import database
 

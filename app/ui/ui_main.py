@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLayout,
-    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-    QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
+    QLayout, QLineEdit, QMainWindow, QPushButton,
+    QSizePolicy, QSpacerItem, QStackedWidget, QVBoxLayout,
+    QWidget)
 from . import resources_rc
 
 class Ui_MainWindow(object):
@@ -162,7 +163,79 @@ class Ui_MainWindow(object):
 "\n"
 "#home_page {\n"
 "	background: #fff;\n"
-"}")
+"}\n"
+"\n"
+"#inventory_header {\n"
+"	background: rgb(0, 159, 161)\n"
+"}\n"
+"\n"
+"#inventory_header QPushButton {\n"
+"	background: rgb(251, 254, 255);\n"
+"	color: rgb(0, 159, 161);\n"
+"	font-size: 15pt;;\n"
+"	width: 150px;\n"
+"	height: 40px;\n"
+"	margin: 0;\n"
+"}\n"
+"\n"
+"/* combo box */\n"
+"\n"
+"#inventory_type_input {\n"
+"	background: rgb(251, 254, 255);\n"
+"	color: rgb(0, 159, 161);\n"
+"	height: 40px;\n"
+"	border-radius: 5px;\n"
+"	font-size: 18pt;\n"
+"	padding-left: 10px;\n"
+"}\n"
+"\n"
+"#inventory_type_input::drop-down {\n"
+"	border: 0px;\n"
+"}\n"
+"\n"
+"#inventory_type_input::down-arrow {\n"
+"	image: url(:/icon/images/down-arrow.ico);\n"
+"	width:"
+                        " 30px;\n"
+"	height: 30px;\n"
+"	margin-right: 20px\n"
+"}\n"
+"\n"
+"#inventory_type_input:on {\n"
+"	border: 2px solid rgba(0, 159, 161, 10%);\n"
+"}\n"
+"\n"
+"#inventory_type_input QListView{\n"
+"	font-size: 15pt;\n"
+"	border: 1px solid rgba(0, 0, 0, 10%);\n"
+"	padding: 3px;\n"
+"	background-color: rgb(251, 254, 255);\n"
+"	outline: 0px;\n"
+"}\n"
+"\n"
+"#inventory_type_input QListView::item {\n"
+"	padding-left: 10px;\n"
+"	background-color: rgb(251, 254, 255);\n"
+"}\n"
+"\n"
+"#inventory_type_input QListView::item:hover {\n"
+"	background: rgb(0, 159, 161);\n"
+"	color: rgb(251, 254, 255);\n"
+"}\n"
+"\n"
+"#inventory_type_input QListView::item:selected {\n"
+"	background: rgb(0, 159, 161);\n"
+"	color: rgb(251, 254, 255);\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.stackedWidget = QStackedWidget(self.centralwidget)
@@ -219,6 +292,7 @@ class Ui_MainWindow(object):
         self.layoutWidget.setObjectName(u"layoutWidget")
         self.layoutWidget.setGeometry(QRect(0, 0, 1602, 899))
         self.verticalLayout_2 = QVBoxLayout(self.layoutWidget)
+        self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.header = QWidget(self.layoutWidget)
@@ -327,30 +401,30 @@ class Ui_MainWindow(object):
         self.stackedWidget_2.setMinimumSize(QSize(3, 0))
         self.create_user_page = QWidget()
         self.create_user_page.setObjectName(u"create_user_page")
-        self.widget = QWidget(self.create_user_page)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(0, -10, 1601, 751))
-        self.horizontalLayout_3 = QHBoxLayout(self.widget)
+        self.layoutWidget1 = QWidget(self.create_user_page)
+        self.layoutWidget1.setObjectName(u"layoutWidget1")
+        self.layoutWidget1.setGeometry(QRect(0, -10, 1601, 751))
+        self.horizontalLayout_3 = QHBoxLayout(self.layoutWidget1)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.widget1 = QWidget(self.widget)
-        self.widget1.setObjectName(u"widget1")
+        self.widget = QWidget(self.layoutWidget1)
+        self.widget.setObjectName(u"widget")
         sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(3)
-        sizePolicy4.setHeightForWidth(self.widget1.sizePolicy().hasHeightForWidth())
-        self.widget1.setSizePolicy(sizePolicy4)
-        self.widget1.setStyleSheet(u"")
-        self.label_2 = QLabel(self.widget1)
+        sizePolicy4.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
+        self.widget.setSizePolicy(sizePolicy4)
+        self.widget.setStyleSheet(u"")
+        self.label_2 = QLabel(self.widget)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(50, -50, 670, 800))
+        self.label_2.setGeometry(QRect(0, 0, 800, 770))
         self.label_2.setLineWidth(0)
         self.label_2.setPixmap(QPixmap(u":/images/images/create_user.jpeg"))
         self.label_2.setScaledContents(True)
 
-        self.horizontalLayout_3.addWidget(self.widget1)
+        self.horizontalLayout_3.addWidget(self.widget)
 
-        self.create_user_form = QWidget(self.widget)
+        self.create_user_form = QWidget(self.layoutWidget1)
         self.create_user_form.setObjectName(u"create_user_form")
         sizePolicy4.setHeightForWidth(self.create_user_form.sizePolicy().hasHeightForWidth())
         self.create_user_form.setSizePolicy(sizePolicy4)
@@ -421,9 +495,125 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.create_user_form)
 
         self.stackedWidget_2.addWidget(self.create_user_page)
-        self.page_2 = QWidget()
-        self.page_2.setObjectName(u"page_2")
-        self.stackedWidget_2.addWidget(self.page_2)
+        self.inventory_page = QWidget()
+        self.inventory_page.setObjectName(u"inventory_page")
+        self.verticalLayoutWidget_3 = QWidget(self.inventory_page)
+        self.verticalLayoutWidget_3.setObjectName(u"verticalLayoutWidget_3")
+        self.verticalLayoutWidget_3.setGeometry(QRect(0, 0, 1601, 751))
+        self.verticalLayout_4 = QVBoxLayout(self.verticalLayoutWidget_3)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.inventory_header = QWidget(self.verticalLayoutWidget_3)
+        self.inventory_header.setObjectName(u"inventory_header")
+        self.inventory_header.setMinimumSize(QSize(0, 90))
+        self.widget1 = QWidget(self.inventory_header)
+        self.widget1.setObjectName(u"widget1")
+        self.widget1.setGeometry(QRect(30, 1, 155, 91))
+        self.verticalLayout_6 = QVBoxLayout(self.widget1)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.time_label = QLabel(self.widget1)
+        self.time_label.setObjectName(u"time_label")
+        font4 = QFont()
+        font4.setPointSize(25)
+        font4.setBold(True)
+        self.time_label.setFont(font4)
+        self.time_label.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_6.addWidget(self.time_label)
+
+        self.date_label = QLabel(self.widget1)
+        self.date_label.setObjectName(u"date_label")
+        font5 = QFont()
+        font5.setPointSize(21)
+        font5.setWeight(QFont.Light)
+        font5.setItalic(False)
+        self.date_label.setFont(font5)
+        self.date_label.setTextFormat(Qt.AutoText)
+        self.date_label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.verticalLayout_6.addWidget(self.date_label)
+
+        self.widget2 = QWidget(self.inventory_header)
+        self.widget2.setObjectName(u"widget2")
+        self.widget2.setGeometry(QRect(370, 0, 411, 91))
+        self.horizontalLayout_7 = QHBoxLayout(self.widget2)
+        self.horizontalLayout_7.setSpacing(40)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.transaction_history_button = QPushButton(self.widget2)
+        self.transaction_history_button.setObjectName(u"transaction_history_button")
+        self.transaction_history_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_7.addWidget(self.transaction_history_button)
+
+        self.alerts_button = QPushButton(self.widget2)
+        self.alerts_button.setObjectName(u"alerts_button")
+        self.alerts_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_7.addWidget(self.alerts_button)
+
+        self.widget3 = QWidget(self.inventory_header)
+        self.widget3.setObjectName(u"widget3")
+        self.widget3.setGeometry(QRect(990, 0, 571, 91))
+        self.horizontalLayout_8 = QHBoxLayout(self.widget3)
+        self.horizontalLayout_8.setSpacing(40)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.label_3 = QLabel(self.widget3)
+        self.label_3.setObjectName(u"label_3")
+        font6 = QFont()
+        font6.setPointSize(18)
+        font6.setWeight(QFont.Light)
+        self.label_3.setFont(font6)
+
+        self.horizontalLayout_8.addWidget(self.label_3)
+
+        self.inventory_type_input = QComboBox(self.widget3)
+        self.inventory_type_input.addItem("")
+        self.inventory_type_input.addItem("")
+        self.inventory_type_input.addItem("")
+        self.inventory_type_input.setObjectName(u"inventory_type_input")
+        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.inventory_type_input.sizePolicy().hasHeightForWidth())
+        self.inventory_type_input.setSizePolicy(sizePolicy5)
+        self.inventory_type_input.setMinimumSize(QSize(0, 30))
+        font7 = QFont()
+        font7.setPointSize(18)
+        self.inventory_type_input.setFont(font7)
+        self.inventory_type_input.setCursor(QCursor(Qt.PointingHandCursor))
+        self.inventory_type_input.setInsertPolicy(QComboBox.InsertAtBottom)
+        self.inventory_type_input.setSizeAdjustPolicy(QComboBox.AdjustToContents)
+        self.inventory_type_input.setIconSize(QSize(16, 16))
+        self.inventory_type_input.setFrame(False)
+
+        self.horizontalLayout_8.addWidget(self.inventory_type_input)
+
+
+        self.verticalLayout_4.addWidget(self.inventory_header)
+
+        self.stackedWidget_3 = QStackedWidget(self.verticalLayoutWidget_3)
+        self.stackedWidget_3.setObjectName(u"stackedWidget_3")
+        self.page_3 = QWidget()
+        self.page_3.setObjectName(u"page_3")
+        self.label_4 = QLabel(self.page_3)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setGeometry(QRect(0, 0, 1600, 650))
+        font8 = QFont()
+        font8.setPointSize(25)
+        self.label_4.setFont(font8)
+        self.label_4.setStyleSheet(u"color: rgb(0, 159, 161)")
+        self.label_4.setAlignment(Qt.AlignCenter)
+        self.stackedWidget_3.addWidget(self.page_3)
+        self.page_4 = QWidget()
+        self.page_4.setObjectName(u"page_4")
+        self.stackedWidget_3.addWidget(self.page_4)
+
+        self.verticalLayout_4.addWidget(self.stackedWidget_3)
+
+        self.stackedWidget_2.addWidget(self.inventory_page)
 
         self.verticalLayout_2.addWidget(self.stackedWidget_2)
 
@@ -431,6 +621,7 @@ class Ui_MainWindow(object):
         self.footer.setObjectName(u"footer")
         self.footer.setStyleSheet(u"")
         self.horizontalLayout_5 = QHBoxLayout(self.footer)
+        self.horizontalLayout_5.setSpacing(0)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.label = QLabel(self.footer)
@@ -454,6 +645,7 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.setCurrentIndex(1)
         self.cancel_button.setDefault(False)
+        self.inventory_type_input.setCurrentIndex(-1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -476,6 +668,18 @@ class Ui_MainWindow(object):
         self.cu_confirm_password_label.setText(QCoreApplication.translate("MainWindow", u"Confirm Password", None))
         self.create_account_button.setText(QCoreApplication.translate("MainWindow", u"CREATE ACCOUNT", None))
         self.cancel_button.setText(QCoreApplication.translate("MainWindow", u"CANCEL", None))
+        self.time_label.setText(QCoreApplication.translate("MainWindow", u"12:00 AM", None))
+        self.date_label.setText(QCoreApplication.translate("MainWindow", u"20 Feb, 2024", None))
+        self.transaction_history_button.setText(QCoreApplication.translate("MainWindow", u"Transaction History", None))
+        self.alerts_button.setText(QCoreApplication.translate("MainWindow", u"Alert Notifictions", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Select Inventory: ", None))
+        self.inventory_type_input.setItemText(0, QCoreApplication.translate("MainWindow", u"Glassware", None))
+        self.inventory_type_input.setItemText(1, QCoreApplication.translate("MainWindow", u"Equipments", None))
+        self.inventory_type_input.setItemText(2, QCoreApplication.translate("MainWindow", u"Chemicals", None))
+
+        self.inventory_type_input.setCurrentText("")
+        self.inventory_type_input.setPlaceholderText(QCoreApplication.translate("MainWindow", u"      -- Select an option --", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Nothing to Show", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"&copy; 2024, Dept. of CS", None))
     # retranslateUi
 

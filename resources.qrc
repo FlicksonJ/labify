@@ -1,8 +1,11 @@
 <RCC>
   <qresource prefix="images">
-    <file>images/create_user.jpeg</file>
     <file>images/mic.jpeg</file>
+    <file>images/create_user.jpeg</file>
     <file>images/bg.jpeg</file>
     <file>images/labify.jpeg</file>
+  </qresource>
+  <qresource prefix="icon">
+    <file>images/down-arrow.ico</file>
   </qresource>
 </RCC>

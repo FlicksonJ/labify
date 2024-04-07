@@ -9,6 +9,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
+        self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
 
     #     self.setWindowTitle("ICMS")
 

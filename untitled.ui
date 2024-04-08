@@ -224,7 +224,9 @@
 	color: rgb(251, 254, 255);
 }
 
-#add_button, #update_button, #delete_button {
+#add_button, 
+#update_button,
+ #delete_button {
 	background: rgb(52, 62, 162);
 	margin: 0;
 	font-size: 15pt;
@@ -232,6 +234,13 @@
 	padding-left: 10px;
 	border-radius: 0;
 	height: 50px;
+}
+
+#add_button:checked, 
+#update_button:checked, 
+#delete_button:checked {
+	background: #fff;
+	color: rgb(52, 62, 162);
 }
 
 #search_bar_container {
@@ -1165,9 +1174,18 @@ margin-bottom: 6px;</string>
                  </item>
                  <item>
                   <widget class="QPushButton" name="add_button">
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
                    <property name="text">
                     <string>Add Entry</string>
                    </property>
+                   <property name="checkable">
+                    <bool>true</bool>
+                   </property>
+                   <attribute name="buttonGroup">
+                    <string notr="true">item_manage</string>
+                   </attribute>
                   </widget>
                  </item>
                  <item>
@@ -1175,6 +1193,12 @@ margin-bottom: 6px;</string>
                    <property name="text">
                     <string>Update Entry</string>
                    </property>
+                   <property name="checkable">
+                    <bool>true</bool>
+                   </property>
+                   <attribute name="buttonGroup">
+                    <string notr="true">item_manage</string>
+                   </attribute>
                   </widget>
                  </item>
                  <item>
@@ -1187,6 +1211,12 @@ margin-bottom: 6px;</string>
                    <property name="text">
                     <string>Delete Entry</string>
                    </property>
+                   <property name="checkable">
+                    <bool>true</bool>
+                   </property>
+                   <attribute name="buttonGroup">
+                    <string notr="true">item_manage</string>
+                   </attribute>
                   </widget>
                  </item>
                 </layout>
@@ -1263,4 +1293,7 @@ margin-bottom: 6px;</string>
   <include location="resources.qrc"/>
  </resources>
  <connections/>
+ <buttongroups>
+  <buttongroup name="item_manage"/>
+ </buttongroups>
 </ui>

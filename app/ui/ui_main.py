@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'untitled.ui'
+## Form generated from reading UI file 'main_window.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.2
 ##
@@ -15,10 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
-    QLayout, QLineEdit, QMainWindow, QPushButton,
-    QSizePolicy, QSpacerItem, QStackedWidget, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QButtonGroup, QComboBox, QFrame,
+    QGroupBox, QHBoxLayout, QHeaderView, QLabel,
+    QLayout, QLineEdit, QListWidget, QListWidgetItem,
+    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTableView, QVBoxLayout, QWidget)
 from . import resources_rc
 
 class Ui_MainWindow(object):
@@ -228,14 +229,103 @@ class Ui_MainWindow(object):
 "	color: rgb(251, 254, 255);\n"
 "}\n"
 "\n"
+"#add_entry_button, \n"
+"#update_entry_button,\n"
+"#delete_entry_button {\n"
+"	background: rgb(52, 62, 162);\n"
+"	margin: 0;\n"
+"	font-size: 15pt;\n"
+"	text-align: left;\n"
+"	padding-left: 10px;\n"
+"	border-radius: 0;\n"
+"	height: 50px;\n"
+"}\n"
 "\n"
+"#add_entry_button:checked, \n"
+"#update_entr"
+                        "y_button:checked, \n"
+"#delete_entry_button:checked {\n"
+"	background: #fff;\n"
+"	color: rgb(52, 62, 162);\n"
+"}\n"
 "\n"
+"#search_bar_container,\n"
+"#search_bar_container_2,\n"
+"#search_bar_container_3 {\n"
+"	border: 1px solid rgb(0, 159, 161);\n"
+"	border-radius: 15px;\n"
+"	margin: 1px;\n"
+"}\n"
 "\n"
+"#search_button,\n"
+"#search_bar_input,\n"
+"#update_entry_search_button,\n"
+"#update_entry_search_input,\n"
+"#delete_entry_search_button,\n"
+"#delete_entry_search_input {\n"
+"	color: rgb(0, 159, 161);\n"
+"	font-size: 18pt\n"
+"}\n"
 "\n"
+"#search_bar_input,\n"
+"#update_entry_search_input,\n"
+"#delete_entry_search_input {\n"
+"	padding-left: 20px;\n"
+"}\n"
 "\n"
+"#add_entry_table_header QLabel {\n"
+"	background: rgb(0, 159, 161);\n"
+"	font-size: 18pt;\n"
+"	padding-left: 10px;\n"
+"	padding-right: 10px;\n"
+"	margin: 0;\n"
+"	min-height: 40px;\n"
+"}\n"
 "\n"
+"#add_entry_save_button,\n"
+"#add_entry_add_button,\n"
+"#add_entry_cancel_button,\n"
+"#update_entry_save_button,\n"
+"#update_entry_cancel_button,\n"
+"#delete_entry_del"
+                        "ete_button,\n"
+"#delete_entry_cancel_button {\n"
+"	border: 1px solid;\n"
+"	margin: 0;\n"
+"	font-size: 18pt;\n"
+"	height: 40px;\n"
+"	width: 100px;\n"
+"	margin-left: 20px;\n"
+"}\n"
 "\n"
-"")
+"#add_entry_save_button,\n"
+"#add_entry_add_button,\n"
+"#update_entry_save_button {\n"
+"	color: rgb(0, 159, 161);\n"
+"	border-color: rgb(0, 159, 161);\n"
+"}\n"
+"\n"
+"#add_entry_cancel_button,\n"
+"#update_entry_cancel_button,\n"
+"#delete_entry_delete_button,\n"
+"#delete_entry_cancel_button {\n"
+"	color: rgb(224, 27, 36);\n"
+"	border-color: rgb(224, 27, 36);\n"
+"}\n"
+"\n"
+"#add_entry_inputs QLineEdit {\n"
+"	border: 1px solid rgb(0, 159, 161);\n"
+"	height: 35px;\n"
+"	border-radius: 10px;\n"
+"	padding-left: 10px;\n"
+"	font-size: 15pt;\n"
+"	color: rgb(0, 159, 161);\n"
+"}\n"
+"\n"
+"#update_entry_search_input,\n"
+"#delete_entry_search_input {\n"
+"	max-width: 350px;\n"
+"}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.stackedWidget = QStackedWidget(self.centralwidget)
@@ -399,6 +489,7 @@ class Ui_MainWindow(object):
         self.stackedWidget_2 = QStackedWidget(self.layoutWidget)
         self.stackedWidget_2.setObjectName(u"stackedWidget_2")
         self.stackedWidget_2.setMinimumSize(QSize(3, 0))
+        self.stackedWidget_2.setStyleSheet(u"")
         self.create_user_page = QWidget()
         self.create_user_page.setObjectName(u"create_user_page")
         self.layoutWidget1 = QWidget(self.create_user_page)
@@ -506,13 +597,13 @@ class Ui_MainWindow(object):
         self.inventory_header = QWidget(self.verticalLayoutWidget_3)
         self.inventory_header.setObjectName(u"inventory_header")
         self.inventory_header.setMinimumSize(QSize(0, 90))
-        self.widget1 = QWidget(self.inventory_header)
-        self.widget1.setObjectName(u"widget1")
-        self.widget1.setGeometry(QRect(30, 1, 155, 91))
-        self.verticalLayout_6 = QVBoxLayout(self.widget1)
+        self.layoutWidget2 = QWidget(self.inventory_header)
+        self.layoutWidget2.setObjectName(u"layoutWidget2")
+        self.layoutWidget2.setGeometry(QRect(30, 1, 155, 91))
+        self.verticalLayout_6 = QVBoxLayout(self.layoutWidget2)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.time_label = QLabel(self.widget1)
+        self.time_label = QLabel(self.layoutWidget2)
         self.time_label.setObjectName(u"time_label")
         font4 = QFont()
         font4.setPointSize(25)
@@ -522,7 +613,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.time_label)
 
-        self.date_label = QLabel(self.widget1)
+        self.date_label = QLabel(self.layoutWidget2)
         self.date_label.setObjectName(u"date_label")
         font5 = QFont()
         font5.setPointSize(21)
@@ -534,33 +625,33 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.date_label)
 
-        self.widget2 = QWidget(self.inventory_header)
-        self.widget2.setObjectName(u"widget2")
-        self.widget2.setGeometry(QRect(370, 0, 411, 91))
-        self.horizontalLayout_7 = QHBoxLayout(self.widget2)
+        self.layoutWidget3 = QWidget(self.inventory_header)
+        self.layoutWidget3.setObjectName(u"layoutWidget3")
+        self.layoutWidget3.setGeometry(QRect(370, 0, 411, 91))
+        self.horizontalLayout_7 = QHBoxLayout(self.layoutWidget3)
         self.horizontalLayout_7.setSpacing(40)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.transaction_history_button = QPushButton(self.widget2)
+        self.transaction_history_button = QPushButton(self.layoutWidget3)
         self.transaction_history_button.setObjectName(u"transaction_history_button")
         self.transaction_history_button.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_7.addWidget(self.transaction_history_button)
 
-        self.alerts_button = QPushButton(self.widget2)
+        self.alerts_button = QPushButton(self.layoutWidget3)
         self.alerts_button.setObjectName(u"alerts_button")
         self.alerts_button.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_7.addWidget(self.alerts_button)
 
-        self.widget3 = QWidget(self.inventory_header)
-        self.widget3.setObjectName(u"widget3")
-        self.widget3.setGeometry(QRect(990, 0, 571, 91))
-        self.horizontalLayout_8 = QHBoxLayout(self.widget3)
+        self.layoutWidget4 = QWidget(self.inventory_header)
+        self.layoutWidget4.setObjectName(u"layoutWidget4")
+        self.layoutWidget4.setGeometry(QRect(990, 0, 571, 91))
+        self.horizontalLayout_8 = QHBoxLayout(self.layoutWidget4)
         self.horizontalLayout_8.setSpacing(40)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.label_3 = QLabel(self.widget3)
+        self.label_3 = QLabel(self.layoutWidget4)
         self.label_3.setObjectName(u"label_3")
         font6 = QFont()
         font6.setPointSize(18)
@@ -569,7 +660,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_8.addWidget(self.label_3)
 
-        self.inventory_type_input = QComboBox(self.widget3)
+        self.inventory_type_input = QComboBox(self.layoutWidget4)
         self.inventory_type_input.addItem("")
         self.inventory_type_input.addItem("")
         self.inventory_type_input.addItem("")
@@ -596,9 +687,9 @@ class Ui_MainWindow(object):
 
         self.stackedWidget_3 = QStackedWidget(self.verticalLayoutWidget_3)
         self.stackedWidget_3.setObjectName(u"stackedWidget_3")
-        self.page_3 = QWidget()
-        self.page_3.setObjectName(u"page_3")
-        self.label_4 = QLabel(self.page_3)
+        self.inventory_page_default = QWidget()
+        self.inventory_page_default.setObjectName(u"inventory_page_default")
+        self.label_4 = QLabel(self.inventory_page_default)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setGeometry(QRect(0, 0, 1600, 650))
         font8 = QFont()
@@ -606,10 +697,508 @@ class Ui_MainWindow(object):
         self.label_4.setFont(font8)
         self.label_4.setStyleSheet(u"color: rgb(0, 159, 161)")
         self.label_4.setAlignment(Qt.AlignCenter)
-        self.stackedWidget_3.addWidget(self.page_3)
-        self.page_4 = QWidget()
-        self.page_4.setObjectName(u"page_4")
-        self.stackedWidget_3.addWidget(self.page_4)
+        self.stackedWidget_3.addWidget(self.inventory_page_default)
+        self.transactions_page = QWidget()
+        self.transactions_page.setObjectName(u"transactions_page")
+        self.layoutWidget5 = QWidget(self.transactions_page)
+        self.layoutWidget5.setObjectName(u"layoutWidget5")
+        self.layoutWidget5.setGeometry(QRect(250, 110, 1311, 461))
+        self.verticalLayout_7 = QVBoxLayout(self.layoutWidget5)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.label_5 = QLabel(self.layoutWidget5)
+        self.label_5.setObjectName(u"label_5")
+        font9 = QFont()
+        font9.setPointSize(25)
+        font9.setWeight(QFont.Light)
+        self.label_5.setFont(font9)
+        self.label_5.setStyleSheet(u"color: rgb(0, 159, 161)")
+
+        self.verticalLayout_7.addWidget(self.label_5)
+
+        self.transactions_table = QTableView(self.layoutWidget5)
+        self.transactions_table.setObjectName(u"transactions_table")
+
+        self.verticalLayout_7.addWidget(self.transactions_table)
+
+        self.stackedWidget_3.addWidget(self.transactions_page)
+        self.alerts_page = QWidget()
+        self.alerts_page.setObjectName(u"alerts_page")
+        self.layoutWidget6 = QWidget(self.alerts_page)
+        self.layoutWidget6.setObjectName(u"layoutWidget6")
+        self.layoutWidget6.setGeometry(QRect(247, 115, 1311, 451))
+        self.verticalLayout_8 = QVBoxLayout(self.layoutWidget6)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.label_6 = QLabel(self.layoutWidget6)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setFont(font9)
+        self.label_6.setStyleSheet(u"color: rgb(0, 159, 161)")
+
+        self.verticalLayout_8.addWidget(self.label_6)
+
+        self.alerts_table = QTableView(self.layoutWidget6)
+        self.alerts_table.setObjectName(u"alerts_table")
+
+        self.verticalLayout_8.addWidget(self.alerts_table)
+
+        self.stackedWidget_3.addWidget(self.alerts_page)
+        self.inventory_view_page = QWidget()
+        self.inventory_view_page.setObjectName(u"inventory_view_page")
+        self.stackedWidget_4 = QStackedWidget(self.inventory_view_page)
+        self.stackedWidget_4.setObjectName(u"stackedWidget_4")
+        self.stackedWidget_4.setGeometry(QRect(270, 109, 1291, 491))
+        self.item_search_page = QWidget()
+        self.item_search_page.setObjectName(u"item_search_page")
+        self.verticalLayoutWidget_4 = QWidget(self.item_search_page)
+        self.verticalLayoutWidget_4.setObjectName(u"verticalLayoutWidget_4")
+        self.verticalLayoutWidget_4.setGeometry(QRect(-1, -1, 1291, 491))
+        self.verticalLayout_10 = QVBoxLayout(self.verticalLayoutWidget_4)
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_9 = QHBoxLayout()
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.search_bar_container = QWidget(self.verticalLayoutWidget_4)
+        self.search_bar_container.setObjectName(u"search_bar_container")
+        self.search_bar_container.setMinimumSize(QSize(0, 45))
+        self.horizontalLayoutWidget = QWidget(self.search_bar_container)
+        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
+        self.horizontalLayoutWidget.setGeometry(QRect(-1, 0, 681, 42))
+        self.horizontalLayout_11 = QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.horizontalLayout_11.setContentsMargins(0, 0, 0, 0)
+        self.search_bar_input = QLineEdit(self.horizontalLayoutWidget)
+        self.search_bar_input.setObjectName(u"search_bar_input")
+        sizePolicy5.setHeightForWidth(self.search_bar_input.sizePolicy().hasHeightForWidth())
+        self.search_bar_input.setSizePolicy(sizePolicy5)
+
+        self.horizontalLayout_11.addWidget(self.search_bar_input)
+
+        self.line = QFrame(self.horizontalLayoutWidget)
+        self.line.setObjectName(u"line")
+        self.line.setStyleSheet(u"background: rgb(0, 159, 161);\n"
+"margin-top: 8px;\n"
+"margin-bottom: 6px;")
+        self.line.setFrameShape(QFrame.VLine)
+        self.line.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_11.addWidget(self.line)
+
+        self.search_button = QPushButton(self.horizontalLayoutWidget)
+        self.search_button.setObjectName(u"search_button")
+        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.search_button.sizePolicy().hasHeightForWidth())
+        self.search_button.setSizePolicy(sizePolicy6)
+        self.search_button.setMinimumSize(QSize(0, 40))
+        self.search_button.setFont(font7)
+        self.search_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_11.addWidget(self.search_button)
+
+
+        self.horizontalLayout_9.addWidget(self.search_bar_container)
+
+        self.horizontalSpacer_3 = QSpacerItem(600, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_9.addItem(self.horizontalSpacer_3)
+
+
+        self.verticalLayout_10.addLayout(self.horizontalLayout_9)
+
+        self.item_search_table = QTableView(self.verticalLayoutWidget_4)
+        self.item_search_table.setObjectName(u"item_search_table")
+        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.item_search_table.sizePolicy().hasHeightForWidth())
+        self.item_search_table.setSizePolicy(sizePolicy7)
+
+        self.verticalLayout_10.addWidget(self.item_search_table)
+
+        self.stackedWidget_4.addWidget(self.item_search_page)
+        self.add_entry_page = QWidget()
+        self.add_entry_page.setObjectName(u"add_entry_page")
+        self.verticalLayoutWidget_5 = QWidget(self.add_entry_page)
+        self.verticalLayoutWidget_5.setObjectName(u"verticalLayoutWidget_5")
+        self.verticalLayoutWidget_5.setGeometry(QRect(-1, -1, 1291, 491))
+        self.verticalLayout_11 = QVBoxLayout(self.verticalLayoutWidget_5)
+        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
+        self.verticalLayout_11.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_12 = QHBoxLayout()
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.add_entry_label = QLabel(self.verticalLayoutWidget_5)
+        self.add_entry_label.setObjectName(u"add_entry_label")
+        font10 = QFont()
+        font10.setPointSize(27)
+        font10.setWeight(QFont.Light)
+        self.add_entry_label.setFont(font10)
+        self.add_entry_label.setStyleSheet(u"color: rgb(0, 159, 161)")
+
+        self.horizontalLayout_12.addWidget(self.add_entry_label)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_12.addItem(self.horizontalSpacer_4)
+
+        self.add_entry_save_button = QPushButton(self.verticalLayoutWidget_5)
+        self.add_entry_save_button.setObjectName(u"add_entry_save_button")
+        self.add_entry_save_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_12.addWidget(self.add_entry_save_button)
+
+        self.add_entry_cancel_button = QPushButton(self.verticalLayoutWidget_5)
+        self.add_entry_cancel_button.setObjectName(u"add_entry_cancel_button")
+        self.add_entry_cancel_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_12.addWidget(self.add_entry_cancel_button)
+
+        self.add_entry_add_button = QPushButton(self.verticalLayoutWidget_5)
+        self.add_entry_add_button.setObjectName(u"add_entry_add_button")
+        self.add_entry_add_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_12.addWidget(self.add_entry_add_button)
+
+
+        self.verticalLayout_11.addLayout(self.horizontalLayout_12)
+
+        self.add_entry_table_header = QGroupBox(self.verticalLayoutWidget_5)
+        self.add_entry_table_header.setObjectName(u"add_entry_table_header")
+        self.horizontalLayout_15 = QHBoxLayout(self.add_entry_table_header)
+        self.horizontalLayout_15.setSpacing(2)
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.horizontalLayout_15.setContentsMargins(0, 28, 0, 0)
+        self.label_13 = QLabel(self.add_entry_table_header)
+        self.label_13.setObjectName(u"label_13")
+        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.label_13.sizePolicy().hasHeightForWidth())
+        self.label_13.setSizePolicy(sizePolicy8)
+
+        self.horizontalLayout_15.addWidget(self.label_13)
+
+        self.label_12 = QLabel(self.add_entry_table_header)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setMaximumSize(QSize(550, 16777215))
+
+        self.horizontalLayout_15.addWidget(self.label_12)
+
+        self.qty_label = QLabel(self.add_entry_table_header)
+        self.qty_label.setObjectName(u"qty_label")
+        sizePolicy2.setHeightForWidth(self.qty_label.sizePolicy().hasHeightForWidth())
+        self.qty_label.setSizePolicy(sizePolicy2)
+        self.qty_label.setMinimumSize(QSize(0, 40))
+        self.qty_label.setMaximumSize(QSize(150, 16777215))
+
+        self.horizontalLayout_15.addWidget(self.qty_label)
+
+        self.label_10 = QLabel(self.add_entry_table_header)
+        self.label_10.setObjectName(u"label_10")
+        self.label_10.setMinimumSize(QSize(0, 40))
+        self.label_10.setMaximumSize(QSize(350, 16777215))
+
+        self.horizontalLayout_15.addWidget(self.label_10)
+
+        self.label_9 = QLabel(self.add_entry_table_header)
+        self.label_9.setObjectName(u"label_9")
+        sizePolicy8.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
+        self.label_9.setSizePolicy(sizePolicy8)
+        self.label_9.setMinimumSize(QSize(200, 40))
+
+        self.horizontalLayout_15.addWidget(self.label_9)
+
+
+        self.verticalLayout_11.addWidget(self.add_entry_table_header)
+
+        self.verticalLayout_12 = QVBoxLayout()
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.add_entry_inputs = QGroupBox(self.verticalLayoutWidget_5)
+        self.add_entry_inputs.setObjectName(u"add_entry_inputs")
+        self.add_entry_inputs.setMinimumSize(QSize(0, 40))
+        self.horizontalLayout_13 = QHBoxLayout(self.add_entry_inputs)
+        self.horizontalLayout_13.setSpacing(10)
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.horizontalLayout_13.setContentsMargins(0, 10, 10, 0)
+        self.horizontalSpacer_5 = QSpacerItem(60, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_13.addItem(self.horizontalSpacer_5)
+
+        self.item_name_input = QLineEdit(self.add_entry_inputs)
+        self.item_name_input.setObjectName(u"item_name_input")
+        sizePolicy.setHeightForWidth(self.item_name_input.sizePolicy().hasHeightForWidth())
+        self.item_name_input.setSizePolicy(sizePolicy)
+        self.item_name_input.setMinimumSize(QSize(510, 0))
+        self.item_name_input.setMaximumSize(QSize(500, 16777215))
+        font11 = QFont()
+        font11.setPointSize(15)
+        self.item_name_input.setFont(font11)
+
+        self.horizontalLayout_13.addWidget(self.item_name_input)
+
+        self.item_qty_input = QLineEdit(self.add_entry_inputs)
+        self.item_qty_input.setObjectName(u"item_qty_input")
+        sizePolicy.setHeightForWidth(self.item_qty_input.sizePolicy().hasHeightForWidth())
+        self.item_qty_input.setSizePolicy(sizePolicy)
+        self.item_qty_input.setMinimumSize(QSize(140, 0))
+        self.item_qty_input.setMaximumSize(QSize(150, 16777215))
+
+        self.horizontalLayout_13.addWidget(self.item_qty_input)
+
+        self.item_location_input = QLineEdit(self.add_entry_inputs)
+        self.item_location_input.setObjectName(u"item_location_input")
+        sizePolicy5.setHeightForWidth(self.item_location_input.sizePolicy().hasHeightForWidth())
+        self.item_location_input.setSizePolicy(sizePolicy5)
+        self.item_location_input.setMinimumSize(QSize(345, 0))
+        self.item_location_input.setMaximumSize(QSize(350, 16777215))
+
+        self.horizontalLayout_13.addWidget(self.item_location_input)
+
+        self.item_lab_input = QLineEdit(self.add_entry_inputs)
+        self.item_lab_input.setObjectName(u"item_lab_input")
+        self.item_lab_input.setMaximumSize(QSize(200, 16777215))
+
+        self.horizontalLayout_13.addWidget(self.item_lab_input)
+
+
+        self.verticalLayout_12.addWidget(self.add_entry_inputs)
+
+        self.add_entry_list = QListWidget(self.verticalLayoutWidget_5)
+        self.add_entry_list.setObjectName(u"add_entry_list")
+
+        self.verticalLayout_12.addWidget(self.add_entry_list)
+
+
+        self.verticalLayout_11.addLayout(self.verticalLayout_12)
+
+        self.stackedWidget_4.addWidget(self.add_entry_page)
+        self.update_entry_page = QWidget()
+        self.update_entry_page.setObjectName(u"update_entry_page")
+        self.verticalLayoutWidget_6 = QWidget(self.update_entry_page)
+        self.verticalLayoutWidget_6.setObjectName(u"verticalLayoutWidget_6")
+        self.verticalLayoutWidget_6.setGeometry(QRect(0, 0, 1291, 491))
+        self.verticalLayout_13 = QVBoxLayout(self.verticalLayoutWidget_6)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_16 = QHBoxLayout()
+        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
+        self.update_entry_label = QLabel(self.verticalLayoutWidget_6)
+        self.update_entry_label.setObjectName(u"update_entry_label")
+        self.update_entry_label.setMaximumSize(QSize(340, 16777215))
+        self.update_entry_label.setFont(font10)
+        self.update_entry_label.setStyleSheet(u"color: rgb(0, 159, 161);")
+
+        self.horizontalLayout_16.addWidget(self.update_entry_label)
+
+        self.horizontalSpacer_7 = QSpacerItem(50, 0, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_16.addItem(self.horizontalSpacer_7)
+
+        self.search_bar_container_2 = QWidget(self.verticalLayoutWidget_6)
+        self.search_bar_container_2.setObjectName(u"search_bar_container_2")
+        sizePolicy8.setHeightForWidth(self.search_bar_container_2.sizePolicy().hasHeightForWidth())
+        self.search_bar_container_2.setSizePolicy(sizePolicy8)
+        self.search_bar_container_2.setMinimumSize(QSize(0, 45))
+        self.search_bar_container_2.setMaximumSize(QSize(560, 16777215))
+        self.horizontalLayoutWidget_4 = QWidget(self.search_bar_container_2)
+        self.horizontalLayoutWidget_4.setObjectName(u"horizontalLayoutWidget_4")
+        self.horizontalLayoutWidget_4.setGeometry(QRect(-1, 0, 521, 42))
+        self.horizontalLayout_17 = QHBoxLayout(self.horizontalLayoutWidget_4)
+        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
+        self.horizontalLayout_17.setContentsMargins(0, 0, 0, 0)
+        self.update_entry_search_input = QLineEdit(self.horizontalLayoutWidget_4)
+        self.update_entry_search_input.setObjectName(u"update_entry_search_input")
+        sizePolicy.setHeightForWidth(self.update_entry_search_input.sizePolicy().hasHeightForWidth())
+        self.update_entry_search_input.setSizePolicy(sizePolicy)
+        self.update_entry_search_input.setMinimumSize(QSize(0, 0))
+
+        self.horizontalLayout_17.addWidget(self.update_entry_search_input)
+
+        self.line_2 = QFrame(self.horizontalLayoutWidget_4)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setStyleSheet(u"background: rgb(0, 159, 161);\n"
+"margin-top: 8px;\n"
+"margin-bottom: 6px;")
+        self.line_2.setFrameShape(QFrame.VLine)
+        self.line_2.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_17.addWidget(self.line_2)
+
+        self.update_entry_search_button = QPushButton(self.horizontalLayoutWidget_4)
+        self.update_entry_search_button.setObjectName(u"update_entry_search_button")
+        sizePolicy.setHeightForWidth(self.update_entry_search_button.sizePolicy().hasHeightForWidth())
+        self.update_entry_search_button.setSizePolicy(sizePolicy)
+        self.update_entry_search_button.setMinimumSize(QSize(0, 40))
+        self.update_entry_search_button.setMaximumSize(QSize(16777215, 16777215))
+        self.update_entry_search_button.setFont(font7)
+        self.update_entry_search_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_17.addWidget(self.update_entry_search_button)
+
+
+        self.horizontalLayout_16.addWidget(self.search_bar_container_2)
+
+        self.horizontalSpacer_6 = QSpacerItem(150, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_16.addItem(self.horizontalSpacer_6)
+
+        self.update_entry_save_button = QPushButton(self.verticalLayoutWidget_6)
+        self.update_entry_save_button.setObjectName(u"update_entry_save_button")
+        self.update_entry_save_button.setMaximumSize(QSize(100, 16777215))
+        self.update_entry_save_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_16.addWidget(self.update_entry_save_button)
+
+        self.update_entry_cancel_button = QPushButton(self.verticalLayoutWidget_6)
+        self.update_entry_cancel_button.setObjectName(u"update_entry_cancel_button")
+        self.update_entry_cancel_button.setMaximumSize(QSize(100, 16777215))
+        self.update_entry_cancel_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_16.addWidget(self.update_entry_cancel_button)
+
+
+        self.verticalLayout_13.addLayout(self.horizontalLayout_16)
+
+        self.update_entry_table = QTableView(self.verticalLayoutWidget_6)
+        self.update_entry_table.setObjectName(u"update_entry_table")
+
+        self.verticalLayout_13.addWidget(self.update_entry_table)
+
+        self.stackedWidget_4.addWidget(self.update_entry_page)
+        self.delete_entry_page = QWidget()
+        self.delete_entry_page.setObjectName(u"delete_entry_page")
+        self.verticalLayoutWidget_7 = QWidget(self.delete_entry_page)
+        self.verticalLayoutWidget_7.setObjectName(u"verticalLayoutWidget_7")
+        self.verticalLayoutWidget_7.setGeometry(QRect(0, 0, 1291, 491))
+        self.verticalLayout_14 = QVBoxLayout(self.verticalLayoutWidget_7)
+        self.verticalLayout_14.setObjectName(u"verticalLayout_14")
+        self.verticalLayout_14.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_18 = QHBoxLayout()
+        self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
+        self.delete_entry_label = QLabel(self.verticalLayoutWidget_7)
+        self.delete_entry_label.setObjectName(u"delete_entry_label")
+        self.delete_entry_label.setMaximumSize(QSize(340, 16777215))
+        self.delete_entry_label.setFont(font10)
+        self.delete_entry_label.setStyleSheet(u"color: rgb(0, 159, 161);")
+
+        self.horizontalLayout_18.addWidget(self.delete_entry_label)
+
+        self.horizontalSpacer_8 = QSpacerItem(50, 0, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_18.addItem(self.horizontalSpacer_8)
+
+        self.search_bar_container_3 = QWidget(self.verticalLayoutWidget_7)
+        self.search_bar_container_3.setObjectName(u"search_bar_container_3")
+        sizePolicy8.setHeightForWidth(self.search_bar_container_3.sizePolicy().hasHeightForWidth())
+        self.search_bar_container_3.setSizePolicy(sizePolicy8)
+        self.search_bar_container_3.setMinimumSize(QSize(0, 45))
+        self.search_bar_container_3.setMaximumSize(QSize(560, 16777215))
+        self.horizontalLayoutWidget_5 = QWidget(self.search_bar_container_3)
+        self.horizontalLayoutWidget_5.setObjectName(u"horizontalLayoutWidget_5")
+        self.horizontalLayoutWidget_5.setGeometry(QRect(-1, 0, 521, 42))
+        self.horizontalLayout_19 = QHBoxLayout(self.horizontalLayoutWidget_5)
+        self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
+        self.horizontalLayout_19.setContentsMargins(0, 0, 0, 0)
+        self.delete_entry_search_input = QLineEdit(self.horizontalLayoutWidget_5)
+        self.delete_entry_search_input.setObjectName(u"delete_entry_search_input")
+        sizePolicy.setHeightForWidth(self.delete_entry_search_input.sizePolicy().hasHeightForWidth())
+        self.delete_entry_search_input.setSizePolicy(sizePolicy)
+        self.delete_entry_search_input.setMinimumSize(QSize(0, 0))
+
+        self.horizontalLayout_19.addWidget(self.delete_entry_search_input)
+
+        self.line_3 = QFrame(self.horizontalLayoutWidget_5)
+        self.line_3.setObjectName(u"line_3")
+        self.line_3.setStyleSheet(u"background: rgb(0, 159, 161);\n"
+"margin-top: 8px;\n"
+"margin-bottom: 6px;")
+        self.line_3.setFrameShape(QFrame.VLine)
+        self.line_3.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_19.addWidget(self.line_3)
+
+        self.delete_entry_search_button = QPushButton(self.horizontalLayoutWidget_5)
+        self.delete_entry_search_button.setObjectName(u"delete_entry_search_button")
+        sizePolicy.setHeightForWidth(self.delete_entry_search_button.sizePolicy().hasHeightForWidth())
+        self.delete_entry_search_button.setSizePolicy(sizePolicy)
+        self.delete_entry_search_button.setMinimumSize(QSize(0, 40))
+        self.delete_entry_search_button.setMaximumSize(QSize(16777215, 16777215))
+        self.delete_entry_search_button.setFont(font7)
+        self.delete_entry_search_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_19.addWidget(self.delete_entry_search_button)
+
+
+        self.horizontalLayout_18.addWidget(self.search_bar_container_3)
+
+        self.horizontalSpacer_9 = QSpacerItem(150, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_18.addItem(self.horizontalSpacer_9)
+
+        self.delete_entry_delete_button = QPushButton(self.verticalLayoutWidget_7)
+        self.delete_entry_delete_button.setObjectName(u"delete_entry_delete_button")
+        self.delete_entry_delete_button.setMaximumSize(QSize(100, 16777215))
+        self.delete_entry_delete_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_18.addWidget(self.delete_entry_delete_button)
+
+        self.delete_entry_cancel_button = QPushButton(self.verticalLayoutWidget_7)
+        self.delete_entry_cancel_button.setObjectName(u"delete_entry_cancel_button")
+        self.delete_entry_cancel_button.setMaximumSize(QSize(100, 16777215))
+        self.delete_entry_cancel_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_18.addWidget(self.delete_entry_cancel_button)
+
+
+        self.verticalLayout_14.addLayout(self.horizontalLayout_18)
+
+        self.delete_entry_table = QTableView(self.verticalLayoutWidget_7)
+        self.delete_entry_table.setObjectName(u"delete_entry_table")
+
+        self.verticalLayout_14.addWidget(self.delete_entry_table)
+
+        self.stackedWidget_4.addWidget(self.delete_entry_page)
+        self.layoutWidget7 = QWidget(self.inventory_view_page)
+        self.layoutWidget7.setObjectName(u"layoutWidget7")
+        self.layoutWidget7.setGeometry(QRect(30, 190, 191, 201))
+        self.verticalLayout_9 = QVBoxLayout(self.layoutWidget7)
+        self.verticalLayout_9.setSpacing(1)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.verticalLayout_9.setContentsMargins(0, 0, 0, 0)
+        self.label_7 = QLabel(self.layoutWidget7)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setFont(font7)
+        self.label_7.setStyleSheet(u"color: rgb(52, 62, 162)")
+
+        self.verticalLayout_9.addWidget(self.label_7)
+
+        self.add_entry_button = QPushButton(self.layoutWidget7)
+        self.item_manage = QButtonGroup(MainWindow)
+        self.item_manage.setObjectName(u"item_manage")
+        self.item_manage.addButton(self.add_entry_button)
+        self.add_entry_button.setObjectName(u"add_entry_button")
+        self.add_entry_button.setCursor(QCursor(Qt.PointingHandCursor))
+        self.add_entry_button.setCheckable(True)
+
+        self.verticalLayout_9.addWidget(self.add_entry_button)
+
+        self.update_entry_button = QPushButton(self.layoutWidget7)
+        self.item_manage.addButton(self.update_entry_button)
+        self.update_entry_button.setObjectName(u"update_entry_button")
+        self.update_entry_button.setCheckable(True)
+
+        self.verticalLayout_9.addWidget(self.update_entry_button)
+
+        self.delete_entry_button = QPushButton(self.layoutWidget7)
+        self.item_manage.addButton(self.delete_entry_button)
+        self.delete_entry_button.setObjectName(u"delete_entry_button")
+        self.delete_entry_button.setFont(font11)
+        self.delete_entry_button.setCheckable(True)
+
+        self.verticalLayout_9.addWidget(self.delete_entry_button)
+
+        self.stackedWidget_3.addWidget(self.inventory_view_page)
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
 
@@ -646,6 +1235,8 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(1)
         self.cancel_button.setDefault(False)
         self.inventory_type_input.setCurrentIndex(-1)
+        self.stackedWidget_3.setCurrentIndex(3)
+        self.stackedWidget_4.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -680,6 +1271,32 @@ class Ui_MainWindow(object):
         self.inventory_type_input.setCurrentText("")
         self.inventory_type_input.setPlaceholderText(QCoreApplication.translate("MainWindow", u"      -- Select an option --", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Nothing to Show", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"TRANSACTION HISTORY", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"ALERTS", None))
+        self.search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
+        self.add_entry_label.setText(QCoreApplication.translate("MainWindow", u"ADD NEW GLASSWARE", None))
+        self.add_entry_save_button.setText(QCoreApplication.translate("MainWindow", u"save", None))
+        self.add_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
+        self.add_entry_add_button.setText(QCoreApplication.translate("MainWindow", u"Add", None))
+        self.add_entry_table_header.setTitle("")
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"No", None))
+        self.label_12.setText(QCoreApplication.translate("MainWindow", u"Name", None))
+        self.qty_label.setText(QCoreApplication.translate("MainWindow", u"Qty", None))
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Location", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Lab", None))
+        self.add_entry_inputs.setTitle(QCoreApplication.translate("MainWindow", u"GroupBox", None))
+        self.update_entry_label.setText(QCoreApplication.translate("MainWindow", u"UPDATE GLASSWARE", None))
+        self.update_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
+        self.update_entry_save_button.setText(QCoreApplication.translate("MainWindow", u"save", None))
+        self.update_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
+        self.delete_entry_label.setText(QCoreApplication.translate("MainWindow", u"DELETE GLASSWARE", None))
+        self.delete_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
+        self.delete_entry_delete_button.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
+        self.delete_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"OPTIONS", None))
+        self.add_entry_button.setText(QCoreApplication.translate("MainWindow", u"Add Entry", None))
+        self.update_entry_button.setText(QCoreApplication.translate("MainWindow", u"Update Entry", None))
+        self.delete_entry_button.setText(QCoreApplication.translate("MainWindow", u"Delete Entry", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"&copy; 2024, Dept. of CS", None))
     # retranslateUi
 

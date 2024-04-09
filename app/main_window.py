@@ -12,7 +12,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.setupUi(self)
         
         # for managing user access control
-        self.user_type = ""
+        # `user_type`: admin, user
+        # `item_type`: glassware, equipments, chemicals
+        self.state = {"user_type": "", "item_type": "", "inventory_page_func": "search"}
         self.login()
 
 
@@ -32,9 +34,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.alerts_button.clicked.connect(self.show_alerts_page)
 
         self.ui.inventory_type_input.activated.connect(self.handle_inventory_page)
-
         # Change the value of inventory_type_input combo box to the default value
         self.ui.stackedWidget_3.currentChanged.connect(self.deactivate_inventory_type_input)
+
+        self.ui.add_entry_button.clicked.connect(self.show_add_entry_page)
+
+    
+    def update_item_type_label(self):
+        text = {
+            "add": "ADD NEW",
+            "update": "UPDATE",
+            "delete": "DELETE"
+        }
+
+        return f"{text[self.state['inventory_page_func']]} {self.state['item_type'].upper()}"
+
     
 
     #***************************************************************
@@ -62,7 +76,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if query.first():
             if (hashed_password := query.value("hashed_password")) and utils.verify_pw(hashed_password, password):
                 user_type = query.value("user_type")
-                self.user_type = user_type
+                self.state["user_type"] = user_type
                 self.ui.username_input.clear()
                 self.ui.password_input.clear()
                 self.show_home_screen(username)
@@ -78,7 +92,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         It handles logout.
         """
 
-        self.user_type = ""
+        self.state["user_type"] = ""
         self.login()
 
     def show_transaction_page(self):
@@ -104,7 +118,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         This slot is triggered when the inventory_type_input is activated.
         Handles the inventory_view_page.
         """
+
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
+        self.state["item_type"] = self.ui.inventory_type_input.currentText().lower()
 
     def deactivate_inventory_type_input(self, index):
         """
@@ -117,5 +133,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if index != 3:
             self.ui.inventory_type_input.setCurrentIndex(-1)
 
-                
+    def show_add_entry_page(self):
+        """
+        This slot is triggered when the add_entry_button is clicked.
+        Show add_entry_page.
+        """
+
+        self.ui.stackedWidget_4.setCurrentWidget(self.ui.add_entry_page)
+        self.state["inventory_page_func"] = "add"
+        self.ui.add_entry_label.setText(self.update_item_type_label())
 

@@ -61,4 +61,5 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def show_home_screen(self, username: str, user_type: str):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
         self.ui.header_username_label.setText(username.upper())
+        self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
 

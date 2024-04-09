@@ -48,6 +48,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         }
 
         return f"{text[self.state['inventory_page_func']]} {self.state['item_type'].upper()}"
+    
+
+    def deactivate_page_change(self):
+        self.ui.transaction_history_button.setEnabled(False)
+        self.ui.alerts_button.setEnabled(False)
+        self.ui.create_user_button.setEnabled(False)
+
+    def activate_page_change(self):
+        self.ui.transaction_history_button.setEnabled(True)
+        self.ui.alerts_button.setEnabled(True)
+        self.ui.create_user_button.setEnabled(True)
 
     
 
@@ -130,7 +141,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         This will deactivate item_manage button group.
         """
 
-        # 4 is the index of inventory_view_page
+        # 3 is the index of inventory_view_page
         if index != 3:
             self.ui.inventory_type_input.setCurrentIndex(-1)
 
@@ -151,4 +162,5 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_4.setCurrentWidget(self.ui.add_entry_page)
         self.state["inventory_page_func"] = "add"
         self.ui.add_entry_label.setText(self.update_item_type_label())
+        self.deactivate_page_change()
 

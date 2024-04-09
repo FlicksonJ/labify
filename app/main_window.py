@@ -18,8 +18,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def login(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.login_page)
-        self.ui.login_button.clicked.connect(self.login_slot)
-        self.ui.password_input.returnPressed.connect(self.login_slot)
+        self.ui.login_button.clicked.connect(self.handle_login)
+        self.ui.password_input.returnPressed.connect(self.handle_login)
 
 
     
@@ -27,7 +27,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     #Slots
     #***************************************************************
     
-    def login_slot(self):
+    def handle_login(self):
         """
         This slot is triggered when the login_button is clicked.
         It handles the login of the app.
@@ -56,7 +56,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             self.ui.username_input.setStyleSheet(login_error_style)
 
-    def show_transaction_page_slot(self):
+    def show_transaction_page(self):
         """
         This slot is triggered when the transaction_history_button is clicked.
         Show the transactions_page.
@@ -65,7 +65,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.transactions_page)
         #@TODO: Add tableview 
 
-    def show_alerts_page_slot(self):
+    def show_alerts_page(self):
         """
         This slot is triggered when the alerts_button is clicked.
         Show the alerts_page.
@@ -74,13 +74,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.alerts_page)
         #@TODO: Add tableview
 
-
                 
     def show_home_screen(self, username: str):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
         self.ui.header_username_label.setText(username.upper())
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
 
-        self.ui.transaction_history_button.clicked.connect(self.show_transaction_page_slot)
-        self.ui.alerts_button.clicked.connect(self.show_alerts_page_slot)
+        self.ui.transaction_history_button.clicked.connect(self.show_transaction_page)
+        self.ui.alerts_button.clicked.connect(self.show_alerts_page)
 

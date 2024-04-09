@@ -22,7 +22,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.password_input.returnPressed.connect(self.handle_login)
 
 
+    def show_home_screen(self, username: str):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
+        self.ui.header_username_label.setText(username.upper())
+        self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
+        
+        self.ui.logout_button.clicked.connect(self.handle_logout)
+        self.ui.transaction_history_button.clicked.connect(self.show_transaction_page)
+        self.ui.alerts_button.clicked.connect(self.show_alerts_page)
+
+        self.ui.inventory_type_input.activated.connect(self.handle_inventory_page)
+
+        # Change the value of inventory_type_input combo box to the default value
+        self.ui.stackedWidget_3.currentChanged.connect(self.deactivate_inventory_type_input)
     
+
     #***************************************************************
     #Slots
     #***************************************************************
@@ -104,18 +118,4 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.ui.inventory_type_input.setCurrentIndex(-1)
 
                 
-    def show_home_screen(self, username: str):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
-        self.ui.header_username_label.setText(username.upper())
-        self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
-        
-        self.ui.logout_button.clicked.connect(self.handle_logout)
-        self.ui.transaction_history_button.clicked.connect(self.show_transaction_page)
-        self.ui.alerts_button.clicked.connect(self.show_alerts_page)
-
-        self.ui.inventory_type_input.activated.connect(self.handle_inventory_page)
-
-        # Change the value of inventory_type_input combo box to the default value
-        self.ui.stackedWidget_3.currentChanged.connect(self.deactivate_inventory_type_input)
-
 

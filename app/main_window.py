@@ -35,7 +35,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.ui.inventory_type_input.activated.connect(self.handle_inventory_page)
         # Change the value of inventory_type_input combo box to the default value
-        self.ui.stackedWidget_3.currentChanged.connect(self.deactivate_inventory_type_input)
+        self.ui.stackedWidget_3.currentChanged.connect(self.inventory_view_changed)
 
         self.ui.add_entry_button.clicked.connect(self.show_add_entry_page)
 
@@ -120,18 +120,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
 
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
+        self.ui.stackedWidget_4.setCurrentWidget(self.ui.item_search_page)
         self.state["item_type"] = self.ui.inventory_type_input.currentText().lower()
 
-    def deactivate_inventory_type_input(self, index):
+    def inventory_view_changed(self, index):
         """
         This slot is triggered whenever the stackedWidget_3 widget is changed.
-        It will set the index of inventory_type_input to -1 so that it will show
-        the placeholder text.
+        This will deactivate the inventory_type_input combo box.
+        This will deactivate item_manage button group.
         """
 
         # 4 is the index of inventory_view_page
         if index != 3:
             self.ui.inventory_type_input.setCurrentIndex(-1)
+
+            # deselect all button in item_manage QButtonGroup
+            self.ui.item_manage.setExclusive(False)
+            checked_id = self.ui.item_manage.checkedId()
+            if checked_id != -1:
+                button = self.ui.item_manage.button(checked_id)
+                button.setChecked(False)
+            self.ui.item_manage.setExclusive(True)
 
     def show_add_entry_page(self):
         """

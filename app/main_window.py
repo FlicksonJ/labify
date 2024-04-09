@@ -29,6 +29,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.header_username_label.setText(username.upper())
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
         
+        self.ui.create_user_button.clicked.connect(self.show_create_account_page)
         self.ui.logout_button.clicked.connect(self.handle_logout)
         self.ui.transaction_history_button.clicked.connect(self.show_transaction_page)
         self.ui.alerts_button.clicked.connect(self.show_alerts_page)
@@ -115,6 +116,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.state["user_type"] = ""
         self.login()
+
+    def show_create_account_page(self):
+        """
+        This slot is triggered when the create_user_button is clicked.
+        Shows create_account_page.
+        """
+        if self.state["user_type"] == 'admin':
+            self.ui.stackedWidget_2.setCurrentWidget(self.ui.create_user_page)
+
 
     def show_transaction_page(self):
         """

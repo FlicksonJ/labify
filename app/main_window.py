@@ -18,7 +18,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def login(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.login_page)
-        self.ui.login_button.clicked.connect(self.login_clicked)
+        self.ui.login_button.clicked.connect(self.login_slot)
+        self.ui.password_input.returnPressed.connect(self.login_slot)
 
 
     
@@ -26,11 +27,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     #Slots
     #***************************************************************
     
-    def login_clicked(self):
+    def login_slot(self):
         """
         This slot is triggered when the login_button is clicked.
         It handles the login of the app.
         """
+
+        login_error_style = "QLineEdit {border: 2px solid red;}"
+        
         username = self.ui.username_input.text()
         password = self.ui.password_input.text()
 
@@ -46,6 +50,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 user_type = query.value("user_type")
                 self.user_type = user_type
                 self.show_home_screen(username, user_type)
+            else:
+                self.ui.username_input.setStyleSheet(login_error_style)
+                self.ui.password_input.setStyleSheet(login_error_style)
+        else:
+            self.ui.username_input.setStyleSheet(login_error_style)
+
 
                 
     def show_home_screen(self, username: str, user_type: str):

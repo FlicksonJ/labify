@@ -34,6 +34,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.alerts_button.clicked.connect(self.show_alerts_page)
 
         self.ui.inventory_type_input.activated.connect(self.handle_inventory_page)
+        self.ui.inventory_type_input.currentTextChanged.connect(self.handle_inventory_page)
         # Change the value of inventory_type_input combo box to the default value
         self.ui.stackedWidget_3.currentChanged.connect(self.inventory_view_changed)
 
@@ -60,6 +61,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.alerts_button.setEnabled(True)
         self.ui.create_user_button.setEnabled(True)
 
+    def deselect_button_group(self):
+        self.ui.item_manage.setExclusive(False)
+        checked_id = self.ui.item_manage.checkedId()
+        if checked_id != -1:
+            button = self.ui.item_manage.button(checked_id)
+            button.setChecked(False)
+        self.ui.item_manage.setExclusive(True)
     
 
     #***************************************************************
@@ -133,6 +141,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
         self.ui.stackedWidget_4.setCurrentWidget(self.ui.item_search_page)
         self.state["item_type"] = self.ui.inventory_type_input.currentText().lower()
+        self.deselect_button_group()
 
     def inventory_view_changed(self, index):
         """
@@ -146,12 +155,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.ui.inventory_type_input.setCurrentIndex(-1)
 
             # deselect all button in item_manage QButtonGroup
-            self.ui.item_manage.setExclusive(False)
-            checked_id = self.ui.item_manage.checkedId()
-            if checked_id != -1:
-                button = self.ui.item_manage.button(checked_id)
-                button.setChecked(False)
-            self.ui.item_manage.setExclusive(True)
+            self.deselect_button_group()
 
     def show_add_entry_page(self):
         """

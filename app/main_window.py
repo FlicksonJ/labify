@@ -39,6 +39,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_3.currentChanged.connect(self.inventory_view_changed)
 
         self.ui.add_entry_button.clicked.connect(self.show_add_entry_page)
+        self.ui.update_entry_button.clicked.connect(self.show_update_entry_page)
+        self.ui.delete_entry_button.clicked.connect(self.show_delete_entry_page)
 
     
     def update_item_type_label(self):
@@ -132,16 +134,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.alerts_page)
         #@TODO: Add tableview
     
-    def handle_inventory_page(self, index):
+    def handle_inventory_page(self):
         """
         This slot is triggered when the inventory_type_input is activated.
         Handles the inventory_view_page.
         """
 
-        self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
-        self.ui.stackedWidget_4.setCurrentWidget(self.ui.item_search_page)
-        self.state["item_type"] = self.ui.inventory_type_input.currentText().lower()
-        self.deselect_button_group()
+        # To avoid side effects from inventory_view_changed function
+        # Bug: The inventory_view_changed also changes the current value of the combo box,
+        # it will trigger the currentTextChanged signal and will connect to this slot.
+        # Fix: check the currentIndex is not -1 before setting currentWidget
+        if self.ui.inventory_type_input.currentIndex() != -1:
+            self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
+            self.ui.stackedWidget_4.setCurrentWidget(self.ui.item_search_page)
+            self.state["item_type"] = self.ui.inventory_type_input.currentText().lower()
+            self.deselect_button_group()
+            self.activate_page_change()
 
     def inventory_view_changed(self, index):
         """
@@ -168,3 +176,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.add_entry_label.setText(self.update_item_type_label())
         self.deactivate_page_change()
 
+    def show_update_entry_page(self):
+        """
+        This slot is triggered when the update_entry_button is clicked.
+        Show update_entry_page.
+        """
+
+        self.ui.stackedWidget_4.setCurrentWidget(self.ui.update_entry_page)
+        self.state["inventory_page_func"] = "update"
+        self.ui.update_entry_label.setText(self.update_item_type_label())
+        self.deactivate_page_change()
+
+    def show_delete_entry_page(self):
+        """
+        This slot is triggered when the delete_entry_button is clicked.
+        Show delete_entry_page.
+        """
+
+        self.ui.stackedWidget_4.setCurrentWidget(self.ui.delete_entry_page)
+        self.state["inventory_page_func"] = "delete"
+        self.ui.delete_entry_label.setText(self.update_item_type_label())
+        self.deactivate_page_change()

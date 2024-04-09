@@ -88,6 +88,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def handle_inventory_page(self, index):
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
 
+    def deactivate_inventory_type_input(self, index):
+        """
+        This slot is triggered whenever the stackedWidget_3 widget is changed.
+        It will set the index of inventory_type_input to -1 so that it will show
+        the placeholder text.
+        """
+
+        # 4 is the index of inventory_view_page
+        if index != 3:
+            self.ui.inventory_type_input.setCurrentIndex(-1)
+
                 
     def show_home_screen(self, username: str):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
@@ -100,5 +111,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.ui.inventory_type_input.activated.connect(self.handle_inventory_page)
 
+        # Change the value of inventory_type_input combo box to the default value
+        self.ui.stackedWidget_3.currentChanged.connect(self.deactivate_inventory_type_input)
 
 

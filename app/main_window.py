@@ -86,6 +86,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #@TODO: Add tableview
     
     def handle_inventory_page(self, index):
+        """
+        This slot is triggered when the inventory_type_input is activated.
+        Handles the inventory_view_page.
+        """
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
 
     def deactivate_inventory_type_input(self, index):

@@ -84,6 +84,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.alerts_page)
         #@TODO: Add tableview
+    
+    def handle_inventory_page(self, index):
+        self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
 
                 
     def show_home_screen(self, username: str):
@@ -92,8 +95,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
         
         self.ui.logout_button.clicked.connect(self.handle_logout)
-
         self.ui.transaction_history_button.clicked.connect(self.show_transaction_page)
         self.ui.alerts_button.clicked.connect(self.show_alerts_page)
+
+        self.ui.inventory_type_input.activated.connect(self.handle_inventory_page)
+
 
 

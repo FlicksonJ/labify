@@ -49,12 +49,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if (hashed_password := query.value("hashed_password")) and utils.verify_pw(hashed_password, password):
                 user_type = query.value("user_type")
                 self.user_type = user_type
+                self.ui.username_input.clear()
+                self.ui.password_input.clear()
                 self.show_home_screen(username)
             else:
                 self.ui.username_input.setStyleSheet(login_error_style)
                 self.ui.password_input.setStyleSheet(login_error_style)
         else:
             self.ui.username_input.setStyleSheet(login_error_style)
+    
+    def handle_logout(self):
+        """
+        This slot is triggered when the logout_button is clicked.
+        It handles logout.
+        """
+
+        self.user_type = ""
+        self.login()
 
     def show_transaction_page(self):
         """
@@ -79,7 +90,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
         self.ui.header_username_label.setText(username.upper())
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
+        
+        self.ui.logout_button.clicked.connect(self.handle_logout)
 
         self.ui.transaction_history_button.clicked.connect(self.show_transaction_page)
         self.ui.alerts_button.clicked.connect(self.show_alerts_page)
+
 

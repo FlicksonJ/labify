@@ -49,17 +49,38 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if (hashed_password := query.value("hashed_password")) and utils.verify_pw(hashed_password, password):
                 user_type = query.value("user_type")
                 self.user_type = user_type
-                self.show_home_screen(username, user_type)
+                self.show_home_screen(username)
             else:
                 self.ui.username_input.setStyleSheet(login_error_style)
                 self.ui.password_input.setStyleSheet(login_error_style)
         else:
             self.ui.username_input.setStyleSheet(login_error_style)
 
+    def show_transaction_page_slot(self):
+        """
+        This slot is triggered when the transaction_history_button is clicked.
+        Show the transactions_page.
+        """
+
+        self.ui.stackedWidget_3.setCurrentWidget(self.ui.transactions_page)
+        #@TODO: Add tableview 
+
+    def show_alerts_page_slot(self):
+        """
+        This slot is triggered when the alerts_button is clicked.
+        Show the alerts_page.
+        """
+
+        self.ui.stackedWidget_3.setCurrentWidget(self.ui.alerts_page)
+        #@TODO: Add tableview
+
 
                 
-    def show_home_screen(self, username: str, user_type: str):
+    def show_home_screen(self, username: str):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
         self.ui.header_username_label.setText(username.upper())
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
+
+        self.ui.transaction_history_button.clicked.connect(self.show_transaction_page_slot)
+        self.ui.alerts_button.clicked.connect(self.show_alerts_page_slot)
 

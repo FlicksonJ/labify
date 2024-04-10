@@ -25,6 +25,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def login(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.login_page)
+        self.ui.username_input.setFocus()
+        self.ui.username_input.clear()
+        self.ui.password_input.clear()
         self.ui.login_button.clicked.connect(self.handle_login)
         self.ui.password_input.returnPressed.connect(self.handle_login)
 
@@ -133,10 +136,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 user_type = query.value("user_type")
                 self.state["user_type"] = user_type
                 self.state["username"] = username
-                self.ui.username_input.setFocus()
                 self.show_home_screen(username)
-                self.ui.username_input.clear()
-                self.ui.password_input.clear()
             else:
                 self.show_message("Error", "Wrong credentials!")
         else:

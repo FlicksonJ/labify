@@ -113,7 +113,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         It handles the login of the app.
         """
 
-        login_error_style = "QLineEdit {border: 2px solid red;}"
+        if not self.validate_line_edit(self.ui.username_input, "Please enter a username"):
+            return
+        if not self.validate_line_edit(self.ui.password_input, "Please enter a password"):
+            return
         
         username = self.ui.username_input.text()
         password = self.ui.password_input.text()
@@ -130,14 +133,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 user_type = query.value("user_type")
                 self.state["user_type"] = user_type
                 self.state["username"] = username
+                self.ui.username_input.setFocus()
+                self.show_home_screen(username)
                 self.ui.username_input.clear()
                 self.ui.password_input.clear()
-                self.show_home_screen(username)
             else:
-                self.ui.username_input.setStyleSheet(login_error_style)
-                self.ui.password_input.setStyleSheet(login_error_style)
+                self.show_message("Error", "Wrong credentials!")
         else:
-            self.ui.username_input.setStyleSheet(login_error_style)
+            self.show_message("Error", "Wrong credentials!")
 
     def handle_create_account(self):
         """
@@ -167,6 +170,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             
         self.account_manager.create_user(username, confirm_password)
         self.show_message("Success", "Account created successfully!")
+        self.ui.cu_username_input.clear()
+        self.ui.cu_password_input.clear()
+        self.ui.cu_confirm_password_input.clear()
         self.show_home_screen(self.state["username"])
 
     

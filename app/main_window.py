@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QMainWindow, QMessageBox, QLineEdit
 from app.ui.ui_main import Ui_MainWindow
 
 from app.utils import AccountManager
+from app.access_controls import admin_access
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -38,10 +39,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
         
-        if self.state["user_type"] == 'admin':
-            self.ui.create_user_button.clicked.connect(self.show_create_account_page)
-            self.ui.cancel_button.clicked.connect(self.handle_cancel_button)
-            self.ui.create_account_button.clicked.connect(self.handle_create_account)
+        self.ui.create_user_button.clicked.connect(self.show_create_account_page)
+        self.ui.cancel_button.clicked.connect(self.handle_cancel_button)
+        self.ui.create_account_button.clicked.connect(self.handle_create_account)
 
         self.ui.logout_button.clicked.connect(self.handle_logout)
         self.ui.transaction_history_button.clicked.connect(self.show_transaction_page)
@@ -144,8 +144,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def handle_create_account(self):
         """
-        This slot is triggered when the login_button is clicked.
-        It handles the login of the app.
+        This slot is triggered when the create_account_button is clicked.
+        To create new user account
         """
 
         # Check if the inputs are empty
@@ -185,10 +185,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.state["user_type"] = ""
         self.login()
 
+    @admin_access
     def show_create_account_page(self):
         """
         This slot is triggered when the create_user_button is clicked.
         Shows create_account_page.
+        Access level: admin
         """
         if self.state["user_type"] == 'admin':
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.create_user_page)
@@ -243,10 +245,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # deselect all button in item_manage QButtonGroup
             self.deselect_button_group()
 
+    @admin_access
     def show_add_entry_page(self):
         """
         This slot is triggered when the add_entry_button is clicked.
         Show add_entry_page.
+        Access level: admin
         """
 
         self.ui.stackedWidget_4.setCurrentWidget(self.ui.add_entry_page)
@@ -265,10 +269,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.update_entry_label.setText(self.update_item_type_label())
         self.deactivate_page_change()
 
+    @admin_access
     def show_delete_entry_page(self):
         """
         This slot is triggered when the delete_entry_button is clicked.
         Show delete_entry_page.
+        Access level: admin
         """
 
         self.ui.stackedWidget_4.setCurrentWidget(self.ui.delete_entry_page)
@@ -277,4 +283,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.deactivate_page_change()
 
     def handle_cancel_button(self):
+        """
+        This slot is triggered when the cancel_button is clicked.
+        Go back to home_page
+        """
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)

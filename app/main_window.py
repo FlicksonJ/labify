@@ -42,8 +42,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_3.currentChanged.connect(self.inventory_view_changed)
 
         self.ui.add_entry_button.clicked.connect(self.show_add_entry_page)
+        self.ui.add_entry_cancel_button.clicked.connect(self.handle_inventory_page)
+
         self.ui.update_entry_button.clicked.connect(self.show_update_entry_page)
+        self.ui.update_entry_cancel_button.clicked.connect(self.handle_inventory_page)
+
         self.ui.delete_entry_button.clicked.connect(self.show_delete_entry_page)
+        self.ui.delete_entry_cancel_button.clicked.connect(self.handle_inventory_page)
 
     
     def update_item_type_label(self):

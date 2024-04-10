@@ -1828,6 +1828,12 @@ margin-bottom: 6px;</string>
                  </item>
                  <item>
                   <widget class="QPushButton" name="update_entry_button">
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
+                   <property name="mouseTracking">
+                    <bool>false</bool>
+                   </property>
                    <property name="text">
                     <string>Update Entry</string>
                    </property>
@@ -1845,6 +1851,9 @@ margin-bottom: 6px;</string>
                     <font>
                      <pointsize>15</pointsize>
                     </font>
+                   </property>
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
                    </property>
                    <property name="text">
                     <string>Delete Entry</string>
@@ -2092,7 +2101,7 @@ margin-bottom: 6px;</string>
  </widget>
  <resources>
   <include location="../../resources.qrc"/>
-  <include location="resources.qrc"/>
+  <include location="../../resources.qrc"/>
  </resources>
  <connections/>
  <buttongroups>

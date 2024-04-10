@@ -1,100 +1,131 @@
+import os
+import sys
+from PySide6.QtWidgets import QMessageBox
 import bcrypt  # Import secure hashing library
 from itsdangerous import URLSafeTimedSerializer
 from PySide6.QtSql import QSqlDatabase, QSqlQuery
 
 serializer = URLSafeTimedSerializer("DrrOEWvcDHPycjnfsRv-r1WMWqObSXSsRmpnf438Rbk")
 
-ICMS_LOGIN_SQL = """
-    create table if not exists users (
-        uid integer primary key autoincrement,
-        username text unique not null,
-        hashed_password text not null,
-        user_type text not null
-    )
-    """
-INSERT_ADMIN_SQL = """
-    INSERT INTO users (username, hashed_password, user_type) 
-    VALUES (?, ?, "admin")
-    """
-INSERT_USER_SQL = """
-    INSERT INTO users (username, hashed_password, user_type) 
-    VALUES (?, ?, "user")
-    """
+class AccountManager:
+    def __init__(self):
+        self.db_name = "app/database/app.db"
+        self.db = QSqlDatabase.addDatabase("QSQLITE")
+        self.db.setDatabaseName(self.db_name)
 
-def check(func, *args):
-    if not func(*args):
-        raise ValueError(func.__self__.lastError())
+        self.ICMS_LOGIN_SQL = """
+            create table if not exists users (
+                uid integer primary key autoincrement,
+                username text unique not null,
+                hashed_password text not null,
+                user_type text not null
+            )
+            """
+        self.INSERT_ADMIN_SQL = """
+            INSERT INTO users (username, hashed_password, user_type) 
+            VALUES (?, ?, "admin")
+            """
+        self.INSERT_USER_SQL = """
+            INSERT INTO users (username, hashed_password, user_type) 
+            VALUES (?, ?, "user")
+            """
+        self.SEARCH_USERNAME = """
+            SELECT * FROM users WHERE username = ?
+            """
 
-def hash_pw(password):
-    """
-    Hashes a password using bcrypt with a secure salt.
+        # check if the database file exists
+        if not os.path.exists(self.db_name):
+            if not self.create_database():
+                QMessageBox.critical(None, "Error", "Failed to create database file")
+                sys.exit(1)
 
-    Args:
-        password (str): The password to be hashed.
+        if not self.db.open():
+            QMessageBox.critical(None, "Error", f"Failed to open database: {self.db.lastError().text()}")
+            sys.exit(1)
 
-    Returns:
-        str: The hashed password.
-    """
-    salt = bcrypt.gensalt(14)
-    hashed_password = bcrypt.hashpw(password.encode(), salt)
-    serialized_data = serializer.dumps({"salt": salt.decode(), "hashed_password": hashed_password.decode()})
-    return serialized_data
-
-def verify_pw(hashed_password, password_to_check):
-    """
-    Verifies a password against a stored hashed password.
-
-    Args:
-      hashed_password (str): The stored hashed password (serialized format).
-      password_to_check (str): The password to be verified.
-
-    Returns:
-      bool: True if the password matches the stored hash, False otherwise.
-    """
-    try:
-      # Deserialize the stored data to access salt and hashed password
-      data = serializer.loads(hashed_password.encode("utf-8"))
-      salt = data["salt"]
-      stored_hashed_password = data["hashed_password"]
-
-    except Exception as e:
-      # Handle deserialization errors gracefully (e.g., invalid format)
-      print(f"Error deserializing hashed password: {e}")
-      return False
-
-    # Verify the password using the retrieved salt and hashed password
-    return bcrypt.checkpw(password_to_check.encode(), stored_hashed_password.encode())
+        self.create_table()
+        # Create test admin user
+        # @TODO: Change it and create admin user at installation
+        self.create_admin("admin", "admin@123")
 
 
+    def create_database(self) -> bool:
+        """
+        Create database if doesn't exist already
+        """
+        try:
+            open(self.db.databaseName(), 'a').close()
+            return True
+        except Exception as e:
+            print(f"Error creating database file: {e}")
+            return False
 
-def add_user(q, user, password):
-    # Securely hash password
-    hashed_password = hash_pw(password)
+    def create_table(self):
+        query = QSqlQuery()
+        query.exec(self.ICMS_LOGIN_SQL)
 
-    q.addBindValue(user)
-    q.addBindValue(hashed_password)
-    q.exec()
-
-def init_db():
-    """
-    init_db()
-    initialize the database
-    If tables "icms_login" are already in the database, do nothing.
-    Return value: db or raises ValueError
-    The error value is the QtSql error instance.
-    """
+    def account_exists(self, username):
+        query = QSqlQuery()
+        query.prepare(self.SEARCH_USERNAME)
+        query.addBindValue(username)
+        query.exec()
+        return query.next()
     
-    db = QSqlDatabase.addDatabase("QSQLITE")
-    db.setDatabaseName("app/database/app.db")
+    def create_account(self, query, username, password):
+        # Securely hash password
+        hashed_password = self.hash_pw(password)
 
-    check(db.open)
+        query.addBindValue(username)
+        query.addBindValue(hashed_password)
+        query.exec()
 
-    q = QSqlQuery()
-    check(q.exec, ICMS_LOGIN_SQL)
+    def create_user(self, username, password):
+        query = QSqlQuery()
+        query.prepare(self.INSERT_USER_SQL)
+        self.create_account(query, username, password)
+    
+    def create_admin(self, username, password):
+        query = QSqlQuery()
+        query.prepare(self.INSERT_ADMIN_SQL)
+        self.create_account(query, username, password)
 
-    # Create test admin user
-    # @TODO: Change it and create admin user at installation
-    check(q.prepare, INSERT_ADMIN_SQL)
-    add_user(q, "admin", "admin@123")
-
-    return db
+        
+    def hash_pw(self, password):
+        """
+        Hashes a password using bcrypt with a secure salt.
+    
+        Args:
+            password (str): The password to be hashed.
+    
+        Returns:
+            str: The hashed password.
+        """
+        salt = bcrypt.gensalt(14)
+        hashed_password = bcrypt.hashpw(password.encode(), salt)
+        serialized_data = serializer.dumps({"salt": salt.decode(), "hashed_password": hashed_password.decode()})
+        return serialized_data
+    
+    def verify_pw(self, hashed_password, password_to_check):
+        """
+        Verifies a password against a stored hashed password.
+    
+        Args:
+          hashed_password (str): The stored hashed password (serialized format).
+          password_to_check (str): The password to be verified.
+    
+        Returns:
+          bool: True if the password matches the stored hash, False otherwise.
+        """
+        try:
+          # Deserialize the stored data to access salt and hashed password
+          data = serializer.loads(hashed_password.encode("utf-8"))
+          salt = data["salt"]
+          stored_hashed_password = data["hashed_password"]
+    
+        except Exception as e:
+          # Handle deserialization errors gracefully (e.g., invalid format)
+          print(f"Error deserializing hashed password: {e}")
+          return False
+    
+        # Verify the password using the retrieved salt and hashed password
+        return bcrypt.checkpw(password_to_check.encode(), stored_hashed_password.encode())

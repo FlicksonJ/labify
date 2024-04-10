@@ -1091,6 +1091,8 @@ class Ui_MainWindow(object):
         self.update_entry_button = QPushButton(self.layoutWidget6)
         self.item_manage.addButton(self.update_entry_button)
         self.update_entry_button.setObjectName(u"update_entry_button")
+        self.update_entry_button.setCursor(QCursor(Qt.PointingHandCursor))
+        self.update_entry_button.setMouseTracking(False)
         self.update_entry_button.setCheckable(True)
 
         self.verticalLayout_9.addWidget(self.update_entry_button)
@@ -1099,12 +1101,13 @@ class Ui_MainWindow(object):
         self.item_manage.addButton(self.delete_entry_button)
         self.delete_entry_button.setObjectName(u"delete_entry_button")
         self.delete_entry_button.setFont(font10)
+        self.delete_entry_button.setCursor(QCursor(Qt.PointingHandCursor))
         self.delete_entry_button.setCheckable(True)
 
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget2.raise_()
+        self.layoutWidget6.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)

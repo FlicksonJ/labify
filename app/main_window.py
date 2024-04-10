@@ -1,20 +1,25 @@
 from PySide6.QtSql import QSqlQuery
-from PySide6.QtWidgets import QMainWindow, QMessageBox 
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QLineEdit 
 from app.ui.ui_main import Ui_MainWindow
 
-from app import utils
+from app.utils import AccountManager
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        self.db = utils.init_db()
+        self.account_manager = AccountManager()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
         # for managing user access control
         # `user_type`: admin, user
         # `item_type`: glassware, equipments, chemicals
-        self.state = {"user_type": "", "item_type": "", "inventory_page_func": "search"}
+        self.state = {
+            "username": "",
+            "user_type": "", 
+            "item_type": "", 
+            "inventory_page_func": "search"
+            }
         self.login()
 
 
@@ -28,9 +33,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
         self.ui.header_username_label.setText(username.upper())
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
+        self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
         
-        self.ui.create_user_button.clicked.connect(self.show_create_account_page)
-        self.ui.cancel_button.clicked.connect(self.handle_cancel_button)
+        if self.state["user_type"] == 'admin':
+            self.ui.create_user_button.clicked.connect(self.show_create_account_page)
+            self.ui.cancel_button.clicked.connect(self.handle_cancel_button)
+            self.ui.create_account_button.clicked.connect(self.handle_create_account)
 
         self.ui.logout_button.clicked.connect(self.handle_logout)
         self.ui.transaction_history_button.clicked.connect(self.show_transaction_page)
@@ -78,6 +86,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             button = self.ui.item_manage.button(checked_id)
             button.setChecked(False)
         self.ui.item_manage.setExclusive(True)
+
+    def show_message(self, title, message):
+        message_box = QMessageBox()
+        message_box.setWindowTitle(title)
+        message_box.setText(message)
+        message_box.exec()
+    
+    def validate_line_edit(self, line_edit: QLineEdit, error_message: str) -> bool:
+        text = line_edit.text()
+        if not text:
+            self.show_message("Error", error_message)
+            line_edit.setFocus()
+            return False
+        return True
+
     
 
     #***************************************************************
@@ -103,9 +126,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             QMessageBox.critical(self, "Error", "Failed to execute query!")
 
         if query.first():
-            if (hashed_password := query.value("hashed_password")) and utils.verify_pw(hashed_password, password):
+            if (hashed_password := query.value("hashed_password")) and self.account_manager.verify_pw(hashed_password, password):
                 user_type = query.value("user_type")
                 self.state["user_type"] = user_type
+                self.state["username"] = username
                 self.ui.username_input.clear()
                 self.ui.password_input.clear()
                 self.show_home_screen(username)
@@ -114,6 +138,37 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.ui.password_input.setStyleSheet(login_error_style)
         else:
             self.ui.username_input.setStyleSheet(login_error_style)
+
+    def handle_create_account(self):
+        """
+        This slot is triggered when the login_button is clicked.
+        It handles the login of the app.
+        """
+
+        # Check if the inputs are empty
+        if not self.validate_line_edit(self.ui.cu_username_input, "Please enter a username"):
+            return
+        if not self.validate_line_edit(self.ui.cu_password_input, "Please enter a password"):
+            return
+        if not self.validate_line_edit(self.ui.cu_confirm_password_input, "Please confirm password"):
+            return
+
+        username = self.ui.cu_username_input.text()
+        password = self.ui.cu_password_input.text()
+        confirm_password = self.ui.cu_confirm_password_input.text()
+
+        if password != confirm_password:
+            self.show_message("Error", "Passwords do not match!")
+            return 
+            
+        if self.account_manager.account_exists(username):
+            self.show_message("Error", "Account already exists!")
+            return
+            
+        self.account_manager.create_user(username, confirm_password)
+        self.show_message("Success", "Account created successfully!")
+        self.show_home_screen(self.state["username"])
+
     
     def handle_logout(self):
         """

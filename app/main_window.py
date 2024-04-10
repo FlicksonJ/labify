@@ -21,10 +21,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "item_type": "", 
             "inventory_page_func": "search"
             }
-        self.login()
 
-
-    def login(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.login_page)
         self.ui.username_input.setFocus()
         self.ui.username_input.clear()
@@ -183,7 +180,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
 
         self.state["user_type"] = ""
-        self.login()
+        self.state["username"] = ""
+        self.ui.stackedWidget.setCurrentWidget(self.ui.login_page)
+        self.ui.username_input.setFocus()
+        self.ui.username_input.clear()
+        self.ui.password_input.clear()
+
 
     @admin_access
     def show_create_account_page(self):

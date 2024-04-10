@@ -21,10 +21,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "item_type": "", 
             "inventory_page_func": "search"
             }
-        self.login()
 
-
-    def login(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.login_page)
         self.ui.username_input.setFocus()
         self.ui.username_input.clear()
@@ -32,13 +29,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.login_button.clicked.connect(self.handle_login)
         self.ui.password_input.returnPressed.connect(self.handle_login)
 
-
-    def show_home_screen(self, username: str):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
-        self.ui.header_username_label.setText(username.upper())
-        self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
-        self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
-        
         self.ui.create_user_button.clicked.connect(self.show_create_account_page)
         self.ui.cancel_button.clicked.connect(self.handle_cancel_button)
         self.ui.create_account_button.clicked.connect(self.handle_create_account)
@@ -61,6 +51,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.delete_entry_button.clicked.connect(self.show_delete_entry_page)
         self.ui.delete_entry_cancel_button.clicked.connect(self.handle_inventory_page)
 
+
+    def show_home_screen(self, username: str):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
+        self.ui.header_username_label.setText(username.upper())
+        self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
+        self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
+        
     
     def update_item_type_label(self):
         text = {
@@ -173,7 +170,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.cu_username_input.clear()
         self.ui.cu_password_input.clear()
         self.ui.cu_confirm_password_input.clear()
-        self.show_home_screen(self.state["username"])
+        self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
 
     
     def handle_logout(self):
@@ -183,7 +180,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
 
         self.state["user_type"] = ""
-        self.login()
+        self.state["username"] = ""
+        self.ui.stackedWidget.setCurrentWidget(self.ui.login_page)
+        self.ui.username_input.setFocus()
+        self.ui.username_input.clear()
+        self.ui.password_input.clear()
+
 
     @admin_access
     def show_create_account_page(self):

@@ -22,10 +22,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "inventory_page_func": "search"
             }
 
+        # View login screen
         self.ui.stackedWidget.setCurrentWidget(self.ui.login_page)
         self.ui.username_input.setFocus()
         self.ui.username_input.clear()
         self.ui.password_input.clear()
+
+        # =============================================== #
+        # ===============  Signals ====================== #
+        # =============================================== #
         self.ui.login_button.clicked.connect(self.handle_login)
         self.ui.password_input.returnPressed.connect(self.handle_login)
 

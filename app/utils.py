@@ -1,15 +1,18 @@
 import os
 import sys
-from PySide6.QtWidgets import QMessageBox
 import bcrypt  # Import secure hashing library
 from itsdangerous import URLSafeTimedSerializer
+
+from PySide6.QtWidgets import QMessageBox
 from PySide6.QtSql import QSqlDatabase, QSqlQuery
 
-serializer = URLSafeTimedSerializer("DrrOEWvcDHPycjnfsRv-r1WMWqObSXSsRmpnf438Rbk")
+from app import settings
+
+serializer = URLSafeTimedSerializer(settings.SECRET)
 
 class AccountManager:
     def __init__(self):
-        self.db_name = "app/database/app.db"
+        self.db_name = settings.DATABASE
         self.db = QSqlDatabase.addDatabase("QSQLITE")
         self.db.setDatabaseName(self.db_name)
 

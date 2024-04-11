@@ -98,11 +98,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.alerts_button.setEnabled(False)
         self.ui.create_user_button.setEnabled(False)
         self.ui.inventory_type_input.setEnabled(False)
+        self.ui.logout_button.setEnabled(False)
+        self.ui.add_entry_button.setEnabled(False)
+        self.ui.update_entry_button.setEnabled(False)
+        self.ui.delete_entry_button.setEnabled(False)
 
     def activate_page_change(self):
         self.ui.transaction_history_button.setEnabled(True)
         self.ui.alerts_button.setEnabled(True)
         self.ui.create_user_button.setEnabled(True)
+        self.ui.inventory_type_input.setEnabled(True)
+        self.ui.logout_button.setEnabled(True)
+        self.ui.add_entry_button.setEnabled(True)
+        self.ui.update_entry_button.setEnabled(True)
+        self.ui.delete_entry_button.setEnabled(True)
 
     def deselect_button_group(self):
         self.ui.item_manage.setExclusive(False)

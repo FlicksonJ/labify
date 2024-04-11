@@ -56,7 +56,7 @@ class AccountManager:
     def __init__(self, db_connection):
         self.db = db_connection
 
-        self.ICMS_LOGIN_SQL = """
+        self.USERS_TABLE_SQL = """
             create table if not exists users (
                 uid integer primary key autoincrement,
                 username text unique not null,
@@ -72,7 +72,7 @@ class AccountManager:
             INSERT INTO users (username, hashed_password, user_type) 
             VALUES (?, ?, "user")
             """
-        self.SEARCH_USERNAME = """
+        self.SEARCH_USERNAME_SQL = """
             SELECT * FROM users WHERE username = ?
             """
 
@@ -84,11 +84,11 @@ class AccountManager:
 
     def create_table(self):
         query = QSqlQuery()
-        query.exec(self.ICMS_LOGIN_SQL)
+        query.exec(self.USERS_TABLE_SQL)
 
     def account_exists(self, username):
         query = QSqlQuery()
-        query.prepare(self.SEARCH_USERNAME)
+        query.prepare(self.SEARCH_USERNAME_SQL)
         query.addBindValue(username)
         query.exec()
         return query.next()
@@ -156,3 +156,52 @@ class AccountManager:
 class InventoryManager:
     def __init__(self, db_connection):
         self.db = db_connection
+
+        self.INVENTORY_TABLE_SQL = """
+        CREATE TABLE IF NOT EXISTS Items (
+            item_id INTEGER PRIMARY KEY,
+            name VARCHAR(255),
+            qty REAL,
+            stock_id INTEGER,
+            FOREIGN KEY (stock_id) REFERENCES StockType(stock_id)
+        );
+
+        CREATE TABLE IF NOT EXISTS StockType (
+            stock_id INTEGER PRIMARY KEY,
+            type VARCHAR(255) CHECK (type IN ('glassware', 'chemical', 'equipment'))
+        );
+        
+        CREATE TABLE IF NOT EXISTS Locations (
+            loc_id INTEGER PRIMARY KEY,
+            name VARCHAR(255),
+            lab_id INTEGER,
+            FOREIGN KEY (lab_id) REFERENCES Labs(lab_id)
+        );
+        
+        CREATE TABLE IF NOT EXISTS Labs (
+            lab_id INTEGER PRIMARY KEY,
+            name VARCHAR(255)
+        );
+        
+        CREATE TABLE IF NOT EXISTS ItemLocation (
+            id INTEGER PRIMARY KEY,
+            item_id INTEGER,
+            location_id INTEGER,
+            FOREIGN KEY (item_id) REFERENCES Items(item_id),
+            FOREIGN KEY (location_id) REFERENCES Locations(loc_id)
+        );
+        """
+        self.INSERT_STOCK_TYPE_SQL = """
+        INSERT INTO StockType (type)
+        VALUES ('glassware'), ('chemical'), ('equipment');
+        """
+
+        self.create_table()
+
+    def create_table(self):
+        query = QSqlQuery()
+        query.exec(self.INVENTORY_TABLE_SQL)
+
+        # Enter default stocktype values
+        query.exec(self.INSERT_STOCK_TYPE_SQL)
+

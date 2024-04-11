@@ -97,6 +97,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.transaction_history_button.setEnabled(False)
         self.ui.alerts_button.setEnabled(False)
         self.ui.create_user_button.setEnabled(False)
+        self.ui.inventory_type_input.setEnabled(False)
 
     def activate_page_change(self):
         self.ui.transaction_history_button.setEnabled(True)
@@ -263,6 +264,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # it will trigger the currentTextChanged signal and will connect to this slot.
         # Fix: check the currentIndex is not -1 before setting currentWidget
         if self.ui.inventory_type_input.currentIndex() != -1:
+
             self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
             self.ui.stackedWidget_4.setCurrentWidget(self.ui.item_search_page)
             self.state["item_type"] = self.ui.inventory_type_input.currentText().lower()

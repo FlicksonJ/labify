@@ -5,6 +5,8 @@ from app.ui.ui_main import Ui_MainWindow
 from app.utils import AccountManager
 from app.access_controls import admin_access
 
+from datetime import datetime
+
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
@@ -27,6 +29,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.username_input.setFocus()
         self.ui.username_input.clear()
         self.ui.password_input.clear()
+
+        # Set time and date
+        self.ui.time_label.setText(self.get_time())
+        self.ui.date_label.setText(self.get_date())
 
         # =============================================== #
         # ===============  Signals ====================== #
@@ -105,6 +111,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             line_edit.setFocus()
             return False
         return True
+
+    def get_time(self) -> str:
+        current_time = datetime.now().strftime("%I:%M %p")
+        return current_time
+
+    def get_date(self) -> str:
+        current_date = datetime.now().strftime("%d %b, %Y")
+        return current_date
 
     
 

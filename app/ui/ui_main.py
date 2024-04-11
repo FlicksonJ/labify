@@ -506,8 +506,9 @@ class Ui_MainWindow(object):
         self.layoutWidget1.setObjectName(u"layoutWidget1")
         self.layoutWidget1.setGeometry(QRect(30, 1, 155, 91))
         self.verticalLayout_6 = QVBoxLayout(self.layoutWidget1)
+        self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_6.setContentsMargins(0, 10, 0, 10)
         self.time_label = QLabel(self.layoutWidget1)
         self.time_label.setObjectName(u"time_label")
         font3 = QFont()
@@ -1107,7 +1108,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget6.raise_()
+        self.layoutWidget4.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)

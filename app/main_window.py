@@ -21,6 +21,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.setWindowTitle("Labify")
         self.setWindowIcon(QIcon('../images/logo.ico'))
+
+        # custom style sheets
+        self.error_stylesheet = "QLineEdit:focus {border: 1px solid red;}"
+        self.normal_stylesheet = ""
         
         # for managing user access control
         # `user_type`: admin, user
@@ -113,12 +117,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         message_box.setText(message)
         message_box.exec()
     
-    def validate_line_edit(self, line_edit: QLineEdit, error_message: str) -> bool:
+    def validate_line_edit(self, line_edit: QLineEdit, error_message: str = "") -> bool:
         text = line_edit.text()
         if not text:
-            self.show_message("Error", error_message)
+            if error_message != "":
+                self.show_message("Error", error_message)
+            line_edit.setStyleSheet(self.error_stylesheet)
             line_edit.setFocus()
             return False
+        else:
+            line_edit.setStyleSheet(self.normal_stylesheet)
         return True
 
     def get_time(self) -> str:
@@ -289,6 +297,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.deactivate_page_change()
 
     def add_entry(self):
+        if not self.validate_line_edit(self.ui.item_name_input):
+            return
+        if not self.validate_line_edit(self.ui.item_qty_input):
+            return
+        if not self.validate_line_edit(self.ui.item_location_input):
+            return
+        if not self.validate_line_edit(self.ui.item_lab_input):
+            return
+
         item_entry = ItemEntry()
         list_item = QListWidgetItem()
         list_item.setSizeHint(item_entry.sizeHint() + QSize(45, 45))

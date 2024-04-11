@@ -1,7 +1,10 @@
+from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon
 from PySide6.QtSql import QSqlQuery
-from PySide6.QtWidgets import QMainWindow, QMessageBox, QLineEdit 
+from PySide6.QtWidgets import QListWidgetItem, QMainWindow, QMessageBox, QLineEdit 
+
 from app.ui.ui_main import Ui_MainWindow
+from app.item_entry import ItemEntry
 
 from app.utils import DatabaseManager
 from app.access_controls import admin_access
@@ -60,6 +63,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.ui.add_entry_button.clicked.connect(self.show_add_entry_page)
         self.ui.add_entry_cancel_button.clicked.connect(self.handle_inventory_page)
+        self.ui.add_entry_add_button.clicked.connect(self.add_entry)
 
         self.ui.update_entry_button.clicked.connect(self.show_update_entry_page)
         self.ui.update_entry_cancel_button.clicked.connect(self.handle_inventory_page)
@@ -283,6 +287,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.state["inventory_page_func"] = "add"
         self.ui.add_entry_label.setText(self.update_item_type_label())
         self.deactivate_page_change()
+
+    def add_entry(self):
+        item_entry = ItemEntry()
+        list_item = QListWidgetItem()
+        list_item.setSizeHint(item_entry.sizeHint() + QSize(45, 45))
+        id = str(self.ui.add_entry_list.count() + 1)
+        name = self.ui.item_name_input.text()
+        qty = self.ui.item_qty_input.text()
+        location = self.ui.item_location_input.text()
+        lab = self.ui.item_lab_input.text()
+
+        item_entry.ui.id.setText(id)
+        item_entry.ui.name.setText(name)
+        item_entry.ui.qty.setText(qty)
+        item_entry.ui.location.setText(location)
+        item_entry.ui.lab.setText(lab)
+
+        self.ui.add_entry_list.addItem(list_item)
+        self.ui.add_entry_list.setItemWidget(list_item, item_entry)
+        
+
 
     def show_update_entry_page(self):
         """

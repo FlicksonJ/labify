@@ -37,8 +37,8 @@ class DatabaseManager:
 
         self.db.open()
 
-        self.account_manager = AccountManager(self.db)
         self.inventory_manager = InventoryManager(self.db)
+        self.account_manager = AccountManager(self.db)
 
     def create_database(self) -> bool:
         """
@@ -157,50 +157,58 @@ class InventoryManager:
     def __init__(self, db_connection):
         self.db = db_connection
 
-        self.INVENTORY_TABLE_SQL = """
+        self.ITEMS_TABLE_SQL = """
         CREATE TABLE IF NOT EXISTS Items (
             item_id INTEGER PRIMARY KEY,
             name VARCHAR(255),
             qty REAL,
             stock_id INTEGER,
             FOREIGN KEY (stock_id) REFERENCES StockType(stock_id)
-        );
+        )"""
 
+        self.STOCK_TYPE_TABLE_SQL = """
         CREATE TABLE IF NOT EXISTS StockType (
             stock_id INTEGER PRIMARY KEY,
             type VARCHAR(255) CHECK (type IN ('glassware', 'chemical', 'equipment'))
-        );
-        
+        )"""
+
+        self.LOCATIONS_TABLE_SQL = """
         CREATE TABLE IF NOT EXISTS Locations (
             loc_id INTEGER PRIMARY KEY,
             name VARCHAR(255),
             lab_id INTEGER,
             FOREIGN KEY (lab_id) REFERENCES Labs(lab_id)
-        );
-        
+        )"""
+
+        self.LABS_TABLE_SQL = """        
         CREATE TABLE IF NOT EXISTS Labs (
             lab_id INTEGER PRIMARY KEY,
             name VARCHAR(255)
-        );
-        
+        )"""
+
+        self.ITEM_LOCATION_TABLE_SQL = """
         CREATE TABLE IF NOT EXISTS ItemLocation (
             id INTEGER PRIMARY KEY,
             item_id INTEGER,
             location_id INTEGER,
             FOREIGN KEY (item_id) REFERENCES Items(item_id),
             FOREIGN KEY (location_id) REFERENCES Locations(loc_id)
-        );
+        )
         """
         self.INSERT_STOCK_TYPE_SQL = """
         INSERT INTO StockType (type)
         VALUES ('glassware'), ('chemical'), ('equipment');
         """
 
-        self.create_table()
+        self.create_tables()
 
-    def create_table(self):
+    def create_tables(self):
         query = QSqlQuery()
-        query.exec(self.INVENTORY_TABLE_SQL)
+        query.exec(self.ITEMS_TABLE_SQL)
+        query.exec(self.STOCK_TYPE_TABLE_SQL)
+        query.exec(self.LOCATIONS_TABLE_SQL)
+        query.exec(self.LABS_TABLE_SQL)
+        query.exec(self.ITEM_LOCATION_TABLE_SQL)
 
         # Enter default stocktype values
         query.exec(self.INSERT_STOCK_TYPE_SQL)

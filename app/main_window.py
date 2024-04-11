@@ -1,3 +1,4 @@
+from PySide6.QtGui import QIcon
 from PySide6.QtSql import QSqlQuery
 from PySide6.QtWidgets import QMainWindow, QMessageBox, QLineEdit 
 from app.ui.ui_main import Ui_MainWindow
@@ -14,6 +15,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.account_manager = self.db_manager.account_manager
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.setWindowTitle("Labify")
+        self.setWindowIcon(QIcon('../images/logo.ico'))
         
         # for managing user access control
         # `user_type`: admin, user

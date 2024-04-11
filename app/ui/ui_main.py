@@ -947,6 +947,7 @@ class Ui_MainWindow(object):
         self.item_qty_input.setSizePolicy(sizePolicy)
         self.item_qty_input.setMinimumSize(QSize(140, 0))
         self.item_qty_input.setMaximumSize(QSize(150, 16777215))
+        self.item_qty_input.setInputMethodHints(Qt.ImhDigitsOnly|Qt.ImhPreferNumbers)
 
         self.horizontalLayout_13.addWidget(self.item_qty_input)
 
@@ -956,12 +957,14 @@ class Ui_MainWindow(object):
         self.item_location_input.setSizePolicy(sizePolicy4)
         self.item_location_input.setMinimumSize(QSize(345, 0))
         self.item_location_input.setMaximumSize(QSize(350, 16777215))
+        self.item_location_input.setInputMethodHints(Qt.ImhPreferUppercase)
 
         self.horizontalLayout_13.addWidget(self.item_location_input)
 
         self.item_lab_input = QLineEdit(self.add_entry_inputs)
         self.item_lab_input.setObjectName(u"item_lab_input")
         self.item_lab_input.setMaximumSize(QSize(200, 16777215))
+        self.item_lab_input.setInputMethodHints(Qt.ImhPreferUppercase)
 
         self.horizontalLayout_13.addWidget(self.item_lab_input)
 
@@ -1113,7 +1116,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget4.raise_()
+        self.layoutWidget5.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1248,7 +1251,7 @@ class Ui_MainWindow(object):
         self.login_button.setDefault(True)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)
-        self.stackedWidget_4.setCurrentIndex(2)
+        self.stackedWidget_4.setCurrentIndex(1)
         self.cancel_button.setDefault(False)
 
 

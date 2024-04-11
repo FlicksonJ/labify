@@ -950,7 +950,7 @@
                  </rect>
                 </property>
                 <property name="currentIndex">
-                 <number>2</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="item_search_page">
                  <widget class="QWidget" name="verticalLayoutWidget_4">
@@ -1548,6 +1548,9 @@ margin-bottom: 6px;</string>
                             <height>16777215</height>
                            </size>
                           </property>
+                          <property name="inputMethodHints">
+                           <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+                          </property>
                          </widget>
                         </item>
                         <item>
@@ -1570,6 +1573,9 @@ margin-bottom: 6px;</string>
                             <height>16777215</height>
                            </size>
                           </property>
+                          <property name="inputMethodHints">
+                           <set>Qt::ImhPreferUppercase</set>
+                          </property>
                          </widget>
                         </item>
                         <item>
@@ -1579,6 +1585,9 @@ margin-bottom: 6px;</string>
                             <width>200</width>
                             <height>16777215</height>
                            </size>
+                          </property>
+                          <property name="inputMethodHints">
+                           <set>Qt::ImhPreferUppercase</set>
                           </property>
                          </widget>
                         </item>

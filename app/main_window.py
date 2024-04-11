@@ -1,5 +1,5 @@
 from PySide6.QtCore import QSize
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon, QValidator, QDoubleValidator
 from PySide6.QtSql import QSqlQuery
 from PySide6.QtWidgets import QListWidgetItem, QMainWindow, QMessageBox, QLineEdit 
 
@@ -10,6 +10,16 @@ from app.utils import DatabaseManager
 from app.access_controls import admin_access
 
 from datetime import datetime
+
+# Check whether the input is upper case or digits
+class UpperCaseNumValidator(QValidator):
+    def validate(self, arg__1: str, arg__2: int) -> object:
+        if arg__1.isupper() or arg__1.isdigit():
+            return QValidator.Acceptable, arg__1, arg__2
+        elif arg__1 == "":
+            return QValidator.Intermediate, arg__1, arg__2
+        else:
+            return QValidator.Invalid, arg__1, arg__2
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -45,6 +55,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Set time and date
         self.ui.time_label.setText(self.get_time())
         self.ui.date_label.setText(self.get_date())
+
+        # Set input validators
+        self.ui.item_location_input.setValidator(UpperCaseNumValidator())
+        self.ui.item_lab_input.setValidator(UpperCaseNumValidator())
+        self.ui.item_qty_input.setValidator(QDoubleValidator())
 
         # =============================================== #
         # ===============  Signals ====================== #

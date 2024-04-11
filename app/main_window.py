@@ -263,13 +263,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Bug: The inventory_view_changed also changes the current value of the combo box,
         # it will trigger the currentTextChanged signal and will connect to this slot.
         # Fix: check the currentIndex is not -1 before setting currentWidget
-        if self.ui.inventory_type_input.currentIndex() != -1:
+        if self.ui.inventory_type_input.currentIndex() == -1:
+            return
 
-            self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
-            self.ui.stackedWidget_4.setCurrentWidget(self.ui.item_search_page)
-            self.state["item_type"] = self.ui.inventory_type_input.currentText().lower()
-            self.deselect_button_group()
-            self.activate_page_change()
+        # clear the list view widget items if the current page is add_entry_page
+        if self.ui.stackedWidget_4.currentWidget() == self.ui.add_entry_page:
+            self.ui.add_entry_list.clear()
+            self.ui.item_name_input.clear()
+            self.ui.item_qty_input.clear()
+            self.ui.item_location_input.clear()
+            self.ui.item_location_input.clear()
+
+
+        self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
+        self.ui.stackedWidget_4.setCurrentWidget(self.ui.item_search_page)
+        self.state["item_type"] = self.ui.inventory_type_input.currentText().lower()
+        self.deselect_button_group()
+        self.activate_page_change()
 
     def inventory_view_changed(self, index):
         """

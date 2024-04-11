@@ -318,6 +318,11 @@
 #update_entry_search_input,
 #delete_entry_search_input {
 	max-width: 350px;
+}
+
+#add_entry_list {
+	padding-top: 20px;
+	margin-bottom: 30px;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -658,7 +663,7 @@
                  <x>30</x>
                  <y>1</y>
                  <width>155</width>
-                 <height>91</height>
+                 <height>94</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -945,7 +950,7 @@
                  </rect>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>2</number>
                 </property>
                 <widget class="QWidget" name="item_search_page">
                  <widget class="QWidget" name="verticalLayoutWidget_4">

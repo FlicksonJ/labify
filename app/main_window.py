@@ -2,7 +2,7 @@ from PySide6.QtSql import QSqlQuery
 from PySide6.QtWidgets import QMainWindow, QMessageBox, QLineEdit 
 from app.ui.ui_main import Ui_MainWindow
 
-from app.utils import AccountManager
+from app.utils import DatabaseManager
 from app.access_controls import admin_access
 
 from datetime import datetime
@@ -10,7 +10,8 @@ from datetime import datetime
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        self.account_manager = AccountManager()
+        self.db_manager = DatabaseManager()
+        self.account_manager = self.db_manager.account_manager
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         

@@ -10,11 +10,51 @@ from app import settings
 
 serializer = URLSafeTimedSerializer(settings.SECRET)
 
-class AccountManager:
-    def __init__(self):
+
+class DatabaseManager:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+            cls._instance.setup_database()
+        return cls._instance
+
+    def setup_database(self):
         self.db_name = settings.DATABASE
         self.db = QSqlDatabase.addDatabase("QSQLITE")
         self.db.setDatabaseName(self.db_name)
+
+        # check if the database file exists
+        if not os.path.exists(self.db_name):
+            if not self.create_database():
+                QMessageBox.critical(None, "Error", "Failed to create database file")
+                sys.exit(1)
+
+        if not self.db.open():
+            QMessageBox.critical(None, "Error", f"Failed to open database: {self.db.lastError().text()}")
+            sys.exit(1)
+
+        self.db.open()
+
+        self.account_manager = AccountManager(self.db)
+        self.inventory_manager = InventoryManager(self.db)
+
+    def create_database(self) -> bool:
+        """
+        Create database if doesn't exist already
+        """
+        try:
+            open(self.db.databaseName(), 'a').close()
+            return True
+        except Exception as e:
+            print(f"Error creating database file: {e}")
+            return False
+
+
+class AccountManager:
+    def __init__(self, db_connection):
+        self.db = db_connection
 
         self.ICMS_LOGIN_SQL = """
             create table if not exists users (
@@ -36,32 +76,11 @@ class AccountManager:
             SELECT * FROM users WHERE username = ?
             """
 
-        # check if the database file exists
-        if not os.path.exists(self.db_name):
-            if not self.create_database():
-                QMessageBox.critical(None, "Error", "Failed to create database file")
-                sys.exit(1)
-
-        if not self.db.open():
-            QMessageBox.critical(None, "Error", f"Failed to open database: {self.db.lastError().text()}")
-            sys.exit(1)
-
         self.create_table()
         # Create test admin user
         # @TODO: Change it and create admin user at installation
         self.create_admin("admin", "admin@123")
 
-
-    def create_database(self) -> bool:
-        """
-        Create database if doesn't exist already
-        """
-        try:
-            open(self.db.databaseName(), 'a').close()
-            return True
-        except Exception as e:
-            print(f"Error creating database file: {e}")
-            return False
 
     def create_table(self):
         query = QSqlQuery()
@@ -132,3 +151,8 @@ class AccountManager:
     
         # Verify the password using the retrieved salt and hashed password
         return bcrypt.checkpw(password_to_check.encode(), stored_hashed_password.encode())
+
+
+class InventoryManager:
+    def __init__(self, db_connection):
+        self.db = db_connection

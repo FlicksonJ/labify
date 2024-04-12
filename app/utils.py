@@ -160,7 +160,7 @@ class InventoryManager:
         self.ITEMS_TABLE_SQL = """
         CREATE TABLE IF NOT EXISTS Items (
             item_id INTEGER PRIMARY KEY,
-            name VARCHAR(255),
+            name VARCHAR(255) UNIQUE,
             qty REAL,
             stock_id INTEGER,
             FOREIGN KEY (stock_id) REFERENCES StockType(stock_id)
@@ -169,13 +169,13 @@ class InventoryManager:
         self.STOCK_TYPE_TABLE_SQL = """
         CREATE TABLE IF NOT EXISTS StockType (
             stock_id INTEGER PRIMARY KEY,
-            type VARCHAR(255) CHECK (type IN ('glassware', 'chemical', 'equipment'))
+            type VARCHAR(255) UNIQUE
         )"""
 
         self.LOCATIONS_TABLE_SQL = """
         CREATE TABLE IF NOT EXISTS Locations (
             loc_id INTEGER PRIMARY KEY,
-            name VARCHAR(255),
+            name VARCHAR(255) UNIQUE,
             lab_id INTEGER,
             FOREIGN KEY (lab_id) REFERENCES Labs(lab_id)
         )"""
@@ -183,7 +183,7 @@ class InventoryManager:
         self.LABS_TABLE_SQL = """        
         CREATE TABLE IF NOT EXISTS Labs (
             lab_id INTEGER PRIMARY KEY,
-            name VARCHAR(255)
+            name VARCHAR(255) UNIQUE
         )"""
 
         self.ITEM_LOCATION_TABLE_SQL = """
@@ -196,8 +196,8 @@ class InventoryManager:
         )
         """
         self.INSERT_STOCK_TYPE_SQL = """
-        INSERT INTO StockType (type)
-        VALUES ('glassware'), ('chemical'), ('equipment');
+        INSERT OR IGNORE INTO StockType (type)
+        VALUES ('glassware'), ('chemical'), ('equipment')
         """
 
         self.create_tables()

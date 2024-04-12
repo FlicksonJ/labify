@@ -199,6 +199,25 @@ class InventoryManager:
         INSERT OR IGNORE INTO StockType (type)
         VALUES ('glassware'), ('chemical'), ('equipment')
         """
+        self.INSERT_ITEM_SQL = """
+        INSERT INTO Items (name, qty, stock_id)
+        SELECT ?, ?, stock_id FROM StockType WHERE type = ?
+        """
+        self.INSERT_ITEM_LOCATION_SQL = """
+        INSERT INTO ItemLocation (item_id, location_id)
+        SELECT ?, loc_id FROM Locations
+        WHERE name = ?
+        AND lab_id = (SELECT lab_id FROM Labs WHERE name = ?)
+        """
+        self.RETRIEVE_ITEM_INFO_SQL = """
+        SELECT Items.name AS name, Items.qty, Location.name AS location, Labs.name AS lab
+        FROM ItemLocation
+        INNER JOIN Items ON ItemLocation.item_id = Items.item_id
+        INNER JOIN Locations ON ItemLocation.location_id = Locations.loc_id
+        INNER JOIN Labs ON Location.lab_id = Labs.lab_id
+        INNER JOIN StockType ON Items.stock_id = StockType.stock_id
+        WHERE StockType.type = ?
+        """
 
         self.create_tables()
 
@@ -212,4 +231,22 @@ class InventoryManager:
 
         # Enter default stocktype values
         query.exec(self.INSERT_STOCK_TYPE_SQL)
+
+    def add_entry(self, stock_type: str, name: str, qty: str, location: str, lab: str):
+        query = QSqlQuery()
+
+        # insert new item into the Items table
+        query.prepare(self.INSERT_ITEM_SQL)
+        query.addBindValue(name)
+        query.addBindValue(qty)
+        query.addBindValue(stock_type)
+        query.exec()
+        item_id = query.lastInsertId()
+
+        # Update the ItemLocation table
+        query.prepare(self.INSERT_ITEM_LOCATION_SQL)
+        query.addBindValue(item_id)
+        query.addBindValue(location)
+        query.addBindValue(lab)
+        query.exec()
 

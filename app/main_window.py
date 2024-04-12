@@ -30,7 +30,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.setupUi(self)
 
         self.setWindowTitle("Labify")
-        self.setWindowIcon(QIcon('../images/logo.ico'))
+        self.setWindowIcon(QIcon(':/icon/images/logo.ico'))
 
         # custom style sheets
         self.error_stylesheet = "QLineEdit:focus {border: 1px solid red;}"

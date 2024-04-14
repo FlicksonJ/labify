@@ -1,25 +1,17 @@
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon, QValidator, QDoubleValidator
 from PySide6.QtSql import QSqlQuery
-from PySide6.QtWidgets import QListWidgetItem, QMainWindow, QMessageBox, QLineEdit 
+from PySide6.QtWidgets import QListWidgetItem, QMainWindow, QMessageBox, QLineEdit, QPushButton 
 
 from app.ui.ui_main import Ui_MainWindow
 from app.item_entry import ItemEntry
 
-from app.utils import DatabaseManager
+from app.manager import DatabaseManager
+from app import utils
 from app.access_controls import admin_access
 
 from datetime import datetime
 
-# Check whether the input is upper case or digits
-class UpperCaseNumValidator(QValidator):
-    def validate(self, arg__1: str, arg__2: int) -> object:
-        if arg__1.isupper() or arg__1.isdigit():
-            return QValidator.Acceptable, arg__1, arg__2
-        elif arg__1 == "":
-            return QValidator.Intermediate, arg__1, arg__2
-        else:
-            return QValidator.Invalid, arg__1, arg__2
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -32,10 +24,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setWindowTitle("Labify")
         self.setWindowIcon(QIcon(':/icon/images/logo.ico'))
 
-        # custom style sheets
-        self.error_stylesheet = "QLineEdit:focus {border: 1px solid red;}"
-        self.normal_stylesheet = ""
-        
         # for managing user access control
         # `user_type`: admin, user
         # `item_type`: glassware, equipments, chemicals
@@ -53,12 +41,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.password_input.clear()
 
         # Set time and date
-        self.ui.time_label.setText(self.get_time())
-        self.ui.date_label.setText(self.get_date())
+        self.ui.time_label.setText(utils.get_time())
+        self.ui.date_label.setText(utils.get_date())
 
         # Set input validators
-        self.ui.item_location_input.setValidator(UpperCaseNumValidator())
-        self.ui.item_lab_input.setValidator(UpperCaseNumValidator())
+        self.ui.item_location_input.setValidator(utils.UpperCaseNumValidator())
+        self.ui.item_lab_input.setValidator(utils.UpperCaseNumValidator())
         self.ui.item_qty_input.setValidator(QDoubleValidator())
 
         # =============================================== #
@@ -136,32 +124,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             button.setChecked(False)
         self.ui.item_manage.setExclusive(True)
 
-    def show_message(self, title, message):
-        message_box = QMessageBox()
-        message_box.setWindowTitle(title)
-        message_box.setText(message)
-        message_box.exec()
-    
-    def validate_line_edit(self, line_edit: QLineEdit, error_message: str = "") -> bool:
-        text = line_edit.text()
-        if not text:
-            if error_message != "":
-                self.show_message("Error", error_message)
-            line_edit.setStyleSheet(self.error_stylesheet)
-            line_edit.setFocus()
-            return False
-        else:
-            line_edit.setStyleSheet(self.normal_stylesheet)
-        return True
-
-    def get_time(self) -> str:
-        current_time = datetime.now().strftime("%I:%M %p")
-        return current_time
-
-    def get_date(self) -> str:
-        current_date = datetime.now().strftime("%d %b, %Y")
-        return current_date
-
     
 
     #***************************************************************
@@ -174,9 +136,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         It handles the login of the app.
         """
 
-        if not self.validate_line_edit(self.ui.username_input, "Please enter a username"):
+        if not utils.validate_line_edit(self.ui.username_input, "Please enter a username"):
             return
-        if not self.validate_line_edit(self.ui.password_input, "Please enter a password"):
+        if not utils.validate_line_edit(self.ui.password_input, "Please enter a password"):
             return
         
         username = self.ui.username_input.text()
@@ -196,9 +158,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.state["username"] = username
                 self.show_home_screen(username)
             else:
-                self.show_message("Error", "Wrong credentials!")
+                utils.show_message("Error", "Wrong credentials!")
         else:
-            self.show_message("Error", "Wrong credentials!")
+            utils.show_message("Error", "Wrong credentials!")
 
     def handle_create_account(self):
         """
@@ -207,11 +169,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
 
         # Check if the inputs are empty
-        if not self.validate_line_edit(self.ui.cu_username_input, "Please enter a username"):
+        if not utils.validate_line_edit(self.ui.cu_username_input, "Please enter a username"):
             return
-        if not self.validate_line_edit(self.ui.cu_password_input, "Please enter a password"):
+        if not utils.validate_line_edit(self.ui.cu_password_input, "Please enter a password"):
             return
-        if not self.validate_line_edit(self.ui.cu_confirm_password_input, "Please confirm password"):
+        if not utils.validate_line_edit(self.ui.cu_confirm_password_input, "Please confirm password"):
             return
 
         username = self.ui.cu_username_input.text()
@@ -219,15 +181,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         confirm_password = self.ui.cu_confirm_password_input.text()
 
         if password != confirm_password:
-            self.show_message("Error", "Passwords do not match!")
+            utils.show_message("Error", "Passwords do not match!")
             return 
             
         if self.account_manager.account_exists(username):
-            self.show_message("Error", "Account already exists!")
+            utils.show_message("Error", "Account already exists!")
             return
             
         self.account_manager.create_user(username, confirm_password)
-        self.show_message("Success", "Account created successfully!")
+        utils.show_message("Success", "Account created successfully!")
         self.ui.cu_username_input.clear()
         self.ui.cu_password_input.clear()
         self.ui.cu_confirm_password_input.clear()
@@ -333,13 +295,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.deactivate_page_change()
 
     def add_entry(self):
-        if not self.validate_line_edit(self.ui.item_name_input):
+        if not utils.validate_line_edit(self.ui.item_name_input):
             return
-        if not self.validate_line_edit(self.ui.item_qty_input):
+        if not utils.validate_line_edit(self.ui.item_qty_input):
             return
-        if not self.validate_line_edit(self.ui.item_location_input):
+        if not utils.validate_line_edit(self.ui.item_location_input):
             return
-        if not self.validate_line_edit(self.ui.item_lab_input):
+        if not utils.validate_line_edit(self.ui.item_lab_input):
             return
 
         item_entry = ItemEntry()

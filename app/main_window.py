@@ -8,7 +8,7 @@ from app.item_entry import ItemEntry
 
 from app.manager import DatabaseManager
 from app import utils
-from app.access_controls import admin_access
+from app.access_controls import admin_access, restrict_page_change
 
 from datetime import datetime
 
@@ -97,24 +97,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     
 
     def deactivate_page_change(self):
-        self.ui.transaction_history_button.setEnabled(False)
-        self.ui.alerts_button.setEnabled(False)
-        self.ui.create_user_button.setEnabled(False)
         self.ui.inventory_type_input.setEnabled(False)
-        self.ui.logout_button.setEnabled(False)
-        self.ui.add_entry_button.setEnabled(False)
-        self.ui.update_entry_button.setEnabled(False)
-        self.ui.delete_entry_button.setEnabled(False)
 
     def activate_page_change(self):
-        self.ui.transaction_history_button.setEnabled(True)
-        self.ui.alerts_button.setEnabled(True)
-        self.ui.create_user_button.setEnabled(True)
         self.ui.inventory_type_input.setEnabled(True)
-        self.ui.logout_button.setEnabled(True)
-        self.ui.add_entry_button.setEnabled(True)
-        self.ui.update_entry_button.setEnabled(True)
-        self.ui.delete_entry_button.setEnabled(True)
 
     def deselect_button_group(self):
         self.ui.item_manage.setExclusive(False)
@@ -196,6 +182,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
 
     
+    @restrict_page_change
     def handle_logout(self):
         """
         This slot is triggered when the logout_button is clicked.
@@ -211,6 +198,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
     @admin_access
+    @restrict_page_change
     def show_create_account_page(self):
         """
         This slot is triggered when the create_user_button is clicked.
@@ -221,6 +209,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.create_user_page)
 
 
+    @restrict_page_change
     def show_transaction_page(self):
         """
         This slot is triggered when the transaction_history_button is clicked.
@@ -230,6 +219,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.transactions_page)
         #@TODO: Add tableview 
 
+    @restrict_page_change
     def show_alerts_page(self):
         """
         This slot is triggered when the alerts_button is clicked.
@@ -264,6 +254,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
         self.ui.stackedWidget_4.setCurrentWidget(self.ui.item_search_page)
         self.state["item_type"] = self.ui.inventory_type_input.currentText().lower()
+        self.state["inventory_page_func"] = "search"
         self.deselect_button_group()
         self.activate_page_change()
 
@@ -282,6 +273,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.deselect_button_group()
 
     @admin_access
+    @restrict_page_change
     def show_add_entry_page(self):
         """
         This slot is triggered when the add_entry_button is clicked.
@@ -323,7 +315,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.add_entry_list.setItemWidget(list_item, item_entry)
         
 
-
+    @restrict_page_change
     def show_update_entry_page(self):
         """
         This slot is triggered when the update_entry_button is clicked.
@@ -336,6 +328,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.deactivate_page_change()
 
     @admin_access
+    @restrict_page_change
     def show_delete_entry_page(self):
         """
         This slot is triggered when the delete_entry_button is clicked.

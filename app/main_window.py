@@ -18,6 +18,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.db_manager = DatabaseManager()
         self.account_manager = self.db_manager.account_manager
+        self.inventory_manager = self.db_manager.inventory_manager
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 

@@ -73,7 +73,7 @@ class AccountManager:
             VALUES (?, ?, "user")
             """
         self.SEARCH_USERNAME_SQL = """
-            SELECT * FROM users WHERE username = ?
+            SELECT * FROM users WHERE username = (?)
             """
 
         self.create_table()
@@ -175,7 +175,7 @@ class InventoryManager:
         self.LOCATIONS_TABLE_SQL = """
         CREATE TABLE IF NOT EXISTS Locations (
             loc_id INTEGER PRIMARY KEY,
-            name VARCHAR(255) UNIQUE,
+            name VARCHAR(255),
             lab_id INTEGER,
             FOREIGN KEY (lab_id) REFERENCES Labs(lab_id)
         )"""
@@ -199,15 +199,31 @@ class InventoryManager:
         INSERT OR IGNORE INTO StockType (type)
         VALUES ('glassware'), ('chemical'), ('equipment')
         """
+        self.INSERT_LABS_SQL = """
+        INSERT OR IGNORE INTO Labs (name)
+        VALUES (?)
+        """
+        self.INSERT_LOCATIONS_SQL = """
+        INSERT OR IGNORE INTO Locations (name, lab_id)
+        VALUES (?, ?)
+        """
         self.INSERT_ITEM_SQL = """
         INSERT INTO Items (name, qty, stock_id)
-        SELECT ?, ?, stock_id FROM StockType WHERE type = ?
+        SELECT (?, ?), stock_id FROM StockType WHERE type = (?)
         """
         self.INSERT_ITEM_LOCATION_SQL = """
         INSERT INTO ItemLocation (item_id, location_id)
-        SELECT ?, loc_id FROM Locations
-        WHERE name = ?
-        AND lab_id = (SELECT lab_id FROM Labs WHERE name = ?)
+        SELECT (?), loc_id FROM Locations
+        WHERE name = (?)
+        AND lab_id = (SELECT lab_id FROM Labs WHERE name = (?))
+        """
+        self.RETRIEVE_LAB_ID_SQL = """
+        SELECT lab_id FROM Labs WHERE name = (?)
+        """
+        self.RETRIEVE_LOCATIONS_SQL = """
+        SELECT Labs.name AS lab_name, Locations.name AS location_name
+        FROM Labs
+        INNER JOIN Locations ON Labs.lab_id = Locations.lab_id
         """
         self.RETRIEVE_ITEM_INFO_SQL = """
         SELECT Items.name AS name, Items.qty, Location.name AS location, Labs.name AS lab
@@ -216,10 +232,20 @@ class InventoryManager:
         INNER JOIN Locations ON ItemLocation.location_id = Locations.loc_id
         INNER JOIN Labs ON Location.lab_id = Labs.lab_id
         INNER JOIN StockType ON Items.stock_id = StockType.stock_id
-        WHERE StockType.type = ?
+        WHERE StockType.type = (?)
         """
 
         self.create_tables()
+        
+        # @TODO: Change it and create locations at Installation
+        locations = {
+            "Lab1": ["A", "B", "C"],
+            "Lab2": ["A", "B", "C"],
+        }
+        lab_names = list(locations.keys())
+        self.insert_labs(lab_names)
+        self.insert_locations(locations)
+
 
     def create_tables(self):
         query = QSqlQuery()
@@ -231,6 +257,48 @@ class InventoryManager:
 
         # Enter default stocktype values
         query.exec(self.INSERT_STOCK_TYPE_SQL)
+
+    def insert_labs(self, lab_names: list[str]):
+        query = QSqlQuery()
+        for lab in lab_names:
+            query.prepare(self.INSERT_LABS_SQL)
+            query.addBindValue(lab)
+            query.exec()
+
+    def insert_locations(self, locations: dict[str, list[str]]):
+        query = QSqlQuery()
+        for lab_name, shelves in locations.items():
+            # Retrieve `lab_id` for the current lab
+            lab_id_query = QSqlQuery()
+            lab_id_query.prepare(self.RETRIEVE_LAB_ID_SQL)
+            lab_id_query.addBindValue(lab_name)
+            lab_id_query.exec()
+            lab_id_query.next()
+            lab_id = lab_id_query.value(0)
+
+            # Insert locations for the current lab
+            for shelf in shelves:
+                # location_name = f"{lab_name}_{shelf}"
+                query.prepare(self.INSERT_LOCATIONS_SQL)
+                query.addBindValue(shelf)
+                query.addBindValue(lab_id)
+                query.exec()
+
+    def retrieve_locations(self) -> dict[str, list[str]]:
+        query = QSqlQuery()
+        locations = {}
+        query.exec(self.RETRIEVE_LOCATIONS_SQL)
+
+        while query.next():
+            lab_name = query.value("lab_name")
+            location_name = query.value("location_name")
+
+            if lab_name not in locations:
+                locations[lab_name] = []
+            locations[lab_name].append(location_name)
+        
+        return locations
+
 
     def add_entry(self, stock_type: str, name: str, qty: str, location: str, lab: str):
         query = QSqlQuery()

@@ -3,7 +3,7 @@
 The **Labify** software is used to keep track of inventories in chemistry labs.
 Produced using python
 
-![]("images/labify.jpeg")
+![]("./images/labify.jpeg")
 
 ## Installation
 

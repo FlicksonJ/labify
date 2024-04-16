@@ -3,9 +3,9 @@
 The **Labify** software is used to keep track of inventories in chemistry labs.<br>
 The software is written in python programming langauge.
 
-<div style="display: flex; justify-content: center;">
-  <img src="images/labify.jpeg" alt="Labify Logo" width="200px">
-</div>
+<p align="center">
+ <img src="images/labify.jpeg" alt="Labify Logo" width="200px" style="display:inline-block;border-radius: 5px;">
+</p>
 
 ## Installation
 

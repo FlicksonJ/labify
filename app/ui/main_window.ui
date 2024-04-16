@@ -212,6 +212,74 @@
 	margin: 0;
 }
 
+/*combo box location and lab*/
+
+#item_location_input,
+#item_lab_input
+{
+	color: rgb(0, 159, 161);
+}
+
+#item_location_input::drop-down,
+#item_lab_input::drop-down
+{
+	border: 0px;
+}
+
+#item_location_input::down-arrow,
+#item_lab_input::down-arrow
+{
+	image: url(:/icon/images/down-arrow.ico);
+	width: 15px;
+	height: 15px;
+	margin-right: 20px
+}
+
+#item_location_input:on,
+#item_lab_input:on
+{
+	border: 2px solid rgba(0, 159, 161, 10%);
+}
+
+#item_location_input QListView,
+#item_lab_input QListView
+{
+	font-size: 15pt;
+	border: 1px solid rgba(0, 0, 0, 10%);
+	padding: 3px;
+	background-color: rgb(251, 254, 255);
+	outline: 0px;
+}
+
+#item_location_input QListView::item,
+#item_lab_input QListView::item
+{
+	padding-left: 10px;
+	background-color: rgb(251, 254, 255);
+}
+
+#item_location_input QListView::item:hover,
+#item_lab_input QListView::item:hover
+{
+	background: rgb(0, 159, 161);
+	color: rgb(251, 254, 255);
+}
+
+#item_location_input QListView::item:selected,
+#item_lab_input QListView::item:selected
+{
+	background: rgb(0, 159, 161);
+	color: rgb(251, 254, 255);
+}
+
+#item_location_input QListView,
+#item_lab_input QListView
+{
+	color: rgb(0, 159, 161);
+}
+
+/*----*/
+
 /* combo box */
 
 #inventory_type_input {
@@ -264,6 +332,12 @@
 	background: rgb(0, 159, 161);
 	color: rgb(251, 254, 255);
 }
+
+#inventory_type_input QListView {
+	color: rgb(0, 159, 161);
+}
+
+/* -- */
 
 #add_entry_button, 
 #update_entry_button,
@@ -390,10 +464,6 @@
 	border-radius: 10px;
 	padding-left: 10px;
 	font-size: 15pt;
-	color: rgb(0, 159, 161);
-}
-
-#inventory_type_input QListView {
 	color: rgb(0, 159, 161);
 }
 
@@ -745,7 +815,7 @@
                  <x>60</x>
                  <y>0</y>
                  <width>181</width>
-                 <height>91</height>
+                 <height>101</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1032,7 +1102,7 @@
                  </rect>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>2</number>
                 </property>
                 <widget class="QWidget" name="item_search_page">
                  <widget class="QWidget" name="verticalLayoutWidget_4">

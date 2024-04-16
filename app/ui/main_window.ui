@@ -726,7 +726,7 @@
                  <x>60</x>
                  <y>0</y>
                  <width>181</width>
-                 <height>101</height>
+                 <height>91</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1013,7 +1013,7 @@
                  </rect>
                 </property>
                 <property name="currentIndex">
-                 <number>2</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="item_search_page">
                  <widget class="QWidget" name="verticalLayoutWidget_4">

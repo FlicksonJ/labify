@@ -574,7 +574,7 @@ class Ui_MainWindow(object):
         self.inventory_header.setMinimumSize(QSize(0, 90))
         self.layoutWidget1 = QWidget(self.inventory_header)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
-        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 101))
+        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 91))
         self.verticalLayout_6 = QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -1312,7 +1312,7 @@ class Ui_MainWindow(object):
         self.login_button.setDefault(True)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)
-        self.stackedWidget_4.setCurrentIndex(2)
+        self.stackedWidget_4.setCurrentIndex(0)
         self.cancel_button.setDefault(False)
 
 

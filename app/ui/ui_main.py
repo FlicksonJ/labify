@@ -49,14 +49,11 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#login_page QLabel {\n"
-"	margin-left: 40px;\n"
-"	font-size: 15pt\n"
+"	font-size: 15pt;\n"
 "}\n"
 "\n"
 "#login_page QLineEdit, QPushButton {\n"
 "	height: 70px;\n"
-"	margin-left: 40px;\n"
-"	margin-right: 40px;\n"
 "	border-radius: 5px;\n"
 "}\n"
 "\n"
@@ -65,7 +62,11 @@ class Ui_MainWindow(object):
 "	padding-left: 20px;\n"
 "	padding-right: 20px;\n"
 "	font-size: 18pt;\n"
-"	color: black;\n"
+"	color: rgb(0, 159, 161);\n"
+"}\n"
+"\n"
+"#login_page QLineEdit:hover {\n"
+"	border: 3px solid rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "#login_page QPushButton {\n"
@@ -74,13 +75,19 @@ class Ui_MainWindow(object):
 "	margin-top: 40px;\n"
 "}\n"
 "\n"
+"#login_page QPushButton:hover{\n"
+"	background: rgb(255, 255, 255);\n"
+"    color: rgb(0, 159, 161);\n"
+"}\n"
+"\n"
 "#header {\n"
 "	background: rgb(52, 62, 162);\n"
 "}\n"
 "\n"
 "#mic_logo {\n"
 "	max-width: 75px;\n"
-"	max-height: 75px;\n"
+"	max-"
+                        "height: 75px;\n"
 "}\n"
 "\n"
 "#labify_logo {\n"
@@ -89,8 +96,7 @@ class Ui_MainWindow(object):
 "	min-height: 95px;\n"
 "}\n"
 "\n"
-"#header QPus"
-                        "hButton {\n"
+"#header QPushButton {\n"
 "	background: rgb(255, 255, 255);\n"
 "	margin: 0;\n"
 "	width: 100px;\n"
@@ -138,15 +144,15 @@ class Ui_MainWindow(object):
 "#create_user_form QLineEdit {\n"
 "	border: 1px solid;\n"
 "	min-height: 80px;\n"
-"	border-radius: 5px;\n"
+"	bo"
+                        "rder-radius: 5px;\n"
 "	border-color: rgb(52, 62, 162);\n"
 "	color: black;\n"
 "	padding-left: 10px;\n"
 "	padding-right: 10px;\n"
 "}\n"
 "\n"
-"#"
-                        "create_account_button {\n"
+"#create_account_button {\n"
 "	background: rgb(0, 159, 161);\n"
 "	font-size: 25pt;\n"
 "	margin: 0;\n"
@@ -190,14 +196,14 @@ class Ui_MainWindow(object):
 "	padding-left: 10px;\n"
 "}\n"
 "\n"
-"#inventory_type_input::drop-down {\n"
+"#inventory_type_input"
+                        "::drop-down {\n"
 "	border: 0px;\n"
 "}\n"
 "\n"
 "#inventory_type_input::down-arrow {\n"
 "	image: url(:/icon/images/down-arrow.ico);\n"
-"	width:"
-                        " 30px;\n"
+"	width: 30px;\n"
 "	height: 30px;\n"
 "	margin-right: 20px\n"
 "}\n"
@@ -235,15 +241,15 @@ class Ui_MainWindow(object):
 "	background: rgb(52, 62, 162);\n"
 "	margin: 0;\n"
 "	font-size: 15pt;\n"
-"	text-align: left;\n"
+"	tex"
+                        "t-align: left;\n"
 "	padding-left: 10px;\n"
 "	border-radius: 0;\n"
 "	height: 50px;\n"
 "}\n"
 "\n"
 "#add_entry_button:checked, \n"
-"#update_entr"
-                        "y_button:checked, \n"
+"#update_entry_button:checked, \n"
 "#delete_entry_button:checked {\n"
 "	background: #fff;\n"
 "	color: rgb(52, 62, 162);\n"
@@ -283,12 +289,12 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#add_entry_save_button,\n"
-"#add_entry_add_button,\n"
+""
+                        "#add_entry_add_button,\n"
 "#add_entry_cancel_button,\n"
 "#update_entry_save_button,\n"
 "#update_entry_cancel_button,\n"
-"#delete_entry_del"
-                        "ete_button,\n"
+"#delete_entry_delete_button,\n"
 "#delete_entry_cancel_button {\n"
 "	border: 1px solid;\n"
 "	margin: 0;\n"
@@ -327,15 +333,15 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#update_entry_search_input,\n"
-"#delete_entry_search_input {\n"
+""
+                        "#delete_entry_search_input {\n"
 "	max-width: 350px;\n"
 "}\n"
 "\n"
 "#add_entry_list {\n"
 "	padding-top: 20px;\n"
 "	margin-bottom: 30px;\n"
-""
-                        "}")
+"}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.stackedWidget = QStackedWidget(self.centralwidget)
@@ -346,7 +352,7 @@ class Ui_MainWindow(object):
         self.login_page.setObjectName(u"login_page")
         self.verticalLayoutWidget = QWidget(self.login_page)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(880, 190, 571, 401))
+        self.verticalLayoutWidget.setGeometry(QRect(980, 190, 471, 401))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -1117,7 +1123,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget4.raise_()
+        self.layoutWidget3.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1248,7 +1254,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         self.login_button.setDefault(True)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)

@@ -47,14 +47,11 @@
 }
 
 #login_page QLabel {
-	margin-left: 40px;
-	font-size: 15pt
+	font-size: 15pt;
 }
 
 #login_page QLineEdit, QPushButton {
 	height: 70px;
-	margin-left: 40px;
-	margin-right: 40px;
 	border-radius: 5px;
 }
 
@@ -63,13 +60,22 @@
 	padding-left: 20px;
 	padding-right: 20px;
 	font-size: 18pt;
-	color: black;
+	color: rgb(0, 159, 161);
+}
+
+#login_page QLineEdit:hover {
+	border: 3px solid rgb(0, 159, 161);
 }
 
 #login_page QPushButton {
 	background: rgb(0, 159, 161);
 	font-size: 23pt;
 	margin-top: 40px;
+}
+
+#login_page QPushButton:hover{
+	background: rgb(255, 255, 255);
+    color: rgb(0, 159, 161);
 }
 
 #header {
@@ -343,15 +349,15 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="login_page">
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>880</x>
+        <x>980</x>
         <y>190</y>
-        <width>571</width>
+        <width>471</width>
         <height>401</height>
        </rect>
       </property>

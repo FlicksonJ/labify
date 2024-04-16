@@ -109,8 +109,24 @@ class Ui_MainWindow(object):
 "	color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
+"#create_user_button:hover {\n"
+"	background-color: rgb(0, 159, 161);\n"
+"	color: #fff;\n"
+"}\n"
+"\n"
 "#logout_button {\n"
 "	color: rgb(224, 27, 36)\n"
+"}\n"
+"\n"
+"#logout_button:hover {\n"
+"	background-color: rgb(224, 27, 36);\n"
+"	color:#fff;\n"
+"}\n"
+"\n"
+"#alerts_button:hover,\n"
+"#transaction_history_button:hover {\n"
+"	background-color: rgb(52, 62, 162);\n"
+"	color:#fff;\n"
 "}\n"
 "\n"
 "#header_username_label {\n"
@@ -126,7 +142,8 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#footer QLabel {\n"
-"	margin: 0;\n"
+""
+                        "	margin: 0;\n"
 "}\n"
 "\n"
 "#create_user_page {\n"
@@ -144,12 +161,16 @@ class Ui_MainWindow(object):
 "#create_user_form QLineEdit {\n"
 "	border: 1px solid;\n"
 "	min-height: 80px;\n"
-"	bo"
-                        "rder-radius: 5px;\n"
+"	border-radius: 5px;\n"
 "	border-color: rgb(52, 62, 162);\n"
-"	color: black;\n"
+"	color:  rgb(0, 159, 161);\n"
 "	padding-left: 10px;\n"
 "	padding-right: 10px;\n"
+"}\n"
+"\n"
+"#create_user_form QLineEdit:hover {\n"
+"	border: 3px solid;\n"
+"	border-color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "#create_account_button {\n"
@@ -166,6 +187,17 @@ class Ui_MainWindow(object):
 "	font-size: 25pt;\n"
 "	margin: 0;\n"
 "	padding: 0px 50px 0px 50px\n"
+"}\n"
+"\n"
+"#create_account_button:hover{\n"
+"	background-color: rgb(52, 62, 162);\n"
+"	color: #fff;\n"
+"}\n"
+""
+                        "\n"
+"#cancel_button:hover {\n"
+"	color:#fff;\n"
+"	background-color: rgb(224, 27, 36);\n"
 "}\n"
 "\n"
 "#home_page {\n"
@@ -196,8 +228,7 @@ class Ui_MainWindow(object):
 "	padding-left: 10px;\n"
 "}\n"
 "\n"
-"#inventory_type_input"
-                        "::drop-down {\n"
+"#inventory_type_input::drop-down {\n"
 "	border: 0px;\n"
 "}\n"
 "\n"
@@ -214,7 +245,8 @@ class Ui_MainWindow(object):
 "\n"
 "#inventory_type_input QListView{\n"
 "	font-size: 15pt;\n"
-"	border: 1px solid rgba(0, 0, 0, 10%);\n"
+"	border: 1px sol"
+                        "id rgba(0, 0, 0, 10%);\n"
 "	padding: 3px;\n"
 "	background-color: rgb(251, 254, 255);\n"
 "	outline: 0px;\n"
@@ -241,18 +273,40 @@ class Ui_MainWindow(object):
 "	background: rgb(52, 62, 162);\n"
 "	margin: 0;\n"
 "	font-size: 15pt;\n"
-"	tex"
-                        "t-align: left;\n"
+"	text-align: left;\n"
 "	padding-left: 10px;\n"
 "	border-radius: 0;\n"
 "	height: 50px;\n"
 "}\n"
 "\n"
+"#add_entry_button:hover, \n"
+"#update_entry_button:hover, \n"
+"#delete_entry_button:hover {\n"
+"	background: rgb(0, 159, 161);\n"
+"	color: #fff;\n"
+"}\n"
+"\n"
 "#add_entry_button:checked, \n"
 "#update_entry_button:checked, \n"
 "#delete_entry_button:checked {\n"
-"	background: #fff;\n"
+"	background"
+                        ": #fff;\n"
 "	color: rgb(52, 62, 162);\n"
+"}\n"
+"\n"
+"#add_entry_add_button:hover,\n"
+"#add_entry_save_button:hover,\n"
+"#update_entry_save_button:hover{\n"
+"	background: rgb(0, 159, 161);\n"
+"	color: #fff;\n"
+"}\n"
+"\n"
+"#add_entry_cancel_button:hover,\n"
+"#delete_entry_cancel_button:hover,\n"
+"#delete_entry_delete_button:hover,\n"
+"#update_entry_cancel_button:hover{\n"
+"	background: rgb(224, 27, 36);\n"
+"	color:#fff;\n"
 "}\n"
 "\n"
 "#search_bar_container,\n"
@@ -280,7 +334,8 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#add_entry_table_header QLabel {\n"
-"	background: rgb(0, 159, 161);\n"
+"	backgrou"
+                        "nd: rgb(0, 159, 161);\n"
 "	font-size: 18pt;\n"
 "	padding-left: 10px;\n"
 "	padding-right: 10px;\n"
@@ -289,8 +344,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#add_entry_save_button,\n"
-""
-                        "#add_entry_add_button,\n"
+"#add_entry_add_button,\n"
 "#add_entry_cancel_button,\n"
 "#update_entry_save_button,\n"
 "#update_entry_cancel_button,\n"
@@ -324,7 +378,8 @@ class Ui_MainWindow(object):
 "	height: 35px;\n"
 "	border-radius: 10px;\n"
 "	padding-left: 10px;\n"
-"	font-size: 15pt;\n"
+""
+                        "	font-size: 15pt;\n"
 "	color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
@@ -333,8 +388,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#update_entry_search_input,\n"
-""
-                        "#delete_entry_search_input {\n"
+"#delete_entry_search_input {\n"
 "	max-width: 350px;\n"
 "}\n"
 "\n"
@@ -459,7 +513,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setSizeConstraint(QLayout.SizeConstraint.SetFixedSize)
         self.header_username_label = QLabel(self.header)
         self.header_username_label.setObjectName(u"header_username_label")
-        self.header_username_label.setMaximumSize(QSize(200, 16777215))
+        self.header_username_label.setMaximumSize(QSize(212, 16777215))
         self.header_username_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_4.addWidget(self.header_username_label)
@@ -520,7 +574,7 @@ class Ui_MainWindow(object):
         self.inventory_header.setMinimumSize(QSize(0, 90))
         self.layoutWidget1 = QWidget(self.inventory_header)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
-        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 91))
+        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 101))
         self.verticalLayout_6 = QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -1108,7 +1162,7 @@ class Ui_MainWindow(object):
         self.item_manage.addButton(self.update_entry_button)
         self.update_entry_button.setObjectName(u"update_entry_button")
         self.update_entry_button.setCursor(QCursor(Qt.PointingHandCursor))
-        self.update_entry_button.setMouseTracking(False)
+        self.update_entry_button.setMouseTracking(True)
         self.update_entry_button.setCheckable(True)
 
         self.verticalLayout_9.addWidget(self.update_entry_button)
@@ -1123,7 +1177,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget4.raise_()
+        self.layoutWidget3.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)

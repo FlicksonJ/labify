@@ -27,6 +27,7 @@ class DatabaseManager:
 
         # check if the database file exists
         if not os.path.exists(self.db_name):
+            os.makedirs(os.path.dirname(self.db_name), exist_ok=True)
             if not self.create_database():
                 QMessageBox.critical(None, "Error", "Failed to create database file")
                 sys.exit(1)

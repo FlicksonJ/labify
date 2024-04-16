@@ -310,6 +310,12 @@
 	margin: 1px;
 }
 
+#search_bar_container:hover,
+#search_bar_container_2:hover,
+#search_bar_container_3:hover {
+	border: 2px solid rgb(0, 159, 161);
+}
+
 #search_button,
 #search_bar_input,
 #update_entry_search_button,
@@ -318,6 +324,15 @@
 #delete_entry_search_input {
 	color: rgb(0, 159, 161);
 	font-size: 18pt
+}
+
+#search_button:hover,
+#search_bar_input:hover,
+#update_entry_search_button:hover,
+#update_entry_search_input:hover,
+#delete_entry_search_button:hover,
+#delete_entry_search_input:hover {
+	color: rgb(52, 62, 162);
 }
 
 #search_bar_input,

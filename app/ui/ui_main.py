@@ -317,6 +317,12 @@ class Ui_MainWindow(object):
 "	margin: 1px;\n"
 "}\n"
 "\n"
+"#search_bar_container:hover,\n"
+"#search_bar_container_2:hover,\n"
+"#search_bar_container_3:hover {\n"
+"	border: 2px solid rgb(0, 159, 161);\n"
+"}\n"
+"\n"
 "#search_button,\n"
 "#search_bar_input,\n"
 "#update_entry_search_button,\n"
@@ -327,6 +333,16 @@ class Ui_MainWindow(object):
 "	font-size: 18pt\n"
 "}\n"
 "\n"
+"#search_button"
+                        ":hover,\n"
+"#search_bar_input:hover,\n"
+"#update_entry_search_button:hover,\n"
+"#update_entry_search_input:hover,\n"
+"#delete_entry_search_button:hover,\n"
+"#delete_entry_search_input:hover {\n"
+"	color: rgb(52, 62, 162);\n"
+"}\n"
+"\n"
 "#search_bar_input,\n"
 "#update_entry_search_input,\n"
 "#delete_entry_search_input {\n"
@@ -334,8 +350,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#add_entry_table_header QLabel {\n"
-"	backgrou"
-                        "nd: rgb(0, 159, 161);\n"
+"	background: rgb(0, 159, 161);\n"
 "	font-size: 18pt;\n"
 "	padding-left: 10px;\n"
 "	padding-right: 10px;\n"
@@ -362,7 +377,8 @@ class Ui_MainWindow(object):
 "#add_entry_add_button,\n"
 "#update_entry_save_button {\n"
 "	color: rgb(0, 159, 161);\n"
-"	border-color: rgb(0, 159, 161);\n"
+"	"
+                        "border-color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "#add_entry_cancel_button,\n"
@@ -378,8 +394,7 @@ class Ui_MainWindow(object):
 "	height: 35px;\n"
 "	border-radius: 10px;\n"
 "	padding-left: 10px;\n"
-""
-                        "	font-size: 15pt;\n"
+"	font-size: 15pt;\n"
 "	color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
@@ -1177,7 +1192,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget3.raise_()
+        self.layoutWidget.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)

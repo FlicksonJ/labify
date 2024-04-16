@@ -220,6 +220,12 @@
 	color: rgb(0, 159, 161);
 }
 
+#item_location_input:hover,
+#item_lab_input:hover
+{
+	color: rgb(52, 62, 162);
+}
+
 #item_location_input::drop-down,
 #item_lab_input::drop-down
 {
@@ -279,6 +285,11 @@
 }
 
 /*----*/
+
+#item_name_input:hover,
+#item_qty_input:hover {
+	border: 2px solid rgb(0, 159, 161);
+}
 
 /* combo box */
 
@@ -815,7 +826,7 @@
                  <x>60</x>
                  <y>0</y>
                  <width>181</width>
-                 <height>101</height>
+                 <height>91</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">

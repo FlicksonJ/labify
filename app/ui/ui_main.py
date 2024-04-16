@@ -225,6 +225,12 @@ class Ui_MainWindow(object):
 "	color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
+"#item_location_input:hover,\n"
+"#item_lab_input:hover\n"
+"{\n"
+"	color: rgb(52, 62, 162);\n"
+"}\n"
+"\n"
 "#item_location_input::drop-down,\n"
 "#item_lab_input::drop-down\n"
 "{\n"
@@ -243,13 +249,13 @@ class Ui_MainWindow(object):
 "#item_location_input:on,\n"
 "#item_lab_input:on\n"
 "{\n"
-"	border: 2px solid rgba(0, 159, 161, 10%);\n"
+"	border: 2px solid "
+                        "rgba(0, 159, 161, 10%);\n"
 "}\n"
 "\n"
 "#item_location_input QListView,\n"
 "#item_lab_input QListView\n"
-""
-                        "{\n"
+"{\n"
 "	font-size: 15pt;\n"
 "	border: 1px solid rgba(0, 0, 0, 10%);\n"
 "	padding: 3px;\n"
@@ -286,7 +292,13 @@ class Ui_MainWindow(object):
 "\n"
 "/*----*/\n"
 "\n"
-"/* combo box */\n"
+"#item_name_input:hover,\n"
+"#item_qty_input:hover {\n"
+"	border: 2px solid rgb(0, 159, 161);\n"
+"}\n"
+"\n"
+"/"
+                        "* combo box */\n"
 "\n"
 "#inventory_type_input {\n"
 "	background: rgb(251, 254, 255);\n"
@@ -296,8 +308,7 @@ class Ui_MainWindow(object):
 "	font-size: 18pt;\n"
 "	padding-left: 10px;\n"
 "}\n"
-""
-                        "\n"
+"\n"
 "#inventory_type_input:hover {\n"
 "	color: rgb(52, 62, 162);\n"
 "}\n"
@@ -332,7 +343,8 @@ class Ui_MainWindow(object):
 "\n"
 "#inventory_type_input QListView::item:hover {\n"
 "	background: rgb(0, 159, 161);\n"
-"	color: rgb(251, 254, 255);\n"
+"	color: rgb"
+                        "(251, 254, 255);\n"
 "}\n"
 "\n"
 "#inventory_type_input QListView::item:selected {\n"
@@ -341,8 +353,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#inventory_type_input QListView {\n"
-"	color: rgb(0, "
-                        "159, 161);\n"
+"	color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "/* -- */\n"
@@ -380,7 +391,8 @@ class Ui_MainWindow(object):
 "	color: #fff;\n"
 "}\n"
 "\n"
-"#add_entry_cancel_button:hover,\n"
+"#add_entry_cancel_bu"
+                        "tton:hover,\n"
 "#delete_entry_cancel_button:hover,\n"
 "#delete_entry_delete_button:hover,\n"
 "#update_entry_cancel_button:hover{\n"
@@ -388,8 +400,7 @@ class Ui_MainWindow(object):
 "	color:#fff;\n"
 "}\n"
 "\n"
-"#search_bar_containe"
-                        "r,\n"
+"#search_bar_container,\n"
 "#search_bar_container_2,\n"
 "#search_bar_container_3 {\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
@@ -422,7 +433,8 @@ class Ui_MainWindow(object):
 "	color: rgb(52, 62, 162);\n"
 "}\n"
 "\n"
-"#search_bar_input,\n"
+"#sea"
+                        "rch_bar_input,\n"
 "#update_entry_search_input,\n"
 "#delete_entry_search_input {\n"
 "	padding-left: 20px;\n"
@@ -431,8 +443,7 @@ class Ui_MainWindow(object):
 "#add_entry_table_header QLabel {\n"
 "	background: rgb(0, 159, 161);\n"
 "	font-size: 18pt;\n"
-"	p"
-                        "adding-left: 10px;\n"
+"	padding-left: 10px;\n"
 "	padding-right: 10px;\n"
 "	margin: 0;\n"
 "	min-height: 40px;\n"
@@ -466,7 +477,8 @@ class Ui_MainWindow(object):
 "#delete_entry_cancel_button {\n"
 "	color: rgb(224, 27, 36);\n"
 "	border-color: rgb(224, 27, 36);\n"
-"}\n"
+""
+                        "}\n"
 "\n"
 "#add_entry_inputs QLineEdit,QComboBox {\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
@@ -474,8 +486,7 @@ class Ui_MainWindow(object):
 "	border-radius: 10px;\n"
 "	padding-left: 10px;\n"
 "	font-size: 15pt;\n"
-"	color: rgb(0, 159, 161);"
-                        "\n"
+"	color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "#update_entry_search_input,\n"
@@ -665,7 +676,7 @@ class Ui_MainWindow(object):
         self.inventory_header.setMinimumSize(QSize(0, 90))
         self.layoutWidget1 = QWidget(self.inventory_header)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
-        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 101))
+        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 91))
         self.verticalLayout_6 = QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -1268,7 +1279,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget.raise_()
+        self.layoutWidget5.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)

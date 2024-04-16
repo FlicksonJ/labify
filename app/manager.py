@@ -179,6 +179,7 @@ class InventoryManager:
             name VARCHAR(255),
             lab_id INTEGER,
             FOREIGN KEY (lab_id) REFERENCES Labs(lab_id)
+            UNIQUE(name, lab_id)
         )"""
 
         self.LABS_TABLE_SQL = """        
@@ -241,7 +242,7 @@ class InventoryManager:
         # @TODO: Change it and create locations at Installation
         locations = {
             "Lab1": ["A", "B", "C"],
-            "Lab2": ["A", "B", "C"],
+            "Lab2": ["A", "B", "C", "D"],
         }
         lab_names = list(locations.keys())
         self.insert_labs(lab_names)

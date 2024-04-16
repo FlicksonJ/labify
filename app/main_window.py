@@ -32,8 +32,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "username": "",
             "user_type": "", 
             "item_type": "", 
-            "inventory_page_func": "search"
+            "inventory_page_func": "search",
+            "location_data": self.db_manager.inventory_manager.retrieve_locations()
             }
+
+        # Update locations
+        self.ui.item_lab_input.addItems(self.state["location_data"].keys())
+        self.update_locations(0)
 
         # View login screen
         self.ui.stackedWidget.setCurrentWidget(self.ui.login_page)
@@ -46,8 +51,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.date_label.setText(utils.get_date())
 
         # Set input validators
-        self.ui.item_location_input.setValidator(utils.UpperCaseNumValidator())
-        self.ui.item_lab_input.setValidator(utils.UpperCaseNumValidator())
         self.ui.item_qty_input.setValidator(QDoubleValidator())
 
         # =============================================== #
@@ -72,6 +75,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.add_entry_button.clicked.connect(self.show_add_entry_page)
         self.ui.add_entry_cancel_button.clicked.connect(self.handle_inventory_page)
         self.ui.add_entry_add_button.clicked.connect(self.add_entry)
+        self.ui.item_lab_input.currentIndexChanged.connect(self.update_locations)
 
         self.ui.update_entry_button.clicked.connect(self.show_update_entry_page)
         self.ui.update_entry_cancel_button.clicked.connect(self.handle_inventory_page)
@@ -248,8 +252,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.ui.add_entry_list.clear()
             self.ui.item_name_input.clear()
             self.ui.item_qty_input.clear()
-            self.ui.item_location_input.clear()
-            self.ui.item_lab_input.clear()
+            self.update_locations(0)
 
 
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
@@ -292,10 +295,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return
         if not utils.validate_line_edit(self.ui.item_qty_input):
             return
-        if not utils.validate_line_edit(self.ui.item_location_input):
-            return
-        if not utils.validate_line_edit(self.ui.item_lab_input):
-            return
 
         item_entry = ItemEntry()
         list_item = QListWidgetItem()
@@ -303,8 +302,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         id = str(self.ui.add_entry_list.count() + 1)
         name = self.ui.item_name_input.text()
         qty = self.ui.item_qty_input.text()
-        location = self.ui.item_location_input.text()
-        lab = self.ui.item_lab_input.text()
+        location = self.ui.item_location_input.currentText()
+        lab = self.ui.item_lab_input.currentText()
 
         item_entry.ui.id.setText(id)
         item_entry.ui.name.setText(name)
@@ -314,6 +313,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.ui.add_entry_list.addItem(list_item)
         self.ui.add_entry_list.setItemWidget(list_item, item_entry)
+
+    def update_locations(self, index):
+        selected_lab = self.ui.item_lab_input.currentText()
+        self.ui.item_location_input.clear()
+
+        if selected_lab in self.state["location_data"]:
+            self.ui.item_location_input.addItems(self.state["location_data"][selected_lab])
         
 
     @restrict_page_change

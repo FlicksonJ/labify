@@ -223,6 +223,10 @@
 	padding-left: 10px;
 }
 
+#inventory_type_input:hover {
+	color: rgb(52, 62, 162);
+}
+
 #inventory_type_input::drop-down {
 	border: 0px;
 }
@@ -844,7 +848,7 @@
                  <widget class="QLabel" name="label_3">
                   <property name="font">
                    <font>
-                    <pointsize>18</pointsize>
+                    <pointsize>20</pointsize>
                     <fontweight>Light</fontweight>
                    </font>
                   </property>

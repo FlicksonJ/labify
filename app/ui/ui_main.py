@@ -228,6 +228,10 @@ class Ui_MainWindow(object):
 "	padding-left: 10px;\n"
 "}\n"
 "\n"
+"#inventory_type_input:hover {\n"
+"	color: rgb(52, 62, 162);\n"
+"}\n"
+"\n"
 "#inventory_type_input::drop-down {\n"
 "	border: 0px;\n"
 "}\n"
@@ -243,10 +247,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgba(0, 159, 161, 10%);\n"
 "}\n"
 "\n"
-"#inventory_type_input QListView{\n"
+""
+                        "#inventory_type_input QListView{\n"
 "	font-size: 15pt;\n"
-"	border: 1px sol"
-                        "id rgba(0, 0, 0, 10%);\n"
+"	border: 1px solid rgba(0, 0, 0, 10%);\n"
 "	padding: 3px;\n"
 "	background-color: rgb(251, 254, 255);\n"
 "	outline: 0px;\n"
@@ -287,10 +291,10 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#add_entry_button:checked, \n"
-"#update_entry_button:checked, \n"
+"#updat"
+                        "e_entry_button:checked, \n"
 "#delete_entry_button:checked {\n"
-"	background"
-                        ": #fff;\n"
+"	background: #fff;\n"
 "	color: rgb(52, 62, 162);\n"
 "}\n"
 "\n"
@@ -329,12 +333,12 @@ class Ui_MainWindow(object):
 "#update_entry_search_input,\n"
 "#delete_entry_search_button,\n"
 "#delete_entry_search_input {\n"
-"	color: rgb(0, 159, 161);\n"
+"	"
+                        "color: rgb(0, 159, 161);\n"
 "	font-size: 18pt\n"
 "}\n"
 "\n"
-"#search_button"
-                        ":hover,\n"
+"#search_button:hover,\n"
 "#search_bar_input:hover,\n"
 "#update_entry_search_button:hover,\n"
 "#update_entry_search_input:hover,\n"
@@ -374,11 +378,11 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#add_entry_save_button,\n"
-"#add_entry_add_button,\n"
+"#add_entry_add_"
+                        "button,\n"
 "#update_entry_save_button {\n"
 "	color: rgb(0, 159, 161);\n"
-"	"
-                        "border-color: rgb(0, 159, 161);\n"
+"	border-color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "#add_entry_cancel_button,\n"
@@ -645,7 +649,7 @@ class Ui_MainWindow(object):
         self.label_3 = QLabel(self.layoutWidget3)
         self.label_3.setObjectName(u"label_3")
         font5 = QFont()
-        font5.setPointSize(18)
+        font5.setPointSize(20)
         font5.setWeight(QFont.Light)
         self.label_3.setFont(font5)
 
@@ -1192,7 +1196,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget.raise_()
+        self.layoutWidget3.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)

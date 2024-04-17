@@ -602,7 +602,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
        <item>
         <widget class="QLineEdit" name="password_input">
          <property name="echoMode">
-          <enum>QLineEdit::EchoMode::Password</enum>
+          <enum>QLineEdit::Password</enum>
          </property>
         </widget>
        </item>
@@ -657,7 +657,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
           <item>
            <spacer name="horizontalSpacer_2">
             <property name="orientation">
-             <enum>Qt::Orientation::Horizontal</enum>
+             <enum>Qt::Horizontal</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -744,7 +744,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
              <bool>false</bool>
             </property>
             <property name="alignment">
-             <set>Qt::AlignmentFlag::AlignCenter</set>
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -753,7 +753,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_4">
               <property name="sizeConstraint">
-               <enum>QLayout::SizeConstraint::SetFixedSize</enum>
+               <enum>QLayout::SetFixedSize</enum>
               </property>
               <item>
                <widget class="QLabel" name="header_username_label">
@@ -767,7 +767,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                  <string>ADMIN</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
@@ -825,7 +825,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
           <item>
            <spacer name="horizontalSpacer">
             <property name="orientation">
-             <enum>Qt::Orientation::Horizontal</enum>
+             <enum>Qt::Horizontal</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -874,7 +874,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                  <x>60</x>
                  <y>0</y>
                  <width>181</width>
-                 <height>91</height>
+                 <height>94</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -899,7 +899,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                    <string>12:00 AM</string>
                   </property>
                   <property name="alignment">
-                   <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                   </property>
                  </widget>
                 </item>
@@ -916,10 +916,10 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                    <string>20 Feb, 2024</string>
                   </property>
                   <property name="textFormat">
-                   <enum>Qt::TextFormat::AutoText</enum>
+                   <enum>Qt::AutoText</enum>
                   </property>
                   <property name="alignment">
-                   <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                   </property>
                  </widget>
                 </item>
@@ -1015,10 +1015,10 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                    <number>-1</number>
                   </property>
                   <property name="insertPolicy">
-                   <enum>QComboBox::InsertPolicy::InsertAtBottom</enum>
+                   <enum>QComboBox::InsertAtBottom</enum>
                   </property>
                   <property name="sizeAdjustPolicy">
-                   <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
+                   <enum>QComboBox::AdjustToContents</enum>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -1080,7 +1080,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                  <string>Nothing to Show</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </widget>
@@ -1212,7 +1212,7 @@ margin-top: 8px;
 margin-bottom: 6px;</string>
                            </property>
                            <property name="orientation">
-                            <enum>Qt::Orientation::Vertical</enum>
+                            <enum>Qt::Vertical</enum>
                            </property>
                           </widget>
                          </item>
@@ -1250,10 +1250,10 @@ margin-bottom: 6px;</string>
                      <item>
                       <spacer name="horizontalSpacer_3">
                        <property name="orientation">
-                        <enum>Qt::Orientation::Horizontal</enum>
+                        <enum>Qt::Horizontal</enum>
                        </property>
                        <property name="sizeType">
-                        <enum>QSizePolicy::Policy::Fixed</enum>
+                        <enum>QSizePolicy::Fixed</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -1316,10 +1316,10 @@ margin-bottom: 6px;</string>
                      <item>
                       <spacer name="horizontalSpacer_7">
                        <property name="orientation">
-                        <enum>Qt::Orientation::Horizontal</enum>
+                        <enum>Qt::Horizontal</enum>
                        </property>
                        <property name="sizeType">
-                        <enum>QSizePolicy::Policy::Fixed</enum>
+                        <enum>QSizePolicy::Fixed</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -1383,7 +1383,7 @@ margin-top: 8px;
 margin-bottom: 6px;</string>
                            </property>
                            <property name="orientation">
-                            <enum>Qt::Orientation::Vertical</enum>
+                            <enum>Qt::Vertical</enum>
                            </property>
                           </widget>
                          </item>
@@ -1427,10 +1427,10 @@ margin-bottom: 6px;</string>
                      <item>
                       <spacer name="horizontalSpacer_6">
                        <property name="orientation">
-                        <enum>Qt::Orientation::Horizontal</enum>
+                        <enum>Qt::Horizontal</enum>
                        </property>
                        <property name="sizeType">
-                        <enum>QSizePolicy::Policy::Fixed</enum>
+                        <enum>QSizePolicy::Fixed</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -1512,7 +1512,7 @@ margin-bottom: 6px;</string>
                      <item>
                       <spacer name="horizontalSpacer_4">
                        <property name="orientation">
-                        <enum>Qt::Orientation::Horizontal</enum>
+                        <enum>Qt::Horizontal</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -1641,7 +1641,7 @@ margin-bottom: 6px;</string>
                          </size>
                         </property>
                         <property name="text">
-                         <string>Location</string>
+                         <string>Lab</string>
                         </property>
                        </widget>
                       </item>
@@ -1660,7 +1660,7 @@ margin-bottom: 6px;</string>
                          </size>
                         </property>
                         <property name="text">
-                         <string>Lab</string>
+                         <string>Location</string>
                         </property>
                        </widget>
                       </item>
@@ -1699,10 +1699,10 @@ margin-bottom: 6px;</string>
                         <item>
                          <spacer name="horizontalSpacer_5">
                           <property name="orientation">
-                           <enum>Qt::Orientation::Horizontal</enum>
+                           <enum>Qt::Horizontal</enum>
                           </property>
                           <property name="sizeType">
-                           <enum>QSizePolicy::Policy::Fixed</enum>
+                           <enum>QSizePolicy::Fixed</enum>
                           </property>
                           <property name="sizeHint" stdset="0">
                            <size>
@@ -1760,12 +1760,12 @@ margin-bottom: 6px;</string>
                            </size>
                           </property>
                           <property name="inputMethodHints">
-                           <set>Qt::InputMethodHint::ImhDigitsOnly|Qt::InputMethodHint::ImhPreferNumbers</set>
+                           <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QComboBox" name="item_location_input">
+                         <widget class="QComboBox" name="item_lab_input">
                           <property name="minimumSize">
                            <size>
                             <width>330</width>
@@ -1781,7 +1781,7 @@ margin-bottom: 6px;</string>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QComboBox" name="item_lab_input">
+                         <widget class="QComboBox" name="item_location_input">
                           <property name="maximumSize">
                            <size>
                             <width>200</width>
@@ -1839,10 +1839,10 @@ margin-bottom: 6px;</string>
                      <item>
                       <spacer name="horizontalSpacer_8">
                        <property name="orientation">
-                        <enum>Qt::Orientation::Horizontal</enum>
+                        <enum>Qt::Horizontal</enum>
                        </property>
                        <property name="sizeType">
-                        <enum>QSizePolicy::Policy::Fixed</enum>
+                        <enum>QSizePolicy::Fixed</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -1906,7 +1906,7 @@ margin-top: 8px;
 margin-bottom: 6px;</string>
                            </property>
                            <property name="orientation">
-                            <enum>Qt::Orientation::Vertical</enum>
+                            <enum>Qt::Vertical</enum>
                            </property>
                           </widget>
                          </item>
@@ -1950,10 +1950,10 @@ margin-bottom: 6px;</string>
                      <item>
                       <spacer name="horizontalSpacer_9">
                        <property name="orientation">
-                        <enum>Qt::Orientation::Horizontal</enum>
+                        <enum>Qt::Horizontal</enum>
                        </property>
                        <property name="sizeType">
-                        <enum>QSizePolicy::Policy::Fixed</enum>
+                        <enum>QSizePolicy::Fixed</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -2196,7 +2196,7 @@ margin-bottom: 6px;</string>
                    </font>
                   </property>
                   <property name="echoMode">
-                   <enum>QLineEdit::EchoMode::Password</enum>
+                   <enum>QLineEdit::Password</enum>
                   </property>
                  </widget>
                 </item>
@@ -2215,7 +2215,7 @@ margin-bottom: 6px;</string>
                    </font>
                   </property>
                   <property name="echoMode">
-                   <enum>QLineEdit::EchoMode::Password</enum>
+                   <enum>QLineEdit::Password</enum>
                   </property>
                  </widget>
                 </item>
@@ -2305,10 +2305,10 @@ margin-bottom: 6px;</string>
              <string>&amp;copy; 2024, Dept. of CS</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::TextFormat::RichText</enum>
+             <enum>Qt::RichText</enum>
             </property>
             <property name="alignment">
-             <set>Qt::AlignmentFlag::AlignCenter</set>
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>

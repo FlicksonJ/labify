@@ -147,7 +147,7 @@ QLabel {
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="location">
+         <widget class="QLabel" name="lab">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -172,7 +172,7 @@ QLabel {
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="lab">
+         <widget class="QLabel" name="location">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>

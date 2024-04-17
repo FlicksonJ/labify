@@ -93,27 +93,27 @@ class Ui_ItemEntry(object):
 
         self.horizontalLayout_2.addWidget(self.qty)
 
-        self.location = QLabel(self.horizontalLayoutWidget)
-        self.location.setObjectName(u"location")
-        sizePolicy1.setHeightForWidth(self.location.sizePolicy().hasHeightForWidth())
-        self.location.setSizePolicy(sizePolicy1)
-        self.location.setMinimumSize(QSize(345, 0))
-        self.location.setMaximumSize(QSize(345, 37))
-
-        self.horizontalLayout_2.addWidget(self.location)
-
         self.lab = QLabel(self.horizontalLayoutWidget)
         self.lab.setObjectName(u"lab")
+        sizePolicy1.setHeightForWidth(self.lab.sizePolicy().hasHeightForWidth())
+        self.lab.setSizePolicy(sizePolicy1)
+        self.lab.setMinimumSize(QSize(345, 0))
+        self.lab.setMaximumSize(QSize(345, 37))
+
+        self.horizontalLayout_2.addWidget(self.lab)
+
+        self.location = QLabel(self.horizontalLayoutWidget)
+        self.location.setObjectName(u"location")
         sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.lab.sizePolicy().hasHeightForWidth())
-        self.lab.setSizePolicy(sizePolicy2)
-        self.lab.setMinimumSize(QSize(200, 0))
-        self.lab.setMaximumSize(QSize(200, 37))
-        self.lab.setStyleSheet(u"margin-right: 10px;")
+        sizePolicy2.setHeightForWidth(self.location.sizePolicy().hasHeightForWidth())
+        self.location.setSizePolicy(sizePolicy2)
+        self.location.setMinimumSize(QSize(200, 0))
+        self.location.setMaximumSize(QSize(200, 37))
+        self.location.setStyleSheet(u"margin-right: 10px;")
 
-        self.horizontalLayout_2.addWidget(self.lab)
+        self.horizontalLayout_2.addWidget(self.location)
 
 
         self.horizontalLayout.addWidget(self.add_entry_values)
@@ -130,7 +130,7 @@ class Ui_ItemEntry(object):
         self.add_entry_values.setTitle(QCoreApplication.translate("ItemEntry", u"GroupBox", None))
         self.name.setText(QCoreApplication.translate("ItemEntry", u"TextLabel", None))
         self.qty.setText(QCoreApplication.translate("ItemEntry", u"TextLabel", None))
-        self.location.setText(QCoreApplication.translate("ItemEntry", u"TextLabel", None))
         self.lab.setText(QCoreApplication.translate("ItemEntry", u"TextLabel", None))
+        self.location.setText(QCoreApplication.translate("ItemEntry", u"TextLabel", None))
     # retranslateUi
 

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.0
+## Created by: Qt User Interface Compiler version 6.6.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -586,7 +586,7 @@ class Ui_MainWindow(object):
 
         self.password_input = QLineEdit(self.verticalLayoutWidget)
         self.password_input.setObjectName(u"password_input")
-        self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
+        self.password_input.setEchoMode(QLineEdit.Password)
 
         self.verticalLayout.addWidget(self.password_input)
 
@@ -653,7 +653,7 @@ class Ui_MainWindow(object):
         font.setBold(False)
         self.header_title.setFont(font)
         self.header_title.setScaledContents(False)
-        self.header_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.header_title.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout.addWidget(self.header_title)
 
@@ -661,11 +661,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.horizontalLayout_4.setSizeConstraint(QLayout.SizeConstraint.SetFixedSize)
+        self.horizontalLayout_4.setSizeConstraint(QLayout.SetFixedSize)
         self.header_username_label = QLabel(self.header)
         self.header_username_label.setObjectName(u"header_username_label")
         self.header_username_label.setMaximumSize(QSize(212, 16777215))
-        self.header_username_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.header_username_label.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_4.addWidget(self.header_username_label)
 
@@ -725,7 +725,7 @@ class Ui_MainWindow(object):
         self.inventory_header.setMinimumSize(QSize(0, 90))
         self.layoutWidget1 = QWidget(self.inventory_header)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
-        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 91))
+        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 94))
         self.verticalLayout_6 = QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -736,7 +736,7 @@ class Ui_MainWindow(object):
         font3.setPointSize(25)
         font3.setBold(True)
         self.time_label.setFont(font3)
-        self.time_label.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+        self.time_label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
         self.verticalLayout_6.addWidget(self.time_label)
 
@@ -747,8 +747,8 @@ class Ui_MainWindow(object):
         font4.setWeight(QFont.Light)
         font4.setItalic(False)
         self.date_label.setFont(font4)
-        self.date_label.setTextFormat(Qt.TextFormat.AutoText)
-        self.date_label.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+        self.date_label.setTextFormat(Qt.AutoText)
+        self.date_label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
         self.verticalLayout_6.addWidget(self.date_label)
 
@@ -802,8 +802,8 @@ class Ui_MainWindow(object):
         font6.setPointSize(18)
         self.inventory_type_input.setFont(font6)
         self.inventory_type_input.setCursor(QCursor(Qt.PointingHandCursor))
-        self.inventory_type_input.setInsertPolicy(QComboBox.InsertPolicy.InsertAtBottom)
-        self.inventory_type_input.setSizeAdjustPolicy(QComboBox.SizeAdjustPolicy.AdjustToContents)
+        self.inventory_type_input.setInsertPolicy(QComboBox.InsertAtBottom)
+        self.inventory_type_input.setSizeAdjustPolicy(QComboBox.AdjustToContents)
         self.inventory_type_input.setIconSize(QSize(16, 16))
         self.inventory_type_input.setFrame(False)
 
@@ -823,7 +823,7 @@ class Ui_MainWindow(object):
         font7.setPointSize(25)
         self.label_4.setFont(font7)
         self.label_4.setStyleSheet(u"color: rgb(0, 159, 161)")
-        self.label_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.label_4.setAlignment(Qt.AlignCenter)
         self.stackedWidget_3.addWidget(self.inventory_page_default)
         self.transactions_page = QWidget()
         self.transactions_page.setObjectName(u"transactions_page")
@@ -906,8 +906,8 @@ class Ui_MainWindow(object):
         self.line.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
-        self.line.setFrameShape(QFrame.Shape.VLine)
-        self.line.setFrameShadow(QFrame.Shadow.Sunken)
+        self.line.setFrameShape(QFrame.VLine)
+        self.line.setFrameShadow(QFrame.Sunken)
 
         self.horizontalLayout_11.addWidget(self.line)
 
@@ -998,8 +998,8 @@ class Ui_MainWindow(object):
         self.line_2.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
-        self.line_2.setFrameShape(QFrame.Shape.VLine)
-        self.line_2.setFrameShadow(QFrame.Shadow.Sunken)
+        self.line_2.setFrameShape(QFrame.VLine)
+        self.line_2.setFrameShadow(QFrame.Sunken)
 
         self.horizontalLayout_17.addWidget(self.line_2)
 
@@ -1163,22 +1163,22 @@ class Ui_MainWindow(object):
         self.item_qty_input.setSizePolicy(sizePolicy)
         self.item_qty_input.setMinimumSize(QSize(140, 0))
         self.item_qty_input.setMaximumSize(QSize(150, 16777215))
-        self.item_qty_input.setInputMethodHints(Qt.InputMethodHint.ImhDigitsOnly|Qt.InputMethodHint.ImhPreferNumbers)
+        self.item_qty_input.setInputMethodHints(Qt.ImhDigitsOnly|Qt.ImhPreferNumbers)
 
         self.horizontalLayout_13.addWidget(self.item_qty_input)
 
-        self.item_location_input = QComboBox(self.add_entry_inputs)
-        self.item_location_input.setObjectName(u"item_location_input")
-        self.item_location_input.setMinimumSize(QSize(330, 0))
-        self.item_location_input.setMaximumSize(QSize(350, 16777215))
-
-        self.horizontalLayout_13.addWidget(self.item_location_input)
-
         self.item_lab_input = QComboBox(self.add_entry_inputs)
         self.item_lab_input.setObjectName(u"item_lab_input")
-        self.item_lab_input.setMaximumSize(QSize(200, 16777215))
+        self.item_lab_input.setMinimumSize(QSize(330, 0))
+        self.item_lab_input.setMaximumSize(QSize(350, 16777215))
 
         self.horizontalLayout_13.addWidget(self.item_lab_input)
+
+        self.item_location_input = QComboBox(self.add_entry_inputs)
+        self.item_location_input.setObjectName(u"item_location_input")
+        self.item_location_input.setMaximumSize(QSize(200, 16777215))
+
+        self.horizontalLayout_13.addWidget(self.item_location_input)
 
 
         self.verticalLayout_12.addWidget(self.add_entry_inputs)
@@ -1239,8 +1239,8 @@ class Ui_MainWindow(object):
         self.line_3.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
-        self.line_3.setFrameShape(QFrame.Shape.VLine)
-        self.line_3.setFrameShadow(QFrame.Shadow.Sunken)
+        self.line_3.setFrameShape(QFrame.VLine)
+        self.line_3.setFrameShadow(QFrame.Sunken)
 
         self.horizontalLayout_19.addWidget(self.line_3)
 
@@ -1328,7 +1328,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget5.raise_()
+        self.layoutWidget6.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1391,7 +1391,7 @@ class Ui_MainWindow(object):
         self.cu_password_input = QLineEdit(self.verticalLayoutWidget_2)
         self.cu_password_input.setObjectName(u"cu_password_input")
         self.cu_password_input.setFont(font11)
-        self.cu_password_input.setEchoMode(QLineEdit.EchoMode.Password)
+        self.cu_password_input.setEchoMode(QLineEdit.Password)
 
         self.verticalLayout_3.addWidget(self.cu_password_input)
 
@@ -1403,7 +1403,7 @@ class Ui_MainWindow(object):
         self.cu_confirm_password_input = QLineEdit(self.verticalLayoutWidget_2)
         self.cu_confirm_password_input.setObjectName(u"cu_confirm_password_input")
         self.cu_confirm_password_input.setFont(font11)
-        self.cu_confirm_password_input.setEchoMode(QLineEdit.EchoMode.Password)
+        self.cu_confirm_password_input.setEchoMode(QLineEdit.Password)
 
         self.verticalLayout_3.addWidget(self.cu_confirm_password_input)
 
@@ -1446,8 +1446,8 @@ class Ui_MainWindow(object):
         self.label.setFont(font1)
         self.label.setAutoFillBackground(False)
         self.label.setLineWidth(0)
-        self.label.setTextFormat(Qt.TextFormat.RichText)
-        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.label.setTextFormat(Qt.RichText)
+        self.label.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_5.addWidget(self.label)
 
@@ -1508,8 +1508,8 @@ class Ui_MainWindow(object):
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"No", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Name", None))
         self.qty_label.setText(QCoreApplication.translate("MainWindow", u"Qty", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Location", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Lab", None))
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Lab", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Location", None))
         self.add_entry_inputs.setTitle(QCoreApplication.translate("MainWindow", u"GroupBox", None))
         self.delete_entry_label.setText(QCoreApplication.translate("MainWindow", u"DELETE GLASSWARE", None))
         self.delete_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))

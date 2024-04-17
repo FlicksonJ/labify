@@ -1039,12 +1039,12 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                   </item>
                   <item>
                    <property name="text">
-                    <string>Equipments</string>
+                    <string>Equipment</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Chemicals</string>
+                    <string>Chemical</string>
                    </property>
                   </item>
                  </widget>

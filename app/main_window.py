@@ -76,6 +76,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.add_entry_cancel_button.clicked.connect(self.handle_inventory_page)
         self.ui.add_entry_add_button.clicked.connect(self.add_entry)
         self.ui.item_lab_input.currentIndexChanged.connect(self.update_locations)
+        self.ui.add_entry_save_button.clicked.connect(self.save_entry)
 
         self.ui.update_entry_button.clicked.connect(self.show_update_entry_page)
         self.ui.update_entry_cancel_button.clicked.connect(self.handle_inventory_page)
@@ -325,7 +326,35 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if selected_lab in self.state["location_data"]:
             self.ui.item_location_input.addItems(self.state["location_data"][selected_lab])
-        
+
+    def save_entry(self):
+        confirm = utils.show_dialog(
+                "Are you sure?", 
+                "Do you really want to add this entry to the database?"
+                )
+        if confirm == QMessageBox.Yes:
+            entries = []
+            item_type = self.state["item_type"]
+            for i in range(self.ui.add_entry_list.count()):
+                item_widget = self.ui.add_entry_list.itemWidget(self.ui.add_entry_list.item(i))
+                name = item_widget.ui.name.text()
+                qty = item_widget.ui.qty.text()
+                location = item_widget.ui.location.text()
+                lab = item_widget.ui.lab.text()
+
+                item_entry = {
+                        "name": name,
+                        "qty": qty,
+                        "location": location,
+                        "lab": lab
+                        }
+                entries.append(item_entry)
+            
+            for item in entries:
+                self.inventory_manager.add_entry(item_type, **item)
+
+            self.handle_inventory_page()
+
 
     @restrict_page_change
     def show_update_entry_page(self):

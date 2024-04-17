@@ -23,11 +23,19 @@ def get_date() -> str:
     current_date = datetime.now().strftime("%d %b, %Y")
     return current_date
 
-def show_message(title, message):
+def show_message(title: str, message: str):
     message_box = QMessageBox()
     message_box.setWindowTitle(title)
     message_box.setText(message)
     message_box.exec()
+
+def show_dialog(title: str, message: str):
+    message_box = QMessageBox()
+    message_box.setWindowTitle(title)
+    message_box.setText(message)
+    message_box.setIcon(QMessageBox.Question)
+    message_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+    return message_box.exec()
 
 def validate_line_edit(line_edit: QLineEdit, error_message: str = "") -> bool:
     # custom style sheets

@@ -161,18 +161,19 @@ class InventoryManager:
         self.ITEMS_TABLE_SQL = """
         CREATE TABLE IF NOT EXISTS Items (
             item_id INTEGER PRIMARY KEY,
-            name VARCHAR(255) UNIQUE,
+            name VARCHAR(255),
             qty REAL,
             stock_id INTEGER,
+            location_id INT,
             FOREIGN KEY (stock_id) REFERENCES StockType(stock_id)
+            FOREIGN KEY (location_id) REFERENCES Locations(loc_id)
+            UNIQUE(name, location_id)
         )"""
-
         self.STOCK_TYPE_TABLE_SQL = """
         CREATE TABLE IF NOT EXISTS StockType (
             stock_id INTEGER PRIMARY KEY,
             type VARCHAR(255) UNIQUE
         )"""
-
         self.LOCATIONS_TABLE_SQL = """
         CREATE TABLE IF NOT EXISTS Locations (
             loc_id INTEGER PRIMARY KEY,
@@ -181,22 +182,12 @@ class InventoryManager:
             FOREIGN KEY (lab_id) REFERENCES Labs(lab_id)
             UNIQUE(name, lab_id)
         )"""
-
         self.LABS_TABLE_SQL = """        
         CREATE TABLE IF NOT EXISTS Labs (
             lab_id INTEGER PRIMARY KEY,
             name VARCHAR(255) UNIQUE
         )"""
 
-        self.ITEM_LOCATION_TABLE_SQL = """
-        CREATE TABLE IF NOT EXISTS ItemLocation (
-            id INTEGER PRIMARY KEY,
-            item_id INTEGER,
-            location_id INTEGER,
-            FOREIGN KEY (item_id) REFERENCES Items(item_id),
-            FOREIGN KEY (location_id) REFERENCES Locations(loc_id)
-        )
-        """
         self.INSERT_STOCK_TYPE_SQL = """
         INSERT OR IGNORE INTO StockType (type)
         VALUES ('glassware'), ('chemical'), ('equipment')
@@ -210,14 +201,11 @@ class InventoryManager:
         VALUES (?, ?)
         """
         self.INSERT_ITEM_SQL = """
-        INSERT INTO Items (name, qty, stock_id)
-        SELECT (?, ?), stock_id FROM StockType WHERE type = (?)
-        """
-        self.INSERT_ITEM_LOCATION_SQL = """
-        INSERT INTO ItemLocation (item_id, location_id)
-        SELECT (?), loc_id FROM Locations
-        WHERE name = (?)
-        AND lab_id = (SELECT lab_id FROM Labs WHERE name = (?))
+        INSERT OR IGNORE INTO Items (name, qty, stock_id, location_id)
+        VALUES (?, ?, 
+                (SELECT stock_id FROM StockType WHERE type = (?)),
+                (SELECT loc_id FROM Locations WHERE name = (?) AND lab_id = 
+                (SELECT lab_id FROM Labs WHERE name = (?))))
         """
         self.RETRIEVE_LAB_ID_SQL = """
         SELECT lab_id FROM Labs WHERE name = (?)
@@ -255,7 +243,6 @@ class InventoryManager:
         query.exec(self.STOCK_TYPE_TABLE_SQL)
         query.exec(self.LOCATIONS_TABLE_SQL)
         query.exec(self.LABS_TABLE_SQL)
-        query.exec(self.ITEM_LOCATION_TABLE_SQL)
 
         # Enter default stocktype values
         query.exec(self.INSERT_STOCK_TYPE_SQL)
@@ -310,12 +297,6 @@ class InventoryManager:
         query.addBindValue(name)
         query.addBindValue(qty)
         query.addBindValue(stock_type)
-        query.exec()
-        item_id = query.lastInsertId()
-
-        # Update the ItemLocation table
-        query.prepare(self.INSERT_ITEM_LOCATION_SQL)
-        query.addBindValue(item_id)
         query.addBindValue(location)
         query.addBindValue(lab)
         query.exec()

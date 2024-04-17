@@ -1487,8 +1487,8 @@ class Ui_MainWindow(object):
         self.alerts_button.setText(QCoreApplication.translate("MainWindow", u"Alert Notifictions", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Select Inventory: ", None))
         self.inventory_type_input.setItemText(0, QCoreApplication.translate("MainWindow", u"Glassware", None))
-        self.inventory_type_input.setItemText(1, QCoreApplication.translate("MainWindow", u"Equipments", None))
-        self.inventory_type_input.setItemText(2, QCoreApplication.translate("MainWindow", u"Chemicals", None))
+        self.inventory_type_input.setItemText(1, QCoreApplication.translate("MainWindow", u"Equipment", None))
+        self.inventory_type_input.setItemText(2, QCoreApplication.translate("MainWindow", u"Chemical", None))
 
         self.inventory_type_input.setCurrentText("")
         self.inventory_type_input.setPlaceholderText(QCoreApplication.translate("MainWindow", u"      -- Select an option --", None))

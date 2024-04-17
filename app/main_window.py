@@ -314,6 +314,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.add_entry_list.addItem(list_item)
         self.ui.add_entry_list.setItemWidget(list_item, item_entry)
 
+        # Clear current input values
+        self.ui.item_name_input.clear()
+        self.ui.item_qty_input.clear()
+        self.update_locations(0)
+
     def update_locations(self, index):
         selected_lab = self.ui.item_lab_input.currentText()
         self.ui.item_location_input.clear()

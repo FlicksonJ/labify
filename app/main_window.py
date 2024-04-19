@@ -67,7 +67,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.transaction_history_button.clicked.connect(self.show_transaction_page)
         self.ui.alerts_button.clicked.connect(self.show_alerts_page)
 
-        self.ui.inventory_type_input.activated.connect(self.handle_inventory_page)
         self.ui.inventory_type_input.currentTextChanged.connect(self.handle_inventory_page)
         # Change the value of inventory_type_input combo box to the default value
         self.ui.stackedWidget_3.currentChanged.connect(self.inventory_view_changed)

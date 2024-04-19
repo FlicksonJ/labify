@@ -1,7 +1,9 @@
+from PySide6.QtCore import QAbstractTableModel, QSortFilterProxyModel
 from PySide6.QtGui import QValidator
 from PySide6.QtWidgets import QMessageBox, QLineEdit
 
 from datetime import datetime
+from thefuzz import fuzz
 
 
 # Check whether the input is upper case or digits
@@ -53,3 +55,25 @@ def validate_line_edit(line_edit: QLineEdit, error_message: str = "") -> bool:
     else:
         line_edit.setStyleSheet(normal_stylesheet)
     return True
+
+def fuzzy_search(model: QAbstractTableModel, search_term: str) -> QSortFilterProxyModel:
+    proxy_model = QSortFilterProxyModel()
+    proxy_model.setSourceModel(model)
+
+    filtered_rows = []
+    for row in range(proxy_model.rowCount()):
+        name_index = model.index(row, 1)
+        name = model.data(name_index)
+        similiarity = fuzz.partial_token_sort_ratio(search_term.lower(), name.lower())
+        if similiarity > 70:
+            # value of row starts from 0 but cid of table starts from 1
+            filtered_rows.append(row+1)
+
+    proxy_model.setFilterKeyColumn(0)
+    proxy_model.setFilterFixedString("")
+    proxy_model.setFilterRegularExpression("")
+    regex_pattern = "|".join(map(str, filtered_rows))
+    proxy_model.setFilterRegularExpression(f"^(?:{regex_pattern})$")
+
+    return proxy_model
+

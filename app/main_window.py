@@ -33,7 +33,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "user_type": "", 
             "item_type": "", 
             "inventory_page_func": "search",
-            "location_data": self.db_manager.inventory_manager.retrieve_locations()
+            "location_data": self.db_manager.inventory_manager.retrieve_locations(),
+            "items_model": None
             }
 
         # Update locations
@@ -70,6 +71,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.inventory_type_input.currentTextChanged.connect(self.handle_inventory_page)
         # Change the value of inventory_type_input combo box to the default value
         self.ui.stackedWidget_3.currentChanged.connect(self.inventory_view_changed)
+
+        self.ui.search_button.clicked.connect(self.search_inventory)
+        self.ui.search_bar_input.returnPressed.connect(self.search_inventory)
 
         self.ui.add_entry_button.clicked.connect(self.show_add_entry_page)
         self.ui.add_entry_cancel_button.clicked.connect(self.handle_inventory_page)
@@ -115,6 +119,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             button.setChecked(False)
         self.ui.item_manage.setExclusive(True)
 
+    def set_default_inventory_table(self):
+        self.state["items_model"] = self.inventory_manager.retrieve_item_info(self.state["item_type"])
+        if self.state["items_model"]:
+            self.ui.item_search_table.setModel(self.state["items_model"])
     
 
     #***************************************************************
@@ -263,9 +271,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.activate_page_change()
         
         # Show inventory table data
-        model = self.inventory_manager.retrieve_item_info(self.state["item_type"])
-        if model:
-            self.ui.item_search_table.setModel(model)
+        self.set_default_inventory_table()
 
         # Tabe design
         table_header = self.ui.item_search_table.horizontalHeader()
@@ -287,6 +293,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             # deselect all button in item_manage QButtonGroup
             self.deselect_button_group()
+
+    def search_inventory(self):
+        self.set_default_inventory_table()
+        search_term = self.ui.search_bar_input.text()
+        model = self.state["items_model"]
+        self.state["items_model"] = utils.fuzzy_search(model, search_term)
+        self.ui.item_search_table.setModel(self.state["items_model"])
+
 
     @admin_access
     @restrict_page_change

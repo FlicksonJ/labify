@@ -262,6 +262,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.state["inventory_page_func"] = "search"
         self.deselect_button_group()
         self.activate_page_change()
+        
+        # Show inventory table data
+        model = self.inventory_manager.retrieve_item_info(self.state["item_type"])
+        if model:
+            self.ui.item_search_table.setModel(model)
+
+        # Tabe design
+        table_header = self.ui.item_search_table.horizontalHeader()
+        table_header.resizeSection(0, 100)        
+        table_header.resizeSection(1, 450)        
+        table_header.resizeSection(2, 100)        
+        table_header.resizeSection(3, 350)        
 
     def inventory_view_changed(self, index):
         """

@@ -534,6 +534,19 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 #add_entry_list {
 	padding-top: 20px;
 	margin-bottom: 30px;
+}
+
+#item_search_table {
+	font-size: 20pt;
+	color: rgb(0, 159, 161);
+	alternate-background-color: rgb(209, 235, 236);
+	gridline-color: #fff
+}
+
+#item_search_table QHeaderView {
+	background: rgb(0, 159, 161);
+	color: #fff;
+	font-size: 20pt;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -1161,7 +1174,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                  </rect>
                 </property>
                 <property name="currentIndex">
-                 <number>2</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="item_search_page">
                  <widget class="QWidget" name="verticalLayoutWidget_4">
@@ -1174,6 +1187,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_10">
+                   <property name="spacing">
+                    <number>30</number>
+                   </property>
                    <item>
                     <layout class="QHBoxLayout" name="horizontalLayout_9">
                      <item>
@@ -1273,6 +1289,48 @@ margin-bottom: 6px;</string>
                        <verstretch>0</verstretch>
                       </sizepolicy>
                      </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="sizeAdjustPolicy">
+                      <enum>QAbstractScrollArea::AdjustToContents</enum>
+                     </property>
+                     <property name="alternatingRowColors">
+                      <bool>true</bool>
+                     </property>
+                     <property name="sortingEnabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="cornerButtonEnabled">
+                      <bool>false</bool>
+                     </property>
+                     <attribute name="horizontalHeaderCascadingSectionResizes">
+                      <bool>false</bool>
+                     </attribute>
+                     <attribute name="horizontalHeaderMinimumSectionSize">
+                      <number>100</number>
+                     </attribute>
+                     <attribute name="horizontalHeaderDefaultSectionSize">
+                      <number>200</number>
+                     </attribute>
+                     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                      <bool>true</bool>
+                     </attribute>
+                     <attribute name="horizontalHeaderStretchLastSection">
+                      <bool>true</bool>
+                     </attribute>
+                     <attribute name="verticalHeaderVisible">
+                      <bool>false</bool>
+                     </attribute>
                     </widget>
                    </item>
                   </layout>

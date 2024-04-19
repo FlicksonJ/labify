@@ -4,7 +4,7 @@ import bcrypt  # Import secure hashing library
 from itsdangerous import URLSafeTimedSerializer
 
 from PySide6.QtWidgets import QMessageBox
-from PySide6.QtSql import QSqlDatabase, QSqlQuery
+from PySide6.QtSql import QSqlDatabase, QSqlQuery, QSqlQueryModel
 
 from app import settings
 
@@ -36,7 +36,8 @@ class DatabaseManager:
             QMessageBox.critical(None, "Error", f"Failed to open database: {self.db.lastError().text()}")
             sys.exit(1)
 
-        self.db.open()
+        if not self.db.open():
+            print("Error: cannot open database")
 
         self.inventory_manager = InventoryManager(self.db)
         self.account_manager = AccountManager(self.db)
@@ -216,13 +217,17 @@ class InventoryManager:
         INNER JOIN Locations ON Labs.lab_id = Locations.lab_id
         """
         self.RETRIEVE_ITEM_INFO_SQL = """
-        SELECT Items.name AS name, Items.qty, Location.name AS location, Labs.name AS lab
-        FROM ItemLocation
-        INNER JOIN Items ON ItemLocation.item_id = Items.item_id
-        INNER JOIN Locations ON ItemLocation.location_id = Locations.loc_id
-        INNER JOIN Labs ON Location.lab_id = Labs.lab_id
-        INNER JOIN StockType ON Items.stock_id = StockType.stock_id
-        WHERE StockType.type = (?)
+        SELECT 
+            ROW_NUMBER() OVER (ORDER BY Items.item_id) AS CID, 
+            Items.name AS Name, 
+            Items.qty AS Qty, 
+            Labs.name AS Lab,
+            Locations.name AS Location
+        FROM Items
+        JOIN StockType ON Items.stock_id = StockType.stock_id
+        JOIN Locations ON Items.location_id = Locations.loc_id
+        JOIN Labs ON Locations.lab_id = Labs.lab_id
+        WHERE StockType.type = '{stock_type}'
         """
 
         self.create_tables()
@@ -300,4 +305,13 @@ class InventoryManager:
         query.addBindValue(location)
         query.addBindValue(lab)
         query.exec()
+
+
+    def retrieve_item_info(self, stock_type: str) -> QSqlQueryModel | None:
+        model = QSqlQueryModel()
+        model.setQuery(self.RETRIEVE_ITEM_INFO_SQL.format(stock_type=stock_type), self.db)
+
+        return model
+
+
 

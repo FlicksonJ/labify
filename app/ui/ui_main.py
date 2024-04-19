@@ -15,11 +15,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QButtonGroup, QComboBox, QFrame,
-    QGroupBox, QHBoxLayout, QHeaderView, QLabel,
-    QLayout, QLineEdit, QListWidget, QListWidgetItem,
-    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QTableView, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QButtonGroup, QComboBox,
+    QFrame, QGroupBox, QHBoxLayout, QHeaderView,
+    QLabel, QLayout, QLineEdit, QListWidget,
+    QListWidgetItem, QMainWindow, QPushButton, QSizePolicy,
+    QSpacerItem, QStackedWidget, QTableView, QVBoxLayout,
+    QWidget)
 from . import resources_rc
 
 class Ui_MainWindow(object):
@@ -546,6 +547,19 @@ class Ui_MainWindow(object):
 "#add_entry_list {\n"
 "	padding-top: 20px;\n"
 "	margin-bottom: 30px;\n"
+"}\n"
+"\n"
+"#item_search_table {\n"
+"	font-size: 20pt;\n"
+"	color: rgb(0, 159, 161);\n"
+"	alternate-background-color: rgb(209, 235, 236);\n"
+"	gridline-color: #fff\n"
+"}\n"
+"\n"
+"#item_search_table QHeaderView {\n"
+"	background: rgb(0, 159, 161);\n"
+"	color: #fff;\n"
+"	font-size: 20pt;\n"
 "}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -881,6 +895,7 @@ class Ui_MainWindow(object):
         self.verticalLayoutWidget_4.setObjectName(u"verticalLayoutWidget_4")
         self.verticalLayoutWidget_4.setGeometry(QRect(-1, -1, 1291, 491))
         self.verticalLayout_10 = QVBoxLayout(self.verticalLayoutWidget_4)
+        self.verticalLayout_10.setSpacing(30)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_9 = QHBoxLayout()
@@ -941,6 +956,18 @@ class Ui_MainWindow(object):
         sizePolicy6.setVerticalStretch(0)
         sizePolicy6.setHeightForWidth(self.item_search_table.sizePolicy().hasHeightForWidth())
         self.item_search_table.setSizePolicy(sizePolicy6)
+        self.item_search_table.setMinimumSize(QSize(0, 0))
+        self.item_search_table.setMaximumSize(QSize(16777215, 16777215))
+        self.item_search_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.item_search_table.setAlternatingRowColors(True)
+        self.item_search_table.setSortingEnabled(True)
+        self.item_search_table.setCornerButtonEnabled(False)
+        self.item_search_table.horizontalHeader().setCascadingSectionResizes(False)
+        self.item_search_table.horizontalHeader().setMinimumSectionSize(100)
+        self.item_search_table.horizontalHeader().setDefaultSectionSize(200)
+        self.item_search_table.horizontalHeader().setProperty("showSortIndicator", True)
+        self.item_search_table.horizontalHeader().setStretchLastSection(True)
+        self.item_search_table.verticalHeader().setVisible(False)
 
         self.verticalLayout_10.addWidget(self.item_search_table)
 
@@ -1328,7 +1355,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget6.raise_()
+        self.layoutWidget5.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1463,7 +1490,7 @@ class Ui_MainWindow(object):
         self.login_button.setDefault(True)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)
-        self.stackedWidget_4.setCurrentIndex(2)
+        self.stackedWidget_4.setCurrentIndex(0)
         self.cancel_button.setDefault(False)
 
 

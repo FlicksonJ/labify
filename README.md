@@ -15,6 +15,7 @@ Requirements:
 pip install pyside6
 pip install bcrypt
 pip install itsdangerous
+pip install thefuzz
 ```
 
 Run:

@@ -227,7 +227,7 @@ class InventoryManager:
         JOIN StockType ON Items.stock_id = StockType.stock_id
         JOIN Locations ON Items.location_id = Locations.loc_id
         JOIN Labs ON Locations.lab_id = Labs.lab_id
-        WHERE StockType.type = '{stock_type}'
+        WHERE StockType.type = (?)
         """
 
         self.create_tables()
@@ -308,8 +308,14 @@ class InventoryManager:
 
 
     def retrieve_item_info(self, stock_type: str) -> QSqlQueryModel | None:
+        query = QSqlQuery()
+        query.prepare(self.RETRIEVE_ITEM_INFO_SQL)
+        query.addBindValue(stock_type)
+        if not query.exec():
+            print(query.lastError().text())
+
         model = QSqlQueryModel()
-        model.setQuery(self.RETRIEVE_ITEM_INFO_SQL.format(stock_type=stock_type), self.db)
+        model.setQuery(query)
 
         return model
 

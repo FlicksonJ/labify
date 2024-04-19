@@ -56,7 +56,7 @@ def validate_line_edit(line_edit: QLineEdit, error_message: str = "") -> bool:
         line_edit.setStyleSheet(normal_stylesheet)
     return True
 
-def fuzzy_search(model: QAbstractTableModel, search_term: str) -> QSortFilterProxyModel:
+def fuzzy_search(model: QAbstractTableModel, search_term: str) -> QSortFilterProxyModel | None:
     proxy_model = QSortFilterProxyModel()
     proxy_model.setSourceModel(model)
 
@@ -69,6 +69,8 @@ def fuzzy_search(model: QAbstractTableModel, search_term: str) -> QSortFilterPro
             # value of row starts from 0 but cid of table starts from 1
             filtered_rows.append(row+1)
 
+    if len(filtered_rows) < 1:
+        return None
     proxy_model.setFilterKeyColumn(0)
     proxy_model.setFilterFixedString("")
     proxy_model.setFilterRegularExpression("")

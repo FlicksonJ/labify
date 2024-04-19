@@ -298,8 +298,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.set_default_inventory_table()
         search_term = self.ui.search_bar_input.text()
         model = self.state["items_model"]
-        self.state["items_model"] = utils.fuzzy_search(model, search_term)
-        self.ui.item_search_table.setModel(self.state["items_model"])
+        proxy_model = utils.fuzzy_search(model, search_term)
+        if proxy_model:
+            self.state["items_model"] = proxy_model
+        else:
+            utils.show_message("No item", f"Item not found: {search_term}")
 
 
     @admin_access

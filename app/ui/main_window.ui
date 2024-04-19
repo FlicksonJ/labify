@@ -887,7 +887,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                  <x>60</x>
                  <y>0</y>
                  <width>181</width>
-                 <height>101</height>
+                 <height>91</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1174,7 +1174,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                  </rect>
                 </property>
                 <property name="currentIndex">
-                 <number>3</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="item_search_page">
                  <widget class="QWidget" name="verticalLayoutWidget_4">
@@ -1367,7 +1367,7 @@ margin-bottom: 6px;</string>
                         <string notr="true">color: rgb(0, 159, 161);</string>
                        </property>
                        <property name="text">
-                        <string>UPDATE GLASSWARE</string>
+                        <string>EDIT GLASSWARE</string>
                        </property>
                       </widget>
                      </item>
@@ -1492,7 +1492,7 @@ margin-bottom: 6px;</string>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
-                         <width>150</width>
+                         <width>160</width>
                          <height>20</height>
                         </size>
                        </property>
@@ -2025,7 +2025,7 @@ margin-bottom: 6px;</string>
                       <widget class="QPushButton" name="delete_entry_delete_button">
                        <property name="maximumSize">
                         <size>
-                         <width>100</width>
+                         <width>120</width>
                          <height>16777215</height>
                         </size>
                        </property>

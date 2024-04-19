@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.2
+## Created by: Qt User Interface Compiler version 6.7.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -739,7 +739,7 @@ class Ui_MainWindow(object):
         self.inventory_header.setMinimumSize(QSize(0, 90))
         self.layoutWidget1 = QWidget(self.inventory_header)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
-        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 101))
+        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 91))
         self.verticalLayout_6 = QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -921,8 +921,8 @@ class Ui_MainWindow(object):
         self.line.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
-        self.line.setFrameShape(QFrame.VLine)
-        self.line.setFrameShadow(QFrame.Sunken)
+        self.line.setFrameShape(QFrame.Shape.VLine)
+        self.line.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout_11.addWidget(self.line)
 
@@ -1025,8 +1025,8 @@ class Ui_MainWindow(object):
         self.line_2.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
-        self.line_2.setFrameShape(QFrame.VLine)
-        self.line_2.setFrameShadow(QFrame.Sunken)
+        self.line_2.setFrameShape(QFrame.Shape.VLine)
+        self.line_2.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout_17.addWidget(self.line_2)
 
@@ -1044,7 +1044,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addWidget(self.search_bar_container_2)
 
-        self.horizontalSpacer_6 = QSpacerItem(150, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_6 = QSpacerItem(160, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_16.addItem(self.horizontalSpacer_6)
 
@@ -1266,8 +1266,8 @@ class Ui_MainWindow(object):
         self.line_3.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
-        self.line_3.setFrameShape(QFrame.VLine)
-        self.line_3.setFrameShadow(QFrame.Sunken)
+        self.line_3.setFrameShape(QFrame.Shape.VLine)
+        self.line_3.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout_19.addWidget(self.line_3)
 
@@ -1291,7 +1291,7 @@ class Ui_MainWindow(object):
 
         self.delete_entry_delete_button = QPushButton(self.verticalLayoutWidget_7)
         self.delete_entry_delete_button.setObjectName(u"delete_entry_delete_button")
-        self.delete_entry_delete_button.setMaximumSize(QSize(100, 16777215))
+        self.delete_entry_delete_button.setMaximumSize(QSize(120, 16777215))
         self.delete_entry_delete_button.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_18.addWidget(self.delete_entry_delete_button)
@@ -1355,7 +1355,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget3.raise_()
+        self.layoutWidget6.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1490,7 +1490,7 @@ class Ui_MainWindow(object):
         self.login_button.setDefault(True)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)
-        self.stackedWidget_4.setCurrentIndex(3)
+        self.stackedWidget_4.setCurrentIndex(0)
         self.cancel_button.setDefault(False)
 
 
@@ -1523,7 +1523,7 @@ class Ui_MainWindow(object):
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"TRANSACTION HISTORY", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"ALERTS", None))
         self.search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
-        self.update_entry_label.setText(QCoreApplication.translate("MainWindow", u"UPDATE GLASSWARE", None))
+        self.update_entry_label.setText(QCoreApplication.translate("MainWindow", u"EDIT GLASSWARE", None))
         self.update_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.update_entry_save_button.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.update_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))

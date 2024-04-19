@@ -98,8 +98,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def update_item_type_label(self):
         text = {
             "add": "ADD NEW",
-            "update": "UPDATE",
-            "delete": "DELETE"
+            "update": "EDIT",
+            "delete": "REMOVE"
         }
 
         return f"{text[self.state['inventory_page_func']]} {self.state['item_type'].upper()}"

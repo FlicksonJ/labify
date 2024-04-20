@@ -15,12 +15,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QButtonGroup, QComboBox,
-    QFrame, QGroupBox, QHBoxLayout, QHeaderView,
-    QLabel, QLayout, QLineEdit, QListWidget,
-    QListWidgetItem, QMainWindow, QPushButton, QSizePolicy,
-    QSpacerItem, QStackedWidget, QTableView, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QButtonGroup,
+    QComboBox, QFrame, QGroupBox, QHBoxLayout,
+    QHeaderView, QLabel, QLayout, QLineEdit,
+    QListWidget, QListWidgetItem, QMainWindow, QPushButton,
+    QSizePolicy, QSpacerItem, QStackedWidget, QTableView,
+    QVBoxLayout, QWidget)
 from . import resources_rc
 
 class Ui_MainWindow(object):
@@ -559,17 +559,33 @@ class Ui_MainWindow(object):
 "	margin-bottom: 30px;\n"
 "}\n"
 "\n"
+"/* Table Styling */\n"
+"\n"
 "#item_search_table {\n"
 "	font-size: 20pt;\n"
 "	color: rgb(0, 159, 161);\n"
 "	alternate-background-color: rgb(209, 235, 236);\n"
-"	gridline-color: #000\n"
 "}\n"
 "\n"
 "#item_search_table QHeaderView {\n"
-"	background: rgb(0, 159, 161);\n"
-"	color: #000;\n"
 "	font-size: 20pt;\n"
+"}\n"
+"\n"
+"#item_search_table QHeaderView::section {\n"
+"	background: rgb(0, 159"
+                        ", 161);\n"
+"	color: #fff;\n"
+"	font-size: 20pt;\n"
+"}\n"
+"\n"
+"#item_search_table::item {\n"
+"	border: 1px solid rgb(0, 159, 161);\n"
+"}\n"
+"\n"
+"#item_search_table::item:selected {\n"
+"	background-color:  rgb(52,62,162);\n"
+"	color: #fff;\n"
+"	border: 1px solid #fff;\n"
 "}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -749,7 +765,7 @@ class Ui_MainWindow(object):
         self.inventory_header.setMinimumSize(QSize(0, 90))
         self.layoutWidget1 = QWidget(self.inventory_header)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
-        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 91))
+        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 101))
         self.verticalLayout_6 = QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -970,6 +986,8 @@ class Ui_MainWindow(object):
         self.item_search_table.setMaximumSize(QSize(16777215, 16777215))
         self.item_search_table.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.item_search_table.setAlternatingRowColors(True)
+        self.item_search_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.item_search_table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectItems)
         self.item_search_table.setSortingEnabled(True)
         self.item_search_table.setCornerButtonEnabled(False)
         self.item_search_table.horizontalHeader().setCascadingSectionResizes(False)
@@ -1365,7 +1383,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget6.raise_()
+        self.layoutWidget1.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)

@@ -546,17 +546,32 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 	margin-bottom: 30px;
 }
 
+/* Table Styling */
+
 #item_search_table {
 	font-size: 20pt;
 	color: rgb(0, 159, 161);
 	alternate-background-color: rgb(209, 235, 236);
-	gridline-color: #000
 }
 
 #item_search_table QHeaderView {
-	background: rgb(0, 159, 161);
-	color: #000;
 	font-size: 20pt;
+}
+
+#item_search_table QHeaderView::section {
+	background: rgb(0, 159, 161);
+	color: #fff;
+	font-size: 20pt;
+}
+
+#item_search_table::item {
+	border: 1px solid rgb(0, 159, 161);
+}
+
+#item_search_table::item:selected {
+	background-color:  rgb(52,62,162);
+	color: #fff;
+	border: 1px solid #fff;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -897,7 +912,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                  <x>60</x>
                  <y>0</y>
                  <width>181</width>
-                 <height>91</height>
+                 <height>101</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1316,6 +1331,12 @@ margin-bottom: 6px;</string>
                      </property>
                      <property name="alternatingRowColors">
                       <bool>true</bool>
+                     </property>
+                     <property name="selectionMode">
+                      <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+                     </property>
+                     <property name="selectionBehavior">
+                      <enum>QAbstractItemView::SelectionBehavior::SelectItems</enum>
                      </property>
                      <property name="sortingEnabled">
                       <bool>true</bool>

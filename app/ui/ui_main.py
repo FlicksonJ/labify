@@ -784,7 +784,7 @@ class Ui_MainWindow(object):
         self.inventory_header.setMinimumSize(QSize(0, 90))
         self.layoutWidget1 = QWidget(self.inventory_header)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
-        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 101))
+        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 91))
         self.verticalLayout_6 = QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -1369,7 +1369,7 @@ class Ui_MainWindow(object):
         self.stackedWidget_4.addWidget(self.delete_entry_page)
         self.layoutWidget6 = QWidget(self.inventory_view_page)
         self.layoutWidget6.setObjectName(u"layoutWidget6")
-        self.layoutWidget6.setGeometry(QRect(30, 190, 191, 201))
+        self.layoutWidget6.setGeometry(QRect(60, 190, 161, 200))
         self.verticalLayout_9 = QVBoxLayout(self.layoutWidget6)
         self.verticalLayout_9.setSpacing(1)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
@@ -1378,6 +1378,7 @@ class Ui_MainWindow(object):
         self.label_7.setObjectName(u"label_7")
         self.label_7.setFont(font6)
         self.label_7.setStyleSheet(u"color: rgb(52, 62, 162)")
+        self.label_7.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
 
         self.verticalLayout_9.addWidget(self.label_7)
 
@@ -1410,7 +1411,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget5.raise_()
+        self.layoutWidget4.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1541,11 +1542,11 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         self.login_button.setDefault(True)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)
-        self.stackedWidget_4.setCurrentIndex(0)
+        self.stackedWidget_4.setCurrentIndex(2)
         self.cancel_button.setDefault(False)
 
 

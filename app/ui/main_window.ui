@@ -607,7 +607,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="login_page">
      <widget class="QWidget" name="verticalLayoutWidget">
@@ -931,7 +931,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                  <x>60</x>
                  <y>0</y>
                  <width>181</width>
-                 <height>101</height>
+                 <height>91</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1218,7 +1218,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                  </rect>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>2</number>
                 </property>
                 <widget class="QWidget" name="item_search_page">
                  <widget class="QWidget" name="verticalLayoutWidget_4">
@@ -2142,10 +2142,10 @@ margin-bottom: 6px;</string>
                <widget class="QWidget" name="layoutWidget">
                 <property name="geometry">
                  <rect>
-                  <x>30</x>
+                  <x>60</x>
                   <y>190</y>
-                  <width>191</width>
-                  <height>201</height>
+                  <width>161</width>
+                  <height>200</height>
                  </rect>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -2164,6 +2164,9 @@ margin-bottom: 6px;</string>
                    </property>
                    <property name="text">
                     <string>OPTIONS</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
                    </property>
                   </widget>
                  </item>

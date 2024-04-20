@@ -563,29 +563,48 @@ class Ui_MainWindow(object):
 "\n"
 "#item_search_table {\n"
 "	font-size: 20pt;\n"
-"	color: rgb(0, 159, 161);\n"
 "	alternate-background-color: rgb(209, 235, 236);\n"
+"	border: none;\n"
+"	gridline-color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "#item_search_table QHeaderView {\n"
 "	font-size: 20pt;\n"
+"	border: none;\n"
+"	gridline-color: rgb(0, 159, 161)"
+                        ";\n"
 "}\n"
 "\n"
 "#item_search_table QHeaderView::section {\n"
-"	background: rgb(0, 159"
-                        ", 161);\n"
+"	background: rgb(0, 159, 161);\n"
+"	color: #fff;\n"
+"	font-size: 20pt;\n"
+"	gridline-color: transparent;\n"
+"}\n"
+"\n"
+"#item_search_table QHeaderView::section:selected {\n"
 "	color: #fff;\n"
 "	font-size: 20pt;\n"
 "}\n"
 "\n"
+"#item_search_table QHeaderView::section:first {\n"
+"    border-top-left-radius: 10px;\n"
+"}\n"
+"\n"
+"#item_search_table QHeaderView::section:last {\n"
+"    border-top-right-radius: 10px;\n"
+"}\n"
+"\n"
 "#item_search_table::item {\n"
+"	color: rgb(0, 159, 161);\n"
+"	gridline-color: rgb(0, 159, 161);\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "#item_search_table::item:selected {\n"
-"	background-color:  rgb(52,62,162);\n"
+"	background-color:  rgb(21,117,118);\n"
 "	color: #fff;\n"
-"	border: 1px solid #fff;\n"
+"	selection-background-color: rgb(21,117,118);\n"
 "}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -919,7 +938,7 @@ class Ui_MainWindow(object):
         self.item_search_page.setObjectName(u"item_search_page")
         self.verticalLayoutWidget_4 = QWidget(self.item_search_page)
         self.verticalLayoutWidget_4.setObjectName(u"verticalLayoutWidget_4")
-        self.verticalLayoutWidget_4.setGeometry(QRect(-1, -1, 1291, 491))
+        self.verticalLayoutWidget_4.setGeometry(QRect(19, -1, 1251, 491))
         self.verticalLayout_10 = QVBoxLayout(self.verticalLayoutWidget_4)
         self.verticalLayout_10.setSpacing(30)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
@@ -947,6 +966,7 @@ class Ui_MainWindow(object):
         self.line.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
+        self.line.setLineWidth(1)
         self.line.setFrameShape(QFrame.Shape.VLine)
         self.line.setFrameShadow(QFrame.Shadow.Sunken)
 
@@ -968,7 +988,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_9.addWidget(self.search_bar_container)
 
-        self.horizontalSpacer_3 = QSpacerItem(600, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_3 = QSpacerItem(560, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_9.addItem(self.horizontalSpacer_3)
 
@@ -984,18 +1004,25 @@ class Ui_MainWindow(object):
         self.item_search_table.setSizePolicy(sizePolicy6)
         self.item_search_table.setMinimumSize(QSize(0, 0))
         self.item_search_table.setMaximumSize(QSize(16777215, 16777215))
+        self.item_search_table.setFrameShape(QFrame.Shape.NoFrame)
+        self.item_search_table.setFrameShadow(QFrame.Shadow.Plain)
+        self.item_search_table.setLineWidth(0)
         self.item_search_table.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.item_search_table.setAlternatingRowColors(True)
         self.item_search_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.item_search_table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectItems)
+        self.item_search_table.setShowGrid(False)
+        self.item_search_table.setGridStyle(Qt.PenStyle.SolidLine)
         self.item_search_table.setSortingEnabled(True)
         self.item_search_table.setCornerButtonEnabled(False)
         self.item_search_table.horizontalHeader().setCascadingSectionResizes(False)
         self.item_search_table.horizontalHeader().setMinimumSectionSize(100)
         self.item_search_table.horizontalHeader().setDefaultSectionSize(200)
-        self.item_search_table.horizontalHeader().setProperty("showSortIndicator", True)
+        self.item_search_table.horizontalHeader().setHighlightSections(False)
+        self.item_search_table.horizontalHeader().setProperty("showSortIndicator", False)
         self.item_search_table.horizontalHeader().setStretchLastSection(True)
         self.item_search_table.verticalHeader().setVisible(False)
+        self.item_search_table.verticalHeader().setHighlightSections(True)
 
         self.verticalLayout_10.addWidget(self.item_search_table)
 
@@ -1383,7 +1410,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget1.raise_()
+        self.layoutWidget2.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)

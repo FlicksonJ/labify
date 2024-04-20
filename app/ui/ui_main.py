@@ -605,6 +605,14 @@ class Ui_MainWindow(object):
 "	background-color:  rgb(21,117,118);\n"
 "	color: #fff;\n"
 "	selection-background-color: rgb(21,117,118);\n"
+"}\n"
+"\n"
+"#label_13 {\n"
+"	border-top-left-radius: 10px;\n"
+"}\n"
+"\n"
+"#label_9 {\n"
+"	border-top-right-radius: 10px;\n"
 "}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -1411,7 +1419,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget4.raise_()
+        self.layoutWidget5.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)

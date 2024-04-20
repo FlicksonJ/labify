@@ -591,6 +591,14 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 	background-color:  rgb(21,117,118);
 	color: #fff;
 	selection-background-color: rgb(21,117,118);
+}
+
+#label_13 {
+	border-top-left-radius: 10px;
+}
+
+#label_9 {
+	border-top-right-radius: 10px;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">

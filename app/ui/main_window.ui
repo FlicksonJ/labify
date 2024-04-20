@@ -1020,7 +1020,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
               <widget class="QWidget" name="layoutWidget">
                <property name="geometry">
                 <rect>
-                 <x>970</x>
+                 <x>980</x>
                  <y>0</y>
                  <width>571</width>
                  <height>91</height>

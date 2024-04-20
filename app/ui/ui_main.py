@@ -832,7 +832,7 @@ class Ui_MainWindow(object):
 
         self.layoutWidget3 = QWidget(self.inventory_header)
         self.layoutWidget3.setObjectName(u"layoutWidget3")
-        self.layoutWidget3.setGeometry(QRect(970, 0, 571, 91))
+        self.layoutWidget3.setGeometry(QRect(980, 0, 571, 91))
         self.horizontalLayout_8 = QHBoxLayout(self.layoutWidget3)
         self.horizontalLayout_8.setSpacing(40)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
@@ -1410,7 +1410,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget2.raise_()
+        self.layoutWidget4.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)

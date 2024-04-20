@@ -91,7 +91,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 
 #login_page {
 	background-image: url(:/images/images/bg.jpeg);
-	background-size: cover;
+	/*background-size: cover;*/
 }
 
 #login_page QLabel {
@@ -607,7 +607,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="login_page">
      <widget class="QWidget" name="verticalLayoutWidget">

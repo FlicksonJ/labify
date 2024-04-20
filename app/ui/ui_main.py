@@ -95,7 +95,7 @@ class Ui_MainWindow(object):
 "\n"
 "#login_page {\n"
 "	background-image: url(:/images/images/bg.jpeg);\n"
-"	background-size: cover;\n"
+"	/*background-size: cover;*/\n"
 "}\n"
 "\n"
 "#login_page QLabel {\n"
@@ -131,8 +131,8 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#header {\n"
-"	back"
-                        "ground: rgb(52, 62, 162);\n"
+"	"
+                        "background: rgb(52, 62, 162);\n"
 "}\n"
 "\n"
 "#mic_logo {\n"
@@ -1410,7 +1410,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget4.raise_()
+        self.layoutWidget5.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1541,7 +1541,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         self.login_button.setDefault(True)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)

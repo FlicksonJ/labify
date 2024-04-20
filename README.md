@@ -1,27 +1,51 @@
 # Labify - Chemistry Inventory Management System
 
 The **Labify** software is used to keep track of inventories in chemistry labs.<br>
-The software is written in python programming langauge.
+It is a Python-based inventory management system.<br>
+It helps lab managers keep track of their inventory of glassware, chemicals, and equipments.
 
 <p align="center">
  <img src="images/labify.jpeg" alt="Labify Logo" width="200px">
 </p>
 
+## Features
+
+- Track inventory levels
+- Manage glassware, chemical and equipment stock. <br>
+  *(Management: Add, Edit, Remove)*
+- Track transaction history.
+
 ## Installation
 
-Requirements:
+To install Labify, follow these steps:
 
+1. Clone the repository:
+```
+git clone git@github.com:cslynx/labify.git
+```
+2. Install dependencies:
 ```
 pip install pyside6
 pip install bcrypt
 pip install itsdangerous
 pip install thefuzz
+``` 
+3. Run the application:
 ```
-
-Run:
-
-```
-git clone git@github.com:cslynx/labify.git
 cd labify
 python3 main.py
 ```
+
+## Usage
+
+Labify provides a user-friendly interface for managing your lab inventory. Simply launch the application and start adding, updating, or removing items from your inventory.
+
+## Acknowledgements
+
+Labify was entirely developed using the Python programming language.<br>
+The User Interface was developed using the Qt framework.<br>
+Labify utilizes the following open-source Python libraries:
+- PySide6
+- bcrypt
+- itsdangerous
+- thefuzz

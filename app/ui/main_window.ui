@@ -410,6 +410,16 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 	height: 50px;
 }
 
+#add_entry_button {
+	border-top-left-radius: 5px ;
+	border-top-right-radius: 5px ;
+}
+
+#delete_entry_button {
+	border-bottom-left-radius: 5px ;
+	border-bottom-right-radius: 5px ;
+}
+
 #add_entry_button:hover, 
 #update_entry_button:hover, 
 #delete_entry_button:hover {
@@ -540,12 +550,12 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 	font-size: 20pt;
 	color: rgb(0, 159, 161);
 	alternate-background-color: rgb(209, 235, 236);
-	gridline-color: #fff
+	gridline-color: #000
 }
 
 #item_search_table QHeaderView {
 	background: rgb(0, 159, 161);
-	color: #fff;
+	color: #000;
 	font-size: 20pt;
 }</string>
   </property>

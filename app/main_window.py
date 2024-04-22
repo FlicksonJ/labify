@@ -134,14 +134,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.state["items_model"] = self.inventory_manager.retrieve_item_info(self.state["item_type"])
         if self.state["items_model"]:
             table.setModel(self.state["items_model"])
-    
-    def add_update_input(self, data: dict[str, str]):
+
+    def remove_current_update_input(self):
         widget_count = self.ui.verticalLayout_13.count()
         if widget_count > 2:
             current_edit_input = self.ui.verticalLayout_13.itemAt(widget_count - 1)
             widget = current_edit_input.widget()
             if widget:
                 widget.setParent(None)
+
+    
+    def add_update_input(self, data: dict[str, str]):
+        self.remove_current_update_input()
 
         if self.state["user_type"] == "user":
             self.ui.verticalLayout_13.addWidget(self.quantity_edit)

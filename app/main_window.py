@@ -80,8 +80,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Change the value of inventory_type_input combo box to the default value
         self.ui.stackedWidget_3.currentChanged.connect(self.inventory_view_changed)
 
-        self.ui.search_button.clicked.connect(self.search_inventory)
-        self.ui.search_bar_input.returnPressed.connect(self.search_inventory)
+        self.ui.search_button.clicked.connect(self.view_inventory_search)
+        self.ui.search_bar_input.returnPressed.connect(self.view_inventory_search)
 
         self.ui.add_entry_button.clicked.connect(self.show_add_entry_page)
         self.ui.add_entry_cancel_button.clicked.connect(self.handle_inventory_page)
@@ -92,6 +92,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.update_entry_button.clicked.connect(self.show_update_entry_page)
         self.ui.update_entry_cancel_button.clicked.connect(self.handle_inventory_page)
         self.ui.update_entry_table.clicked.connect(self.update_entry_table_clicked)
+        self.ui.update_entry_search_button.clicked.connect(self.update_inventory_search)
+        self.ui.update_entry_search_input.returnPressed.connect(self.update_inventory_search)
 
         self.ui.delete_entry_button.clicked.connect(self.show_delete_entry_page)
         self.ui.delete_entry_cancel_button.clicked.connect(self.handle_inventory_page)
@@ -145,8 +147,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     
     def add_update_input(self, data: dict[str, str]):
-        self.remove_current_update_input()
-
         if self.state["user_type"] == "user":
             self.ui.verticalLayout_13.addWidget(self.quantity_edit)
             self.quantity_edit.ui.qty_label.setText(f'Qty ({data["name"]}):')
@@ -181,6 +181,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.ui.verticalLayout_13.setStretch(2, 2)
         
         
+    def search_inventory(self, search_term: str, table: QTableView = None):
+        if not table:
+            table = self.ui.item_search_table
+
+        self.set_default_inventory_table(table)
+        if search_term.strip() == "":
+            return
+        model = self.state["items_model"]
+        proxy_model = utils.fuzzy_search(model, search_term)
+        if proxy_model:
+            self.state["items_model"] = proxy_model
+            table.setModel(self.state["items_model"])
+        else:
+            utils.show_message("No item", f"Item not found: {search_term}")
+
 
     #***************************************************************
     #Slots
@@ -351,19 +366,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # deselect all button in item_manage QButtonGroup
             self.deselect_button_group()
 
-    def search_inventory(self):
-        self.set_default_inventory_table()
+    def view_inventory_search(self):
         search_term = self.ui.search_bar_input.text()
-        if search_term.strip() == "":
-            return
-        model = self.state["items_model"]
-        proxy_model = utils.fuzzy_search(model, search_term)
-        if proxy_model:
-            self.state["items_model"] = proxy_model
-            self.ui.item_search_table.setModel(self.state["items_model"])
-        else:
-            utils.show_message("No item", f"Item not found: {search_term}")
-
+        self.search_inventory(search_term)
 
     @admin_access
     # @restrict_page_change
@@ -484,9 +489,11 @@ Use Edit Entry option to change the quantity of an existing item.""")
         self.state["inventory_page_func"] = "update"
         self.ui.update_entry_label.setText(self.update_item_type_label())
         self.set_default_inventory_table(self.ui.update_entry_table)
+        self.remove_current_update_input()
         # self.deactivate_page_change()
 
     def update_entry_table_clicked(self, index):
+        self.remove_current_update_input()
         row = index.row()
         column = index.column()
 
@@ -506,6 +513,10 @@ Use Edit Entry option to change the quantity of an existing item.""")
         }
 
         self.add_update_input(data)
+
+    def update_inventory_search(self):
+        search_term = self.ui.update_entry_search_input.text()
+        self.search_inventory(search_term, self.ui.update_entry_table)
 
     @admin_access
     # @restrict_page_change

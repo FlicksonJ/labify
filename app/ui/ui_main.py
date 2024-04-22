@@ -561,47 +561,47 @@ class Ui_MainWindow(object):
 "\n"
 "/* Table Styling */\n"
 "\n"
-"#item_search_table {\n"
+"QTableView {\n"
 "	font-size: 20pt;\n"
 "	alternate-background-color: rgb(209, 235, 236);\n"
 "	border: none;\n"
 "	gridline-color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
-"#item_search_table QHeaderView {\n"
+"QTableView QHeaderView {\n"
 "	font-size: 20pt;\n"
 "	border: none;\n"
-"	gridline-color: rgb(0, 159, 161)"
-                        ";\n"
+"	gridline-color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
-"#item_search_table QHeaderView::section {\n"
+""
+                        "QTableView QHeaderView::section {\n"
 "	background: rgb(0, 159, 161);\n"
 "	color: #fff;\n"
 "	font-size: 20pt;\n"
 "	gridline-color: transparent;\n"
 "}\n"
 "\n"
-"#item_search_table QHeaderView::section:selected {\n"
+"QTableView QHeaderView::section:selected {\n"
 "	color: #fff;\n"
 "	font-size: 20pt;\n"
 "}\n"
 "\n"
-"#item_search_table QHeaderView::section:first {\n"
+"QTableView QHeaderView::section:first {\n"
 "    border-top-left-radius: 10px;\n"
 "}\n"
 "\n"
-"#item_search_table QHeaderView::section:last {\n"
+"QTableView QHeaderView::section:last {\n"
 "    border-top-right-radius: 10px;\n"
 "}\n"
 "\n"
-"#item_search_table::item {\n"
+"QTableView::item {\n"
 "	color: rgb(0, 159, 161);\n"
 "	gridline-color: rgb(0, 159, 161);\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
 "}\n"
 "\n"
-"#item_search_table::item:selected {\n"
+"QTableView::item:selected {\n"
 "	background-color:  rgb(21,117,118);\n"
 "	color: #fff;\n"
 "	selection-background-color: rgb(21,117,118);\n"
@@ -1134,14 +1134,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_13.addWidget(self.update_entry_table)
 
-        self.edit_input_container = QWidget(self.verticalLayoutWidget_6)
-        self.edit_input_container.setObjectName(u"edit_input_container")
-
-        self.verticalLayout_13.addWidget(self.edit_input_container)
-
-        self.verticalLayout_13.setStretch(0, 1)
-        self.verticalLayout_13.setStretch(1, 7)
-        self.verticalLayout_13.setStretch(2, 2)
         self.stackedWidget_4.addWidget(self.update_entry_page)
         self.add_entry_page = QWidget()
         self.add_entry_page.setObjectName(u"add_entry_page")
@@ -1428,7 +1420,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget1.raise_()
+        self.layoutWidget3.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)

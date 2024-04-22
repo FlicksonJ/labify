@@ -1,10 +1,13 @@
-from PySide6.QtCore import QSize
-from PySide6.QtGui import QIcon, QValidator, QDoubleValidator
+from PySide6.QtCore import Qt 
+from PySide6.QtGui import QIcon, QDoubleValidator
 from PySide6.QtSql import QSqlQuery
-from PySide6.QtWidgets import QListWidgetItem, QMainWindow, QMessageBox, QLineEdit, QPushButton 
+from PySide6.QtWidgets import QListWidgetItem, QMainWindow, QMessageBox, QTableView 
 
 from app.ui.ui_main import Ui_MainWindow
 from app.item_entry import ItemEntry
+from app.quantity_edit import QuantityEdit
+from app.name_edit import NameEdit
+from app.location_edit import LocationEdit
 
 from app.manager import DatabaseManager
 from app import utils
@@ -54,6 +57,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Set input validators
         self.ui.item_qty_input.setValidator(QDoubleValidator())
 
+        # Update entry page inputs
+        self.name_edit = NameEdit()
+        self.quantity_edit = QuantityEdit()
+        self.location_edit = LocationEdit(self.state["location_data"])
+
         # =============================================== #
         # ===============  Signals ====================== #
         # =============================================== #
@@ -83,6 +91,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.ui.update_entry_button.clicked.connect(self.show_update_entry_page)
         self.ui.update_entry_cancel_button.clicked.connect(self.handle_inventory_page)
+        self.ui.update_entry_table.clicked.connect(self.update_entry_table_clicked)
 
         self.ui.delete_entry_button.clicked.connect(self.show_delete_entry_page)
         self.ui.delete_entry_cancel_button.clicked.connect(self.handle_inventory_page)
@@ -119,11 +128,55 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             button.setChecked(False)
         self.ui.item_manage.setExclusive(True)
 
-    def set_default_inventory_table(self):
+    def set_default_inventory_table(self, table: QTableView = None):
+        if not table:
+            table = self.ui.item_search_table
         self.state["items_model"] = self.inventory_manager.retrieve_item_info(self.state["item_type"])
         if self.state["items_model"]:
-            self.ui.item_search_table.setModel(self.state["items_model"])
+            table.setModel(self.state["items_model"])
     
+    def add_update_input(self, data: dict[str, str]):
+        widget_count = self.ui.verticalLayout_13.count()
+        if widget_count > 2:
+            current_edit_input = self.ui.verticalLayout_13.itemAt(widget_count - 1)
+            widget = current_edit_input.widget()
+            if widget:
+                widget.setParent(None)
+
+        if self.state["user_type"] == "user":
+            self.ui.verticalLayout_13.addWidget(self.quantity_edit)
+            self.quantity_edit.ui.qty_label.setText(f'Qty ({data["name"]}):')
+
+            self.ui.verticalLayout_13.setStretch(0, 1)
+            self.ui.verticalLayout_13.setStretch(1, 7)
+            self.ui.verticalLayout_13.setStretch(2, 2)
+        else:
+            if data["header"] == "Qty":
+                self.ui.verticalLayout_13.addWidget(self.quantity_edit)
+                self.quantity_edit.ui.qty_label.setText(f'Qty ({data["name"]}):')
+                self.ui.verticalLayout_13.setStretch(0, 1)
+                self.ui.verticalLayout_13.setStretch(1, 7)
+                self.ui.verticalLayout_13.setStretch(2, 2)
+            elif data["header"] == "Name":
+                self.ui.verticalLayout_13.addWidget(self.name_edit)
+                self.name_edit.ui.name_input.setText(data["name"])
+                self.ui.verticalLayout_13.setStretch(0, 1)
+                self.ui.verticalLayout_13.setStretch(1, 7)
+                self.ui.verticalLayout_13.setStretch(2, 2)
+            elif data["header"] == "Lab" or data["header"] == "Location":
+                self.ui.verticalLayout_13.addWidget(self.location_edit)
+                self.location_edit.ui.location_label.setText(f'Location ({data["name"]}):')
+                lab_index = self.location_edit.ui.lab_input.findText(data["lab"])
+                self.location_edit.ui.lab_input.setCurrentIndex(lab_index)
+                self.location_edit.update_loc(lab_index)
+                location_index = self.location_edit.ui.location_input.findText(data["location"])
+                self.location_edit.ui.location_input.setCurrentIndex(location_index)
+
+                self.ui.verticalLayout_13.setStretch(0, 1)
+                self.ui.verticalLayout_13.setStretch(1, 7)
+                self.ui.verticalLayout_13.setStretch(2, 2)
+        
+        
 
     #***************************************************************
     #Slots
@@ -273,12 +326,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Show inventory table data
         self.set_default_inventory_table()
 
-        # Tabe design
-        table_header = self.ui.item_search_table.horizontalHeader()
-        table_header.resizeSection(0, 100)        
-        table_header.resizeSection(1, 450)        
-        table_header.resizeSection(2, 100)        
-        table_header.resizeSection(3, 350)        
+        # Table design
+        # table_header = self.ui.item_search_table.horizontalHeader()
+        # table_header.resizeSection(0, 100)        
+        # table_header.resizeSection(1, 450)        
+        # table_header.resizeSection(2, 100)        
+        # table_header.resizeSection(3, 350)        
 
     def inventory_view_changed(self, index):
         """
@@ -426,7 +479,29 @@ Use Edit Entry option to change the quantity of an existing item.""")
         self.ui.stackedWidget_4.setCurrentWidget(self.ui.update_entry_page)
         self.state["inventory_page_func"] = "update"
         self.ui.update_entry_label.setText(self.update_item_type_label())
+        self.set_default_inventory_table(self.ui.update_entry_table)
         # self.deactivate_page_change()
+
+    def update_entry_table_clicked(self, index):
+        row = index.row()
+        column = index.column()
+
+        model = self.state["items_model"]
+        header = model.headerData(column, Qt.Horizontal)
+        name = model.index(row, 1).data()
+        qty = model.index(row, 2).data()
+        lab = model.index(row, 3).data()
+        location = model.index(row, 4).data()
+
+        data = {
+            "header": header,
+            "name": name,
+            "qty": qty,
+            "lab": lab,
+            "location": location
+        }
+
+        self.add_update_input(data)
 
     @admin_access
     # @restrict_page_change

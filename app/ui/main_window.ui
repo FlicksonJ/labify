@@ -548,46 +548,46 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 
 /* Table Styling */
 
-#item_search_table {
+QTableView {
 	font-size: 20pt;
 	alternate-background-color: rgb(209, 235, 236);
 	border: none;
 	gridline-color: rgb(0, 159, 161);
 }
 
-#item_search_table QHeaderView {
+QTableView QHeaderView {
 	font-size: 20pt;
 	border: none;
 	gridline-color: rgb(0, 159, 161);
 }
 
-#item_search_table QHeaderView::section {
+QTableView QHeaderView::section {
 	background: rgb(0, 159, 161);
 	color: #fff;
 	font-size: 20pt;
 	gridline-color: transparent;
 }
 
-#item_search_table QHeaderView::section:selected {
+QTableView QHeaderView::section:selected {
 	color: #fff;
 	font-size: 20pt;
 }
 
-#item_search_table QHeaderView::section:first {
+QTableView QHeaderView::section:first {
     border-top-left-radius: 10px;
 }
 
-#item_search_table QHeaderView::section:last {
+QTableView QHeaderView::section:last {
     border-top-right-radius: 10px;
 }
 
-#item_search_table::item {
+QTableView::item {
 	color: rgb(0, 159, 161);
 	gridline-color: rgb(0, 159, 161);
 	border: 1px solid rgb(0, 159, 161);
 }
 
-#item_search_table::item:selected {
+QTableView::item:selected {
 	background-color:  rgb(21,117,118);
 	color: #fff;
 	selection-background-color: rgb(21,117,118);
@@ -1431,7 +1431,7 @@ margin-bottom: 6px;</string>
                     <height>491</height>
                    </rect>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_13" stretch="1,7,2">
+                  <layout class="QVBoxLayout" name="verticalLayout_13" stretch="0,0">
                    <property name="spacing">
                     <number>20</number>
                    </property>
@@ -1622,9 +1622,6 @@ margin-bottom: 6px;</string>
                    </item>
                    <item>
                     <widget class="QTableView" name="update_entry_table"/>
-                   </item>
-                   <item>
-                    <widget class="QWidget" name="edit_input_container" native="true"/>
                    </item>
                   </layout>
                  </widget>

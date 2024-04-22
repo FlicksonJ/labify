@@ -79,7 +79,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.add_entry_cancel_button.clicked.connect(self.handle_inventory_page)
         self.ui.add_entry_add_button.clicked.connect(self.add_entry)
         self.ui.item_lab_input.currentIndexChanged.connect(self.update_locations)
-        self.ui.add_entry_save_button.clicked.connect(self.save_entry)
+        # self.ui.add_entry_save_button.clicked.connect(self.save_entry)
 
         self.ui.update_entry_button.clicked.connect(self.show_update_entry_page)
         self.ui.update_entry_cancel_button.clicked.connect(self.handle_inventory_page)
@@ -195,7 +195,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
 
     
-    @restrict_page_change
+    # @restrict_page_change
     def handle_logout(self):
         """
         This slot is triggered when the logout_button is clicked.
@@ -211,7 +211,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
     @admin_access
-    @restrict_page_change
+    # @restrict_page_change
     def show_create_account_page(self):
         """
         This slot is triggered when the create_user_button is clicked.
@@ -222,7 +222,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.create_user_page)
 
 
-    @restrict_page_change
+    # @restrict_page_change
     def show_transaction_page(self):
         """
         This slot is triggered when the transaction_history_button is clicked.
@@ -232,7 +232,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.transactions_page)
         #@TODO: Add tableview 
 
-    @restrict_page_change
+    # @restrict_page_change
     def show_alerts_page(self):
         """
         This slot is triggered when the alerts_button is clicked.
@@ -268,7 +268,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.state["item_type"] = self.ui.inventory_type_input.currentText().lower()
         self.state["inventory_page_func"] = "search"
         self.deselect_button_group()
-        self.activate_page_change()
+        # self.activate_page_change()
         
         # Show inventory table data
         self.set_default_inventory_table()
@@ -309,7 +309,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
     @admin_access
-    @restrict_page_change
+    # @restrict_page_change
     def show_add_entry_page(self):
         """
         This slot is triggered when the add_entry_button is clicked.
@@ -320,7 +320,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_4.setCurrentWidget(self.ui.add_entry_page)
         self.state["inventory_page_func"] = "add"
         self.ui.add_entry_label.setText(self.update_item_type_label())
-        self.deactivate_page_change()
+        # self.deactivate_page_change()
 
     def add_entry(self):
         if not utils.validate_line_edit(self.ui.item_name_input):
@@ -328,28 +328,57 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if not utils.validate_line_edit(self.ui.item_qty_input):
             return
 
-        item_entry = ItemEntry()
-        list_item = QListWidgetItem()
-        list_item.setSizeHint(item_entry.sizeHint() + QSize(45, 45))
-        id = str(self.ui.add_entry_list.count() + 1)
+
+        confirm = utils.show_dialog(
+                "Are you sure?", 
+                "Do you really want to add this entry to the database?"
+                )
+        if confirm == QMessageBox.No:
+            return
+
+        item_type = self.state["item_type"]
         name = self.ui.item_name_input.text()
         qty = self.ui.item_qty_input.text()
         location = self.ui.item_location_input.currentText()
         lab = self.ui.item_lab_input.currentText()
 
-        item_entry.ui.id.setText(id)
-        item_entry.ui.name.setText(name)
-        item_entry.ui.qty.setText(qty)
-        item_entry.ui.location.setText(location)
-        item_entry.ui.lab.setText(lab)
+        item_entry = {
+            "name": name,
+            "qty": qty,
+            "location": location,
+            "lab": lab
+        }
 
-        self.ui.add_entry_list.addItem(list_item)
-        self.ui.add_entry_list.setItemWidget(list_item, item_entry)
+        if self.inventory_manager.check_item_location(name, lab, location):
+            utils.show_message("Item exists!", f"""Item {name} already exists in {lab}, {location}.
+Use Edit Entry option to change the quantity of an existing item.""")
+            return
+
+        self.inventory_manager.add_entry(item_type, **item_entry)
+
+        # item_entry = ItemEntry()
+        # list_item = QListWidgetItem()
+        # list_item.setSizeHint(item_entry.sizeHint() + QSize(45, 45))
+        # id = str(self.ui.add_entry_list.count() + 1)
+        # name = self.ui.item_name_input.text()
+        # qty = self.ui.item_qty_input.text()
+        # location = self.ui.item_location_input.currentText()
+        # lab = self.ui.item_lab_input.currentText()
+
+        # item_entry.ui.id.setText(id)
+        # item_entry.ui.name.setText(name)
+        # item_entry.ui.qty.setText(qty)
+        # item_entry.ui.location.setText(location)
+        # item_entry.ui.lab.setText(lab)
+
+        # self.ui.add_entry_list.addItem(list_item)
+        # self.ui.add_entry_list.setItemWidget(list_item, item_entry)
 
         # Clear current input values
         self.ui.item_name_input.clear()
         self.ui.item_qty_input.clear()
         self.update_locations(0)
+
 
     def update_locations(self, index):
         selected_lab = self.ui.item_lab_input.currentText()
@@ -387,7 +416,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.handle_inventory_page()
 
 
-    @restrict_page_change
+    # @restrict_page_change
     def show_update_entry_page(self):
         """
         This slot is triggered when the update_entry_button is clicked.
@@ -397,10 +426,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_4.setCurrentWidget(self.ui.update_entry_page)
         self.state["inventory_page_func"] = "update"
         self.ui.update_entry_label.setText(self.update_item_type_label())
-        self.deactivate_page_change()
+        # self.deactivate_page_change()
 
     @admin_access
-    @restrict_page_change
+    # @restrict_page_change
     def show_delete_entry_page(self):
         """
         This slot is triggered when the delete_entry_button is clicked.
@@ -411,7 +440,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_4.setCurrentWidget(self.ui.delete_entry_page)
         self.state["inventory_page_func"] = "delete"
         self.ui.delete_entry_label.setText(self.update_item_type_label())
-        self.deactivate_page_change()
+        # self.deactivate_page_change()
 
     def handle_cancel_button(self):
         """

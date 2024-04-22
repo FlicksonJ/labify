@@ -229,6 +229,13 @@ class InventoryManager:
         JOIN Labs ON Locations.lab_id = Labs.lab_id
         WHERE StockType.type = (?)
         """
+        self.RETRIEVE_ITEM_LOCATION_SQL = """
+        SELECT Labs.name AS Lab, Locations.name AS Location
+        FROM Items
+        JOIN Locations ON Items.location_id = Locations.loc_id
+        JOIN Labs ON Locations.lab_id = Labs.lab_id
+        WHERE Items.name = (?)
+        """
 
         self.create_tables()
         
@@ -292,6 +299,22 @@ class InventoryManager:
             locations[lab_name].append(location_name)
         
         return locations
+
+    def check_item_location(self, name: str, lab: str, location: str) -> bool:
+
+        item_exist = False
+        query = QSqlQuery()
+        query.prepare(self.RETRIEVE_ITEM_LOCATION_SQL)
+        query.addBindValue(name)
+        query.exec()
+
+        while query.next():
+            # Check if item with same lab and location already exists in database
+            if query.value("Lab") == lab and query.value("Location") == location:
+               item_exist = True 
+
+        return item_exist
+
 
 
     def add_entry(self, stock_type: str, name: str, qty: str, location: str, lab: str):

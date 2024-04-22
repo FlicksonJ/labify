@@ -49,3 +49,15 @@ Labify utilizes the following open-source Python libraries:
 - bcrypt
 - itsdangerous
 - thefuzz
+
+## TODO
+
+Do all these if the current design is approved:
+- [ ] Remove item_entry list view and ui file
+- [ ] Remove deactivate and activate page change functions
+- [ ] Remove save button from add entry page
+- [ ] Remove restrict_page_change access control
+- [ ] Remove unnecessary comments in the code
+
+Otherwise switch all the changed features to the previous one.
+

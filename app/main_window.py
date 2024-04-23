@@ -117,7 +117,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         while query.next():
             item = query.value("Name")
-            self.tray_icon.showMessage("Alert", f"Item: {item} will expire soon!", QSystemTrayIcon.Information, 5000)
+            self.tray_icon.showMessage("Alert", f"Item: {item} stock will expire soon!", QSystemTrayIcon.Information, 5000)
     
     def update_item_type_label(self):
         text = {

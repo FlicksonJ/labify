@@ -1,5 +1,5 @@
 from PySide6.QtGui import QDoubleValidator
-from PySide6.QtWidgets import QWidget, QMessageBox
+from PySide6.QtWidgets import QTableView, QWidget, QMessageBox
 
 from datetime import datetime
 
@@ -7,7 +7,7 @@ from app.ui.ui_quantity_edit import Ui_QuantityEdit
 from app import utils
 
 class QuantityEdit(QWidget):
-    def __init__(self, inventory_manager, data: dict[str, str]) -> None:
+    def __init__(self, inventory_manager, data: dict[str, str | QTableView]) -> None:
         super().__init__()
         self.ui = Ui_QuantityEdit()
         self.ui.setupUi(self)
@@ -66,6 +66,7 @@ class QuantityEdit(QWidget):
         if self.inventory_manager.add_qty_to_item(name, lab, location, qty):
             utils.show_message("Qty updated", f"Added {qty} to the stock")
             self.inventory_manager.add_transaction(transaction)
+            self.data["table"].setModel(self.inventory_manager.retrieve_item_info(self.data["item_type"]))
         else:
             utils.show_message("Error", "Cannot update qty")
 
@@ -101,5 +102,6 @@ class QuantityEdit(QWidget):
         if self.inventory_manager.remove_qty_from_item(name, lab, location, qty):
             utils.show_message("Qty updated", f"Removed {qty} from the stock")
             self.inventory_manager.add_transaction(transaction)
+            self.data["table"].setModel(self.inventory_manager.retrieve_item_info(self.data["item_type"]))
         else:
             utils.show_message("Error", "Cannot update qty")

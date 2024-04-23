@@ -539,6 +539,8 @@ Use Edit Entry option to change the quantity of an existing item.""")
         location = model.index(row, 4).data()
 
         data = {
+            "table": self.ui.update_entry_table,
+            "item_type": self.state["item_type"],
             "header": header,
             "user": user,
             "name": name,
@@ -594,6 +596,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
 
         if self.inventory_manager.delete_item(name, lab, location):
             utils.show_message("Item deleted", f"Item: {name} successfully deleted from the database")
+            self.set_default_inventory_table(self.ui.delete_entry_table)
         else:
             utils.show_message("Error", "Cannot delete item")
         

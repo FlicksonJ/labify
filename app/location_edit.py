@@ -1,10 +1,13 @@
-from PySide6.QtWidgets import QWidget, QMessageBox
+from PySide6.QtWidgets import QTableView, QWidget, QMessageBox
 
 from app.ui.ui_location_edit import Ui_LocationEdit
 from app import utils
 
 class LocationEdit(QWidget):
-    def __init__(self, inventory_manager, locations: dict[str, list[str]], data: dict[str, str]) -> None:
+    def __init__(self, 
+                 inventory_manager, 
+                 locations: dict[str, list[str]], 
+                 data: dict[str, str | QTableView]) -> None:
         super().__init__()
         self.ui = Ui_LocationEdit()
         self.ui.setupUi(self)
@@ -56,6 +59,7 @@ class LocationEdit(QWidget):
                 new_location
                 ):
             utils.show_message("Name Updated", f"Changed location from {current_lab}, {current_location} to {new_lab}, {new_location}")
+            self.data["table"].setModel(self.inventory_manager.retrieve_item_info(self.data["item_type"]))
         else:
             utils.show_message("Error", "Cannot update location")
 

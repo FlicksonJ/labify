@@ -1,10 +1,10 @@
-from PySide6.QtWidgets import QWidget, QMessageBox
+from PySide6.QtWidgets import QTableView, QWidget, QMessageBox
 
 from app.ui.ui_name_edit import Ui_NameEdit
 from app import utils
 
 class NameEdit(QWidget):
-    def __init__(self, inventory_manager, data: dict[str, str]) -> None:
+    def __init__(self, inventory_manager, data: dict[str, str | QTableView]) -> None:
         super().__init__()
         self.ui = Ui_NameEdit()
         self.ui.setupUi(self)
@@ -38,6 +38,7 @@ class NameEdit(QWidget):
 
         if self.inventory_manager.update_item_name(current_name, lab, location, new_name):
             utils.show_message("Name Updated", f"Changed name from {current_name} to {new_name}")
+            self.data["table"].setModel(self.inventory_manager.retrieve_item_info(self.data["item_type"]))
         else:
             utils.show_message("Error", "Cannot update name")
 

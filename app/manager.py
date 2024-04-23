@@ -236,6 +236,15 @@ class InventoryManager:
         JOIN Labs ON Locations.lab_id = Labs.lab_id
         WHERE Items.name = (?)
         """
+        self.RETRIEVE_LOCATION_ID_SQL = """
+         SELECT loc_id FROM Locations WHERE name = (?) AND lab_id = 
+         (SELECT lab_id FROM Labs WHERE name = (?))
+        """
+        self.UPDATE_ITEM_NAME_SQL = """
+        UPDATE Items
+        SET name = (?)
+        WHERE name = (?) AND location_id =  (?)
+        """
 
         self.create_tables()
         
@@ -342,5 +351,26 @@ class InventoryManager:
 
         return model
 
+
+    def update_item_name(self, current_name: str, lab: str, location: str, new_name: str) -> bool:
+        loc_id = -1
+        query = QSqlQuery()
+        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
+        query.addBindValue(location)
+        query.addBindValue(lab)
+        query.exec()
+
+        while query.next():
+            loc_id = query.value("loc_id")
+
+        query.prepare(self.UPDATE_ITEM_NAME_SQL)
+        query.addBindValue(new_name)
+        query.addBindValue(current_name)
+        query.addBindValue(loc_id)
+        if not query.exec():
+            print(query.lastError().text())
+            return False
+        else:
+            return True
 
 

@@ -55,10 +55,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Set input validators
         self.ui.item_qty_input.setValidator(QDoubleValidator())
 
-        # Update entry page inputs
-        self.name_edit = NameEdit()
-        self.quantity_edit = QuantityEdit()
-        self.location_edit = LocationEdit(self.state["location_data"])
 
         # =============================================== #
         # ===============  Signals ====================== #
@@ -145,6 +141,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     
     def add_update_input(self, data: dict[str, str]):
+        # Update entry page inputs
+        self.name_edit = NameEdit(self.inventory_manager, data)
+        self.quantity_edit = QuantityEdit()
+        self.location_edit = LocationEdit(self.state["location_data"])
+
         if self.state["user_type"] == "user":
             self.ui.verticalLayout_13.addWidget(self.quantity_edit)
             self.quantity_edit.ui.qty_label.setText(f'Qty ({data["name"]}):')

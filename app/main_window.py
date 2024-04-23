@@ -84,6 +84,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.ui.add_entry_save_button.clicked.connect(self.save_entry)
 
         self.ui.update_entry_button.clicked.connect(self.show_update_entry_page)
+        self.ui.update_entry_save_button.clicked.connect(self.handle_inventory_page)
         self.ui.update_entry_cancel_button.clicked.connect(self.handle_inventory_page)
         self.ui.update_entry_table.clicked.connect(self.update_entry_table_clicked)
         self.ui.update_entry_search_button.clicked.connect(self.update_inventory_search)

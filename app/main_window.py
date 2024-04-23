@@ -13,8 +13,6 @@ from app.manager import DatabaseManager
 from app import utils
 from app.access_controls import admin_access, restrict_page_change
 
-from datetime import datetime
-
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -490,6 +488,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
         self.ui.update_entry_label.setText(self.update_item_type_label())
         self.set_default_inventory_table(self.ui.update_entry_table)
         self.remove_current_update_input()
+        self.ui.update_entry_search_input.clear()
         # self.deactivate_page_change()
 
     def update_entry_table_clicked(self, index):

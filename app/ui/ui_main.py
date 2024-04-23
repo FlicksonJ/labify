@@ -1554,8 +1554,8 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(1)
         self.login_button.setDefault(True)
         self.inventory_type_input.setCurrentIndex(-1)
-        self.stackedWidget_3.setCurrentIndex(3)
-        self.stackedWidget_4.setCurrentIndex(1)
+        self.stackedWidget_3.setCurrentIndex(2)
+        self.stackedWidget_4.setCurrentIndex(2)
         self.cancel_button.setDefault(False)
 
 
@@ -1576,7 +1576,7 @@ class Ui_MainWindow(object):
         self.time_label.setText(QCoreApplication.translate("MainWindow", u"12:00 AM", None))
         self.date_label.setText(QCoreApplication.translate("MainWindow", u"20 Feb, 2024", None))
         self.transaction_history_button.setText(QCoreApplication.translate("MainWindow", u"Transaction History", None))
-        self.alerts_button.setText(QCoreApplication.translate("MainWindow", u"Alert Notifictions", None))
+        self.alerts_button.setText(QCoreApplication.translate("MainWindow", u"Alert Notifications", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Select Inventory: ", None))
         self.inventory_type_input.setItemText(0, QCoreApplication.translate("MainWindow", u"Glassware", None))
         self.inventory_type_input.setItemText(1, QCoreApplication.translate("MainWindow", u"Equipment", None))

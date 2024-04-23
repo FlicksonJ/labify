@@ -240,6 +240,11 @@ class InventoryManager:
          SELECT loc_id FROM Locations WHERE name = (?) AND lab_id = 
          (SELECT lab_id FROM Labs WHERE name = (?))
         """
+        self.RETRIEVE_ALERTS_SQL = """
+        SELECT * FROM Items
+        WHERE (qty <= 5 AND stock_id IN (0, 1)) OR
+              (qty <= 250 AND stock_id = 2)
+        """
         self.UPDATE_ITEM_NAME_SQL = """
         UPDATE Items
         SET name = (?)
@@ -376,6 +381,12 @@ class InventoryManager:
 
         model = QSqlQueryModel()
         model.setQuery(query)
+
+        return model
+
+    def retrieve_alerts_info(self) -> QSqlQueryModel | None:
+        model = QSqlQueryModel()
+        model.setQuery(self.RETRIEVE_ALERTS_SQL)
 
         return model
 

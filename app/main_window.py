@@ -1,6 +1,6 @@
 from PySide6.QtCore import Qt 
 from PySide6.QtGui import QIcon, QDoubleValidator
-from PySide6.QtSql import QSqlQuery
+from PySide6.QtSql import QSqlQuery, QSqlQueryModel
 from PySide6.QtWidgets import QListWidgetItem, QMainWindow, QMessageBox, QTableView 
 
 from app.ui.ui_main import Ui_MainWindow
@@ -323,7 +323,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
 
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.alerts_page)
-        #@TODO: Add tableview
+        self.alerts_model = self.inventory_manager.retrieve_alerts_info()
+        if self.alerts_model:
+            self.ui.alerts_table.setModel(self.alerts_model)
     
     def handle_inventory_page(self):
         """

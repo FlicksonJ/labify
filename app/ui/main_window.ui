@@ -1019,7 +1019,7 @@ QTableView::item:selected {
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
-                   <string>Alert Notifictions</string>
+                   <string>Alert Notifications</string>
                   </property>
                  </widget>
                 </item>
@@ -1121,7 +1121,7 @@ QTableView::item:selected {
             <item>
              <widget class="QStackedWidget" name="stackedWidget_3">
               <property name="currentIndex">
-               <number>3</number>
+               <number>2</number>
               </property>
               <widget class="QWidget" name="inventory_page_default">
                <widget class="QLabel" name="label_4">
@@ -1226,7 +1226,7 @@ QTableView::item:selected {
                  </rect>
                 </property>
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>2</number>
                 </property>
                 <widget class="QWidget" name="item_search_page">
                  <widget class="QWidget" name="verticalLayoutWidget_4">

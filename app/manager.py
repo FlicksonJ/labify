@@ -260,6 +260,10 @@ class InventoryManager:
         SET qty = qty - (?)
         WHERE name = (?) AND location_id = (?)
         """
+        self.DELETE_ITEM_SQL = """
+        DELETE FROM Items
+        WHERE name = (?) AND location_id = (?)
+        """
 
         self.create_tables()
         
@@ -500,3 +504,29 @@ class InventoryManager:
             return False
         else:
             return True
+
+    def delete_item(self, name: str, lab: str, location: str) -> bool:
+        loc_id = -1
+        query = QSqlQuery()
+        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
+        query.addBindValue(location)
+        query.addBindValue(lab)
+        query.exec()
+
+        while query.next():
+            loc_id = query.value("loc_id")
+
+        if loc_id == -1:
+            print(query.lastError().text())
+            return False
+
+        query.prepare(self.DELETE_ITEM_SQL)
+        query.addBindValue(name)
+        query.addBindValue(loc_id)
+        if not query.exec():
+            print(query.lastError().text())
+            return False
+        else:
+            return True
+        
+

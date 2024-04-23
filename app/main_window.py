@@ -92,6 +92,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.ui.delete_entry_button.clicked.connect(self.show_delete_entry_page)
         self.ui.delete_entry_cancel_button.clicked.connect(self.handle_inventory_page)
+        self.ui.delete_entry_search_button.clicked.connect(self.delete_inventory_search)
+        self.ui.delete_entry_search_input.returnPressed.connect(self.delete_inventory_search)
+        self.ui.delete_entry_delete_button.clicked.connect(self.delete_entry)
 
 
     def show_home_screen(self, username: str):
@@ -531,7 +534,38 @@ Use Edit Entry option to change the quantity of an existing item.""")
         self.ui.stackedWidget_4.setCurrentWidget(self.ui.delete_entry_page)
         self.state["inventory_page_func"] = "delete"
         self.ui.delete_entry_label.setText(self.update_item_type_label())
+        self.set_default_inventory_table(self.ui.delete_entry_table)
+        self.ui.delete_entry_search_input.clear()
         # self.deactivate_page_change()
+
+    def delete_inventory_search(self):
+        search_term = self.ui.delete_entry_search_input.text()
+        self.search_inventory(search_term, self.ui.delete_entry_table)
+
+    def delete_entry(self):
+        current_index = self.ui.delete_entry_table.currentIndex()
+        if not current_index.isValid():
+            utils.show_message("Error", "Select an item in the table to remove")
+            return
+
+        row = current_index.row()
+        model = self.state["items_model"]
+        name = model.index(row, 1).data()
+        lab = model.index(row, 3).data()
+        location = model.index(row, 4).data()
+
+        confirm = utils.show_dialog(
+                "Are you sure?",
+                f"Do you really want to delete {name} from database?"
+                )
+        if confirm == QMessageBox.No:
+            return
+
+        if self.inventory_manager.delete_item(name, lab, location):
+            utils.show_message("Item deleted", f"Item: {name} successfully deleted from the database")
+        else:
+            utils.show_message("Error", "Cannot delete item")
+        
 
     def handle_cancel_button(self):
         """

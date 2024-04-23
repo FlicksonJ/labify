@@ -409,6 +409,22 @@ class InventoryManager:
         else:
             return True
 
+    def retrieve_loc_id(self, lab: str, location: str) -> int:
+        loc_id = -1
+        query = QSqlQuery()
+        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
+        query.addBindValue(location)
+        query.addBindValue(lab)
+        query.exec()
+        
+        while query.next():
+            loc_id = query.value("loc_id")
+
+        if loc_id == -1:
+            print(query.lastError().text())
+
+        return loc_id
+
     def update_item_location(self, 
                              name: str, 
                              current_lab: str, 
@@ -416,34 +432,14 @@ class InventoryManager:
                              new_lab: str, 
                              new_location: str) -> bool:
 
-        current_loc_id = -1
-        new_loc_id = -1
-        query = QSqlQuery()
-        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
-        query.addBindValue(current_location)
-        query.addBindValue(current_lab)
-        query.exec()
-
-        while query.next():
-            current_loc_id = query.value("loc_id")
-
+        current_loc_id = self.retrieve_loc_id(current_lab, current_location)
+        new_loc_id = self.retrieve_loc_id(new_lab, new_location)
         if current_loc_id == -1:
-            print(query.lastError().text())
+            return False
+        if new_loc_id == -1:
             return False
 
         query = QSqlQuery()
-        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
-        query.addBindValue(new_location)
-        query.addBindValue(new_lab)
-        query.exec()
-
-        while query.next():
-            new_loc_id = query.value("loc_id")
-
-        if new_loc_id == -1:
-            print(query.lastError().text())
-            return False
-
         query.prepare(self.UPDATE_ITEM_LOCATION_SQL)
         query.addBindValue(new_loc_id)
         query.addBindValue(name)
@@ -461,20 +457,11 @@ class InventoryManager:
                         location: str, 
                         qty: float) -> bool:
 
-        loc_id = -1
-        query = QSqlQuery()
-        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
-        query.addBindValue(location)
-        query.addBindValue(lab)
-        query.exec()
-
-        while query.next():
-            loc_id = query.value("loc_id")
-
+        loc_id = self.retrieve_loc_id(lab, location)
         if loc_id == -1:
-            print(query.lastError().text())
             return False
 
+        query = QSqlQuery()
         query.prepare(self.UPDATE_ITEM_ADD_QTY_SQL)
         query.addBindValue(qty)
         query.addBindValue(name)
@@ -490,20 +477,11 @@ class InventoryManager:
                              lab: str,
                              location: str,
                              qty: float) -> bool:
-        loc_id = -1
-        query = QSqlQuery()
-        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
-        query.addBindValue(location)
-        query.addBindValue(lab)
-        query.exec()
-
-        while query.next():
-            loc_id = query.value("loc_id")
-
+        loc_id = self.retrieve_loc_id(lab, location)
         if loc_id == -1:
-            print(query.lastError().text())
             return False
 
+        query = QSqlQuery()
         query.prepare(self.UPDATE_ITEM_REMOVE_QTY_SQL)
         query.addBindValue(qty)
         query.addBindValue(name)
@@ -515,20 +493,11 @@ class InventoryManager:
             return True
 
     def delete_item(self, name: str, lab: str, location: str) -> bool:
-        loc_id = -1
-        query = QSqlQuery()
-        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
-        query.addBindValue(location)
-        query.addBindValue(lab)
-        query.exec()
-
-        while query.next():
-            loc_id = query.value("loc_id")
-
+        loc_id = self.retrieve_loc_id(lab, location)
         if loc_id == -1:
-            print(query.lastError().text())
             return False
 
+        query = QSqlQuery()
         query.prepare(self.DELETE_ITEM_SQL)
         query.addBindValue(name)
         query.addBindValue(loc_id)

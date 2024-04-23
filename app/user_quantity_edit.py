@@ -1,6 +1,8 @@
 from PySide6.QtGui import QDoubleValidator
 from PySide6.QtWidgets import QWidget, QMessageBox
 
+from datetime import datetime
+
 from app.ui.ui_user_quantity_edit import Ui_UserQuantityEdit
 from app import utils
 
@@ -41,15 +43,32 @@ class UserQuantityEdit(QWidget):
             return
 
         name = self.data["name"]
+        user = self.data["user"]
         lab = self.data["lab"]
         location = self.data["location"]
         qty = float(self.ui.qty_input.text())
+        date = datetime.now().strftime('%Y-%m-%d')
+        time = datetime.now().strftime('%I:%M %p')
+        action = "Taken"
 
         if qty > float(self.data["qty"]):
             utils.show_message("Error", "Qty value exceeds current stock value")
             return
 
+        transaction = {
+            "date": date,
+            "time": time,
+            "user": user,
+            "name": name,
+            "qty": qty,
+            "action": action,
+            "lab": lab,
+            "location": location
+        }
+
         if self.inventory_manager.remove_qty_from_item(name, lab, location, qty):
             utils.show_message("Qty updated", f"Removed {qty} from the stock")
+            self.inventory_manager.add_transaction(transaction)
         else:
             utils.show_message("Error", "Cannot update qty")
+

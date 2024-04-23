@@ -327,7 +327,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
 
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.transactions_page)
-        #@TODO: Add tableview 
+        self.transactions_model = self.inventory_manager.retrieve_transactions_info()
+        self.ui.transactions_table.setModel(self.transactions_model)
 
     # @restrict_page_change
     def show_alerts_page(self):
@@ -532,12 +533,14 @@ Use Edit Entry option to change the quantity of an existing item.""")
         model = self.state["items_model"]
         header = model.headerData(column, Qt.Horizontal)
         name = model.index(row, 1).data()
+        user = self.state["username"]
         qty = model.index(row, 2).data()
         lab = model.index(row, 3).data()
         location = model.index(row, 4).data()
 
         data = {
             "header": header,
+            "user": user,
             "name": name,
             "qty": qty,
             "lab": lab,

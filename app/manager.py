@@ -188,6 +188,18 @@ class InventoryManager:
             lab_id INTEGER PRIMARY KEY,
             name VARCHAR(255) UNIQUE
         )"""
+        self.TRANSACTION_TABLE_SQL = """
+        CREATE TABLE IF NOT EXISTS Transactions (
+            tid INTEGER PRIMARY KEY,
+            date DATE,
+            time VARCHAR(255),
+            user VARCHAR(255),
+            name VARCHAR(255),
+            qty REAL,
+            action VARCHAR(50),
+            lab VARCHAR(50),
+            location VARCHAR(50)
+        )"""
 
         self.INSERT_STOCK_TYPE_SQL = """
         INSERT OR IGNORE INTO StockType (type)
@@ -207,6 +219,13 @@ class InventoryManager:
                 (SELECT stock_id FROM StockType WHERE type = (?)),
                 (SELECT loc_id FROM Locations WHERE name = (?) AND lab_id = 
                 (SELECT lab_id FROM Labs WHERE name = (?))))
+        """
+        self.INSERT_TRANSACTION_SQL = """
+        INSERT INTO Transactions (date, time, user, name, qty, action, lab, location)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """
+        self.RETRIEVE_TRANSACTION_SQL = """
+        SELECT * FROM Transactions
         """
         self.RETRIEVE_LAB_ID_SQL = """
         SELECT lab_id FROM Labs WHERE name = (?)
@@ -297,6 +316,7 @@ class InventoryManager:
         query.exec(self.STOCK_TYPE_TABLE_SQL)
         query.exec(self.LOCATIONS_TABLE_SQL)
         query.exec(self.LABS_TABLE_SQL)
+        query.exec(self.TRANSACTION_TABLE_SQL)
 
         # Enter default stocktype values
         query.exec(self.INSERT_STOCK_TYPE_SQL)
@@ -357,6 +377,23 @@ class InventoryManager:
 
         return item_exist
 
+    
+    def add_transaction(self, transaction: dict[str, str]) -> bool:
+        query = QSqlQuery()
+        query.prepare(self.INSERT_TRANSACTION_SQL)
+        query.addBindValue(transaction["date"])
+        query.addBindValue(transaction["time"])
+        query.addBindValue(transaction["user"])
+        query.addBindValue(transaction["name"])
+        query.addBindValue(transaction["qty"])
+        query.addBindValue(transaction["action"])
+        query.addBindValue(transaction["lab"])
+        query.addBindValue(transaction["location"])
+        if not query.exec():
+            print(query.lastError().text())
+            return False
+        else:
+            return True
 
 
     def add_entry(self, 
@@ -402,6 +439,14 @@ class InventoryManager:
         else:
             return None
 
+    def retrieve_transactions_info(self) -> QSqlQueryModel | None:
+        model = QSqlQueryModel()
+        model.setQuery(self.RETRIEVE_TRANSACTION_SQL)
+        
+        if model.rowCount() > 0:
+            return model
+        else:
+            return None
 
     def update_item_name(self, 
                          current_name: str, 

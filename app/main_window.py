@@ -154,7 +154,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if self.state["user_type"] == "user":
             self.ui.verticalLayout_13.addWidget(self.user_quantity_edit)
-            self.quantity_edit.ui.qty_label.setText(f'Qty ({data["name"]}):')
+            if self.state["item_type"] == "chemical":
+                self.user_quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (ml/g):')
+            else:
+                self.user_quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
 
             self.ui.verticalLayout_13.setStretch(0, 1)
             self.ui.verticalLayout_13.setStretch(1, 7)
@@ -162,7 +165,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             if data["header"] == "Qty":
                 self.ui.verticalLayout_13.addWidget(self.quantity_edit)
-                self.quantity_edit.ui.qty_label.setText(f'Qty ({data["name"]}):')
+                if self.state["item_type"] == "chemical":
+                    self.quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (ml/g):')
+                else:
+                    self.quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
                 self.ui.verticalLayout_13.setStretch(0, 1)
                 self.ui.verticalLayout_13.setStretch(1, 7)
                 self.ui.verticalLayout_13.setStretch(2, 2)
@@ -387,6 +393,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_4.setCurrentWidget(self.ui.add_entry_page)
         self.state["inventory_page_func"] = "add"
         self.ui.add_entry_label.setText(self.update_item_type_label())
+        if self.state["item_type"] == "chemical":
+            self.ui.qty_label.setText("Qty (ml/g)")
+        else:
+            self.ui.qty_label.setText("Qty (Pcs.)")
         # self.deactivate_page_change()
 
     def add_entry(self):

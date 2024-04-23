@@ -1,13 +1,13 @@
 from PySide6.QtGui import QDoubleValidator
 from PySide6.QtWidgets import QWidget, QMessageBox
 
-from app.ui.ui_quantity_edit import Ui_QuantityEdit
+from app.ui.ui_user_quantity_edit import Ui_UserQuantityEdit
 from app import utils
 
-class QuantityEdit(QWidget):
+class UserQuantityEdit(QWidget):
     def __init__(self, inventory_manager, data: dict[str, str]) -> None:
         super().__init__()
-        self.ui = Ui_QuantityEdit()
+        self.ui = Ui_UserQuantityEdit()
         self.ui.setupUi(self)
 
         self.inventory_manager = inventory_manager
@@ -15,8 +15,7 @@ class QuantityEdit(QWidget):
 
         self.ui.qty_input.setValidator(QDoubleValidator())
 
-        self.ui.add_stock_button.clicked.connect(self.add_stock)
-        self.ui.remove_stock_button.clicked.connect(self.remove_stock)
+        self.ui.used_button.clicked.connect(self.remove_stock)
 
     
     def validate_qty_input(self) -> bool:
@@ -37,21 +36,6 @@ class QuantityEdit(QWidget):
         return True
         
 
-    def add_stock(self):
-        if not self.validate_qty_input():
-            return
-
-        name = self.data["name"]
-        lab = self.data["lab"]
-        location = self.data["location"]
-        qty = float(self.ui.qty_input.text())
-
-        if self.inventory_manager.add_qty_to_item(name, lab, location, qty):
-            utils.show_message("Qty updated", f"Added {qty} to the stock")
-        else:
-            utils.show_message("Error", "Cannot update qty")
-
-    
     def remove_stock(self):
         if not self.validate_qty_input():
             return

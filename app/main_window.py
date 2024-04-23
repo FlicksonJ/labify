@@ -6,6 +6,7 @@ from PySide6.QtWidgets import QListWidgetItem, QMainWindow, QMessageBox, QTableV
 from app.ui.ui_main import Ui_MainWindow
 from app.item_entry import ItemEntry
 from app.quantity_edit import QuantityEdit
+from app.user_quantity_edit import UserQuantityEdit
 from app.name_edit import NameEdit
 from app.location_edit import LocationEdit
 
@@ -148,10 +149,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Update entry page inputs
         self.name_edit = NameEdit(self.inventory_manager, data)
         self.quantity_edit = QuantityEdit(self.inventory_manager, data)
+        self.user_quantity_edit = UserQuantityEdit(self.inventory_manager, data)
         self.location_edit = LocationEdit(self.inventory_manager, self.state["location_data"], data)
 
         if self.state["user_type"] == "user":
-            self.ui.verticalLayout_13.addWidget(self.quantity_edit)
+            self.ui.verticalLayout_13.addWidget(self.user_quantity_edit)
             self.quantity_edit.ui.qty_label.setText(f'Qty ({data["name"]}):')
 
             self.ui.verticalLayout_13.setStretch(0, 1)

@@ -241,9 +241,18 @@ class InventoryManager:
          (SELECT lab_id FROM Labs WHERE name = (?))
         """
         self.RETRIEVE_ALERTS_SQL = """
-        SELECT * FROM Items
-        WHERE (qty <= 5 AND stock_id IN (0, 1)) OR
-              (qty <= 250 AND stock_id = 2)
+        SELECT 
+            ROW_NUMBER() OVER (ORDER BY Items.item_id) AS CID, 
+            Items.name AS Name, 
+            Items.qty AS Qty, 
+            Labs.name AS Lab,
+            Locations.name AS Location
+        FROM Items
+        JOIN StockType ON Items.stock_id = StockType.stock_id
+        JOIN Locations ON Items.location_id = Locations.loc_id
+        JOIN Labs ON Locations.lab_id = Labs.lab_id
+        WHERE (qty <= 5 AND StockType.type IN ('glassware', 'equipment')) OR
+              (qty <= 250 AND StockType.type = 'chemical')
         """
         self.UPDATE_ITEM_NAME_SQL = """
         UPDATE Items
@@ -388,7 +397,10 @@ class InventoryManager:
         model = QSqlQueryModel()
         model.setQuery(self.RETRIEVE_ALERTS_SQL)
 
-        return model
+        if model.rowCount() > 0:
+            return model
+        else:
+            return None
 
 
     def update_item_name(self, 

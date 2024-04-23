@@ -116,7 +116,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         query.exec()
         
         while query.next():
-            item = query.value("name")
+            item = query.value("Name")
             self.tray_icon.showMessage("Alert", f"Item: {item} will expire soon!", QSystemTrayIcon.Information, 5000)
     
     def update_item_type_label(self):
@@ -338,8 +338,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.alerts_page)
         self.alerts_model = self.inventory_manager.retrieve_alerts_info()
-        if self.alerts_model:
-            self.ui.alerts_table.setModel(self.alerts_model)
+        self.ui.alerts_table.setModel(self.alerts_model)
     
     def handle_inventory_page(self):
         """

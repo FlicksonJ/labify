@@ -143,7 +143,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def add_update_input(self, data: dict[str, str]):
         # Update entry page inputs
         self.name_edit = NameEdit(self.inventory_manager, data)
-        self.quantity_edit = QuantityEdit()
+        self.quantity_edit = QuantityEdit(self.inventory_manager, data)
         self.location_edit = LocationEdit(self.inventory_manager, self.state["location_data"], data)
 
         if self.state["user_type"] == "user":

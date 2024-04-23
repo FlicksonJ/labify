@@ -250,6 +250,16 @@ class InventoryManager:
         SET location_id = (?)
         WHERE name = (?) AND location_id = (?)
         """
+        self.UPDATE_ITEM_ADD_QTY_SQL = """
+        UPDATE Items
+        SET qty = qty + (?)
+        WHERE name = (?) AND location_id = (?)
+        """
+        self.UPDATE_ITEM_REMOVE_QTY_SQL = """
+        UPDATE Items
+        SET qty = qty - (?)
+        WHERE name = (?) AND location_id = (?)
+        """
 
         self.create_tables()
         
@@ -431,4 +441,62 @@ class InventoryManager:
         else:
             return True
 
+    
+    def add_qty_to_item(self, 
+                        name: str, 
+                        lab: str, 
+                        location: str, 
+                        qty: float) -> bool:
 
+        loc_id = -1
+        query = QSqlQuery()
+        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
+        query.addBindValue(location)
+        query.addBindValue(lab)
+        query.exec()
+
+        while query.next():
+            loc_id = query.value("loc_id")
+
+        if loc_id == -1:
+            print(query.lastError().text())
+            return False
+
+        query.prepare(self.UPDATE_ITEM_ADD_QTY_SQL)
+        query.addBindValue(qty)
+        query.addBindValue(name)
+        query.addBindValue(loc_id)
+        if not query.exec():
+            print(query.lastError().text())
+            return False
+        else:
+            return True
+
+    def remove_qty_from_item(self,
+                             name: str,
+                             lab: str,
+                             location: str,
+                             qty: float) -> bool:
+        loc_id = -1
+        query = QSqlQuery()
+        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
+        query.addBindValue(location)
+        query.addBindValue(lab)
+        query.exec()
+
+        while query.next():
+            loc_id = query.value("loc_id")
+
+        if loc_id == -1:
+            print(query.lastError().text())
+            return False
+
+        query.prepare(self.UPDATE_ITEM_REMOVE_QTY_SQL)
+        query.addBindValue(qty)
+        query.addBindValue(name)
+        query.addBindValue(loc_id)
+        if not query.exec():
+            print(query.lastError().text())
+            return False
+        else:
+            return True

@@ -345,7 +345,12 @@ class InventoryManager:
 
 
 
-    def add_entry(self, stock_type: str, name: str, qty: str, location: str, lab: str):
+    def add_entry(self, 
+                  stock_type: str, 
+                  name: str, 
+                  qty: str, 
+                  location: str, 
+                  lab: str) -> bool:
         query = QSqlQuery()
 
         # insert new item into the Items table
@@ -355,7 +360,11 @@ class InventoryManager:
         query.addBindValue(stock_type)
         query.addBindValue(location)
         query.addBindValue(lab)
-        query.exec()
+        if not query.exec():
+            print(query.lastError().text())
+            return False
+        else:
+            return True
 
 
     def retrieve_item_info(self, stock_type: str) -> QSqlQueryModel | None:

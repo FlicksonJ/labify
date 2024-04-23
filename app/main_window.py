@@ -419,7 +419,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 Use Edit Entry option to change the quantity of an existing item.""")
             return
 
-        self.inventory_manager.add_entry(item_type, **item_entry)
+        if self.inventory_manager.add_entry(item_type, **item_entry):
+            utils.show_message("Item Added", f"Item {name} added to the database")
 
         # item_entry = ItemEntry()
         # list_item = QListWidgetItem()

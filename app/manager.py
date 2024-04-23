@@ -245,6 +245,11 @@ class InventoryManager:
         SET name = (?)
         WHERE name = (?) AND location_id =  (?)
         """
+        self.UPDATE_ITEM_LOCATION_SQL = """
+        UPDATE Items
+        SET location_id = (?)
+        WHERE name = (?) AND location_id = (?)
+        """
 
         self.create_tables()
         
@@ -352,7 +357,11 @@ class InventoryManager:
         return model
 
 
-    def update_item_name(self, current_name: str, lab: str, location: str, new_name: str) -> bool:
+    def update_item_name(self, 
+                         current_name: str, 
+                         lab: str, 
+                         location: str, 
+                         new_name: str) -> bool:
         loc_id = -1
         query = QSqlQuery()
         query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
@@ -363,10 +372,59 @@ class InventoryManager:
         while query.next():
             loc_id = query.value("loc_id")
 
+        if loc_id == -1:
+            print(query.lastError().text())
+            return False
+
         query.prepare(self.UPDATE_ITEM_NAME_SQL)
         query.addBindValue(new_name)
         query.addBindValue(current_name)
         query.addBindValue(loc_id)
+        if not query.exec():
+            print(query.lastError().text())
+            return False
+        else:
+            return True
+
+    def update_item_location(self, 
+                             name: str, 
+                             current_lab: str, 
+                             current_location: str, 
+                             new_lab: str, 
+                             new_location: str) -> bool:
+
+        current_loc_id = -1
+        new_loc_id = -1
+        query = QSqlQuery()
+        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
+        query.addBindValue(current_location)
+        query.addBindValue(current_lab)
+        query.exec()
+
+        while query.next():
+            current_loc_id = query.value("loc_id")
+
+        if current_loc_id == -1:
+            print(query.lastError().text())
+            return False
+
+        query = QSqlQuery()
+        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
+        query.addBindValue(new_location)
+        query.addBindValue(new_lab)
+        query.exec()
+
+        while query.next():
+            new_loc_id = query.value("loc_id")
+
+        if new_loc_id == -1:
+            print(query.lastError().text())
+            return False
+
+        query.prepare(self.UPDATE_ITEM_LOCATION_SQL)
+        query.addBindValue(new_loc_id)
+        query.addBindValue(name)
+        query.addBindValue(current_loc_id)
         if not query.exec():
             print(query.lastError().text())
             return False

@@ -144,7 +144,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Update entry page inputs
         self.name_edit = NameEdit(self.inventory_manager, data)
         self.quantity_edit = QuantityEdit()
-        self.location_edit = LocationEdit(self.state["location_data"])
+        self.location_edit = LocationEdit(self.inventory_manager, self.state["location_data"], data)
 
         if self.state["user_type"] == "user":
             self.ui.verticalLayout_13.addWidget(self.quantity_edit)

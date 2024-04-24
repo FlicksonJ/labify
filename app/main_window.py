@@ -1,4 +1,4 @@
-from PySide6.QtCore import Qt 
+from PySide6.QtCore import QTimer, Qt 
 from PySide6.QtGui import QIcon, QDoubleValidator
 from PySide6.QtSql import QSqlQuery, QSqlQueryModel
 from PySide6.QtWidgets import QListWidgetItem, QMainWindow, QMenu, QMessageBox, QSystemTrayIcon, QTableView 
@@ -50,7 +50,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.password_input.clear()
 
         # Set time and date
-        self.ui.time_label.setText(utils.get_time())
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.set_time)
+        self.timer.start(1000)
+        self.set_time()
         self.ui.date_label.setText(utils.get_date())
 
         # Set input validators
@@ -97,6 +100,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.delete_entry_search_input.returnPressed.connect(self.delete_inventory_search)
         self.ui.delete_entry_delete_button.clicked.connect(self.delete_entry)
 
+
+    def set_time(self):
+        self.ui.time_label.setText(utils.get_time())
 
     def show_home_screen(self, username: str):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)

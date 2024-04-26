@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.2
+## Created by: Qt User Interface Compiler version 6.7.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -591,14 +591,23 @@ class Ui_MainWindow(object):
 "    border-top-left-radius: 10px;\n"
 "}\n"
 "\n"
-"QTableView QHeaderView::section:last {\n"
+"QTableView QHeaderView::section:horizontal:last {\n"
 "    border-top-right-radius: 10px;\n"
+"}\n"
+"\n"
+"QTableView QHeaderView::section:vertical:last {\n"
+"    border-bottom-left-radius: 10px;\n"
+"}\n"
+"\n"
+"QTableView QHeaderView::section:vertical {\n"
+"    width: 30px;\n"
 "}\n"
 "\n"
 "QTableView::item {\n"
 "	color: rgb(0, 159, 161);\n"
 "	gridline-color: rgb(0, 159, 161);\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
+"	min-width: 500px;\n"
 "}\n"
 "\n"
 "QTableView::item:selected {\n"
@@ -611,7 +620,8 @@ class Ui_MainWindow(object):
 "	border-top-left-radius: 10px;\n"
 "}\n"
 "\n"
-"#label_9 {\n"
+"#label_9"
+                        " {\n"
 "	border-top-right-radius: 10px;\n"
 "}")
         self.centralwidget = QWidget(MainWindow)
@@ -653,7 +663,7 @@ class Ui_MainWindow(object):
 
         self.password_input = QLineEdit(self.verticalLayoutWidget)
         self.password_input.setObjectName(u"password_input")
-        self.password_input.setEchoMode(QLineEdit.Password)
+        self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.verticalLayout.addWidget(self.password_input)
 
@@ -720,7 +730,7 @@ class Ui_MainWindow(object):
         font.setBold(False)
         self.header_title.setFont(font)
         self.header_title.setScaledContents(False)
-        self.header_title.setAlignment(Qt.AlignCenter)
+        self.header_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout.addWidget(self.header_title)
 
@@ -728,11 +738,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.horizontalLayout_4.setSizeConstraint(QLayout.SetFixedSize)
+        self.horizontalLayout_4.setSizeConstraint(QLayout.SizeConstraint.SetFixedSize)
         self.header_username_label = QLabel(self.header)
         self.header_username_label.setObjectName(u"header_username_label")
         self.header_username_label.setMaximumSize(QSize(212, 16777215))
-        self.header_username_label.setAlignment(Qt.AlignCenter)
+        self.header_username_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_4.addWidget(self.header_username_label)
 
@@ -792,7 +802,7 @@ class Ui_MainWindow(object):
         self.inventory_header.setMinimumSize(QSize(0, 90))
         self.layoutWidget1 = QWidget(self.inventory_header)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
-        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 94))
+        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 101))
         self.verticalLayout_6 = QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -803,7 +813,7 @@ class Ui_MainWindow(object):
         font3.setPointSize(25)
         font3.setBold(True)
         self.time_label.setFont(font3)
-        self.time_label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.time_label.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_6.addWidget(self.time_label)
 
@@ -814,8 +824,8 @@ class Ui_MainWindow(object):
         font4.setWeight(QFont.Light)
         font4.setItalic(False)
         self.date_label.setFont(font4)
-        self.date_label.setTextFormat(Qt.AutoText)
-        self.date_label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.date_label.setTextFormat(Qt.TextFormat.AutoText)
+        self.date_label.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_6.addWidget(self.date_label)
 
@@ -869,8 +879,8 @@ class Ui_MainWindow(object):
         font6.setPointSize(18)
         self.inventory_type_input.setFont(font6)
         self.inventory_type_input.setCursor(QCursor(Qt.PointingHandCursor))
-        self.inventory_type_input.setInsertPolicy(QComboBox.InsertAtBottom)
-        self.inventory_type_input.setSizeAdjustPolicy(QComboBox.AdjustToContents)
+        self.inventory_type_input.setInsertPolicy(QComboBox.InsertPolicy.InsertAtBottom)
+        self.inventory_type_input.setSizeAdjustPolicy(QComboBox.SizeAdjustPolicy.AdjustToContents)
         self.inventory_type_input.setIconSize(QSize(16, 16))
         self.inventory_type_input.setFrame(False)
 
@@ -890,7 +900,7 @@ class Ui_MainWindow(object):
         font7.setPointSize(25)
         self.label_4.setFont(font7)
         self.label_4.setStyleSheet(u"color: rgb(0, 159, 161)")
-        self.label_4.setAlignment(Qt.AlignCenter)
+        self.label_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.stackedWidget_3.addWidget(self.inventory_page_default)
         self.transactions_page = QWidget()
         self.transactions_page.setObjectName(u"transactions_page")
@@ -975,8 +985,8 @@ class Ui_MainWindow(object):
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
         self.line.setLineWidth(1)
-        self.line.setFrameShape(QFrame.VLine)
-        self.line.setFrameShadow(QFrame.Sunken)
+        self.line.setFrameShape(QFrame.Shape.VLine)
+        self.line.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout_11.addWidget(self.line)
 
@@ -1012,15 +1022,15 @@ class Ui_MainWindow(object):
         self.item_search_table.setSizePolicy(sizePolicy6)
         self.item_search_table.setMinimumSize(QSize(0, 0))
         self.item_search_table.setMaximumSize(QSize(16777215, 16777215))
-        self.item_search_table.setFrameShape(QFrame.NoFrame)
-        self.item_search_table.setFrameShadow(QFrame.Plain)
+        self.item_search_table.setFrameShape(QFrame.Shape.NoFrame)
+        self.item_search_table.setFrameShadow(QFrame.Shadow.Plain)
         self.item_search_table.setLineWidth(0)
-        self.item_search_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.item_search_table.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.item_search_table.setAlternatingRowColors(True)
-        self.item_search_table.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.item_search_table.setSelectionBehavior(QAbstractItemView.SelectItems)
+        self.item_search_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.item_search_table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectItems)
         self.item_search_table.setShowGrid(False)
-        self.item_search_table.setGridStyle(Qt.SolidLine)
+        self.item_search_table.setGridStyle(Qt.PenStyle.SolidLine)
         self.item_search_table.setSortingEnabled(True)
         self.item_search_table.setCornerButtonEnabled(False)
         self.item_search_table.horizontalHeader().setCascadingSectionResizes(False)
@@ -1089,8 +1099,8 @@ class Ui_MainWindow(object):
         self.line_2.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
-        self.line_2.setFrameShape(QFrame.VLine)
-        self.line_2.setFrameShadow(QFrame.Sunken)
+        self.line_2.setFrameShape(QFrame.Shape.VLine)
+        self.line_2.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout_17.addWidget(self.line_2)
 
@@ -1108,7 +1118,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addWidget(self.search_bar_container_2)
 
-        self.horizontalSpacer_6 = QSpacerItem(160, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_6 = QSpacerItem(120, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_16.addItem(self.horizontalSpacer_6)
 
@@ -1131,6 +1141,13 @@ class Ui_MainWindow(object):
 
         self.update_entry_table = QTableView(self.verticalLayoutWidget_6)
         self.update_entry_table.setObjectName(u"update_entry_table")
+        self.update_entry_table.setAlternatingRowColors(True)
+        self.update_entry_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.update_entry_table.setShowGrid(False)
+        self.update_entry_table.setCornerButtonEnabled(False)
+        self.update_entry_table.horizontalHeader().setHighlightSections(False)
+        self.update_entry_table.verticalHeader().setVisible(False)
+        self.update_entry_table.verticalHeader().setHighlightSections(False)
 
         self.verticalLayout_13.addWidget(self.update_entry_table)
 
@@ -1254,7 +1271,7 @@ class Ui_MainWindow(object):
         self.item_qty_input.setSizePolicy(sizePolicy)
         self.item_qty_input.setMinimumSize(QSize(140, 0))
         self.item_qty_input.setMaximumSize(QSize(150, 16777215))
-        self.item_qty_input.setInputMethodHints(Qt.ImhDigitsOnly|Qt.ImhPreferNumbers)
+        self.item_qty_input.setInputMethodHints(Qt.InputMethodHint.ImhDigitsOnly|Qt.InputMethodHint.ImhPreferNumbers)
 
         self.horizontalLayout_13.addWidget(self.item_qty_input)
 
@@ -1330,8 +1347,8 @@ class Ui_MainWindow(object):
         self.line_3.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
-        self.line_3.setFrameShape(QFrame.VLine)
-        self.line_3.setFrameShadow(QFrame.Sunken)
+        self.line_3.setFrameShape(QFrame.Shape.VLine)
+        self.line_3.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout_19.addWidget(self.line_3)
 
@@ -1349,7 +1366,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_18.addWidget(self.search_bar_container_3)
 
-        self.horizontalSpacer_9 = QSpacerItem(150, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_9 = QSpacerItem(140, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_18.addItem(self.horizontalSpacer_9)
 
@@ -1372,6 +1389,13 @@ class Ui_MainWindow(object):
 
         self.delete_entry_table = QTableView(self.verticalLayoutWidget_7)
         self.delete_entry_table.setObjectName(u"delete_entry_table")
+        self.delete_entry_table.setAlternatingRowColors(True)
+        self.delete_entry_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.delete_entry_table.setShowGrid(False)
+        self.delete_entry_table.setCornerButtonEnabled(False)
+        self.delete_entry_table.horizontalHeader().setHighlightSections(False)
+        self.delete_entry_table.verticalHeader().setVisible(False)
+        self.delete_entry_table.verticalHeader().setHighlightSections(False)
 
         self.verticalLayout_14.addWidget(self.delete_entry_table)
 
@@ -1387,7 +1411,7 @@ class Ui_MainWindow(object):
         self.label_7.setObjectName(u"label_7")
         self.label_7.setFont(font6)
         self.label_7.setStyleSheet(u"color: rgb(52, 62, 162)")
-        self.label_7.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+        self.label_7.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
 
         self.verticalLayout_9.addWidget(self.label_7)
 
@@ -1420,7 +1444,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget3.raise_()
+        self.layoutWidget6.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1483,7 +1507,7 @@ class Ui_MainWindow(object):
         self.cu_password_input = QLineEdit(self.verticalLayoutWidget_2)
         self.cu_password_input.setObjectName(u"cu_password_input")
         self.cu_password_input.setFont(font11)
-        self.cu_password_input.setEchoMode(QLineEdit.Password)
+        self.cu_password_input.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.verticalLayout_3.addWidget(self.cu_password_input)
 
@@ -1495,7 +1519,7 @@ class Ui_MainWindow(object):
         self.cu_confirm_password_input = QLineEdit(self.verticalLayoutWidget_2)
         self.cu_confirm_password_input.setObjectName(u"cu_confirm_password_input")
         self.cu_confirm_password_input.setFont(font11)
-        self.cu_confirm_password_input.setEchoMode(QLineEdit.Password)
+        self.cu_confirm_password_input.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.verticalLayout_3.addWidget(self.cu_confirm_password_input)
 
@@ -1538,8 +1562,8 @@ class Ui_MainWindow(object):
         self.label.setFont(font1)
         self.label.setAutoFillBackground(False)
         self.label.setLineWidth(0)
-        self.label.setTextFormat(Qt.RichText)
-        self.label.setAlignment(Qt.AlignCenter)
+        self.label.setTextFormat(Qt.TextFormat.RichText)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_5.addWidget(self.label)
 
@@ -1554,8 +1578,8 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(1)
         self.login_button.setDefault(True)
         self.inventory_type_input.setCurrentIndex(-1)
-        self.stackedWidget_3.setCurrentIndex(2)
-        self.stackedWidget_4.setCurrentIndex(2)
+        self.stackedWidget_3.setCurrentIndex(3)
+        self.stackedWidget_4.setCurrentIndex(3)
         self.cancel_button.setDefault(False)
 
 

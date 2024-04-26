@@ -109,7 +109,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.header_username_label.setText(username.upper())
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
-        self.tray_icon = QSystemTrayIcon(QIcon("../images/labify.jpeg"), self)
+        self.tray_icon = QSystemTrayIcon(QIcon(":/icon/images/logo.ico"), self)
         self.tray_icon.setToolTip("Alert")
         self.tray_icon_menu = QMenu()
         self.tray_icon.setContextMenu(self.tray_icon_menu)

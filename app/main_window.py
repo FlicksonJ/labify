@@ -336,6 +336,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.transactions_model = self.inventory_manager.retrieve_transactions_info()
         self.ui.transactions_table.setModel(self.transactions_model)
 
+        # Resize table headers
+        transaction_table_header = self.ui.transactions_table.horizontalHeader()
+        transaction_table_header.resizeSection(1, 150)
+        transaction_table_header.resizeSection(2, 150)
+        transaction_table_header.resizeSection(4, 350)
+
     # @restrict_page_change
     def show_alerts_page(self):
         """
@@ -346,6 +352,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.alerts_page)
         self.alerts_model = self.inventory_manager.retrieve_alerts_info()
         self.ui.alerts_table.setModel(self.alerts_model)
+
+        # Resize table headers
+        alerts_table_header = self.ui.alerts_table.horizontalHeader()
+        alerts_table_header.resizeSection(1, 400)
     
     def handle_inventory_page(self):
         """
@@ -379,11 +389,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.set_default_inventory_table()
 
         # Table design
-        # table_header = self.ui.item_search_table.horizontalHeader()
-        # table_header.resizeSection(0, 100)        
-        # table_header.resizeSection(1, 450)        
-        # table_header.resizeSection(2, 100)        
-        # table_header.resizeSection(3, 350)        
+        table_header = self.ui.item_search_table.horizontalHeader()
+        table_header.resizeSection(1, 450)        
 
     def inventory_view_changed(self, index):
         """
@@ -531,6 +538,10 @@ Use Edit Entry option to change the quantity of an existing item.""")
         self.ui.update_entry_search_input.clear()
         # self.deactivate_page_change()
 
+        # Resize table headers
+        update_table_header = self.ui.update_entry_table.horizontalHeader()
+        update_table_header.resizeSection(1, 450)        
+
     def update_entry_table_clicked(self, index):
         self.remove_current_update_input()
         row = index.row()
@@ -576,6 +587,10 @@ Use Edit Entry option to change the quantity of an existing item.""")
         self.set_default_inventory_table(self.ui.delete_entry_table)
         self.ui.delete_entry_search_input.clear()
         # self.deactivate_page_change()
+
+        # Resize table headers
+        delete_table_header = self.ui.delete_entry_table.horizontalHeader()
+        delete_table_header.resizeSection(1, 450)        
 
     def delete_inventory_search(self):
         search_term = self.ui.delete_entry_search_input.text()

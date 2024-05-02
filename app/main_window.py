@@ -181,7 +181,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.ui.verticalLayout_13.setStretch(0, 1)
             self.ui.verticalLayout_13.setStretch(1, 7)
-            self.ui.verticalLayout_13.setStretch(2, 2)
+            self.ui.verticalLayout_13.setStretch(2, 1)
         else:
             if data["header"] == "Qty":
                 self.ui.verticalLayout_13.addWidget(self.quantity_edit)
@@ -191,13 +191,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
                 self.ui.verticalLayout_13.setStretch(0, 1)
                 self.ui.verticalLayout_13.setStretch(1, 7)
-                self.ui.verticalLayout_13.setStretch(2, 2)
+                self.ui.verticalLayout_13.setStretch(2, 1)
             elif data["header"] == "Name":
                 self.ui.verticalLayout_13.addWidget(self.name_edit)
                 self.name_edit.ui.name_input.setText(data["name"])
                 self.ui.verticalLayout_13.setStretch(0, 1)
                 self.ui.verticalLayout_13.setStretch(1, 7)
-                self.ui.verticalLayout_13.setStretch(2, 2)
+                self.ui.verticalLayout_13.setStretch(2, 1)
             elif data["header"] == "Lab" or data["header"] == "Location":
                 self.ui.verticalLayout_13.addWidget(self.location_edit)
                 self.location_edit.ui.location_label.setText(f'Location ({data["name"]}):')
@@ -209,7 +209,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 self.ui.verticalLayout_13.setStretch(0, 1)
                 self.ui.verticalLayout_13.setStretch(1, 7)
-                self.ui.verticalLayout_13.setStretch(2, 2)
+                self.ui.verticalLayout_13.setStretch(2, 1)
         
         
     def search_inventory(self, search_term: str, table: QTableView = None):

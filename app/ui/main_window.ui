@@ -470,7 +470,13 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 #delete_entry_search_button,
 #delete_entry_search_input {
 	color: rgb(0, 159, 161);
-	font-size: 18pt
+	font-size: 18pt;
+}
+
+/* Fix search button overflow error*/
+#update_entry_search_button,
+#delete_entry_search_button {
+	margin-right: 20px;
 }
 
 #search_button:hover,
@@ -1130,7 +1136,7 @@ QTableView::item:selected {
             <item>
              <widget class="QStackedWidget" name="stackedWidget_3">
               <property name="currentIndex">
-               <number>2</number>
+               <number>3</number>
               </property>
               <widget class="QWidget" name="inventory_page_default">
                <widget class="QLabel" name="label_4">
@@ -1327,7 +1333,7 @@ QTableView::item:selected {
                  </rect>
                 </property>
                 <property name="currentIndex">
-                 <number>3</number>
+                 <number>2</number>
                 </property>
                 <widget class="QWidget" name="item_search_page">
                  <widget class="QWidget" name="verticalLayoutWidget_4">
@@ -1691,7 +1697,7 @@ margin-bottom: 6px;</string>
                       <widget class="QPushButton" name="update_entry_save_button">
                        <property name="maximumSize">
                         <size>
-                         <width>100</width>
+                         <width>120</width>
                          <height>16777215</height>
                         </size>
                        </property>
@@ -2111,6 +2117,9 @@ margin-bottom: 6px;</string>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_14">
+                   <property name="spacing">
+                    <number>20</number>
+                   </property>
                    <item>
                     <layout class="QHBoxLayout" name="horizontalLayout_18">
                      <item>
@@ -2256,7 +2265,7 @@ margin-bottom: 6px;</string>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
-                         <width>140</width>
+                         <width>120</width>
                          <height>20</height>
                         </size>
                        </property>

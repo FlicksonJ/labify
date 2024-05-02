@@ -482,7 +482,13 @@ class Ui_MainWindow(object):
 "#delete_entry_search_input {\n"
 "	color: rgb(0, "
                         "159, 161);\n"
-"	font-size: 18pt\n"
+"	font-size: 18pt;\n"
+"}\n"
+"\n"
+"/* Fix search button overflow error*/\n"
+"#update_entry_search_button,\n"
+"#delete_entry_search_button {\n"
+"	margin-right: 20px;\n"
 "}\n"
 "\n"
 "#search_button:hover,\n"
@@ -518,7 +524,8 @@ class Ui_MainWindow(object):
 "#delete_entry_cancel_button {\n"
 "	border: 1px solid;\n"
 "	margin: 0;\n"
-"	font-size: 18pt;\n"
+"	font-"
+                        "size: 18pt;\n"
 "	height: 40px;\n"
 "	width: 100px;\n"
 "	margin-left: 20px;\n"
@@ -526,8 +533,7 @@ class Ui_MainWindow(object):
 "\n"
 "#add_entry_save_button,\n"
 "#add_entry_add_button,\n"
-"#u"
-                        "pdate_entry_save_button {\n"
+"#update_entry_save_button {\n"
 "	color: rgb(0, 159, 161);\n"
 "	border-color: rgb(0, 159, 161);\n"
 "}\n"
@@ -565,7 +571,8 @@ class Ui_MainWindow(object):
 "	font-size: 20pt;\n"
 "	alternate-background-color: rgb(209, 235, 236);\n"
 "	border: none;\n"
-"	gridline-color: rgb(0, 159, 161);\n"
+"	gridline-color: rgb(0,"
+                        " 159, 161);\n"
 "}\n"
 "\n"
 "QTableView QHeaderView {\n"
@@ -574,8 +581,7 @@ class Ui_MainWindow(object):
 "	gridline-color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
-""
-                        "QTableView QHeaderView::section {\n"
+"QTableView QHeaderView::section {\n"
 "	background: rgb(0, 159, 161);\n"
 "	color: #fff;\n"
 "	font-size: 20pt;\n"
@@ -612,7 +618,8 @@ class Ui_MainWindow(object):
 "\n"
 "QTableView::item:selected {\n"
 "	background-color:  rgb(21,117,118);\n"
-"	color: #fff;\n"
+"	c"
+                        "olor: #fff;\n"
 "	selection-background-color: rgb(21,117,118);\n"
 "}\n"
 "\n"
@@ -620,8 +627,7 @@ class Ui_MainWindow(object):
 "	border-top-left-radius: 10px;\n"
 "}\n"
 "\n"
-"#label_9"
-                        " {\n"
+"#label_9 {\n"
 "	border-top-right-radius: 10px;\n"
 "}")
         self.centralwidget = QWidget(MainWindow)
@@ -1154,7 +1160,7 @@ class Ui_MainWindow(object):
 
         self.update_entry_save_button = QPushButton(self.verticalLayoutWidget_6)
         self.update_entry_save_button.setObjectName(u"update_entry_save_button")
-        self.update_entry_save_button.setMaximumSize(QSize(100, 16777215))
+        self.update_entry_save_button.setMaximumSize(QSize(120, 16777215))
         self.update_entry_save_button.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_16.addWidget(self.update_entry_save_button)
@@ -1346,6 +1352,7 @@ class Ui_MainWindow(object):
         self.verticalLayoutWidget_7.setObjectName(u"verticalLayoutWidget_7")
         self.verticalLayoutWidget_7.setGeometry(QRect(0, 0, 1291, 491))
         self.verticalLayout_14 = QVBoxLayout(self.verticalLayoutWidget_7)
+        self.verticalLayout_14.setSpacing(20)
         self.verticalLayout_14.setObjectName(u"verticalLayout_14")
         self.verticalLayout_14.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_18 = QHBoxLayout()
@@ -1406,7 +1413,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_18.addWidget(self.search_bar_container_3)
 
-        self.horizontalSpacer_9 = QSpacerItem(140, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_9 = QSpacerItem(120, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_18.addItem(self.horizontalSpacer_9)
 
@@ -1494,7 +1501,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget3.raise_()
+        self.layoutWidget.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1628,8 +1635,8 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(1)
         self.login_button.setDefault(True)
         self.inventory_type_input.setCurrentIndex(-1)
-        self.stackedWidget_3.setCurrentIndex(2)
-        self.stackedWidget_4.setCurrentIndex(3)
+        self.stackedWidget_3.setCurrentIndex(3)
+        self.stackedWidget_4.setCurrentIndex(2)
         self.cancel_button.setDefault(False)
 
 

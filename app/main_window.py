@@ -84,10 +84,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.add_entry_cancel_button.clicked.connect(self.handle_inventory_page)
         self.ui.add_entry_add_button.clicked.connect(self.add_entry)
         self.ui.item_lab_input.currentIndexChanged.connect(self.update_locations)
-        self.ui.add_entry_save_button.clicked.connect(self.handle_inventory_page)
 
         self.ui.update_entry_button.clicked.connect(self.show_update_entry_page)
-        self.ui.update_entry_save_button.clicked.connect(self.handle_inventory_page)
         self.ui.update_entry_cancel_button.clicked.connect(self.handle_inventory_page)
         self.ui.update_entry_table.clicked.connect(self.update_entry_table_clicked)
         self.ui.update_entry_search_button.clicked.connect(self.update_inventory_search)

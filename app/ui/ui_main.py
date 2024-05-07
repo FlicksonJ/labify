@@ -445,9 +445,7 @@ class Ui_MainWindow(object):
 "	color: rgb(52, 62, 162);\n"
 "}\n"
 "\n"
-"#add_entry_add_button:hover,\n"
-"#add_entry_save_button:hover,\n"
-"#update_entry_save_button:hover{\n"
+"#add_entry_add_button:hover{\n"
 "	background: rgb(0, 159, 161);\n"
 "	color: #fff;\n"
 "}\n"
@@ -480,15 +478,14 @@ class Ui_MainWindow(object):
 "#update_entry_search_input,\n"
 "#delete_entry_search_button,\n"
 "#delete_entry_search_input {\n"
-"	color: rgb(0, "
-                        "159, 161);\n"
+"	color: rgb(0, 159, 161);\n"
 "	font-size: 18pt;\n"
 "}\n"
 "\n"
-"/* Fix search button overflow error*/\n"
-"#update_entry_search_button,\n"
+"/* Fix search button ov"
+                        "erflow error*/\n"
 "#delete_entry_search_button {\n"
-"	margin-right: 20px;\n"
+"	margin-right: 30px;\n"
 "}\n"
 "\n"
 "#search_button:hover,\n"
@@ -515,27 +512,23 @@ class Ui_MainWindow(object):
 "	min-height: 40px;\n"
 "}\n"
 "\n"
-"#add_entry_save_button,\n"
 "#add_entry_add_button,\n"
 "#add_entry_cancel_button,\n"
-"#update_entry_save_button,\n"
 "#update_entry_cancel_button,\n"
 "#delete_entry_delete_button,\n"
 "#delete_entry_cancel_button {\n"
 "	border: 1px solid;\n"
 "	margin: 0;\n"
-"	font-"
-                        "size: 18pt;\n"
+"	font-size: 18pt;\n"
 "	height: 40px;\n"
 "	width: 100px;\n"
 "	margin-left: 20px;\n"
 "}\n"
 "\n"
-"#add_entry_save_button,\n"
-"#add_entry_add_button,\n"
-"#update_entry_save_button {\n"
+"#add_entry_add_button {\n"
 "	color: rgb(0, 159, 161);\n"
-"	border-color: rgb(0, 159, 161);\n"
+"	border-color: r"
+                        "gb(0, 159, 161);\n"
 "}\n"
 "\n"
 "#add_entry_cancel_button,\n"
@@ -571,8 +564,7 @@ class Ui_MainWindow(object):
 "	font-size: 20pt;\n"
 "	alternate-background-color: rgb(209, 235, 236);\n"
 "	border: none;\n"
-"	gridline-color: rgb(0,"
-                        " 159, 161);\n"
+"	gridline-color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "QTableView QHeaderView {\n"
@@ -583,7 +575,8 @@ class Ui_MainWindow(object):
 "\n"
 "QTableView QHeaderView::section {\n"
 "	background: rgb(0, 159, 161);\n"
-"	color: #fff;\n"
+"	c"
+                        "olor: #fff;\n"
 "	font-size: 20pt;\n"
 "	gridline-color: transparent;\n"
 "}\n"
@@ -618,8 +611,7 @@ class Ui_MainWindow(object):
 "\n"
 "QTableView::item:selected {\n"
 "	background-color:  rgb(21,117,118);\n"
-"	c"
-                        "olor: #fff;\n"
+"	color: #fff;\n"
 "	selection-background-color: rgb(21,117,118);\n"
 "}\n"
 "\n"
@@ -1118,7 +1110,7 @@ class Ui_MainWindow(object):
         self.search_bar_container_2.setMaximumSize(QSize(560, 16777215))
         self.horizontalLayoutWidget_4 = QWidget(self.search_bar_container_2)
         self.horizontalLayoutWidget_4.setObjectName(u"horizontalLayoutWidget_4")
-        self.horizontalLayoutWidget_4.setGeometry(QRect(-1, 0, 521, 42))
+        self.horizontalLayoutWidget_4.setGeometry(QRect(-1, 0, 561, 42))
         self.horizontalLayout_17 = QHBoxLayout(self.horizontalLayoutWidget_4)
         self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
         self.horizontalLayout_17.setContentsMargins(0, 0, 0, 0)
@@ -1158,16 +1150,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addItem(self.horizontalSpacer_6)
 
-        self.update_entry_save_button = QPushButton(self.verticalLayoutWidget_6)
-        self.update_entry_save_button.setObjectName(u"update_entry_save_button")
-        self.update_entry_save_button.setMaximumSize(QSize(120, 16777215))
-        self.update_entry_save_button.setCursor(QCursor(Qt.PointingHandCursor))
-
-        self.horizontalLayout_16.addWidget(self.update_entry_save_button)
-
         self.update_entry_cancel_button = QPushButton(self.verticalLayoutWidget_6)
         self.update_entry_cancel_button.setObjectName(u"update_entry_cancel_button")
-        self.update_entry_cancel_button.setMaximumSize(QSize(100, 16777215))
+        self.update_entry_cancel_button.setMaximumSize(QSize(120, 16777215))
         self.update_entry_cancel_button.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_16.addWidget(self.update_entry_cancel_button)
@@ -1218,12 +1203,6 @@ class Ui_MainWindow(object):
         self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_12.addItem(self.horizontalSpacer_4)
-
-        self.add_entry_save_button = QPushButton(self.verticalLayoutWidget_5)
-        self.add_entry_save_button.setObjectName(u"add_entry_save_button")
-        self.add_entry_save_button.setCursor(QCursor(Qt.PointingHandCursor))
-
-        self.horizontalLayout_12.addWidget(self.add_entry_save_button)
 
         self.add_entry_cancel_button = QPushButton(self.verticalLayoutWidget_5)
         self.add_entry_cancel_button.setObjectName(u"add_entry_cancel_button")
@@ -1380,7 +1359,7 @@ class Ui_MainWindow(object):
         self.horizontalLayoutWidget_5.setGeometry(QRect(-1, 0, 521, 42))
         self.horizontalLayout_19 = QHBoxLayout(self.horizontalLayoutWidget_5)
         self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
-        self.horizontalLayout_19.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_19.setContentsMargins(0, 0, 10, 0)
         self.delete_entry_search_input = QLineEdit(self.horizontalLayoutWidget_5)
         self.delete_entry_search_input.setObjectName(u"delete_entry_search_input")
         sizePolicy.setHeightForWidth(self.delete_entry_search_input.sizePolicy().hasHeightForWidth())
@@ -1417,19 +1396,19 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_18.addItem(self.horizontalSpacer_9)
 
+        self.delete_entry_cancel_button = QPushButton(self.verticalLayoutWidget_7)
+        self.delete_entry_cancel_button.setObjectName(u"delete_entry_cancel_button")
+        self.delete_entry_cancel_button.setMaximumSize(QSize(120, 16777215))
+        self.delete_entry_cancel_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_18.addWidget(self.delete_entry_cancel_button)
+
         self.delete_entry_delete_button = QPushButton(self.verticalLayoutWidget_7)
         self.delete_entry_delete_button.setObjectName(u"delete_entry_delete_button")
         self.delete_entry_delete_button.setMaximumSize(QSize(120, 16777215))
         self.delete_entry_delete_button.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_18.addWidget(self.delete_entry_delete_button)
-
-        self.delete_entry_cancel_button = QPushButton(self.verticalLayoutWidget_7)
-        self.delete_entry_cancel_button.setObjectName(u"delete_entry_cancel_button")
-        self.delete_entry_cancel_button.setMaximumSize(QSize(100, 16777215))
-        self.delete_entry_cancel_button.setCursor(QCursor(Qt.PointingHandCursor))
-
-        self.horizontalLayout_18.addWidget(self.delete_entry_cancel_button)
 
 
         self.verticalLayout_14.addLayout(self.horizontalLayout_18)
@@ -1501,7 +1480,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget.raise_()
+        self.layoutWidget6.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1636,7 +1615,7 @@ class Ui_MainWindow(object):
         self.login_button.setDefault(True)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)
-        self.stackedWidget_4.setCurrentIndex(2)
+        self.stackedWidget_4.setCurrentIndex(1)
         self.cancel_button.setDefault(False)
 
 
@@ -1671,11 +1650,9 @@ class Ui_MainWindow(object):
         self.search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.update_entry_label.setText(QCoreApplication.translate("MainWindow", u"EDIT GLASSWARE", None))
         self.update_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
-        self.update_entry_save_button.setText(QCoreApplication.translate("MainWindow", u"Save", None))
-        self.update_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
+        self.update_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Go Back", None))
         self.add_entry_label.setText(QCoreApplication.translate("MainWindow", u"ADD NEW GLASSWARE", None))
-        self.add_entry_save_button.setText(QCoreApplication.translate("MainWindow", u"Save", None))
-        self.add_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
+        self.add_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Go Back", None))
         self.add_entry_add_button.setText(QCoreApplication.translate("MainWindow", u"Add", None))
         self.add_entry_table_header.setTitle("")
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"No", None))
@@ -1686,8 +1663,8 @@ class Ui_MainWindow(object):
         self.add_entry_inputs.setTitle(QCoreApplication.translate("MainWindow", u"GroupBox", None))
         self.delete_entry_label.setText(QCoreApplication.translate("MainWindow", u"REMOVE GLASSWARE", None))
         self.delete_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
+        self.delete_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Go Back", None))
         self.delete_entry_delete_button.setText(QCoreApplication.translate("MainWindow", u"Remove", None))
-        self.delete_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"OPTIONS", None))
         self.add_entry_button.setText(QCoreApplication.translate("MainWindow", u"Add Entry", None))
         self.update_entry_button.setText(QCoreApplication.translate("MainWindow", u"Edit Entry", None))

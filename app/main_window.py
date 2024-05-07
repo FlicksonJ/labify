@@ -344,6 +344,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # Resize table headers
         alerts_table_header = self.ui.alerts_table.horizontalHeader()
+        alerts_table_header.resizeSection(0, 100)
         alerts_table_header.resizeSection(1, 400)
     
     def handle_inventory_page(self):
@@ -378,7 +379,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # Table design
         table_header = self.ui.item_search_table.horizontalHeader()
+        table_header.resizeSection(0, 100)        
         table_header.resizeSection(1, 450)        
+        table_header.resizeSection(4, 200)        
 
     def inventory_view_changed(self, index):
         """
@@ -478,6 +481,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
 
         # Resize table headers
         update_table_header = self.ui.update_entry_table.horizontalHeader()
+        update_table_header.resizeSection(0, 100)        
         update_table_header.resizeSection(1, 450)        
 
     def update_entry_table_clicked(self, index):
@@ -526,6 +530,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
 
         # Resize table headers
         delete_table_header = self.ui.delete_entry_table.horizontalHeader()
+        delete_table_header.resizeSection(0, 100)        
         delete_table_header.resizeSection(1, 450)        
 
     def delete_inventory_search(self):

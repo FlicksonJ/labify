@@ -321,7 +321,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
 
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.transactions_page)
-        self.transactions_model = self.inventory_manager.retrieve_transactions_info()
+        if self.state['user_type'] == 'admin':
+            self.transactions_model = self.inventory_manager.retrieve_transactions_info()
+        else:
+            self.transactions_model = self.inventory_manager.retrieve_transactions_info(self.state['username'])
         self.ui.transactions_table.setModel(self.transactions_model)
 
         # Resize table headers

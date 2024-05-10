@@ -439,9 +439,21 @@ class InventoryManager:
         else:
             return None
 
-    def retrieve_transactions_info(self) -> QSqlQueryModel | None:
+    def retrieve_transactions_info(self, user: str = 'admin') -> QSqlQueryModel | None:
         model = QSqlQueryModel()
-        model.setQuery(self.RETRIEVE_TRANSACTION_SQL)
+
+        # User 'admin' should be able to view all the transactions
+        # and other users should only be able view their own transactions.
+        if user == 'admin':
+            model.setQuery(self.RETRIEVE_TRANSACTION_SQL)
+        else:
+            query = QSqlQuery()
+            query.prepare(self.RETRIEVE_TRANSACTION_SQL + " WHERE user = (?)")
+            query.addBindValue(user)
+            if not query.exec():
+                print(query.lastError().text())
+
+            model.setQuery(query)
         
         if model.rowCount() > 0:
             return model

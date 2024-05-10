@@ -112,6 +112,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tray_icon.setContextMenu(self.tray_icon_menu)
         self.tray_icon.show()
         self.show_alert_notifications()
+
+        # Add and/or remove 'create_user_button' based on 'user_type'
+        create_user_button = self.ui.create_user_button
+        button_present = self.ui.horizontalLayout_2.count() > 1
+        if self.state['user_type'] == 'admin':
+            if not button_present:
+                self.ui.horizontalLayout_2.insertWidget(0, create_user_button)
+                create_user_button.show()
+        elif self.state['user_type'] == 'user':
+            if button_present:
+                create_user_button.hide()
+                self.ui.horizontalLayout_2.removeWidget(create_user_button)
         
     def show_alert_notifications(self):
         query = QSqlQuery()

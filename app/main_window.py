@@ -58,6 +58,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Set input validators
         self.ui.item_qty_input.setValidator(QDoubleValidator())
 
+        # Setup tray icon for showing alert notifications
+        self.tray_icon = QSystemTrayIcon(QIcon(":/icon/images/logo.ico"), self)
+        self.tray_icon.setToolTip("Alert")
+        self.tray_icon_menu = QMenu()
+        self.tray_icon.setContextMenu(self.tray_icon_menu)
+        self.tray_icon.show()
+
 
         # =============================================== #
         # ===============  Signals ====================== #
@@ -106,11 +113,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.header_username_label.setText(username.upper())
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
-        self.tray_icon = QSystemTrayIcon(QIcon(":/icon/images/logo.ico"), self)
-        self.tray_icon.setToolTip("Alert")
-        self.tray_icon_menu = QMenu()
-        self.tray_icon.setContextMenu(self.tray_icon_menu)
-        self.tray_icon.show()
         self.show_alert_notifications()
 
         # Add and/or remove 'create_user_button' based on 'user_type'
@@ -171,8 +173,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def add_update_input(self, data: dict[str, str]):
         # Update entry page inputs
         self.name_edit = NameEdit(self.inventory_manager, data)
-        self.quantity_edit = QuantityEdit(self.inventory_manager, data)
-        self.user_quantity_edit = UserQuantityEdit(self.inventory_manager, data)
+        self.quantity_edit = QuantityEdit(self.inventory_manager, self.tray_icon, data)
+        self.user_quantity_edit = UserQuantityEdit(self.inventory_manager, self.tray_icon, data)
         self.location_edit = LocationEdit(self.inventory_manager, self.state["location_data"], data)
 
         if self.state["user_type"] == "user":

@@ -1,5 +1,5 @@
 from PySide6.QtGui import QDoubleValidator
-from PySide6.QtWidgets import QTableView, QWidget, QMessageBox
+from PySide6.QtWidgets import QTableView, QWidget, QSystemTrayIcon
 
 from datetime import datetime
 
@@ -7,13 +7,14 @@ from app.ui.ui_quantity_edit import Ui_QuantityEdit
 from app import utils
 
 class QuantityEdit(QWidget):
-    def __init__(self, inventory_manager, data: dict[str, str | QTableView]) -> None:
+    def __init__(self, inventory_manager, tray_icon, data: dict[str, str | QTableView]) -> None:
         super().__init__()
         self.ui = Ui_QuantityEdit()
         self.ui.setupUi(self)
 
         self.inventory_manager = inventory_manager
         self.data = data
+        self.tray_icon = tray_icon
 
         self.ui.qty_input.setValidator(QDoubleValidator())
 
@@ -83,10 +84,16 @@ class QuantityEdit(QWidget):
         date = datetime.now().strftime('%Y-%m-%d')
         time = datetime.now().strftime('%I:%M %p')
         action = "Taken"
+        item_type = self.data['item_type']
 
         if qty > float(self.data["qty"]):
             utils.show_message("Error", "Qty value exceeds current stock value")
             return
+
+        if item_type == 'chemical' and (self.data["qty"] - qty) <= 250:
+            self.tray_icon.showMessage("Alert", f"{self.data['name']} is below margin level", QSystemTrayIcon.Information, 5000)
+        elif (item_type == 'glassware' or item_type == 'equipment') and (self.data["qty"] - qty) <= 5:
+            self.tray_icon.showMessage("Alert", f"{self.data['name']} is below margin level", QSystemTrayIcon.Information, 5000)
 
         transaction = {
             "date": date,

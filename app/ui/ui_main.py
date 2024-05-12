@@ -1494,7 +1494,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget2.raise_()
+        self.layoutWidget6.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1566,11 +1566,18 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_17.addWidget(self.inventory_header_2)
 
+        self.stackedWidget_5 = QStackedWidget(self.layoutWidget7)
+        self.stackedWidget_5.setObjectName(u"stackedWidget_5")
+        self.stackedWidget_5.setMinimumSize(QSize(0, 0))
+        self.update_entry_page_2 = QWidget()
+        self.update_entry_page_2.setObjectName(u"update_entry_page_2")
+        self.verticalLayout_19 = QVBoxLayout(self.update_entry_page_2)
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
         self.verticalLayout_16 = QVBoxLayout()
         self.verticalLayout_16.setSpacing(30)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.verticalLayout_16.setContentsMargins(150, -1, 150, -1)
-        self.search_bar_container_4 = QWidget(self.layoutWidget7)
+        self.search_bar_container_4 = QWidget(self.update_entry_page_2)
         self.search_bar_container_4.setObjectName(u"search_bar_container_4")
         sizePolicy7.setHeightForWidth(self.search_bar_container_4.sizePolicy().hasHeightForWidth())
         self.search_bar_container_4.setSizePolicy(sizePolicy7)
@@ -1614,7 +1621,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_16.addWidget(self.search_bar_container_4)
 
-        self.update_entry_table_2 = QTableView(self.layoutWidget7)
+        self.update_entry_table_2 = QTableView(self.update_entry_page_2)
         self.update_entry_table_2.setObjectName(u"update_entry_table_2")
         self.update_entry_table_2.setStyleSheet(u"")
         self.update_entry_table_2.setFrameShape(QFrame.NoFrame)
@@ -1639,7 +1646,45 @@ class Ui_MainWindow(object):
         self.verticalLayout_16.addWidget(self.update_entry_table_2)
 
 
-        self.verticalLayout_17.addLayout(self.verticalLayout_16)
+        self.verticalLayout_19.addLayout(self.verticalLayout_16)
+
+        self.stackedWidget_5.addWidget(self.update_entry_page_2)
+        self.user_transactions_page = QWidget()
+        self.user_transactions_page.setObjectName(u"user_transactions_page")
+        self.verticalLayout_21 = QVBoxLayout(self.user_transactions_page)
+        self.verticalLayout_21.setSpacing(50)
+        self.verticalLayout_21.setObjectName(u"verticalLayout_21")
+        self.verticalLayout_21.setContentsMargins(150, -1, 150, 50)
+        self.label_11 = QLabel(self.user_transactions_page)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setFont(font8)
+        self.label_11.setStyleSheet(u"color: rgb(0, 159, 161)")
+
+        self.verticalLayout_21.addWidget(self.label_11)
+
+        self.transactions_table_2 = QTableView(self.user_transactions_page)
+        self.transactions_table_2.setObjectName(u"transactions_table_2")
+        self.transactions_table_2.setFrameShape(QFrame.NoFrame)
+        self.transactions_table_2.setFrameShadow(QFrame.Plain)
+        self.transactions_table_2.setLineWidth(0)
+        self.transactions_table_2.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.transactions_table_2.setAlternatingRowColors(True)
+        self.transactions_table_2.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.transactions_table_2.setShowGrid(False)
+        self.transactions_table_2.setSortingEnabled(True)
+        self.transactions_table_2.setCornerButtonEnabled(False)
+        self.transactions_table_2.horizontalHeader().setCascadingSectionResizes(True)
+        self.transactions_table_2.horizontalHeader().setMinimumSectionSize(100)
+        self.transactions_table_2.horizontalHeader().setDefaultSectionSize(100)
+        self.transactions_table_2.horizontalHeader().setHighlightSections(False)
+        self.transactions_table_2.horizontalHeader().setStretchLastSection(True)
+        self.transactions_table_2.verticalHeader().setVisible(False)
+
+        self.verticalLayout_21.addWidget(self.transactions_table_2)
+
+        self.stackedWidget_5.addWidget(self.user_transactions_page)
+
+        self.verticalLayout_17.addWidget(self.stackedWidget_5)
 
         self.verticalLayout_17.setStretch(0, 1)
         self.verticalLayout_17.setStretch(1, 9)
@@ -1773,7 +1818,7 @@ class Ui_MainWindow(object):
         self.login_button.setDefault(True)
         self.stackedWidget_2.setCurrentIndex(1)
         self.inventory_type_input.setCurrentIndex(-1)
-        self.stackedWidget_3.setCurrentIndex(3)
+        self.stackedWidget_3.setCurrentIndex(1)
         self.stackedWidget_4.setCurrentIndex(1)
         self.cancel_button.setDefault(False)
 
@@ -1833,6 +1878,7 @@ class Ui_MainWindow(object):
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Chemical Usage Log", None))
         self.transaction_history_button_2.setText(QCoreApplication.translate("MainWindow", u"Transaction History", None))
         self.update_entry_search_button_2.setText(QCoreApplication.translate("MainWindow", u"Search", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"TRANSACTION HISTORY", None))
         self.label_2.setText("")
         self.cu_username_label.setText(QCoreApplication.translate("MainWindow", u"Username", None))
         self.cu_password_label.setText(QCoreApplication.translate("MainWindow", u"Password", None))

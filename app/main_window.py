@@ -211,9 +211,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             else:
                 self.user_quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
 
-            layout.setStretch(0, 1)
-            layout.setStretch(1, 7)
-            layout.setStretch(2, 1)
+            # layout.setStretch(0, 1)
+            # layout.setStretch(1, 7)
+            # layout.setStretch(2, 1)
         else:
             if data["header"] == "Qty":
                 layout.addWidget(self.quantity_edit)

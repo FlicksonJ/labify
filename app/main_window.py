@@ -1,7 +1,7 @@
 from PySide6.QtCore import QTimer, Qt 
 from PySide6.QtGui import QIcon, QDoubleValidator
 from PySide6.QtSql import QSqlQuery
-from PySide6.QtWidgets import QMainWindow, QMenu, QMessageBox, QSystemTrayIcon, QTableView 
+from PySide6.QtWidgets import QLayout, QMainWindow, QMenu, QMessageBox, QSystemTrayIcon, QTableView 
 
 from app.ui.ui_main import Ui_MainWindow
 from app.quantity_edit import QuantityEdit
@@ -111,7 +111,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def show_home_screen(self, username: str):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
         self.ui.header_username_label.setText(username.upper())
-        self.show_alert_notifications()
 
         # Show screen based on 'user_type'
         # Add and/or remove 'create_user_button' based on 'user_type'
@@ -120,11 +119,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.state['user_type'] == 'admin':
             self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
+            self.show_alert_notifications()
             if not button_present:
                 self.ui.horizontalLayout_2.insertWidget(0, create_user_button)
                 create_user_button.show()
         elif self.state['user_type'] == 'user':
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.user_page)
+            self.state['item_type'] = 'chemical'
+            self.set_default_inventory_table(self.ui.update_entry_table_2)
+            table_header = self.ui.update_entry_table_2.horizontalHeader()
+            table_header.resizeSection(0, 100)        
+            table_header.resizeSection(1, 450)        
+            self.remove_current_update_input(self.ui.verticalLayout_16)
+            self.ui.update_entry_search_input_2.clear()
             if button_present:
                 create_user_button.hide()
                 self.ui.horizontalLayout_2.removeWidget(create_user_button)
@@ -163,10 +170,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.state["items_model"]:
             table.setModel(self.state["items_model"])
 
-    def remove_current_update_input(self):
-        widget_count = self.ui.verticalLayout_13.count()
+    def remove_current_update_input(self, layout: QLayout = None):
+        if not layout:
+            layout = self.ui.verticalLayout_13
+        widget_count = layout.count()
         if widget_count > 2:
-            current_edit_input = self.ui.verticalLayout_13.itemAt(widget_count - 1)
+            current_edit_input = layout.itemAt(widget_count - 1)
             widget = current_edit_input.widget()
             if widget:
                 widget.setParent(None)

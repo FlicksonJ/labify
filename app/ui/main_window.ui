@@ -963,7 +963,7 @@ QTableView::item:selected {
                  <x>60</x>
                  <y>0</y>
                  <width>181</width>
-                 <height>91</height>
+                 <height>94</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -2448,7 +2448,7 @@ margin-bottom: 6px;</string>
           </widget>
          </widget>
          <widget class="QWidget" name="user_page">
-          <widget class="QWidget" name="">
+          <widget class="QWidget" name="layoutWidget">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -2752,6 +2752,9 @@ margin-bottom: 6px;</string>
                  <bool>true</bool>
                 </attribute>
                 <attribute name="verticalHeaderVisible">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="verticalHeaderCascadingSectionResizes">
                  <bool>false</bool>
                 </attribute>
                 <attribute name="verticalHeaderHighlightSections">

@@ -1,7 +1,7 @@
 from PySide6.QtCore import QTimer, Qt 
 from PySide6.QtGui import QIcon, QDoubleValidator
 from PySide6.QtSql import QSqlQuery
-from PySide6.QtWidgets import QLayout, QMainWindow, QMenu, QMessageBox, QSystemTrayIcon, QTableView 
+from PySide6.QtWidgets import QLayout, QMainWindow, QMenu, QMessageBox, QSystemTrayIcon, QTableView, QVBoxLayout 
 
 from app.ui.ui_main import Ui_MainWindow
 from app.quantity_edit import QuantityEdit
@@ -84,6 +84,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.go_back_button.clicked.connect(self.show_user_page)
         self.ui.update_entry_search_button_2.clicked.connect(self.user_update_inventory_search)
         self.ui.update_entry_search_input_2.returnPressed.connect(self.user_update_inventory_search)
+        self.ui.update_entry_table_2.clicked.connect(self.user_update_entry_table_clicked)
 
         self.ui.inventory_type_input.currentTextChanged.connect(self.handle_inventory_page)
         # Change the value of inventory_type_input combo box to the default value
@@ -190,7 +191,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 widget.setParent(None)
 
     
-    def add_update_input(self, data: dict[str, str]):
+    def add_update_input(self, data: dict[str, str], layout: QVBoxLayout = None):
+        if not layout:
+            layout = self.ui.verticalLayout_13
         # Update entry page inputs
         self.name_edit = NameEdit(self.inventory_manager, data)
         self.quantity_edit = QuantityEdit(self.inventory_manager, self.tray_icon, data)
@@ -198,33 +201,33 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.location_edit = LocationEdit(self.inventory_manager, self.state["location_data"], data)
 
         if self.state["user_type"] == "user":
-            self.ui.verticalLayout_13.addWidget(self.user_quantity_edit)
+            layout.addWidget(self.user_quantity_edit)
             if self.state["item_type"] == "chemical":
                 self.user_quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (ml/g):')
             else:
                 self.user_quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
 
-            self.ui.verticalLayout_13.setStretch(0, 1)
-            self.ui.verticalLayout_13.setStretch(1, 7)
-            self.ui.verticalLayout_13.setStretch(2, 1)
+            layout.setStretch(0, 1)
+            layout.setStretch(1, 7)
+            layout.setStretch(2, 1)
         else:
             if data["header"] == "Qty":
-                self.ui.verticalLayout_13.addWidget(self.quantity_edit)
+                layout.addWidget(self.quantity_edit)
                 if self.state["item_type"] == "chemical":
                     self.quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (ml/g):')
                 else:
                     self.quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
-                self.ui.verticalLayout_13.setStretch(0, 1)
-                self.ui.verticalLayout_13.setStretch(1, 7)
-                self.ui.verticalLayout_13.setStretch(2, 1)
+                layout.setStretch(0, 1)
+                layout.setStretch(1, 7)
+                layout.setStretch(2, 1)
             elif data["header"] == "Name":
-                self.ui.verticalLayout_13.addWidget(self.name_edit)
+                layout.addWidget(self.name_edit)
                 self.name_edit.ui.name_input.setText(data["name"])
-                self.ui.verticalLayout_13.setStretch(0, 1)
-                self.ui.verticalLayout_13.setStretch(1, 7)
-                self.ui.verticalLayout_13.setStretch(2, 1)
+                layout.setStretch(0, 1)
+                layout.setStretch(1, 7)
+                layout.setStretch(2, 1)
             elif data["header"] == "Lab" or data["header"] == "Location":
-                self.ui.verticalLayout_13.addWidget(self.location_edit)
+                layout.addWidget(self.location_edit)
                 self.location_edit.ui.location_label.setText(f'Location ({data["name"]}):')
                 lab_index = self.location_edit.ui.lab_input.findText(data["lab"])
                 self.location_edit.ui.lab_input.setCurrentIndex(lab_index)
@@ -232,9 +235,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 location_index = self.location_edit.ui.location_input.findText(data["location"])
                 self.location_edit.ui.location_input.setCurrentIndex(location_index)
 
-                self.ui.verticalLayout_13.setStretch(0, 1)
-                self.ui.verticalLayout_13.setStretch(1, 7)
-                self.ui.verticalLayout_13.setStretch(2, 1)
+                layout.setStretch(0, 1)
+                layout.setStretch(1, 7)
+                layout.setStretch(2, 1)
         
         
     def search_inventory(self, search_term: str, table: QTableView = None):
@@ -557,6 +560,32 @@ Use Edit Entry option to change the quantity of an existing item.""")
         }
 
         self.add_update_input(data)
+
+    def user_update_entry_table_clicked(self, index):
+        self.remove_current_update_input(self.ui.verticalLayout_16)
+        row = index.row()
+        column = index.column()
+
+        model = self.state["items_model"]
+        header = model.headerData(column, Qt.Horizontal)
+        name = model.index(row, 1).data()
+        user = self.state["username"]
+        qty = model.index(row, 2).data()
+        lab = model.index(row, 3).data()
+        location = model.index(row, 4).data()
+
+        data = {
+            "table": self.ui.update_entry_table_2,
+            "item_type": self.state["item_type"],
+            "header": header,
+            "user": user,
+            "name": name,
+            "qty": qty,
+            "lab": lab,
+            "location": location
+        }
+
+        self.add_update_input(data, self.ui.verticalLayout_16)
 
     def update_inventory_search(self):
         search_term = self.ui.update_entry_search_input.text()

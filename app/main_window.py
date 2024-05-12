@@ -78,6 +78,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.ui.logout_button.clicked.connect(self.handle_logout)
         self.ui.transaction_history_button.clicked.connect(self.show_transaction_page)
+        self.ui.transaction_history_button_2.clicked.connect(self.show_user_transaction_page)
+        self.ui.go_back_button.clicked.connect(self.show_user_page)
         self.ui.alerts_button.clicked.connect(self.show_alerts_page)
 
         self.ui.inventory_type_input.currentTextChanged.connect(self.handle_inventory_page)
@@ -108,6 +110,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def set_time(self):
         self.ui.time_label.setText(utils.get_time())
 
+    def show_user_page(self):
+        self.ui.stackedWidget_2.setCurrentWidget(self.ui.user_page)
+        self.ui.stackedWidget_5.setCurrentWidget(self.ui.update_entry_page_2)
+        self.ui.update_entry_search_input_2.clear()
+        self.remove_current_update_input(self.ui.verticalLayout_16)
+
     def show_home_screen(self, username: str):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
         self.ui.header_username_label.setText(username.upper())
@@ -124,14 +132,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.ui.horizontalLayout_2.insertWidget(0, create_user_button)
                 create_user_button.show()
         elif self.state['user_type'] == 'user':
-            self.ui.stackedWidget_2.setCurrentWidget(self.ui.user_page)
             self.state['item_type'] = 'chemical'
             self.set_default_inventory_table(self.ui.update_entry_table_2)
             table_header = self.ui.update_entry_table_2.horizontalHeader()
             table_header.resizeSection(0, 100)        
             table_header.resizeSection(1, 450)        
-            self.remove_current_update_input(self.ui.verticalLayout_16)
-            self.ui.update_entry_search_input_2.clear()
+            self.show_user_page()
             if button_present:
                 create_user_button.hide()
                 self.ui.horizontalLayout_2.removeWidget(create_user_button)
@@ -346,14 +352,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
 
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.transactions_page)
-        if self.state['user_type'] == 'admin':
-            self.transactions_model = self.inventory_manager.retrieve_transactions_info()
-        else:
-            self.transactions_model = self.inventory_manager.retrieve_transactions_info(self.state['username'])
+        self.transactions_model = self.inventory_manager.retrieve_transactions_info()
         self.ui.transactions_table.setModel(self.transactions_model)
 
         # Resize table headers
         transaction_table_header = self.ui.transactions_table.horizontalHeader()
+        transaction_table_header.resizeSection(1, 150)
+        transaction_table_header.resizeSection(2, 150)
+        transaction_table_header.resizeSection(4, 350)
+
+    def show_user_transaction_page(self):
+        """
+        This slot is triggered when the transaction history button under user
+        page is clicked.
+        """
+
+        self.ui.stackedWidget_5.setCurrentWidget(self.ui.user_transactions_page)
+        self.transactions_model = self.inventory_manager.retrieve_transactions_info(self.state['username'])
+        self.ui.transactions_table_2.setModel(self.transactions_model)
+
+        # Resize table headers
+        transaction_table_header = self.ui.transactions_table_2.horizontalHeader()
         transaction_table_header.resizeSection(1, 150)
         transaction_table_header.resizeSection(2, 150)
         transaction_table_header.resizeSection(4, 350)

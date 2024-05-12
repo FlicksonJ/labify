@@ -456,7 +456,8 @@ class Ui_MainWindow(object):
 "#add_entry_cancel_button:hover,\n"
 "#delete_entry_cancel_button:hover,\n"
 "#delete_entry_delete_button:hover,\n"
-"#update_entry_cancel_button:hover{\n"
+"#update_entry_cancel_button:hover,\n"
+"#go_back_button:hover {\n"
 "	background: rgb(224, 27, 36);\n"
 "	color:#fff;\n"
 "}\n"
@@ -479,9 +480,9 @@ class Ui_MainWindow(object):
 "\n"
 "#search_button,\n"
 "#search_bar_input,\n"
-"#update_entry_search_button,\n"
-"#update_"
-                        "entry_search_button_2,\n"
+"#update_entry"
+                        "_search_button,\n"
+"#update_entry_search_button_2,\n"
 "#update_entry_search_input,\n"
 "#update_entry_search_input_2,\n"
 "#delete_entry_search_button,\n"
@@ -519,16 +520,16 @@ class Ui_MainWindow(object):
 "	padding-left: 10px;\n"
 "	padding-right: 10px;\n"
 "	margin: 0;\n"
-"	min-height: 40px;\n"
+"	min-height:"
+                        " 40px;\n"
 "}\n"
 "\n"
-"#add_e"
-                        "ntry_add_button,\n"
+"#add_entry_add_button,\n"
 "#add_entry_cancel_button,\n"
 "#update_entry_cancel_button,\n"
-"#update_entry_cancel_button_2,\n"
 "#delete_entry_delete_button,\n"
-"#delete_entry_cancel_button {\n"
+"#delete_entry_cancel_button,\n"
+"#go_back_button {\n"
 "	border: 1px solid;\n"
 "	margin: 0;\n"
 "	font-size: 18pt;\n"
@@ -544,9 +545,9 @@ class Ui_MainWindow(object):
 "\n"
 "#add_entry_cancel_button,\n"
 "#update_entry_cancel_button,\n"
-"#update_entry_cancel_button_2,\n"
 "#delete_entry_delete_button,\n"
-"#delete_entry_cancel_button {\n"
+"#delete_entry_cancel_button,\n"
+"#go_back_button {\n"
 "	color: rgb(224, 27, 36);\n"
 "	border-color: rgb(224, 27, 36);\n"
 "}\n"
@@ -1494,7 +1495,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget6.raise_()
+        self.layoutWidget2.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1655,12 +1656,25 @@ class Ui_MainWindow(object):
         self.verticalLayout_21.setSpacing(50)
         self.verticalLayout_21.setObjectName(u"verticalLayout_21")
         self.verticalLayout_21.setContentsMargins(150, -1, 150, 50)
+        self.horizontalLayout_14 = QHBoxLayout()
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.horizontalLayout_14.setContentsMargins(-1, 0, -1, -1)
         self.label_11 = QLabel(self.user_transactions_page)
         self.label_11.setObjectName(u"label_11")
         self.label_11.setFont(font8)
         self.label_11.setStyleSheet(u"color: rgb(0, 159, 161)")
 
-        self.verticalLayout_21.addWidget(self.label_11)
+        self.horizontalLayout_14.addWidget(self.label_11)
+
+        self.go_back_button = QPushButton(self.user_transactions_page)
+        self.go_back_button.setObjectName(u"go_back_button")
+
+        self.horizontalLayout_14.addWidget(self.go_back_button)
+
+        self.horizontalLayout_14.setStretch(0, 9)
+        self.horizontalLayout_14.setStretch(1, 1)
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_14)
 
         self.transactions_table_2 = QTableView(self.user_transactions_page)
         self.transactions_table_2.setObjectName(u"transactions_table_2")
@@ -1879,6 +1893,7 @@ class Ui_MainWindow(object):
         self.transaction_history_button_2.setText(QCoreApplication.translate("MainWindow", u"Transaction History", None))
         self.update_entry_search_button_2.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"TRANSACTION HISTORY", None))
+        self.go_back_button.setText(QCoreApplication.translate("MainWindow", u"Go back", None))
         self.label_2.setText("")
         self.cu_username_label.setText(QCoreApplication.translate("MainWindow", u"Username", None))
         self.cu_password_label.setText(QCoreApplication.translate("MainWindow", u"Password", None))

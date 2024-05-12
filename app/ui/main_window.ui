@@ -445,7 +445,8 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 #add_entry_cancel_button:hover,
 #delete_entry_cancel_button:hover,
 #delete_entry_delete_button:hover,
-#update_entry_cancel_button:hover{
+#update_entry_cancel_button:hover,
+#go_back_button:hover {
 	background: rgb(224, 27, 36);
 	color:#fff;
 }
@@ -513,9 +514,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 #add_entry_add_button,
 #add_entry_cancel_button,
 #update_entry_cancel_button,
-#update_entry_cancel_button_2,
 #delete_entry_delete_button,
-#delete_entry_cancel_button {
+#delete_entry_cancel_button,
+#go_back_button {
 	border: 1px solid;
 	margin: 0;
 	font-size: 18pt;
@@ -531,9 +532,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 
 #add_entry_cancel_button,
 #update_entry_cancel_button,
-#update_entry_cancel_button_2,
 #delete_entry_delete_button,
-#delete_entry_cancel_button {
+#delete_entry_cancel_button,
+#go_back_button {
 	color: rgb(224, 27, 36);
 	border-color: rgb(224, 27, 36);
 }
@@ -2791,20 +2792,34 @@ margin-bottom: 6px;</string>
                  <number>50</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_11">
-                  <property name="font">
-                   <font>
-                    <pointsize>25</pointsize>
-                    <fontweight>Light</fontweight>
-                   </font>
+                 <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="9,1">
+                  <property name="topMargin">
+                   <number>0</number>
                   </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(0, 159, 161)</string>
-                  </property>
-                  <property name="text">
-                   <string>TRANSACTION HISTORY</string>
-                  </property>
-                 </widget>
+                  <item>
+                   <widget class="QLabel" name="label_11">
+                    <property name="font">
+                     <font>
+                      <pointsize>25</pointsize>
+                      <fontweight>Light</fontweight>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(0, 159, 161)</string>
+                    </property>
+                    <property name="text">
+                     <string>TRANSACTION HISTORY</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="go_back_button">
+                    <property name="text">
+                     <string>Go back</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
                  <widget class="QTableView" name="transactions_table_2">

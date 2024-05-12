@@ -78,9 +78,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.ui.logout_button.clicked.connect(self.handle_logout)
         self.ui.transaction_history_button.clicked.connect(self.show_transaction_page)
+        self.ui.alerts_button.clicked.connect(self.show_alerts_page)
+
         self.ui.transaction_history_button_2.clicked.connect(self.show_user_transaction_page)
         self.ui.go_back_button.clicked.connect(self.show_user_page)
-        self.ui.alerts_button.clicked.connect(self.show_alerts_page)
+        self.ui.update_entry_search_button_2.clicked.connect(self.user_update_inventory_search)
+        self.ui.update_entry_search_input_2.returnPressed.connect(self.user_update_inventory_search)
 
         self.ui.inventory_type_input.currentTextChanged.connect(self.handle_inventory_page)
         # Change the value of inventory_type_input combo box to the default value
@@ -558,6 +561,10 @@ Use Edit Entry option to change the quantity of an existing item.""")
     def update_inventory_search(self):
         search_term = self.ui.update_entry_search_input.text()
         self.search_inventory(search_term, self.ui.update_entry_table)
+
+    def user_update_inventory_search(self):
+        search_term = self.ui.update_entry_search_input_2.text()
+        self.search_inventory(search_term, self.ui.update_entry_table_2)
 
     @admin_access
     def show_delete_entry_page(self):

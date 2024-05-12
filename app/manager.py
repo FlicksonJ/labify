@@ -248,6 +248,18 @@ class InventoryManager:
         JOIN Labs ON Locations.lab_id = Labs.lab_id
         WHERE StockType.type = (?)
         """
+        self.USER_RETRIEVE_ITEM_INFO_SQL = """
+        SELECT 
+            ROW_NUMBER() OVER (ORDER BY Items.item_id) AS CID, 
+            Items.name AS Name, 
+            Labs.name AS Lab,
+            Locations.name AS Location
+        FROM Items
+        JOIN StockType ON Items.stock_id = StockType.stock_id
+        JOIN Locations ON Items.location_id = Locations.loc_id
+        JOIN Labs ON Locations.lab_id = Labs.lab_id
+        WHERE StockType.type = (?)
+        """
         self.RETRIEVE_ITEM_LOCATION_SQL = """
         SELECT Labs.name AS Lab, Locations.name AS Location
         FROM Items
@@ -418,9 +430,12 @@ class InventoryManager:
             return True
 
 
-    def retrieve_item_info(self, stock_type: str) -> QSqlQueryModel | None:
+    def retrieve_item_info(self, stock_type: str, with_qty: bool = True) -> QSqlQueryModel | None:
         query = QSqlQuery()
-        query.prepare(self.RETRIEVE_ITEM_INFO_SQL)
+        if with_qty:
+            query.prepare(self.RETRIEVE_ITEM_INFO_SQL)
+        else:
+            query.prepare(self.USER_RETRIEVE_ITEM_INFO_SQL)
         query.addBindValue(stock_type)
         if not query.exec():
             print(query.lastError().text())

@@ -176,7 +176,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def set_default_inventory_table(self, table: QTableView = None):
         if not table:
             table = self.ui.item_search_table
-        self.state["items_model"] = self.inventory_manager.retrieve_item_info(self.state["item_type"])
+        if self.state["user_type"] == "admin":
+            self.state["items_model"] = self.inventory_manager.retrieve_item_info(self.state["item_type"])
+        else:
+            self.state["items_model"] = self.inventory_manager.retrieve_item_info(self.state["item_type"],
+                                                      with_qty=False)
         if self.state["items_model"]:
             table.setModel(self.state["items_model"])
 

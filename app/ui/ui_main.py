@@ -174,7 +174,8 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#alerts_button:hover,\n"
-"#transaction_history_button:hover {\n"
+"#transaction_history_button:hover,\n"
+"#transaction_history_button_2:hover {\n"
 "	background-color: rgb(52, 62, 162);\n"
 "	color:#fff;\n"
 "}\n"
@@ -183,11 +184,11 @@ class Ui_MainWindow(object):
 "	background: #fff;\n"
 "	color: rgb(52, 62, 162);\n"
 "	font-size: 18pt;\n"
-"	padding: 5px 40px 5px 40px;\n"
+"	padding: 5px 40px "
+                        "5px 40px;\n"
 "	border-radius: 5px;\n"
 "}\n"
-""
-                        "\n"
+"\n"
 "#footer {\n"
 "	background: rgb(0, 159, 161);\n"
 "}\n"
@@ -236,11 +237,11 @@ class Ui_MainWindow(object):
 "	color: rgb(224, 27, 36);\n"
 "	font-size: 25pt;\n"
 "	margin: 0;\n"
-"	padding: 0px 50px 0px 50px\n"
+"	padding: 0"
+                        "px 50px 0px 50px\n"
 "}\n"
 "\n"
-"#create_accou"
-                        "nt_button:hover{\n"
+"#create_account_button:hover{\n"
 "	background-color: rgb(52, 62, 162);\n"
 "	color: #fff;\n"
 "}\n"
@@ -254,11 +255,13 @@ class Ui_MainWindow(object):
 "	background: #fff;\n"
 "}\n"
 "\n"
-"#inventory_header {\n"
+"#inventory_header,\n"
+"#inventory_header_2 {\n"
 "	background: rgb(0, 159, 161)\n"
 "}\n"
 "\n"
-"#inventory_header QPushButton {\n"
+"#inventory_header QPushButton,\n"
+"#inventory_header_2 QPushButton {\n"
 "	background: rgb(251, 254, 255);\n"
 "	color: rgb(0, 159, 161);\n"
 "	font-size: 15pt;;\n"
@@ -290,13 +293,13 @@ class Ui_MainWindow(object):
 "#item_location_input::down-arrow,\n"
 "#item_lab_input::down-arrow\n"
 "{\n"
-"	image: url(:/icon/images/down-arrow.ico);\n"
+"	im"
+                        "age: url(:/icon/images/down-arrow.ico);\n"
 "	width: 15px;\n"
 "	height: 15px;\n"
 "	margin-right: 20px\n"
 "}\n"
-""
-                        "\n"
+"\n"
 "#item_location_input:on,\n"
 "#item_lab_input:on\n"
 "{\n"
@@ -335,7 +338,8 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#item_location_input QListView,\n"
-"#item_lab_input QListView\n"
+"#item_lab_i"
+                        "nput QListView\n"
 "{\n"
 "	color: rgb(0, 159, 161);\n"
 "}\n"
@@ -343,8 +347,7 @@ class Ui_MainWindow(object):
 "/*----*/\n"
 "\n"
 "#item_name_input:hover,\n"
-""
-                        "#item_qty_input:hover {\n"
+"#item_qty_input:hover {\n"
 "	border: 2px solid rgb(0, 159, 161);\n"
 "}\n"
 "\n"
@@ -386,13 +389,13 @@ class Ui_MainWindow(object):
 "	outline: 0px;\n"
 "}\n"
 "\n"
-"#inventory_type_input QListView::item {\n"
+"#inventory_type_input QLis"
+                        "tView::item {\n"
 "	padding-left: 10px;\n"
 "	background-color: rgb(251, 254, 255);\n"
 "}\n"
 "\n"
-"#inventory_type"
-                        "_input QListView::item:hover {\n"
+"#inventory_type_input QListView::item:hover {\n"
 "	background: rgb(0, 159, 161);\n"
 "	color: rgb(251, 254, 255);\n"
 "}\n"
@@ -433,13 +436,13 @@ class Ui_MainWindow(object):
 "#add_entry_button:hover, \n"
 "#update_entry_button:hover, \n"
 "#delete_entry_button:hover {\n"
-"	background: rgb(0, 159, 161);\n"
+"	bac"
+                        "kground: rgb(0, 159, 161);\n"
 "	color: #fff;\n"
 "}\n"
 "\n"
 "#add_entry_button:checked, \n"
-"#update_entry_button"
-                        ":checked, \n"
+"#update_entry_button:checked, \n"
 "#delete_entry_button:checked {\n"
 "	background: #fff;\n"
 "	color: rgb(52, 62, 162);\n"
@@ -460,7 +463,8 @@ class Ui_MainWindow(object):
 "\n"
 "#search_bar_container,\n"
 "#search_bar_container_2,\n"
-"#search_bar_container_3 {\n"
+"#search_bar_container_3,\n"
+"#search_bar_container_4 {\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
 "	border-radius: 15px;\n"
 "	margin: 1px;\n"
@@ -468,22 +472,25 @@ class Ui_MainWindow(object):
 "\n"
 "#search_bar_container:hover,\n"
 "#search_bar_container_2:hover,\n"
-"#search_bar_container_3:hover {\n"
+"#search_bar_container_3:hover,\n"
+"#search_bar_container_4:hover {\n"
 "	border: 2px solid rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "#search_button,\n"
 "#search_bar_input,\n"
 "#update_entry_search_button,\n"
+"#update_"
+                        "entry_search_button_2,\n"
 "#update_entry_search_input,\n"
+"#update_entry_search_input_2,\n"
 "#delete_entry_search_button,\n"
 "#delete_entry_search_input {\n"
 "	color: rgb(0, 159, 161);\n"
 "	font-size: 18pt;\n"
 "}\n"
 "\n"
-"/* Fix search button ov"
-                        "erflow error*/\n"
+"/* Fix search button overflow error*/\n"
 "#delete_entry_search_button {\n"
 "	margin-right: 30px;\n"
 "}\n"
@@ -491,7 +498,9 @@ class Ui_MainWindow(object):
 "#search_button:hover,\n"
 "#search_bar_input:hover,\n"
 "#update_entry_search_button:hover,\n"
+"#update_entry_search_button_2:hover,\n"
 "#update_entry_search_input:hover,\n"
+"#update_entry_search_input_2:hover,\n"
 "#delete_entry_search_button:hover,\n"
 "#delete_entry_search_input:hover {\n"
 "	color: rgb(52, 62, 162);\n"
@@ -499,6 +508,7 @@ class Ui_MainWindow(object):
 "\n"
 "#search_bar_input,\n"
 "#update_entry_search_input,\n"
+"#update_entry_search_input_2,\n"
 "#delete_entry_search_input {\n"
 "	padding-left: 20px;\n"
 "}\n"
@@ -512,9 +522,11 @@ class Ui_MainWindow(object):
 "	min-height: 40px;\n"
 "}\n"
 "\n"
-"#add_entry_add_button,\n"
+"#add_e"
+                        "ntry_add_button,\n"
 "#add_entry_cancel_button,\n"
 "#update_entry_cancel_button,\n"
+"#update_entry_cancel_button_2,\n"
 "#delete_entry_delete_button,\n"
 "#delete_entry_cancel_button {\n"
 "	border: 1px solid;\n"
@@ -527,12 +539,12 @@ class Ui_MainWindow(object):
 "\n"
 "#add_entry_add_button {\n"
 "	color: rgb(0, 159, 161);\n"
-"	border-color: r"
-                        "gb(0, 159, 161);\n"
+"	border-color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "#add_entry_cancel_button,\n"
 "#update_entry_cancel_button,\n"
+"#update_entry_cancel_button_2,\n"
 "#delete_entry_delete_button,\n"
 "#delete_entry_cancel_button {\n"
 "	color: rgb(224, 27, 36);\n"
@@ -549,11 +561,13 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#update_entry_search_input,\n"
+"#update_entry_search_input_2,\n"
 "#delete_entry_search_input {\n"
 "	max-width: 350px;\n"
 "}\n"
 "\n"
-"#add_entry_list {\n"
+"#add"
+                        "_entry_list {\n"
 "	padding-top: 20px;\n"
 "	margin-bottom: 30px;\n"
 "}\n"
@@ -575,8 +589,7 @@ class Ui_MainWindow(object):
 "\n"
 "QTableView QHeaderView::section {\n"
 "	background: rgb(0, 159, 161);\n"
-"	c"
-                        "olor: #fff;\n"
+"	color: #fff;\n"
 "	font-size: 20pt;\n"
 "	gridline-color: transparent;\n"
 "}\n"
@@ -602,7 +615,8 @@ class Ui_MainWindow(object):
 "    width: 30px;\n"
 "}\n"
 "\n"
-"QTableView::item {\n"
+""
+                        "QTableView::item {\n"
 "	color: rgb(0, 159, 161);\n"
 "	gridline-color: rgb(0, 159, 161);\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
@@ -800,7 +814,7 @@ class Ui_MainWindow(object):
         self.inventory_header.setMinimumSize(QSize(0, 90))
         self.layoutWidget1 = QWidget(self.inventory_header)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
-        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 101))
+        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 91))
         self.verticalLayout_6 = QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -1480,12 +1494,155 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget6.raise_()
+        self.layoutWidget.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
 
         self.stackedWidget_2.addWidget(self.inventory_page)
+        self.user_page = QWidget()
+        self.user_page.setObjectName(u"user_page")
+        self.widget = QWidget(self.user_page)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(0, 0, 1601, 751))
+        self.verticalLayout_17 = QVBoxLayout(self.widget)
+        self.verticalLayout_17.setSpacing(50)
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.verticalLayout_17.setContentsMargins(0, 0, 0, 0)
+        self.inventory_header_2 = QWidget(self.widget)
+        self.inventory_header_2.setObjectName(u"inventory_header_2")
+        self.inventory_header_2.setMinimumSize(QSize(0, 90))
+        self.horizontalLayout_10 = QHBoxLayout(self.inventory_header_2)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.horizontalLayout_10.setContentsMargins(60, 0, 60, 0)
+        self.verticalLayout_15 = QVBoxLayout()
+        self.verticalLayout_15.setSpacing(0)
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.verticalLayout_15.setContentsMargins(-1, 0, -1, 0)
+        self.time_label_2 = QLabel(self.inventory_header_2)
+        self.time_label_2.setObjectName(u"time_label_2")
+        self.time_label_2.setFont(font3)
+        self.time_label_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.verticalLayout_15.addWidget(self.time_label_2)
+
+        self.date_label_2 = QLabel(self.inventory_header_2)
+        self.date_label_2.setObjectName(u"date_label_2")
+        self.date_label_2.setFont(font4)
+        self.date_label_2.setTextFormat(Qt.AutoText)
+        self.date_label_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.verticalLayout_15.addWidget(self.date_label_2)
+
+
+        self.horizontalLayout_10.addLayout(self.verticalLayout_15)
+
+        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_10.addItem(self.horizontalSpacer_11)
+
+        self.label_8 = QLabel(self.inventory_header_2)
+        self.label_8.setObjectName(u"label_8")
+        font11 = QFont()
+        font11.setPointSize(23)
+        font11.setWeight(QFont.Medium)
+        self.label_8.setFont(font11)
+
+        self.horizontalLayout_10.addWidget(self.label_8)
+
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_10.addItem(self.horizontalSpacer_10)
+
+        self.transaction_history_button_2 = QPushButton(self.inventory_header_2)
+        self.transaction_history_button_2.setObjectName(u"transaction_history_button_2")
+        sizePolicy5.setHeightForWidth(self.transaction_history_button_2.sizePolicy().hasHeightForWidth())
+        self.transaction_history_button_2.setSizePolicy(sizePolicy5)
+        self.transaction_history_button_2.setMinimumSize(QSize(200, 0))
+        self.transaction_history_button_2.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_10.addWidget(self.transaction_history_button_2)
+
+
+        self.verticalLayout_17.addWidget(self.inventory_header_2)
+
+        self.verticalLayout_16 = QVBoxLayout()
+        self.verticalLayout_16.setSpacing(30)
+        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
+        self.verticalLayout_16.setContentsMargins(150, -1, 150, -1)
+        self.search_bar_container_4 = QWidget(self.widget)
+        self.search_bar_container_4.setObjectName(u"search_bar_container_4")
+        sizePolicy7.setHeightForWidth(self.search_bar_container_4.sizePolicy().hasHeightForWidth())
+        self.search_bar_container_4.setSizePolicy(sizePolicy7)
+        self.search_bar_container_4.setMinimumSize(QSize(0, 45))
+        self.search_bar_container_4.setMaximumSize(QSize(560, 16777215))
+        self.horizontalLayoutWidget_6 = QWidget(self.search_bar_container_4)
+        self.horizontalLayoutWidget_6.setObjectName(u"horizontalLayoutWidget_6")
+        self.horizontalLayoutWidget_6.setGeometry(QRect(-1, 0, 561, 42))
+        self.horizontalLayout_21 = QHBoxLayout(self.horizontalLayoutWidget_6)
+        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
+        self.horizontalLayout_21.setContentsMargins(0, 0, 0, 0)
+        self.update_entry_search_input_2 = QLineEdit(self.horizontalLayoutWidget_6)
+        self.update_entry_search_input_2.setObjectName(u"update_entry_search_input_2")
+        sizePolicy.setHeightForWidth(self.update_entry_search_input_2.sizePolicy().hasHeightForWidth())
+        self.update_entry_search_input_2.setSizePolicy(sizePolicy)
+        self.update_entry_search_input_2.setMinimumSize(QSize(0, 0))
+
+        self.horizontalLayout_21.addWidget(self.update_entry_search_input_2)
+
+        self.line_4 = QFrame(self.horizontalLayoutWidget_6)
+        self.line_4.setObjectName(u"line_4")
+        self.line_4.setStyleSheet(u"background: rgb(0, 159, 161);\n"
+"margin-top: 8px;\n"
+"margin-bottom: 6px;")
+        self.line_4.setFrameShape(QFrame.VLine)
+        self.line_4.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_21.addWidget(self.line_4)
+
+        self.update_entry_search_button_2 = QPushButton(self.horizontalLayoutWidget_6)
+        self.update_entry_search_button_2.setObjectName(u"update_entry_search_button_2")
+        sizePolicy.setHeightForWidth(self.update_entry_search_button_2.sizePolicy().hasHeightForWidth())
+        self.update_entry_search_button_2.setSizePolicy(sizePolicy)
+        self.update_entry_search_button_2.setMinimumSize(QSize(0, 40))
+        self.update_entry_search_button_2.setMaximumSize(QSize(16777215, 16777215))
+        self.update_entry_search_button_2.setFont(font6)
+        self.update_entry_search_button_2.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_21.addWidget(self.update_entry_search_button_2)
+
+
+        self.verticalLayout_16.addWidget(self.search_bar_container_4)
+
+        self.update_entry_table_2 = QTableView(self.widget)
+        self.update_entry_table_2.setObjectName(u"update_entry_table_2")
+        self.update_entry_table_2.setStyleSheet(u"")
+        self.update_entry_table_2.setFrameShape(QFrame.NoFrame)
+        self.update_entry_table_2.setFrameShadow(QFrame.Plain)
+        self.update_entry_table_2.setLineWidth(0)
+        self.update_entry_table_2.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.update_entry_table_2.setAlternatingRowColors(True)
+        self.update_entry_table_2.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.update_entry_table_2.setShowGrid(False)
+        self.update_entry_table_2.setSortingEnabled(False)
+        self.update_entry_table_2.setCornerButtonEnabled(False)
+        self.update_entry_table_2.horizontalHeader().setCascadingSectionResizes(True)
+        self.update_entry_table_2.horizontalHeader().setMinimumSectionSize(100)
+        self.update_entry_table_2.horizontalHeader().setDefaultSectionSize(200)
+        self.update_entry_table_2.horizontalHeader().setHighlightSections(False)
+        self.update_entry_table_2.horizontalHeader().setProperty("showSortIndicator", False)
+        self.update_entry_table_2.horizontalHeader().setStretchLastSection(True)
+        self.update_entry_table_2.verticalHeader().setVisible(False)
+        self.update_entry_table_2.verticalHeader().setHighlightSections(True)
+
+        self.verticalLayout_16.addWidget(self.update_entry_table_2)
+
+
+        self.verticalLayout_17.addLayout(self.verticalLayout_16)
+
+        self.verticalLayout_17.setStretch(0, 1)
+        self.verticalLayout_17.setStretch(1, 9)
+        self.stackedWidget_2.addWidget(self.user_page)
         self.create_user_page = QWidget()
         self.create_user_page.setObjectName(u"create_user_page")
         self.layoutWidget7 = QWidget(self.create_user_page)
@@ -1494,22 +1651,22 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3 = QHBoxLayout(self.layoutWidget7)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.widget = QWidget(self.layoutWidget7)
-        self.widget.setObjectName(u"widget")
+        self.widget1 = QWidget(self.layoutWidget7)
+        self.widget1.setObjectName(u"widget1")
         sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy8.setHorizontalStretch(0)
         sizePolicy8.setVerticalStretch(3)
-        sizePolicy8.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
-        self.widget.setSizePolicy(sizePolicy8)
-        self.widget.setStyleSheet(u"")
-        self.label_2 = QLabel(self.widget)
+        sizePolicy8.setHeightForWidth(self.widget1.sizePolicy().hasHeightForWidth())
+        self.widget1.setSizePolicy(sizePolicy8)
+        self.widget1.setStyleSheet(u"")
+        self.label_2 = QLabel(self.widget1)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(0, 0, 800, 770))
         self.label_2.setLineWidth(0)
         self.label_2.setPixmap(QPixmap(u":/images/images/create_user.jpeg"))
         self.label_2.setScaledContents(True)
 
-        self.horizontalLayout_3.addWidget(self.widget)
+        self.horizontalLayout_3.addWidget(self.widget1)
 
         self.create_user_form = QWidget(self.layoutWidget7)
         self.create_user_form.setObjectName(u"create_user_form")
@@ -1528,9 +1685,9 @@ class Ui_MainWindow(object):
 
         self.cu_username_input = QLineEdit(self.verticalLayoutWidget_2)
         self.cu_username_input.setObjectName(u"cu_username_input")
-        font11 = QFont()
-        font11.setPointSize(21)
-        self.cu_username_input.setFont(font11)
+        font12 = QFont()
+        font12.setPointSize(21)
+        self.cu_username_input.setFont(font12)
         self.cu_username_input.setFrame(True)
 
         self.verticalLayout_3.addWidget(self.cu_username_input)
@@ -1542,7 +1699,7 @@ class Ui_MainWindow(object):
 
         self.cu_password_input = QLineEdit(self.verticalLayoutWidget_2)
         self.cu_password_input.setObjectName(u"cu_password_input")
-        self.cu_password_input.setFont(font11)
+        self.cu_password_input.setFont(font12)
         self.cu_password_input.setEchoMode(QLineEdit.Password)
 
         self.verticalLayout_3.addWidget(self.cu_password_input)
@@ -1554,7 +1711,7 @@ class Ui_MainWindow(object):
 
         self.cu_confirm_password_input = QLineEdit(self.verticalLayoutWidget_2)
         self.cu_confirm_password_input.setObjectName(u"cu_confirm_password_input")
-        self.cu_confirm_password_input.setFont(font11)
+        self.cu_confirm_password_input.setFont(font12)
         self.cu_confirm_password_input.setEchoMode(QLineEdit.Password)
 
         self.verticalLayout_3.addWidget(self.cu_confirm_password_input)
@@ -1613,6 +1770,7 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.setCurrentIndex(1)
         self.login_button.setDefault(True)
+        self.stackedWidget_2.setCurrentIndex(1)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)
         self.stackedWidget_4.setCurrentIndex(1)
@@ -1669,6 +1827,11 @@ class Ui_MainWindow(object):
         self.add_entry_button.setText(QCoreApplication.translate("MainWindow", u"Add Entry", None))
         self.update_entry_button.setText(QCoreApplication.translate("MainWindow", u"Edit Entry", None))
         self.delete_entry_button.setText(QCoreApplication.translate("MainWindow", u"Remove Entry", None))
+        self.time_label_2.setText(QCoreApplication.translate("MainWindow", u"12:00 AM", None))
+        self.date_label_2.setText(QCoreApplication.translate("MainWindow", u"20 Feb, 2024", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Chemical Usage Log", None))
+        self.transaction_history_button_2.setText(QCoreApplication.translate("MainWindow", u"Transaction History", None))
+        self.update_entry_search_button_2.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.label_2.setText("")
         self.cu_username_label.setText(QCoreApplication.translate("MainWindow", u"Username", None))
         self.cu_password_label.setText(QCoreApplication.translate("MainWindow", u"Password", None))

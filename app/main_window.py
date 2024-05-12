@@ -111,18 +111,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def show_home_screen(self, username: str):
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
         self.ui.header_username_label.setText(username.upper())
-        self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
-        self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
         self.show_alert_notifications()
 
+        # Show screen based on 'user_type'
         # Add and/or remove 'create_user_button' based on 'user_type'
         create_user_button = self.ui.create_user_button
         button_present = self.ui.horizontalLayout_2.count() > 1
         if self.state['user_type'] == 'admin':
+            self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
+            self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
             if not button_present:
                 self.ui.horizontalLayout_2.insertWidget(0, create_user_button)
                 create_user_button.show()
         elif self.state['user_type'] == 'user':
+            self.ui.stackedWidget_2.setCurrentWidget(self.ui.user_page)
             if button_present:
                 create_user_button.hide()
                 self.ui.horizontalLayout_2.removeWidget(create_user_button)

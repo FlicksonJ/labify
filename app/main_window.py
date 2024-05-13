@@ -574,9 +574,15 @@ Use Edit Entry option to change the quantity of an existing item.""")
         header = model.headerData(column, Qt.Horizontal)
         name = model.index(row, 1).data()
         user = self.state["username"]
-        qty = model.index(row, 2).data()
-        lab = model.index(row, 3).data()
-        location = model.index(row, 4).data()
+        lab = model.index(row, 2).data()
+        location = model.index(row, 3).data()
+        loc_id = self.inventory_manager.retrieve_loc_id(lab, location)
+        qty = self.inventory_manager.retrieve_qty(name, loc_id)
+        print(name)
+        print(lab)
+        print(location)
+        print(loc_id)
+        print(qty)
 
         data = {
             "table": self.ui.update_entry_table_2,

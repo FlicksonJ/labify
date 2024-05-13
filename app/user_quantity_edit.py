@@ -73,7 +73,7 @@ class UserQuantityEdit(QWidget):
         if self.inventory_manager.remove_qty_from_item(name, lab, location, qty):
             utils.show_message("Qty updated", f"Removed {qty} from the stock")
             self.inventory_manager.add_transaction(transaction)
-            self.data["table"].setModel(self.inventory_manager.retrieve_item_info(self.data["item_type"]))
+            self.data["table"].setModel(self.inventory_manager.retrieve_item_info(self.data["item_type"], with_qty=False))
         else:
             utils.show_message("Error", "Cannot update qty")
 

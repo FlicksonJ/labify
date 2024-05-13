@@ -305,6 +305,10 @@ class InventoryManager:
         SET qty = qty - (?)
         WHERE name = (?) AND location_id = (?)
         """
+        self.GET_ITEM_QTY_SQL = """
+        SELECT qty FROM Items
+        WHERE name = (?) AND location_id = (?)
+        """
         self.DELETE_ITEM_SQL = """
         DELETE FROM Items
         WHERE name = (?) AND location_id = (?)
@@ -519,6 +523,22 @@ class InventoryManager:
             print(query.lastError().text())
 
         return loc_id
+
+    def retrieve_qty(self, name: str, loc_id: int) -> float | None:
+        qty = -1.0
+        query = QSqlQuery()
+        query.prepare(self.GET_ITEM_QTY_SQL)
+        query.addBindValue(name)
+        query.addBindValue(loc_id)
+        query.exec()
+        while query.next():
+            qty = query.value("qty")
+
+        if qty == -1.0:
+            print(query.lastError().text())
+            return None
+
+        return qty
 
     def update_item_location(self, 
                              name: str, 

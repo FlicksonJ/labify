@@ -54,6 +54,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.timer.start(1000)
         self.set_time()
         self.ui.date_label.setText(utils.get_date())
+        self.ui.date_label_2.setText(utils.get_date())
 
         # Set input validators
         self.ui.item_qty_input.setValidator(QDoubleValidator())
@@ -113,6 +114,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def set_time(self):
         self.ui.time_label.setText(utils.get_time())
+        self.ui.time_label_2.setText(utils.get_time())
 
     def show_user_page(self):
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.user_page)

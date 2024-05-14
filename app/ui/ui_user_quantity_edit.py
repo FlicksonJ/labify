@@ -16,15 +16,16 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLineEdit,
-    QPushButton, QSizePolicy, QSpacerItem, QWidget)
+    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
 
 class Ui_UserQuantityEdit(object):
     def setupUi(self, UserQuantityEdit):
         if not UserQuantityEdit.objectName():
             UserQuantityEdit.setObjectName(u"UserQuantityEdit")
-        UserQuantityEdit.resize(893, 63)
+        UserQuantityEdit.resize(893, 89)
         UserQuantityEdit.setMinimumSize(QSize(0, 55))
-        UserQuantityEdit.setMaximumSize(QSize(16777215, 63))
+        UserQuantityEdit.setMaximumSize(QSize(16777215, 100))
         font = QFont()
         font.setPointSize(18)
         UserQuantityEdit.setFont(font)
@@ -65,7 +66,18 @@ class Ui_UserQuantityEdit(object):
 "	color: #fff;\n"
 "}\n"
 "")
-        self.horizontalLayout = QHBoxLayout(UserQuantityEdit)
+        self.verticalLayout = QVBoxLayout(UserQuantityEdit)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.label = QLabel(UserQuantityEdit)
+        self.label.setObjectName(u"label")
+        font1 = QFont()
+        font1.setPointSize(15)
+        font1.setItalic(True)
+        self.label.setFont(font1)
+
+        self.verticalLayout.addWidget(self.label)
+
+        self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.qty_label = QLabel(UserQuantityEdit)
         self.qty_label.setObjectName(u"qty_label")
@@ -93,10 +105,9 @@ class Ui_UserQuantityEdit(object):
 
         self.horizontalLayout.addWidget(self.used_button)
 
-        self.horizontalLayout.setStretch(0, 1)
-        self.horizontalLayout.setStretch(1, 3)
-        self.horizontalLayout.setStretch(2, 6)
-        self.horizontalLayout.setStretch(3, 2)
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
+
 
         self.retranslateUi(UserQuantityEdit)
 
@@ -105,6 +116,7 @@ class Ui_UserQuantityEdit(object):
 
     def retranslateUi(self, UserQuantityEdit):
         UserQuantityEdit.setWindowTitle(QCoreApplication.translate("UserQuantityEdit", u"Form", None))
+        self.label.setText(QCoreApplication.translate("UserQuantityEdit", u"Enter the quantity of item used.", None))
         self.qty_label.setText(QCoreApplication.translate("UserQuantityEdit", u"Qty", None))
         self.used_button.setText(QCoreApplication.translate("UserQuantityEdit", u"Used", None))
     # retranslateUi

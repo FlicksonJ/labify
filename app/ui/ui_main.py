@@ -1103,7 +1103,7 @@ class Ui_MainWindow(object):
         self.update_entry_label.setObjectName(u"update_entry_label")
         self.update_entry_label.setMaximumSize(QSize(340, 16777215))
         font9 = QFont()
-        font9.setPointSize(27)
+        font9.setPointSize(21)
         font9.setWeight(QFont.Light)
         self.update_entry_label.setFont(font9)
         self.update_entry_label.setStyleSheet(u"color: rgb(0, 159, 161);")
@@ -1174,6 +1174,20 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_13.addLayout(self.horizontalLayout_16)
+
+        self.label_15 = QLabel(self.verticalLayoutWidget_6)
+        self.label_15.setObjectName(u"label_15")
+        sizePolicy1.setHeightForWidth(self.label_15.sizePolicy().hasHeightForWidth())
+        self.label_15.setSizePolicy(sizePolicy1)
+        self.label_15.setMaximumSize(QSize(16777215, 24))
+        font10 = QFont()
+        font10.setPointSize(15)
+        font10.setItalic(True)
+        self.label_15.setFont(font10)
+        self.label_15.setStyleSheet(u"background-color:rgb(0, 159, 161);\n"
+"padding: 5px;")
+
+        self.verticalLayout_13.addWidget(self.label_15)
 
         self.update_entry_table = QTableView(self.verticalLayoutWidget_6)
         self.update_entry_table.setObjectName(u"update_entry_table")
@@ -1299,9 +1313,9 @@ class Ui_MainWindow(object):
         self.item_name_input.setSizePolicy(sizePolicy)
         self.item_name_input.setMinimumSize(QSize(510, 0))
         self.item_name_input.setMaximumSize(QSize(500, 16777215))
-        font10 = QFont()
-        font10.setPointSize(15)
-        self.item_name_input.setFont(font10)
+        font11 = QFont()
+        font11.setPointSize(15)
+        self.item_name_input.setFont(font11)
 
         self.horizontalLayout_13.addWidget(self.item_name_input)
 
@@ -1353,15 +1367,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
         self.delete_entry_label = QLabel(self.verticalLayoutWidget_7)
         self.delete_entry_label.setObjectName(u"delete_entry_label")
-        self.delete_entry_label.setMaximumSize(QSize(340, 16777215))
+        self.delete_entry_label.setMaximumSize(QSize(3456789, 16777215))
         self.delete_entry_label.setFont(font9)
         self.delete_entry_label.setStyleSheet(u"color: rgb(0, 159, 161);")
 
         self.horizontalLayout_18.addWidget(self.delete_entry_label)
-
-        self.horizontalSpacer_8 = QSpacerItem(50, 0, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_18.addItem(self.horizontalSpacer_8)
 
         self.search_bar_container_3 = QWidget(self.verticalLayoutWidget_7)
         self.search_bar_container_3.setObjectName(u"search_bar_container_3")
@@ -1407,10 +1417,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_18.addWidget(self.search_bar_container_3)
 
-        self.horizontalSpacer_9 = QSpacerItem(120, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_18.addItem(self.horizontalSpacer_9)
-
         self.delete_entry_cancel_button = QPushButton(self.verticalLayoutWidget_7)
         self.delete_entry_cancel_button.setObjectName(u"delete_entry_cancel_button")
         self.delete_entry_cancel_button.setMaximumSize(QSize(120, 16777215))
@@ -1422,11 +1428,27 @@ class Ui_MainWindow(object):
         self.delete_entry_delete_button.setObjectName(u"delete_entry_delete_button")
         self.delete_entry_delete_button.setMaximumSize(QSize(120, 16777215))
         self.delete_entry_delete_button.setCursor(QCursor(Qt.PointingHandCursor))
+        self.delete_entry_delete_button.setStyleSheet(u"margin: 0;")
 
         self.horizontalLayout_18.addWidget(self.delete_entry_delete_button)
 
 
         self.verticalLayout_14.addLayout(self.horizontalLayout_18)
+
+        self.label_14 = QLabel(self.verticalLayoutWidget_7)
+        self.label_14.setObjectName(u"label_14")
+        sizePolicy1.setHeightForWidth(self.label_14.sizePolicy().hasHeightForWidth())
+        self.label_14.setSizePolicy(sizePolicy1)
+        self.label_14.setMaximumSize(QSize(16777215, 24))
+        font12 = QFont()
+        font12.setPointSize(15)
+        font12.setItalic(True)
+        font12.setUnderline(False)
+        self.label_14.setFont(font12)
+        self.label_14.setStyleSheet(u"background-color: rgb(0, 159, 161);\n"
+"padding: 5px;")
+
+        self.verticalLayout_14.addWidget(self.label_14)
 
         self.delete_entry_table = QTableView(self.verticalLayoutWidget_7)
         self.delete_entry_table.setObjectName(u"delete_entry_table")
@@ -1453,7 +1475,7 @@ class Ui_MainWindow(object):
         self.stackedWidget_4.addWidget(self.delete_entry_page)
         self.layoutWidget6 = QWidget(self.inventory_view_page)
         self.layoutWidget6.setObjectName(u"layoutWidget6")
-        self.layoutWidget6.setGeometry(QRect(60, 190, 161, 200))
+        self.layoutWidget6.setGeometry(QRect(40, 190, 211, 200))
         self.verticalLayout_9 = QVBoxLayout(self.layoutWidget6)
         self.verticalLayout_9.setSpacing(1)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
@@ -1488,14 +1510,14 @@ class Ui_MainWindow(object):
         self.delete_entry_button = QPushButton(self.layoutWidget6)
         self.item_manage.addButton(self.delete_entry_button)
         self.delete_entry_button.setObjectName(u"delete_entry_button")
-        self.delete_entry_button.setFont(font10)
+        self.delete_entry_button.setFont(font11)
         self.delete_entry_button.setCursor(QCursor(Qt.PointingHandCursor))
         self.delete_entry_button.setCheckable(True)
 
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget2.raise_()
+        self.layoutWidget.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1544,10 +1566,10 @@ class Ui_MainWindow(object):
 
         self.label_8 = QLabel(self.inventory_header_2)
         self.label_8.setObjectName(u"label_8")
-        font11 = QFont()
-        font11.setPointSize(23)
-        font11.setWeight(QFont.Medium)
-        self.label_8.setFont(font11)
+        font13 = QFont()
+        font13.setPointSize(23)
+        font13.setWeight(QFont.Medium)
+        self.label_8.setFont(font13)
 
         self.horizontalLayout_10.addWidget(self.label_8)
 
@@ -1621,6 +1643,17 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_16.addWidget(self.search_bar_container_4)
+
+        self.label_16 = QLabel(self.update_entry_page_2)
+        self.label_16.setObjectName(u"label_16")
+        sizePolicy1.setHeightForWidth(self.label_16.sizePolicy().hasHeightForWidth())
+        self.label_16.setSizePolicy(sizePolicy1)
+        self.label_16.setMaximumSize(QSize(16777215, 24))
+        self.label_16.setFont(font10)
+        self.label_16.setStyleSheet(u"background-color:rgb(0, 159, 161);\n"
+"padding: 5px;")
+
+        self.verticalLayout_16.addWidget(self.label_16)
 
         self.update_entry_table_2 = QTableView(self.update_entry_page_2)
         self.update_entry_table_2.setObjectName(u"update_entry_table_2")
@@ -1745,9 +1778,9 @@ class Ui_MainWindow(object):
 
         self.cu_username_input = QLineEdit(self.verticalLayoutWidget_2)
         self.cu_username_input.setObjectName(u"cu_username_input")
-        font12 = QFont()
-        font12.setPointSize(21)
-        self.cu_username_input.setFont(font12)
+        font14 = QFont()
+        font14.setPointSize(21)
+        self.cu_username_input.setFont(font14)
         self.cu_username_input.setFrame(True)
 
         self.verticalLayout_3.addWidget(self.cu_username_input)
@@ -1759,7 +1792,7 @@ class Ui_MainWindow(object):
 
         self.cu_password_input = QLineEdit(self.verticalLayoutWidget_2)
         self.cu_password_input.setObjectName(u"cu_password_input")
-        self.cu_password_input.setFont(font12)
+        self.cu_password_input.setFont(font14)
         self.cu_password_input.setEchoMode(QLineEdit.Password)
 
         self.verticalLayout_3.addWidget(self.cu_password_input)
@@ -1771,7 +1804,7 @@ class Ui_MainWindow(object):
 
         self.cu_confirm_password_input = QLineEdit(self.verticalLayoutWidget_2)
         self.cu_confirm_password_input.setObjectName(u"cu_confirm_password_input")
-        self.cu_confirm_password_input.setFont(font12)
+        self.cu_confirm_password_input.setFont(font14)
         self.cu_confirm_password_input.setEchoMode(QLineEdit.Password)
 
         self.verticalLayout_3.addWidget(self.cu_confirm_password_input)
@@ -1830,10 +1863,10 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.setCurrentIndex(1)
         self.login_button.setDefault(True)
-        self.stackedWidget_2.setCurrentIndex(1)
+        self.stackedWidget_2.setCurrentIndex(0)
         self.inventory_type_input.setCurrentIndex(-1)
-        self.stackedWidget_3.setCurrentIndex(1)
-        self.stackedWidget_4.setCurrentIndex(1)
+        self.stackedWidget_3.setCurrentIndex(3)
+        self.stackedWidget_4.setCurrentIndex(3)
         self.cancel_button.setDefault(False)
 
 
@@ -1866,9 +1899,10 @@ class Ui_MainWindow(object):
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"TRANSACTION HISTORY", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"ALERTS", None))
         self.search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
-        self.update_entry_label.setText(QCoreApplication.translate("MainWindow", u"EDIT GLASSWARE", None))
+        self.update_entry_label.setText(QCoreApplication.translate("MainWindow", u"EDIT EXISTING GLASSWARE", None))
         self.update_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.update_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Go Back", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Click any cell of the teble to select the item", None))
         self.add_entry_label.setText(QCoreApplication.translate("MainWindow", u"ADD NEW GLASSWARE", None))
         self.add_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Go Back", None))
         self.add_entry_add_button.setText(QCoreApplication.translate("MainWindow", u"Add", None))
@@ -1879,19 +1913,21 @@ class Ui_MainWindow(object):
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"Lab", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"Location", None))
         self.add_entry_inputs.setTitle(QCoreApplication.translate("MainWindow", u"GroupBox", None))
-        self.delete_entry_label.setText(QCoreApplication.translate("MainWindow", u"REMOVE GLASSWARE", None))
+        self.delete_entry_label.setText(QCoreApplication.translate("MainWindow", u"REMOVE EXISTING GLASSWARE", None))
         self.delete_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.delete_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Go Back", None))
         self.delete_entry_delete_button.setText(QCoreApplication.translate("MainWindow", u"Remove", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Click any cell of the table to select the item", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"OPTIONS", None))
-        self.add_entry_button.setText(QCoreApplication.translate("MainWindow", u"Add Entry", None))
-        self.update_entry_button.setText(QCoreApplication.translate("MainWindow", u"Edit Entry", None))
-        self.delete_entry_button.setText(QCoreApplication.translate("MainWindow", u"Remove Entry", None))
+        self.add_entry_button.setText(QCoreApplication.translate("MainWindow", u"Add New Item", None))
+        self.update_entry_button.setText(QCoreApplication.translate("MainWindow", u"Edit Existing Item", None))
+        self.delete_entry_button.setText(QCoreApplication.translate("MainWindow", u"Remove Existing Item", None))
         self.time_label_2.setText(QCoreApplication.translate("MainWindow", u"12:00 AM", None))
         self.date_label_2.setText(QCoreApplication.translate("MainWindow", u"20 Feb, 2024", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Chemical Usage Log", None))
         self.transaction_history_button_2.setText(QCoreApplication.translate("MainWindow", u"Transaction History", None))
         self.update_entry_search_button_2.setText(QCoreApplication.translate("MainWindow", u"Search", None))
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"Click any cell of the teble to select the item", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"TRANSACTION HISTORY", None))
         self.go_back_button.setText(QCoreApplication.translate("MainWindow", u"Go back", None))
         self.label_2.setText("")

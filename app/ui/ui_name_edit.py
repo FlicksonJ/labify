@@ -16,14 +16,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLineEdit,
-    QPushButton, QSizePolicy, QSpacerItem, QWidget)
+    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
 
 class Ui_NameEdit(object):
     def setupUi(self, NameEdit):
         if not NameEdit.objectName():
             NameEdit.setObjectName(u"NameEdit")
-        NameEdit.resize(1110, 55)
-        NameEdit.setMaximumSize(QSize(16777215, 55))
+        NameEdit.resize(1110, 95)
+        NameEdit.setMaximumSize(QSize(16777215, 100))
         NameEdit.setStyleSheet(u"* {\n"
 "	background: #fff\n"
 "}\n"
@@ -61,14 +62,30 @@ class Ui_NameEdit(object):
 "	color: #fff;\n"
 "}\n"
 "")
-        self.horizontalLayout = QHBoxLayout(NameEdit)
+        self.verticalLayout = QVBoxLayout(NameEdit)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.label = QLabel(NameEdit)
+        self.label.setObjectName(u"label")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
+        font = QFont()
+        font.setPointSize(15)
+        font.setItalic(True)
+        self.label.setFont(font)
+
+        self.verticalLayout.addWidget(self.label)
+
+        self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.name_label = QLabel(NameEdit)
         self.name_label.setObjectName(u"name_label")
         self.name_label.setMaximumSize(QSize(16777215, 45))
-        font = QFont()
-        font.setPointSize(18)
-        self.name_label.setFont(font)
+        font1 = QFont()
+        font1.setPointSize(18)
+        self.name_label.setFont(font1)
 
         self.horizontalLayout.addWidget(self.name_label)
 
@@ -76,7 +93,7 @@ class Ui_NameEdit(object):
         self.name_input.setObjectName(u"name_input")
         self.name_input.setMinimumSize(QSize(510, 0))
         self.name_input.setMaximumSize(QSize(510, 45))
-        self.name_input.setFont(font)
+        self.name_input.setFont(font1)
 
         self.horizontalLayout.addWidget(self.name_input)
 
@@ -87,14 +104,13 @@ class Ui_NameEdit(object):
         self.update_name_button = QPushButton(NameEdit)
         self.update_name_button.setObjectName(u"update_name_button")
         self.update_name_button.setMaximumSize(QSize(16777215, 45))
-        self.update_name_button.setFont(font)
+        self.update_name_button.setFont(font1)
 
         self.horizontalLayout.addWidget(self.update_name_button)
 
-        self.horizontalLayout.setStretch(0, 1)
-        self.horizontalLayout.setStretch(1, 5)
-        self.horizontalLayout.setStretch(2, 5)
-        self.horizontalLayout.setStretch(3, 1)
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
+
 
         self.retranslateUi(NameEdit)
 
@@ -103,6 +119,7 @@ class Ui_NameEdit(object):
 
     def retranslateUi(self, NameEdit):
         NameEdit.setWindowTitle(QCoreApplication.translate("NameEdit", u"Form", None))
+        self.label.setText(QCoreApplication.translate("NameEdit", u"Enter the new name for the selected item", None))
         self.name_label.setText(QCoreApplication.translate("NameEdit", u"Name", None))
         self.update_name_button.setText(QCoreApplication.translate("NameEdit", u"Update Name", None))
     # retranslateUi

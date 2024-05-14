@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'location_edit_inputAVQFLA.ui'
+## Form generated from reading UI file 'location_edit_inputKkxIwk.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.2
 ##
@@ -16,15 +16,16 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
-    QPushButton, QSizePolicy, QSpacerItem, QWidget)
+    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
 from . import resources_rc
 
 class Ui_LocationEdit(object):
     def setupUi(self, LocationEdit):
         if not LocationEdit.objectName():
             LocationEdit.setObjectName(u"LocationEdit")
-        LocationEdit.resize(815, 63)
-        LocationEdit.setMaximumSize(QSize(16777215, 63))
+        LocationEdit.resize(842, 87)
+        LocationEdit.setMaximumSize(QSize(16777215, 100))
         LocationEdit.setStyleSheet(u"* {\n"
 "       background: #fff\n"
 "}\n"
@@ -87,7 +88,8 @@ class Ui_LocationEdit(object):
 "       image: url(:/icon/images/down-arrow.ico);\n"
 "       width: 15px;\n"
 "       height: 15px;\n"
-"       margin-right: 20px\n"
+"       margin-right: 20px;\n"
+"		margin-left: 20px;\n"
 "}\n"
 "\n"
 "#location_input:on,\n"
@@ -95,7 +97,18 @@ class Ui_LocationEdit(object):
 "{\n"
 "       border: 2px solid rgba(0, 159, 161, 10%);\n"
 "}")
-        self.horizontalLayout = QHBoxLayout(LocationEdit)
+        self.verticalLayout = QVBoxLayout(LocationEdit)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.label = QLabel(LocationEdit)
+        self.label.setObjectName(u"label")
+        font = QFont()
+        font.setPointSize(15)
+        font.setItalic(True)
+        self.label.setFont(font)
+
+        self.verticalLayout.addWidget(self.label)
+
+        self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.location_label = QLabel(LocationEdit)
         self.location_label.setObjectName(u"location_label")
@@ -105,23 +118,23 @@ class Ui_LocationEdit(object):
         sizePolicy.setHeightForWidth(self.location_label.sizePolicy().hasHeightForWidth())
         self.location_label.setSizePolicy(sizePolicy)
         self.location_label.setMaximumSize(QSize(16777215, 45))
-        font = QFont()
-        font.setPointSize(18)
-        self.location_label.setFont(font)
+        font1 = QFont()
+        font1.setPointSize(18)
+        self.location_label.setFont(font1)
 
         self.horizontalLayout.addWidget(self.location_label)
 
         self.lab_input = QComboBox(LocationEdit)
         self.lab_input.setObjectName(u"lab_input")
         self.lab_input.setMaximumSize(QSize(16777215, 45))
-        self.lab_input.setFont(font)
+        self.lab_input.setFont(font1)
 
         self.horizontalLayout.addWidget(self.lab_input)
 
         self.location_input = QComboBox(LocationEdit)
         self.location_input.setObjectName(u"location_input")
         self.location_input.setMaximumSize(QSize(16777215, 45))
-        self.location_input.setFont(font)
+        self.location_input.setFont(font1)
 
         self.horizontalLayout.addWidget(self.location_input)
 
@@ -132,14 +145,13 @@ class Ui_LocationEdit(object):
         self.update_location_button = QPushButton(LocationEdit)
         self.update_location_button.setObjectName(u"update_location_button")
         self.update_location_button.setMaximumSize(QSize(16777215, 45))
-        self.update_location_button.setFont(font)
+        self.update_location_button.setFont(font1)
 
         self.horizontalLayout.addWidget(self.update_location_button)
 
-        self.horizontalLayout.setStretch(0, 1)
-        self.horizontalLayout.setStretch(1, 3)
-        self.horizontalLayout.setStretch(2, 3)
-        self.horizontalLayout.setStretch(3, 2)
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
+
 
         self.retranslateUi(LocationEdit)
 
@@ -148,6 +160,7 @@ class Ui_LocationEdit(object):
 
     def retranslateUi(self, LocationEdit):
         LocationEdit.setWindowTitle(QCoreApplication.translate("LocationEdit", u"Form", None))
+        self.label.setText(QCoreApplication.translate("LocationEdit", u"Enter the new location for the selected item", None))
         self.location_label.setText(QCoreApplication.translate("LocationEdit", u"Location:", None))
         self.update_location_button.setText(QCoreApplication.translate("LocationEdit", u"Update Location", None))
     # retranslateUi

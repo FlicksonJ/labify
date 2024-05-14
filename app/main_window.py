@@ -160,8 +160,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def update_item_type_label(self):
         text = {
             "add": "ADD NEW",
-            "update": "EDIT",
-            "delete": "REMOVE"
+            "update": "EDIT EXISTING",
+            "delete": "REMOVE EXISTING"
         }
 
         return f"{text[self.state['inventory_page_func']]} {self.state['item_type'].upper()}"
@@ -190,7 +190,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if not layout:
             layout = self.ui.verticalLayout_13
         widget_count = layout.count()
-        if widget_count > 2:
+        if widget_count > 3:
             current_edit_input = layout.itemAt(widget_count - 1)
             widget = current_edit_input.widget()
             if widget:
@@ -224,14 +224,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 else:
                     self.quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
                 layout.setStretch(0, 1)
-                layout.setStretch(1, 7)
-                layout.setStretch(2, 1)
+                layout.setStretch(2, 7)
+                layout.setStretch(3, 1)
             elif data["header"] == "Name":
                 layout.addWidget(self.name_edit)
                 self.name_edit.ui.name_input.setText(data["name"])
                 layout.setStretch(0, 1)
-                layout.setStretch(1, 7)
-                layout.setStretch(2, 1)
+                layout.setStretch(2, 7)
+                layout.setStretch(3, 1)
             elif data["header"] == "Lab" or data["header"] == "Location":
                 layout.addWidget(self.location_edit)
                 self.location_edit.ui.location_label.setText(f'Location ({data["name"]}):')
@@ -242,8 +242,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.location_edit.ui.location_input.setCurrentIndex(location_index)
 
                 layout.setStretch(0, 1)
-                layout.setStretch(1, 7)
-                layout.setStretch(2, 1)
+                layout.setStretch(2, 7)
+                layout.setStretch(3, 1)
         
         
     def search_inventory(self, search_term: str, table: QTableView = None):
@@ -580,11 +580,6 @@ Use Edit Entry option to change the quantity of an existing item.""")
         location = model.index(row, 3).data()
         loc_id = self.inventory_manager.retrieve_loc_id(lab, location)
         qty = self.inventory_manager.retrieve_qty(name, loc_id)
-        print(name)
-        print(lab)
-        print(location)
-        print(loc_id)
-        print(qty)
 
         data = {
             "table": self.ui.update_entry_table_2,

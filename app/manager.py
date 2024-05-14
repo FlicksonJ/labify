@@ -295,6 +295,11 @@ class InventoryManager:
         SET location_id = (?)
         WHERE name = (?) AND location_id = (?)
         """
+        self.UPDATE_QTY_SQL = """
+        UPDATE Items
+        SET qty = (?)
+        WHERE name = (?) AND location_id = (?)
+        """
         self.UPDATE_ITEM_ADD_QTY_SQL = """
         UPDATE Items
         SET qty = qty + (?)
@@ -565,6 +570,26 @@ class InventoryManager:
         else:
             return True
 
+    def update_qty(self,
+                   name: str,
+                   lab: str,
+                   location: str,
+                   qty: float) -> bool:
+
+        loc_id = self.retrieve_loc_id(lab, location)
+        if loc_id == -1:
+            return False
+
+        query = QSqlQuery()
+        query.prepare(self.UPDATE_QTY_SQL)
+        query.addBindValue(qty)
+        query.addBindValue(name)
+        query.addBindValue(loc_id)
+        if not query.exec():
+            print(query.lastError().text())
+            return False
+
+        return True
     
     def add_qty_to_item(self, 
                         name: str, 

@@ -4,7 +4,7 @@ from PySide6.QtSql import QSqlQuery
 from PySide6.QtWidgets import QLayout, QMainWindow, QMenu, QMessageBox, QSystemTrayIcon, QTableView, QVBoxLayout 
 
 from app.ui.ui_main import Ui_MainWindow
-from app.quantity_edit import QuantityEdit
+from app.quantity_edit import QtyEdit
 from app.user_quantity_edit import UserQuantityEdit
 from app.name_edit import NameEdit
 from app.location_edit import LocationEdit
@@ -202,7 +202,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             layout = self.ui.verticalLayout_13
         # Update entry page inputs
         self.name_edit = NameEdit(self.inventory_manager, data)
-        self.quantity_edit = QuantityEdit(self.inventory_manager, self.tray_icon, data)
+        self.quantity_edit = QtyEdit(self.inventory_manager, self.tray_icon, data)
         self.user_quantity_edit = UserQuantityEdit(self.inventory_manager, self.tray_icon, data)
         self.location_edit = LocationEdit(self.inventory_manager, self.state["location_data"], data)
 

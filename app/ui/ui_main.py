@@ -413,6 +413,7 @@ class Ui_MainWindow(object):
 "\n"
 "#add_entry_button, \n"
 "#update_entry_button,\n"
+"#restock_entry_button,\n"
 "#delete_entry_button {\n"
 "	background: rgb(52, 62, 162);\n"
 "	margin: 0;\n"
@@ -434,15 +435,17 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#add_entry_button:hover, \n"
-"#update_entry_button:hover, \n"
+"#update_entry_button:hover,\n"
+"#restock_en"
+                        "try_button:hover,\n"
 "#delete_entry_button:hover {\n"
-"	bac"
-                        "kground: rgb(0, 159, 161);\n"
+"	background: rgb(0, 159, 161);\n"
 "	color: #fff;\n"
 "}\n"
 "\n"
 "#add_entry_button:checked, \n"
-"#update_entry_button:checked, \n"
+"#update_entry_button:checked,\n"
+"#restock_entry_button:checked,\n"
 "#delete_entry_button:checked {\n"
 "	background: #fff;\n"
 "	color: rgb(52, 62, 162);\n"
@@ -457,6 +460,7 @@ class Ui_MainWindow(object):
 "#delete_entry_cancel_button:hover,\n"
 "#delete_entry_delete_button:hover,\n"
 "#update_entry_cancel_button:hover,\n"
+"#restock_entry_cancel_button:hover,\n"
 "#go_back_button:hover {\n"
 "	background: rgb(224, 27, 36);\n"
 "	color:#fff;\n"
@@ -465,7 +469,8 @@ class Ui_MainWindow(object):
 "#search_bar_container,\n"
 "#search_bar_container_2,\n"
 "#search_bar_container_3,\n"
-"#search_bar_container_4 {\n"
+"#search_bar_container_4,\n"
+"#search_bar_container_5 {\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
 "	border-radius: 15px;\n"
 "	margin: 1px;\n"
@@ -473,18 +478,21 @@ class Ui_MainWindow(object):
 "\n"
 "#search_bar_container:hover,\n"
 "#search_bar_container_2:hover,\n"
-"#search_bar_container_3:hover,\n"
-"#search_bar_container_4:hover {\n"
+"#search_bar_conta"
+                        "iner_3:hover,\n"
+"#search_bar_container_4:hover,\n"
+"#search_bar_container_5:hover {\n"
 "	border: 2px solid rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "#search_button,\n"
 "#search_bar_input,\n"
-"#update_entry"
-                        "_search_button,\n"
+"#update_entry_search_button,\n"
 "#update_entry_search_button_2,\n"
+"#restock_entry_search_button,\n"
 "#update_entry_search_input,\n"
 "#update_entry_search_input_2,\n"
+"#restock_entry_search_input,\n"
 "#delete_entry_search_button,\n"
 "#delete_entry_search_input {\n"
 "	color: rgb(0, 159, 161);\n"
@@ -492,24 +500,29 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "/* Fix search button overflow error*/\n"
-"#delete_entry_search_button {\n"
-"	margin-right: 30px;\n"
+"#delete_entry_search_button,\n"
+"#restock_entry_search_button {\n"
+"	margin-right: 20px;\n"
 "}\n"
 "\n"
 "#search_button:hover,\n"
 "#search_bar_input:hover,\n"
 "#update_entry_search_button:hover,\n"
 "#update_entry_search_button_2:hover,\n"
+"#restock_entry_search_button:hover,\n"
 "#update_entry_search_input:hover,\n"
 "#update_entry_search_input_2:hover,\n"
+"#restock_entry_search_button:hover,\n"
 "#delete_entry_search_button:hover,\n"
-"#delete_entry_search_input:hover {\n"
+"#delete_entry_search_input:hover "
+                        "{\n"
 "	color: rgb(52, 62, 162);\n"
 "}\n"
 "\n"
 "#search_bar_input,\n"
 "#update_entry_search_input,\n"
 "#update_entry_search_input_2,\n"
+"#restock_entry_search_input,\n"
 "#delete_entry_search_input {\n"
 "	padding-left: 20px;\n"
 "}\n"
@@ -520,13 +533,14 @@ class Ui_MainWindow(object):
 "	padding-left: 10px;\n"
 "	padding-right: 10px;\n"
 "	margin: 0;\n"
-"	min-height:"
-                        " 40px;\n"
+"	min-height: 40px;\n"
 "}\n"
 "\n"
 "#add_entry_add_button,\n"
 "#add_entry_cancel_button,\n"
 "#update_entry_cancel_button,\n"
+"#update_entry_cancel_button_2,\n"
+"#restock_entry_cancel_button,\n"
 "#delete_entry_delete_button,\n"
 "#delete_entry_cancel_button,\n"
 "#go_back_button {\n"
@@ -545,7 +559,9 @@ class Ui_MainWindow(object):
 "\n"
 "#add_entry_cancel_button,\n"
 "#update_entry_cancel_button,\n"
-"#delete_entry_delete_button,\n"
+"#restock_entry_cancel_button,\n"
+"#delete"
+                        "_entry_delete_button,\n"
 "#delete_entry_cancel_button,\n"
 "#go_back_button {\n"
 "	color: rgb(224, 27, 36);\n"
@@ -567,8 +583,7 @@ class Ui_MainWindow(object):
 "	max-width: 350px;\n"
 "}\n"
 "\n"
-"#add"
-                        "_entry_list {\n"
+"#add_entry_list {\n"
 "	padding-top: 20px;\n"
 "	margin-bottom: 30px;\n"
 "}\n"
@@ -592,7 +607,8 @@ class Ui_MainWindow(object):
 "	background: rgb(0, 159, 161);\n"
 "	color: #fff;\n"
 "	font-size: 20pt;\n"
-"	gridline-color: transparent;\n"
+"	gridline"
+                        "-color: transparent;\n"
 "}\n"
 "\n"
 "QTableView QHeaderView::section:selected {\n"
@@ -616,8 +632,7 @@ class Ui_MainWindow(object):
 "    width: 30px;\n"
 "}\n"
 "\n"
-""
-                        "QTableView::item {\n"
+"QTableView::item {\n"
 "	color: rgb(0, 159, 161);\n"
 "	gridline-color: rgb(0, 159, 161);\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
@@ -994,7 +1009,7 @@ class Ui_MainWindow(object):
         self.inventory_view_page.setObjectName(u"inventory_view_page")
         self.stackedWidget_4 = QStackedWidget(self.inventory_view_page)
         self.stackedWidget_4.setObjectName(u"stackedWidget_4")
-        self.stackedWidget_4.setGeometry(QRect(270, 109, 1291, 491))
+        self.stackedWidget_4.setGeometry(QRect(270, 109, 1291, 531))
         self.item_search_page = QWidget()
         self.item_search_page.setObjectName(u"item_search_page")
         self.verticalLayoutWidget_4 = QWidget(self.item_search_page)
@@ -1212,6 +1227,123 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.addWidget(self.update_entry_table)
 
         self.stackedWidget_4.addWidget(self.update_entry_page)
+        self.restock_entry_page = QWidget()
+        self.restock_entry_page.setObjectName(u"restock_entry_page")
+        self.verticalLayout_20 = QVBoxLayout(self.restock_entry_page)
+        self.verticalLayout_20.setObjectName(u"verticalLayout_20")
+        self.verticalLayout_20.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_18 = QVBoxLayout()
+        self.verticalLayout_18.setSpacing(20)
+        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
+        self.horizontalLayout_20 = QHBoxLayout()
+        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
+        self.restock_entry_label = QLabel(self.restock_entry_page)
+        self.restock_entry_label.setObjectName(u"restock_entry_label")
+        self.restock_entry_label.setMaximumSize(QSize(340, 16777215))
+        self.restock_entry_label.setFont(font9)
+        self.restock_entry_label.setStyleSheet(u"color: rgb(0, 159, 161);")
+
+        self.horizontalLayout_20.addWidget(self.restock_entry_label)
+
+        self.horizontalSpacer_8 = QSpacerItem(50, 0, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_20.addItem(self.horizontalSpacer_8)
+
+        self.search_bar_container_5 = QWidget(self.restock_entry_page)
+        self.search_bar_container_5.setObjectName(u"search_bar_container_5")
+        sizePolicy7.setHeightForWidth(self.search_bar_container_5.sizePolicy().hasHeightForWidth())
+        self.search_bar_container_5.setSizePolicy(sizePolicy7)
+        self.search_bar_container_5.setMinimumSize(QSize(0, 45))
+        self.search_bar_container_5.setMaximumSize(QSize(560, 16777215))
+        self.horizontalLayoutWidget_7 = QWidget(self.search_bar_container_5)
+        self.horizontalLayoutWidget_7.setObjectName(u"horizontalLayoutWidget_7")
+        self.horizontalLayoutWidget_7.setGeometry(QRect(-1, 0, 561, 42))
+        self.horizontalLayout_22 = QHBoxLayout(self.horizontalLayoutWidget_7)
+        self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
+        self.horizontalLayout_22.setContentsMargins(0, 0, 0, 0)
+        self.restock_entry_search_input = QLineEdit(self.horizontalLayoutWidget_7)
+        self.restock_entry_search_input.setObjectName(u"restock_entry_search_input")
+        sizePolicy5.setHeightForWidth(self.restock_entry_search_input.sizePolicy().hasHeightForWidth())
+        self.restock_entry_search_input.setSizePolicy(sizePolicy5)
+        self.restock_entry_search_input.setMinimumSize(QSize(0, 0))
+
+        self.horizontalLayout_22.addWidget(self.restock_entry_search_input)
+
+        self.line_5 = QFrame(self.horizontalLayoutWidget_7)
+        self.line_5.setObjectName(u"line_5")
+        self.line_5.setStyleSheet(u"background: rgb(0, 159, 161);\n"
+"margin-top: 8px;\n"
+"margin-bottom: 6px;")
+        self.line_5.setFrameShape(QFrame.VLine)
+        self.line_5.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_22.addWidget(self.line_5)
+
+        self.restock_entry_search_button = QPushButton(self.horizontalLayoutWidget_7)
+        self.restock_entry_search_button.setObjectName(u"restock_entry_search_button")
+        sizePolicy7.setHeightForWidth(self.restock_entry_search_button.sizePolicy().hasHeightForWidth())
+        self.restock_entry_search_button.setSizePolicy(sizePolicy7)
+        self.restock_entry_search_button.setMinimumSize(QSize(0, 40))
+        self.restock_entry_search_button.setMaximumSize(QSize(16777215, 16777215))
+        self.restock_entry_search_button.setFont(font6)
+        self.restock_entry_search_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_22.addWidget(self.restock_entry_search_button)
+
+
+        self.horizontalLayout_20.addWidget(self.search_bar_container_5)
+
+        self.horizontalSpacer_9 = QSpacerItem(120, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_20.addItem(self.horizontalSpacer_9)
+
+        self.restock_entry_cancel_button = QPushButton(self.restock_entry_page)
+        self.restock_entry_cancel_button.setObjectName(u"restock_entry_cancel_button")
+        self.restock_entry_cancel_button.setMaximumSize(QSize(120, 16777215))
+        self.restock_entry_cancel_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_20.addWidget(self.restock_entry_cancel_button)
+
+
+        self.verticalLayout_18.addLayout(self.horizontalLayout_20)
+
+        self.label_17 = QLabel(self.restock_entry_page)
+        self.label_17.setObjectName(u"label_17")
+        sizePolicy1.setHeightForWidth(self.label_17.sizePolicy().hasHeightForWidth())
+        self.label_17.setSizePolicy(sizePolicy1)
+        self.label_17.setMaximumSize(QSize(16777215, 30))
+        self.label_17.setFont(font10)
+        self.label_17.setStyleSheet(u"background-color:rgb(0, 159, 161);\n"
+"padding: 5px;")
+
+        self.verticalLayout_18.addWidget(self.label_17)
+
+        self.restock_entry_table = QTableView(self.restock_entry_page)
+        self.restock_entry_table.setObjectName(u"restock_entry_table")
+        self.restock_entry_table.setFrameShape(QFrame.NoFrame)
+        self.restock_entry_table.setFrameShadow(QFrame.Plain)
+        self.restock_entry_table.setLineWidth(0)
+        self.restock_entry_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.restock_entry_table.setAlternatingRowColors(True)
+        self.restock_entry_table.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.restock_entry_table.setShowGrid(False)
+        self.restock_entry_table.setSortingEnabled(False)
+        self.restock_entry_table.setCornerButtonEnabled(False)
+        self.restock_entry_table.horizontalHeader().setCascadingSectionResizes(True)
+        self.restock_entry_table.horizontalHeader().setMinimumSectionSize(100)
+        self.restock_entry_table.horizontalHeader().setDefaultSectionSize(200)
+        self.restock_entry_table.horizontalHeader().setHighlightSections(False)
+        self.restock_entry_table.horizontalHeader().setProperty("showSortIndicator", False)
+        self.restock_entry_table.horizontalHeader().setStretchLastSection(True)
+        self.restock_entry_table.verticalHeader().setVisible(False)
+        self.restock_entry_table.verticalHeader().setHighlightSections(True)
+
+        self.verticalLayout_18.addWidget(self.restock_entry_table)
+
+
+        self.verticalLayout_20.addLayout(self.verticalLayout_18)
+
+        self.stackedWidget_4.addWidget(self.restock_entry_page)
         self.add_entry_page = QWidget()
         self.add_entry_page.setObjectName(u"add_entry_page")
         self.verticalLayoutWidget_5 = QWidget(self.add_entry_page)
@@ -1475,7 +1607,7 @@ class Ui_MainWindow(object):
         self.stackedWidget_4.addWidget(self.delete_entry_page)
         self.layoutWidget6 = QWidget(self.inventory_view_page)
         self.layoutWidget6.setObjectName(u"layoutWidget6")
-        self.layoutWidget6.setGeometry(QRect(40, 190, 211, 200))
+        self.layoutWidget6.setGeometry(QRect(40, 190, 211, 255))
         self.verticalLayout_9 = QVBoxLayout(self.layoutWidget6)
         self.verticalLayout_9.setSpacing(1)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
@@ -1507,6 +1639,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_9.addWidget(self.update_entry_button)
 
+        self.restock_entry_button = QPushButton(self.layoutWidget6)
+        self.item_manage.addButton(self.restock_entry_button)
+        self.restock_entry_button.setObjectName(u"restock_entry_button")
+
+        self.verticalLayout_9.addWidget(self.restock_entry_button)
+
         self.delete_entry_button = QPushButton(self.layoutWidget6)
         self.item_manage.addButton(self.delete_entry_button)
         self.delete_entry_button.setObjectName(u"delete_entry_button")
@@ -1517,7 +1655,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget.raise_()
+        self.layoutWidget1.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1866,7 +2004,7 @@ class Ui_MainWindow(object):
         self.stackedWidget_2.setCurrentIndex(0)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)
-        self.stackedWidget_4.setCurrentIndex(3)
+        self.stackedWidget_4.setCurrentIndex(2)
         self.cancel_button.setDefault(False)
 
 
@@ -1903,6 +2041,10 @@ class Ui_MainWindow(object):
         self.update_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.update_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Go Back", None))
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"Click any cell of the teble to select the item", None))
+        self.restock_entry_label.setText(QCoreApplication.translate("MainWindow", u"Restock Quantity", None))
+        self.restock_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
+        self.restock_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Go Back", None))
+        self.label_17.setText(QCoreApplication.translate("MainWindow", u"Click any cell of the teble to select the item", None))
         self.add_entry_label.setText(QCoreApplication.translate("MainWindow", u"ADD NEW GLASSWARE", None))
         self.add_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Go Back", None))
         self.add_entry_add_button.setText(QCoreApplication.translate("MainWindow", u"Add", None))
@@ -1921,6 +2063,7 @@ class Ui_MainWindow(object):
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"OPTIONS", None))
         self.add_entry_button.setText(QCoreApplication.translate("MainWindow", u"Add New Item", None))
         self.update_entry_button.setText(QCoreApplication.translate("MainWindow", u"Edit Existing Item", None))
+        self.restock_entry_button.setText(QCoreApplication.translate("MainWindow", u"Restock Item", None))
         self.delete_entry_button.setText(QCoreApplication.translate("MainWindow", u"Remove Existing Item", None))
         self.time_label_2.setText(QCoreApplication.translate("MainWindow", u"12:00 AM", None))
         self.date_label_2.setText(QCoreApplication.translate("MainWindow", u"20 Feb, 2024", None))

@@ -6,6 +6,7 @@ from PySide6.QtWidgets import QLayout, QMainWindow, QMenu, QMessageBox, QSystemT
 from app.ui.ui_main import Ui_MainWindow
 from app.quantity_edit import QtyEdit
 from app.user_quantity_edit import UserQuantityEdit
+from app.quantity_restock import QtyRestock
 from app.name_edit import NameEdit
 from app.location_edit import LocationEdit
 
@@ -105,6 +106,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.update_entry_search_button.clicked.connect(self.update_inventory_search)
         self.ui.update_entry_search_input.returnPressed.connect(self.update_inventory_search)
 
+        self.ui.restock_entry_button.clicked.connect(self.show_restock_entry_page)
+        self.ui.restock_entry_cancel_button.clicked.connect(self.handle_inventory_page)
+        self.ui.restock_entry_table.clicked.connect(self.restock_entry_table_clicked)
+        self.ui.restock_entry_search_button.clicked.connect(self.restock_inventory_search)
+        self.ui.restock_entry_search_input.returnPressed.connect(self.restock_inventory_search)
+
         self.ui.delete_entry_button.clicked.connect(self.show_delete_entry_page)
         self.ui.delete_entry_cancel_button.clicked.connect(self.handle_inventory_page)
         self.ui.delete_entry_search_button.clicked.connect(self.delete_inventory_search)
@@ -161,6 +168,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         text = {
             "add": "ADD NEW",
             "update": "EDIT EXISTING",
+            "restock": "Restock",
             "delete": "REMOVE EXISTING"
         }
 
@@ -219,6 +227,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             if data["header"] == "Qty":
                 layout.addWidget(self.quantity_edit)
+                self.quantity_edit.ui.qty_input.setText(str(data["qty"]))
                 if self.state["item_type"] == "chemical":
                     self.quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (ml/g):')
                 else:
@@ -601,6 +610,65 @@ Use Edit Entry option to change the quantity of an existing item.""")
     def user_update_inventory_search(self):
         search_term = self.ui.update_entry_search_input_2.text()
         self.search_inventory(search_term, self.ui.update_entry_table_2)
+
+    def show_restock_entry_page(self):
+        """
+        This slot is triggered when the restock_entry_button is clicked.
+        Show restock_entry_page.
+        """
+
+        self.ui.stackedWidget_4.setCurrentWidget(self.ui.restock_entry_page)
+        self.state["inventory_page_func"] = "restock"
+        self.ui.restock_entry_label.setText(self.update_item_type_label())
+        self.set_default_inventory_table(self.ui.restock_entry_table)
+        self.ui.restock_entry_search_input.clear()
+
+        # Resize table headers
+        restock_table_header = self.ui.restock_entry_table.horizontalHeader()
+        restock_table_header.resizeSection(0, 100)
+        restock_table_header.resizeSection(1, 450) 
+
+    def restock_inventory_search(self):
+        search_term = self.ui.restock_entry_search_input.text()
+        self.search_inventory(search_term, self.ui.restock_entry_table)
+
+    def restock_entry_table_clicked(self,index):
+        self.remove_current_update_input(self.ui.verticalLayout_18)
+        row = index.row()
+        column = index.column()
+
+        model = self.state["items_model"]
+        header = model.headerData(column, Qt.Horizontal)
+        name = model.index(row, 1).data()
+        user = self.state["username"]
+        qty = model.index(row, 2).data()
+        lab = model.index(row, 3).data()
+        location = model.index(row, 4).data()
+
+        data = {
+            "table": self.ui.restock_entry_table,
+            "item_type": self.state["item_type"],
+            "header": header,
+            "user": user,
+            "name": name,
+            "qty": qty,
+            "lab": lab,
+            "location": location
+        }
+
+        self.quantity_restock = QtyRestock(self.inventory_manager, self.tray_icon, data)
+        layout = self.ui.verticalLayout_18
+        layout.addWidget(self.quantity_restock)
+
+        if self.state["item_type"] == "chemical":
+            self.quantity_restock.ui.qty_label.setText(f'Qty - {data["name"]} (ml/g):')
+        else:
+            self.quantity_restock.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
+        layout.setStretch(0, 1)
+        layout.setStretch(2, 7)
+        layout.setStretch(3, 1)
+
+
 
     @admin_access
     def show_delete_entry_page(self):

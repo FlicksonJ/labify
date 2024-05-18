@@ -168,7 +168,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         text = {
             "add": "ADD NEW",
             "update": "EDIT EXISTING",
-            "restock": "Restock",
+            "restock": "RESTOCK",
             "delete": "REMOVE EXISTING"
         }
 

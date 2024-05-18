@@ -636,6 +636,10 @@ QTableView::item:selected {
 
 #label_9 {
 	border-top-right-radius: 10px;
+}
+
+#label_14,#label_15,#label_16,#label_17 {
+	border-radius: 5px;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -652,7 +656,7 @@ QTableView::item:selected {
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="login_page">
      <widget class="QWidget" name="verticalLayoutWidget">
@@ -704,7 +708,7 @@ QTableView::item:selected {
        <item>
         <widget class="QLineEdit" name="password_input">
          <property name="echoMode">
-          <enum>QLineEdit::Password</enum>
+          <enum>QLineEdit::EchoMode::Password</enum>
          </property>
         </widget>
        </item>
@@ -759,7 +763,7 @@ QTableView::item:selected {
           <item>
            <spacer name="horizontalSpacer_2">
             <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+             <enum>Qt::Orientation::Horizontal</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -846,7 +850,7 @@ QTableView::item:selected {
              <bool>false</bool>
             </property>
             <property name="alignment">
-             <set>Qt::AlignCenter</set>
+             <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -855,7 +859,7 @@ QTableView::item:selected {
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_4">
               <property name="sizeConstraint">
-               <enum>QLayout::SetFixedSize</enum>
+               <enum>QLayout::SizeConstraint::SetFixedSize</enum>
               </property>
               <item>
                <widget class="QLabel" name="header_username_label">
@@ -869,7 +873,7 @@ QTableView::item:selected {
                  <string>ADMIN</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                </widget>
               </item>
@@ -927,7 +931,7 @@ QTableView::item:selected {
           <item>
            <spacer name="horizontalSpacer">
             <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+             <enum>Qt::Orientation::Horizontal</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -952,7 +956,7 @@ QTableView::item:selected {
           <string notr="true"/>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="inventory_page">
           <widget class="QWidget" name="verticalLayoutWidget_3">
@@ -979,7 +983,7 @@ QTableView::item:selected {
                  <x>60</x>
                  <y>0</y>
                  <width>181</width>
-                 <height>94</height>
+                 <height>101</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1004,7 +1008,7 @@ QTableView::item:selected {
                    <string>12:00 AM</string>
                   </property>
                   <property name="alignment">
-                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                   <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                   </property>
                  </widget>
                 </item>
@@ -1021,10 +1025,10 @@ QTableView::item:selected {
                    <string>20 Feb, 2024</string>
                   </property>
                   <property name="textFormat">
-                   <enum>Qt::AutoText</enum>
+                   <enum>Qt::TextFormat::AutoText</enum>
                   </property>
                   <property name="alignment">
-                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                   <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                   </property>
                  </widget>
                 </item>
@@ -1120,10 +1124,10 @@ QTableView::item:selected {
                    <number>-1</number>
                   </property>
                   <property name="insertPolicy">
-                   <enum>QComboBox::InsertAtBottom</enum>
+                   <enum>QComboBox::InsertPolicy::InsertAtBottom</enum>
                   </property>
                   <property name="sizeAdjustPolicy">
-                   <enum>QComboBox::AdjustToContents</enum>
+                   <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -1185,7 +1189,7 @@ QTableView::item:selected {
                  <string>Nothing to Show</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                </widget>
               </widget>
@@ -1219,22 +1223,22 @@ QTableView::item:selected {
                  <item>
                   <widget class="QTableView" name="transactions_table">
                    <property name="frameShape">
-                    <enum>QFrame::NoFrame</enum>
+                    <enum>QFrame::Shape::NoFrame</enum>
                    </property>
                    <property name="frameShadow">
-                    <enum>QFrame::Plain</enum>
+                    <enum>QFrame::Shadow::Plain</enum>
                    </property>
                    <property name="lineWidth">
                     <number>0</number>
                    </property>
                    <property name="sizeAdjustPolicy">
-                    <enum>QAbstractScrollArea::AdjustToContents</enum>
+                    <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
                    </property>
                    <property name="alternatingRowColors">
                     <bool>true</bool>
                    </property>
                    <property name="selectionMode">
-                    <enum>QAbstractItemView::SingleSelection</enum>
+                    <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
                    </property>
                    <property name="showGrid">
                     <bool>false</bool>
@@ -1298,22 +1302,22 @@ QTableView::item:selected {
                  <item>
                   <widget class="QTableView" name="alerts_table">
                    <property name="frameShape">
-                    <enum>QFrame::NoFrame</enum>
+                    <enum>QFrame::Shape::NoFrame</enum>
                    </property>
                    <property name="frameShadow">
-                    <enum>QFrame::Plain</enum>
+                    <enum>QFrame::Shadow::Plain</enum>
                    </property>
                    <property name="lineWidth">
                     <number>0</number>
                    </property>
                    <property name="sizeAdjustPolicy">
-                    <enum>QAbstractScrollArea::AdjustToContents</enum>
+                    <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
                    </property>
                    <property name="alternatingRowColors">
                     <bool>true</bool>
                    </property>
                    <property name="selectionMode">
-                    <enum>QAbstractItemView::SingleSelection</enum>
+                    <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
                    </property>
                    <property name="showGrid">
                     <bool>false</bool>
@@ -1358,7 +1362,7 @@ QTableView::item:selected {
                  </rect>
                 </property>
                 <property name="currentIndex">
-                 <number>3</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="item_search_page">
                  <widget class="QWidget" name="verticalLayoutWidget_4">
@@ -1418,7 +1422,7 @@ margin-bottom: 6px;</string>
                             <number>1</number>
                            </property>
                            <property name="orientation">
-                            <enum>Qt::Vertical</enum>
+                            <enum>Qt::Orientation::Vertical</enum>
                            </property>
                           </widget>
                          </item>
@@ -1456,10 +1460,10 @@ margin-bottom: 6px;</string>
                      <item>
                       <spacer name="horizontalSpacer_3">
                        <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
+                        <enum>Qt::Orientation::Horizontal</enum>
                        </property>
                        <property name="sizeType">
-                        <enum>QSizePolicy::Fixed</enum>
+                        <enum>QSizePolicy::Policy::Fixed</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -1492,31 +1496,31 @@ margin-bottom: 6px;</string>
                       </size>
                      </property>
                      <property name="frameShape">
-                      <enum>QFrame::NoFrame</enum>
+                      <enum>QFrame::Shape::NoFrame</enum>
                      </property>
                      <property name="frameShadow">
-                      <enum>QFrame::Plain</enum>
+                      <enum>QFrame::Shadow::Plain</enum>
                      </property>
                      <property name="lineWidth">
                       <number>0</number>
                      </property>
                      <property name="sizeAdjustPolicy">
-                      <enum>QAbstractScrollArea::AdjustToContents</enum>
+                      <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
                      </property>
                      <property name="alternatingRowColors">
                       <bool>true</bool>
                      </property>
                      <property name="selectionMode">
-                      <enum>QAbstractItemView::SingleSelection</enum>
+                      <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
                      </property>
                      <property name="selectionBehavior">
-                      <enum>QAbstractItemView::SelectItems</enum>
+                      <enum>QAbstractItemView::SelectionBehavior::SelectItems</enum>
                      </property>
                      <property name="showGrid">
                       <bool>false</bool>
                      </property>
                      <property name="gridStyle">
-                      <enum>Qt::SolidLine</enum>
+                      <enum>Qt::PenStyle::SolidLine</enum>
                      </property>
                      <property name="sortingEnabled">
                       <bool>true</bool>
@@ -1594,10 +1598,10 @@ margin-bottom: 6px;</string>
                      <item>
                       <spacer name="horizontalSpacer_7">
                        <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
+                        <enum>Qt::Orientation::Horizontal</enum>
                        </property>
                        <property name="sizeType">
-                        <enum>QSizePolicy::Fixed</enum>
+                        <enum>QSizePolicy::Policy::Fixed</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -1661,7 +1665,7 @@ margin-top: 8px;
 margin-bottom: 6px;</string>
                            </property>
                            <property name="orientation">
-                            <enum>Qt::Vertical</enum>
+                            <enum>Qt::Orientation::Vertical</enum>
                            </property>
                           </widget>
                          </item>
@@ -1705,10 +1709,10 @@ margin-bottom: 6px;</string>
                      <item>
                       <spacer name="horizontalSpacer_6">
                        <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
+                        <enum>Qt::Orientation::Horizontal</enum>
                        </property>
                        <property name="sizeType">
-                        <enum>QSizePolicy::Fixed</enum>
+                        <enum>QSizePolicy::Policy::Fixed</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -1752,7 +1756,7 @@ margin-bottom: 6px;</string>
                      </property>
                      <property name="font">
                       <font>
-                       <pointsize>15</pointsize>
+                       <pointsize>14</pointsize>
                        <italic>true</italic>
                       </font>
                      </property>
@@ -1768,22 +1772,22 @@ padding: 5px;</string>
                    <item>
                     <widget class="QTableView" name="update_entry_table">
                      <property name="frameShape">
-                      <enum>QFrame::NoFrame</enum>
+                      <enum>QFrame::Shape::NoFrame</enum>
                      </property>
                      <property name="frameShadow">
-                      <enum>QFrame::Plain</enum>
+                      <enum>QFrame::Shadow::Plain</enum>
                      </property>
                      <property name="lineWidth">
                       <number>0</number>
                      </property>
                      <property name="sizeAdjustPolicy">
-                      <enum>QAbstractScrollArea::AdjustToContents</enum>
+                      <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
                      </property>
                      <property name="alternatingRowColors">
                       <bool>true</bool>
                      </property>
                      <property name="selectionMode">
-                      <enum>QAbstractItemView::SingleSelection</enum>
+                      <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
                      </property>
                      <property name="showGrid">
                       <bool>false</bool>
@@ -1862,17 +1866,17 @@ padding: 5px;</string>
                          <string notr="true">color: rgb(0, 159, 161);</string>
                         </property>
                         <property name="text">
-                         <string>Restock Quantity</string>
+                         <string>RESTOCK ITEM</string>
                         </property>
                        </widget>
                       </item>
                       <item>
                        <spacer name="horizontalSpacer_8">
                         <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
+                         <enum>Qt::Orientation::Horizontal</enum>
                         </property>
                         <property name="sizeType">
-                         <enum>QSizePolicy::Fixed</enum>
+                         <enum>QSizePolicy::Policy::Fixed</enum>
                         </property>
                         <property name="sizeHint" stdset="0">
                          <size>
@@ -1936,7 +1940,7 @@ margin-top: 8px;
 margin-bottom: 6px;</string>
                             </property>
                             <property name="orientation">
-                             <enum>Qt::Vertical</enum>
+                             <enum>Qt::Orientation::Vertical</enum>
                             </property>
                            </widget>
                           </item>
@@ -1980,10 +1984,10 @@ margin-bottom: 6px;</string>
                       <item>
                        <spacer name="horizontalSpacer_9">
                         <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
+                         <enum>Qt::Orientation::Horizontal</enum>
                         </property>
                         <property name="sizeType">
-                         <enum>QSizePolicy::Fixed</enum>
+                         <enum>QSizePolicy::Policy::Fixed</enum>
                         </property>
                         <property name="sizeHint" stdset="0">
                          <size>
@@ -2027,7 +2031,7 @@ margin-bottom: 6px;</string>
                       </property>
                       <property name="font">
                        <font>
-                        <pointsize>15</pointsize>
+                        <pointsize>14</pointsize>
                         <italic>true</italic>
                        </font>
                       </property>
@@ -2043,22 +2047,22 @@ padding: 5px;</string>
                     <item>
                      <widget class="QTableView" name="restock_entry_table">
                       <property name="frameShape">
-                       <enum>QFrame::NoFrame</enum>
+                       <enum>QFrame::Shape::NoFrame</enum>
                       </property>
                       <property name="frameShadow">
-                       <enum>QFrame::Plain</enum>
+                       <enum>QFrame::Shadow::Plain</enum>
                       </property>
                       <property name="lineWidth">
                        <number>0</number>
                       </property>
                       <property name="sizeAdjustPolicy">
-                       <enum>QAbstractScrollArea::AdjustToContents</enum>
+                       <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
                       </property>
                       <property name="alternatingRowColors">
                        <bool>true</bool>
                       </property>
                       <property name="selectionMode">
-                       <enum>QAbstractItemView::SingleSelection</enum>
+                       <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
                       </property>
                       <property name="showGrid">
                        <bool>false</bool>
@@ -2134,7 +2138,7 @@ padding: 5px;</string>
                      <item>
                       <spacer name="horizontalSpacer_4">
                        <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
+                        <enum>Qt::Orientation::Horizontal</enum>
                        </property>
                        <property name="sizeHint" stdset="0">
                         <size>
@@ -2311,10 +2315,10 @@ padding: 5px;</string>
                         <item>
                          <spacer name="horizontalSpacer_5">
                           <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
+                           <enum>Qt::Orientation::Horizontal</enum>
                           </property>
                           <property name="sizeType">
-                           <enum>QSizePolicy::Fixed</enum>
+                           <enum>QSizePolicy::Policy::Fixed</enum>
                           </property>
                           <property name="sizeHint" stdset="0">
                            <size>
@@ -2372,7 +2376,7 @@ padding: 5px;</string>
                            </size>
                           </property>
                           <property name="inputMethodHints">
-                           <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
+                           <set>Qt::InputMethodHint::ImhDigitsOnly|Qt::InputMethodHint::ImhPreferNumbers</set>
                           </property>
                          </widget>
                         </item>
@@ -2508,7 +2512,7 @@ margin-top: 8px;
 margin-bottom: 6px;</string>
                            </property>
                            <property name="orientation">
-                            <enum>Qt::Vertical</enum>
+                            <enum>Qt::Orientation::Vertical</enum>
                            </property>
                           </widget>
                          </item>
@@ -2602,7 +2606,7 @@ margin-bottom: 6px;</string>
                      </property>
                      <property name="font">
                       <font>
-                       <pointsize>15</pointsize>
+                       <pointsize>14</pointsize>
                        <italic>true</italic>
                        <underline>false</underline>
                       </font>
@@ -2619,22 +2623,22 @@ padding: 5px;</string>
                    <item>
                     <widget class="QTableView" name="delete_entry_table">
                      <property name="frameShape">
-                      <enum>QFrame::NoFrame</enum>
+                      <enum>QFrame::Shape::NoFrame</enum>
                      </property>
                      <property name="frameShadow">
-                      <enum>QFrame::Plain</enum>
+                      <enum>QFrame::Shadow::Plain</enum>
                      </property>
                      <property name="lineWidth">
                       <number>0</number>
                      </property>
                      <property name="sizeAdjustPolicy">
-                      <enum>QAbstractScrollArea::AdjustToContents</enum>
+                      <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
                      </property>
                      <property name="alternatingRowColors">
                       <bool>true</bool>
                      </property>
                      <property name="selectionMode">
-                      <enum>QAbstractItemView::SingleSelection</enum>
+                      <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
                      </property>
                      <property name="showGrid">
                       <bool>false</bool>
@@ -2702,7 +2706,7 @@ padding: 5px;</string>
                     <string>OPTIONS</string>
                    </property>
                    <property name="alignment">
-                    <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                    <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
                    </property>
                   </widget>
                  </item>
@@ -2846,7 +2850,7 @@ padding: 5px;</string>
                     <string>12:00 AM</string>
                    </property>
                    <property name="alignment">
-                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -2863,10 +2867,10 @@ padding: 5px;</string>
                     <string>20 Feb, 2024</string>
                    </property>
                    <property name="textFormat">
-                    <enum>Qt::AutoText</enum>
+                    <enum>Qt::TextFormat::AutoText</enum>
                    </property>
                    <property name="alignment">
-                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -2875,7 +2879,7 @@ padding: 5px;</string>
                <item>
                 <spacer name="horizontalSpacer_11">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -2901,7 +2905,7 @@ padding: 5px;</string>
                <item>
                 <spacer name="horizontalSpacer_10">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -3011,7 +3015,7 @@ margin-top: 8px;
 margin-bottom: 6px;</string>
                         </property>
                         <property name="orientation">
-                         <enum>Qt::Vertical</enum>
+                         <enum>Qt::Orientation::Vertical</enum>
                         </property>
                        </widget>
                       </item>
@@ -3068,7 +3072,7 @@ margin-bottom: 6px;</string>
                     </property>
                     <property name="font">
                      <font>
-                      <pointsize>15</pointsize>
+                      <pointsize>14</pointsize>
                       <italic>true</italic>
                      </font>
                     </property>
@@ -3087,22 +3091,22 @@ padding: 5px;</string>
                      <string notr="true"/>
                     </property>
                     <property name="frameShape">
-                     <enum>QFrame::NoFrame</enum>
+                     <enum>QFrame::Shape::NoFrame</enum>
                     </property>
                     <property name="frameShadow">
-                     <enum>QFrame::Plain</enum>
+                     <enum>QFrame::Shadow::Plain</enum>
                     </property>
                     <property name="lineWidth">
                      <number>0</number>
                     </property>
                     <property name="sizeAdjustPolicy">
-                     <enum>QAbstractScrollArea::AdjustToContents</enum>
+                     <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
                     </property>
                     <property name="alternatingRowColors">
                      <bool>true</bool>
                     </property>
                     <property name="selectionMode">
-                     <enum>QAbstractItemView::SingleSelection</enum>
+                     <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
                     </property>
                     <property name="showGrid">
                      <bool>false</bool>
@@ -3193,22 +3197,22 @@ padding: 5px;</string>
                 <item>
                  <widget class="QTableView" name="transactions_table_2">
                   <property name="frameShape">
-                   <enum>QFrame::NoFrame</enum>
+                   <enum>QFrame::Shape::NoFrame</enum>
                   </property>
                   <property name="frameShadow">
-                   <enum>QFrame::Plain</enum>
+                   <enum>QFrame::Shadow::Plain</enum>
                   </property>
                   <property name="lineWidth">
                    <number>0</number>
                   </property>
                   <property name="sizeAdjustPolicy">
-                   <enum>QAbstractScrollArea::AdjustToContents</enum>
+                   <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
                   </property>
                   <property name="alternatingRowColors">
                    <bool>true</bool>
                   </property>
                   <property name="selectionMode">
-                   <enum>QAbstractItemView::SingleSelection</enum>
+                   <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
                   </property>
                   <property name="showGrid">
                    <bool>false</bool>
@@ -3344,7 +3348,7 @@ padding: 5px;</string>
                    </font>
                   </property>
                   <property name="echoMode">
-                   <enum>QLineEdit::Password</enum>
+                   <enum>QLineEdit::EchoMode::Password</enum>
                   </property>
                  </widget>
                 </item>
@@ -3363,7 +3367,7 @@ padding: 5px;</string>
                    </font>
                   </property>
                   <property name="echoMode">
-                   <enum>QLineEdit::Password</enum>
+                   <enum>QLineEdit::EchoMode::Password</enum>
                   </property>
                  </widget>
                 </item>
@@ -3453,10 +3457,10 @@ padding: 5px;</string>
              <string>&amp;copy; 2024, Dept. of CS</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::RichText</enum>
+             <enum>Qt::TextFormat::RichText</enum>
             </property>
             <property name="alignment">
-             <set>Qt::AlignCenter</set>
+             <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
            </widget>
           </item>

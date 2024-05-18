@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.2
+## Created by: Qt User Interface Compiler version 6.7.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -651,7 +651,12 @@ class Ui_MainWindow(object):
 "\n"
 "#label_9 {\n"
 "	border-top-right-radius: 10px;\n"
-"}")
+"}\n"
+"\n"
+"#label_14,#label_15,#label_16,#label_17 {\n"
+"	border-radius: 5px;\n"
+""
+                        "}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.stackedWidget = QStackedWidget(self.centralwidget)
@@ -691,7 +696,7 @@ class Ui_MainWindow(object):
 
         self.password_input = QLineEdit(self.verticalLayoutWidget)
         self.password_input.setObjectName(u"password_input")
-        self.password_input.setEchoMode(QLineEdit.Password)
+        self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.verticalLayout.addWidget(self.password_input)
 
@@ -758,7 +763,7 @@ class Ui_MainWindow(object):
         font.setBold(False)
         self.header_title.setFont(font)
         self.header_title.setScaledContents(False)
-        self.header_title.setAlignment(Qt.AlignCenter)
+        self.header_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout.addWidget(self.header_title)
 
@@ -766,11 +771,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.horizontalLayout_4.setSizeConstraint(QLayout.SetFixedSize)
+        self.horizontalLayout_4.setSizeConstraint(QLayout.SizeConstraint.SetFixedSize)
         self.header_username_label = QLabel(self.header)
         self.header_username_label.setObjectName(u"header_username_label")
         self.header_username_label.setMaximumSize(QSize(212, 16777215))
-        self.header_username_label.setAlignment(Qt.AlignCenter)
+        self.header_username_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_4.addWidget(self.header_username_label)
 
@@ -830,7 +835,7 @@ class Ui_MainWindow(object):
         self.inventory_header.setMinimumSize(QSize(0, 90))
         self.layoutWidget1 = QWidget(self.inventory_header)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
-        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 94))
+        self.layoutWidget1.setGeometry(QRect(60, 0, 181, 101))
         self.verticalLayout_6 = QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_6.setSpacing(0)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -841,7 +846,7 @@ class Ui_MainWindow(object):
         font3.setPointSize(25)
         font3.setBold(True)
         self.time_label.setFont(font3)
-        self.time_label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.time_label.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_6.addWidget(self.time_label)
 
@@ -852,8 +857,8 @@ class Ui_MainWindow(object):
         font4.setWeight(QFont.Light)
         font4.setItalic(False)
         self.date_label.setFont(font4)
-        self.date_label.setTextFormat(Qt.AutoText)
-        self.date_label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.date_label.setTextFormat(Qt.TextFormat.AutoText)
+        self.date_label.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_6.addWidget(self.date_label)
 
@@ -907,8 +912,8 @@ class Ui_MainWindow(object):
         font6.setPointSize(18)
         self.inventory_type_input.setFont(font6)
         self.inventory_type_input.setCursor(QCursor(Qt.PointingHandCursor))
-        self.inventory_type_input.setInsertPolicy(QComboBox.InsertAtBottom)
-        self.inventory_type_input.setSizeAdjustPolicy(QComboBox.AdjustToContents)
+        self.inventory_type_input.setInsertPolicy(QComboBox.InsertPolicy.InsertAtBottom)
+        self.inventory_type_input.setSizeAdjustPolicy(QComboBox.SizeAdjustPolicy.AdjustToContents)
         self.inventory_type_input.setIconSize(QSize(16, 16))
         self.inventory_type_input.setFrame(False)
 
@@ -928,7 +933,7 @@ class Ui_MainWindow(object):
         font7.setPointSize(25)
         self.label_4.setFont(font7)
         self.label_4.setStyleSheet(u"color: rgb(0, 159, 161)")
-        self.label_4.setAlignment(Qt.AlignCenter)
+        self.label_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.stackedWidget_3.addWidget(self.inventory_page_default)
         self.transactions_page = QWidget()
         self.transactions_page.setObjectName(u"transactions_page")
@@ -950,12 +955,12 @@ class Ui_MainWindow(object):
 
         self.transactions_table = QTableView(self.layoutWidget4)
         self.transactions_table.setObjectName(u"transactions_table")
-        self.transactions_table.setFrameShape(QFrame.NoFrame)
-        self.transactions_table.setFrameShadow(QFrame.Plain)
+        self.transactions_table.setFrameShape(QFrame.Shape.NoFrame)
+        self.transactions_table.setFrameShadow(QFrame.Shadow.Plain)
         self.transactions_table.setLineWidth(0)
-        self.transactions_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.transactions_table.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.transactions_table.setAlternatingRowColors(True)
-        self.transactions_table.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.transactions_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.transactions_table.setShowGrid(False)
         self.transactions_table.setSortingEnabled(True)
         self.transactions_table.setCornerButtonEnabled(False)
@@ -986,12 +991,12 @@ class Ui_MainWindow(object):
 
         self.alerts_table = QTableView(self.layoutWidget5)
         self.alerts_table.setObjectName(u"alerts_table")
-        self.alerts_table.setFrameShape(QFrame.NoFrame)
-        self.alerts_table.setFrameShadow(QFrame.Plain)
+        self.alerts_table.setFrameShape(QFrame.Shape.NoFrame)
+        self.alerts_table.setFrameShadow(QFrame.Shadow.Plain)
         self.alerts_table.setLineWidth(0)
-        self.alerts_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.alerts_table.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.alerts_table.setAlternatingRowColors(True)
-        self.alerts_table.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.alerts_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.alerts_table.setShowGrid(False)
         self.alerts_table.setSortingEnabled(True)
         self.alerts_table.setCornerButtonEnabled(False)
@@ -1043,8 +1048,8 @@ class Ui_MainWindow(object):
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
         self.line.setLineWidth(1)
-        self.line.setFrameShape(QFrame.VLine)
-        self.line.setFrameShadow(QFrame.Sunken)
+        self.line.setFrameShape(QFrame.Shape.VLine)
+        self.line.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout_11.addWidget(self.line)
 
@@ -1080,15 +1085,15 @@ class Ui_MainWindow(object):
         self.item_search_table.setSizePolicy(sizePolicy6)
         self.item_search_table.setMinimumSize(QSize(0, 0))
         self.item_search_table.setMaximumSize(QSize(16777215, 16777215))
-        self.item_search_table.setFrameShape(QFrame.NoFrame)
-        self.item_search_table.setFrameShadow(QFrame.Plain)
+        self.item_search_table.setFrameShape(QFrame.Shape.NoFrame)
+        self.item_search_table.setFrameShadow(QFrame.Shadow.Plain)
         self.item_search_table.setLineWidth(0)
-        self.item_search_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.item_search_table.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.item_search_table.setAlternatingRowColors(True)
-        self.item_search_table.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.item_search_table.setSelectionBehavior(QAbstractItemView.SelectItems)
+        self.item_search_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.item_search_table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectItems)
         self.item_search_table.setShowGrid(False)
-        self.item_search_table.setGridStyle(Qt.SolidLine)
+        self.item_search_table.setGridStyle(Qt.PenStyle.SolidLine)
         self.item_search_table.setSortingEnabled(True)
         self.item_search_table.setCornerButtonEnabled(False)
         self.item_search_table.horizontalHeader().setCascadingSectionResizes(True)
@@ -1157,8 +1162,8 @@ class Ui_MainWindow(object):
         self.line_2.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
-        self.line_2.setFrameShape(QFrame.VLine)
-        self.line_2.setFrameShadow(QFrame.Sunken)
+        self.line_2.setFrameShape(QFrame.Shape.VLine)
+        self.line_2.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout_17.addWidget(self.line_2)
 
@@ -1196,7 +1201,7 @@ class Ui_MainWindow(object):
         self.label_15.setSizePolicy(sizePolicy1)
         self.label_15.setMaximumSize(QSize(16777215, 30))
         font10 = QFont()
-        font10.setPointSize(15)
+        font10.setPointSize(14)
         font10.setItalic(True)
         self.label_15.setFont(font10)
         self.label_15.setStyleSheet(u"background-color:rgb(0, 159, 161);\n"
@@ -1206,12 +1211,12 @@ class Ui_MainWindow(object):
 
         self.update_entry_table = QTableView(self.verticalLayoutWidget_6)
         self.update_entry_table.setObjectName(u"update_entry_table")
-        self.update_entry_table.setFrameShape(QFrame.NoFrame)
-        self.update_entry_table.setFrameShadow(QFrame.Plain)
+        self.update_entry_table.setFrameShape(QFrame.Shape.NoFrame)
+        self.update_entry_table.setFrameShadow(QFrame.Shadow.Plain)
         self.update_entry_table.setLineWidth(0)
-        self.update_entry_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.update_entry_table.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.update_entry_table.setAlternatingRowColors(True)
-        self.update_entry_table.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.update_entry_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.update_entry_table.setShowGrid(False)
         self.update_entry_table.setSortingEnabled(False)
         self.update_entry_table.setCornerButtonEnabled(False)
@@ -1274,8 +1279,8 @@ class Ui_MainWindow(object):
         self.line_5.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
-        self.line_5.setFrameShape(QFrame.VLine)
-        self.line_5.setFrameShadow(QFrame.Sunken)
+        self.line_5.setFrameShape(QFrame.Shape.VLine)
+        self.line_5.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout_22.addWidget(self.line_5)
 
@@ -1323,12 +1328,12 @@ class Ui_MainWindow(object):
 
         self.restock_entry_table = QTableView(self.restock_entry_page)
         self.restock_entry_table.setObjectName(u"restock_entry_table")
-        self.restock_entry_table.setFrameShape(QFrame.NoFrame)
-        self.restock_entry_table.setFrameShadow(QFrame.Plain)
+        self.restock_entry_table.setFrameShape(QFrame.Shape.NoFrame)
+        self.restock_entry_table.setFrameShadow(QFrame.Shadow.Plain)
         self.restock_entry_table.setLineWidth(0)
-        self.restock_entry_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.restock_entry_table.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.restock_entry_table.setAlternatingRowColors(True)
-        self.restock_entry_table.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.restock_entry_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.restock_entry_table.setShowGrid(False)
         self.restock_entry_table.setSortingEnabled(False)
         self.restock_entry_table.setCornerButtonEnabled(False)
@@ -1461,7 +1466,7 @@ class Ui_MainWindow(object):
         self.item_qty_input.setSizePolicy(sizePolicy)
         self.item_qty_input.setMinimumSize(QSize(140, 0))
         self.item_qty_input.setMaximumSize(QSize(150, 16777215))
-        self.item_qty_input.setInputMethodHints(Qt.ImhDigitsOnly|Qt.ImhPreferNumbers)
+        self.item_qty_input.setInputMethodHints(Qt.InputMethodHint.ImhDigitsOnly|Qt.InputMethodHint.ImhPreferNumbers)
 
         self.horizontalLayout_13.addWidget(self.item_qty_input)
 
@@ -1534,8 +1539,8 @@ class Ui_MainWindow(object):
         self.line_3.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
-        self.line_3.setFrameShape(QFrame.VLine)
-        self.line_3.setFrameShadow(QFrame.Sunken)
+        self.line_3.setFrameShape(QFrame.Shape.VLine)
+        self.line_3.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout_19.addWidget(self.line_3)
 
@@ -1577,7 +1582,7 @@ class Ui_MainWindow(object):
         self.label_14.setSizePolicy(sizePolicy1)
         self.label_14.setMaximumSize(QSize(16777215, 30))
         font12 = QFont()
-        font12.setPointSize(15)
+        font12.setPointSize(14)
         font12.setItalic(True)
         font12.setUnderline(False)
         self.label_14.setFont(font12)
@@ -1588,12 +1593,12 @@ class Ui_MainWindow(object):
 
         self.delete_entry_table = QTableView(self.verticalLayoutWidget_7)
         self.delete_entry_table.setObjectName(u"delete_entry_table")
-        self.delete_entry_table.setFrameShape(QFrame.NoFrame)
-        self.delete_entry_table.setFrameShadow(QFrame.Plain)
+        self.delete_entry_table.setFrameShape(QFrame.Shape.NoFrame)
+        self.delete_entry_table.setFrameShadow(QFrame.Shadow.Plain)
         self.delete_entry_table.setLineWidth(0)
-        self.delete_entry_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.delete_entry_table.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.delete_entry_table.setAlternatingRowColors(True)
-        self.delete_entry_table.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.delete_entry_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.delete_entry_table.setShowGrid(False)
         self.delete_entry_table.setSortingEnabled(False)
         self.delete_entry_table.setCornerButtonEnabled(False)
@@ -1620,7 +1625,7 @@ class Ui_MainWindow(object):
         self.label_7.setObjectName(u"label_7")
         self.label_7.setFont(font6)
         self.label_7.setStyleSheet(u"color: rgb(52, 62, 162)")
-        self.label_7.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+        self.label_7.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
 
         self.verticalLayout_9.addWidget(self.label_7)
 
@@ -1690,15 +1695,15 @@ class Ui_MainWindow(object):
         self.time_label_2 = QLabel(self.inventory_header_2)
         self.time_label_2.setObjectName(u"time_label_2")
         self.time_label_2.setFont(font3)
-        self.time_label_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.time_label_2.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_15.addWidget(self.time_label_2)
 
         self.date_label_2 = QLabel(self.inventory_header_2)
         self.date_label_2.setObjectName(u"date_label_2")
         self.date_label_2.setFont(font4)
-        self.date_label_2.setTextFormat(Qt.AutoText)
-        self.date_label_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.date_label_2.setTextFormat(Qt.TextFormat.AutoText)
+        self.date_label_2.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout_15.addWidget(self.date_label_2)
 
@@ -1770,8 +1775,8 @@ class Ui_MainWindow(object):
         self.line_4.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
 "margin-bottom: 6px;")
-        self.line_4.setFrameShape(QFrame.VLine)
-        self.line_4.setFrameShadow(QFrame.Sunken)
+        self.line_4.setFrameShape(QFrame.Shape.VLine)
+        self.line_4.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout_21.addWidget(self.line_4)
 
@@ -1803,12 +1808,12 @@ class Ui_MainWindow(object):
         self.update_entry_table_2 = QTableView(self.update_entry_page_2)
         self.update_entry_table_2.setObjectName(u"update_entry_table_2")
         self.update_entry_table_2.setStyleSheet(u"")
-        self.update_entry_table_2.setFrameShape(QFrame.NoFrame)
-        self.update_entry_table_2.setFrameShadow(QFrame.Plain)
+        self.update_entry_table_2.setFrameShape(QFrame.Shape.NoFrame)
+        self.update_entry_table_2.setFrameShadow(QFrame.Shadow.Plain)
         self.update_entry_table_2.setLineWidth(0)
-        self.update_entry_table_2.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.update_entry_table_2.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.update_entry_table_2.setAlternatingRowColors(True)
-        self.update_entry_table_2.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.update_entry_table_2.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.update_entry_table_2.setShowGrid(False)
         self.update_entry_table_2.setSortingEnabled(False)
         self.update_entry_table_2.setCornerButtonEnabled(False)
@@ -1856,12 +1861,12 @@ class Ui_MainWindow(object):
 
         self.transactions_table_2 = QTableView(self.user_transactions_page)
         self.transactions_table_2.setObjectName(u"transactions_table_2")
-        self.transactions_table_2.setFrameShape(QFrame.NoFrame)
-        self.transactions_table_2.setFrameShadow(QFrame.Plain)
+        self.transactions_table_2.setFrameShape(QFrame.Shape.NoFrame)
+        self.transactions_table_2.setFrameShadow(QFrame.Shadow.Plain)
         self.transactions_table_2.setLineWidth(0)
-        self.transactions_table_2.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.transactions_table_2.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.transactions_table_2.setAlternatingRowColors(True)
-        self.transactions_table_2.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.transactions_table_2.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.transactions_table_2.setShowGrid(False)
         self.transactions_table_2.setSortingEnabled(True)
         self.transactions_table_2.setCornerButtonEnabled(False)
@@ -1938,7 +1943,7 @@ class Ui_MainWindow(object):
         self.cu_password_input = QLineEdit(self.verticalLayoutWidget_2)
         self.cu_password_input.setObjectName(u"cu_password_input")
         self.cu_password_input.setFont(font14)
-        self.cu_password_input.setEchoMode(QLineEdit.Password)
+        self.cu_password_input.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.verticalLayout_3.addWidget(self.cu_password_input)
 
@@ -1950,7 +1955,7 @@ class Ui_MainWindow(object):
         self.cu_confirm_password_input = QLineEdit(self.verticalLayoutWidget_2)
         self.cu_confirm_password_input.setObjectName(u"cu_confirm_password_input")
         self.cu_confirm_password_input.setFont(font14)
-        self.cu_confirm_password_input.setEchoMode(QLineEdit.Password)
+        self.cu_confirm_password_input.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.verticalLayout_3.addWidget(self.cu_confirm_password_input)
 
@@ -1993,8 +1998,8 @@ class Ui_MainWindow(object):
         self.label.setFont(font1)
         self.label.setAutoFillBackground(False)
         self.label.setLineWidth(0)
-        self.label.setTextFormat(Qt.RichText)
-        self.label.setAlignment(Qt.AlignCenter)
+        self.label.setTextFormat(Qt.TextFormat.RichText)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_5.addWidget(self.label)
 
@@ -2006,12 +2011,12 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         self.login_button.setDefault(True)
-        self.stackedWidget_2.setCurrentIndex(0)
+        self.stackedWidget_2.setCurrentIndex(1)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)
-        self.stackedWidget_4.setCurrentIndex(3)
+        self.stackedWidget_4.setCurrentIndex(1)
         self.cancel_button.setDefault(False)
 
 
@@ -2048,7 +2053,7 @@ class Ui_MainWindow(object):
         self.update_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.update_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Go Back", None))
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"Click any cell of the table to select the item", None))
-        self.restock_entry_label.setText(QCoreApplication.translate("MainWindow", u"Restock Quantity", None))
+        self.restock_entry_label.setText(QCoreApplication.translate("MainWindow", u"RESTOCK ITEM", None))
         self.restock_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.restock_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Go Back", None))
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"Click any cell of the table to select the item", None))

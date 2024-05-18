@@ -1358,7 +1358,7 @@ QTableView::item:selected {
                  </rect>
                 </property>
                 <property name="currentIndex">
-                 <number>2</number>
+                 <number>3</number>
                 </property>
                 <widget class="QWidget" name="item_search_page">
                  <widget class="QWidget" name="verticalLayoutWidget_4">
@@ -1747,7 +1747,7 @@ margin-bottom: 6px;</string>
                      <property name="maximumSize">
                       <size>
                        <width>16777215</width>
-                       <height>24</height>
+                       <height>30</height>
                       </size>
                      </property>
                      <property name="font">
@@ -1761,7 +1761,7 @@ margin-bottom: 6px;</string>
 padding: 5px;</string>
                      </property>
                      <property name="text">
-                      <string>Click any cell of the teble to select the item</string>
+                      <string>Click any cell of the table to select the item</string>
                      </property>
                     </widget>
                    </item>
@@ -2014,7 +2014,7 @@ margin-bottom: 6px;</string>
                     <item>
                      <widget class="QLabel" name="label_17">
                       <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
                         <horstretch>0</horstretch>
                         <verstretch>0</verstretch>
                        </sizepolicy>
@@ -2036,7 +2036,7 @@ margin-bottom: 6px;</string>
 padding: 5px;</string>
                       </property>
                       <property name="text">
-                       <string>Click any cell of the teble to select the item</string>
+                       <string>Click any cell of the table to select the item</string>
                       </property>
                      </widget>
                     </item>
@@ -2104,14 +2104,17 @@ padding: 5px;</string>
                   <property name="geometry">
                    <rect>
                     <x>-1</x>
-                    <y>-1</y>
+                    <y>9</y>
                     <width>1291</width>
-                    <height>491</height>
+                    <height>521</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_11">
                    <item>
                     <layout class="QHBoxLayout" name="horizontalLayout_12">
+                     <property name="topMargin">
+                      <number>3</number>
+                     </property>
                      <item>
                       <widget class="QLabel" name="add_entry_label">
                        <property name="font">
@@ -2594,7 +2597,7 @@ margin-bottom: 6px;</string>
                      <property name="maximumSize">
                       <size>
                        <width>16777215</width>
-                       <height>24</height>
+                       <height>30</height>
                       </size>
                      </property>
                      <property name="font">
@@ -2740,8 +2743,14 @@ padding: 5px;</string>
                  </item>
                  <item>
                   <widget class="QPushButton" name="restock_entry_button">
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
                    <property name="text">
                     <string>Restock Item</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>true</bool>
                    </property>
                    <attribute name="buttonGroup">
                     <string notr="true">item_manage</string>
@@ -3054,7 +3063,7 @@ margin-bottom: 6px;</string>
                     <property name="maximumSize">
                      <size>
                       <width>16777215</width>
-                      <height>24</height>
+                      <height>30</height>
                      </size>
                     </property>
                     <property name="font">
@@ -3068,7 +3077,7 @@ margin-bottom: 6px;</string>
 padding: 5px;</string>
                     </property>
                     <property name="text">
-                     <string>Click any cell of the teble to select the item</string>
+                     <string>Click any cell of the table to select the item</string>
                     </property>
                    </widget>
                   </item>
@@ -3465,6 +3474,10 @@ padding: 5px;</string>
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="item_manage"/>
+  <buttongroup name="item_manage">
+   <property name="exclusive">
+    <bool>true</bool>
+   </property>
+  </buttongroup>
  </buttongroups>
 </ui>

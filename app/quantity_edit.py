@@ -7,14 +7,15 @@ from app.ui.ui_quantity_edit import Ui_QtyEdit
 from app import utils
 
 class QtyEdit(QWidget):
-    def __init__(self, inventory_manager, tray_icon, data: dict[str, str | QTableView]) -> None:
+    def __init__(self, parent, data: dict[str, str | QTableView]) -> None:
         super().__init__()
         self.ui = Ui_QtyEdit()
         self.ui.setupUi(self)
 
-        self.inventory_manager = inventory_manager
+        self.parent = parent
+        self.inventory_manager = parent.inventory_manager
         self.data = data
-        self.tray_icon = tray_icon
+        self.tray_icon = parent.tray_icon
 
         self.ui.qty_input.setValidator(QDoubleValidator())
 
@@ -44,29 +45,15 @@ class QtyEdit(QWidget):
             return
 
         name = self.data["name"]
-        # user = self.data["user"]
         lab = self.data["lab"]
         location = self.data["location"]
         qty = float(self.ui.qty_input.text())
-        # date = datetime.now().strftime('%Y-%m-%d')
-        # time = datetime.now().strftime('%I:%M %p')
-        # action = "Added"
-
-        # transaction = {
-        #     "date": date,
-        #     "time": time,
-        #     "user": user,
-        #     "name": name,
-        #     "qty": qty,
-        #     "action": action,
-        #     "lab": lab,
-        #     "location": location
-        # }
 
         if self.inventory_manager.update_qty(name, lab, location, qty):
             utils.show_message("Quantity updated", f"Changed quantity to {qty}")
-            # self.inventory_manager.add_transaction(transaction)
-            self.data["table"].setModel(self.inventory_manager.retrieve_item_info(self.data["item_type"]))
+            self.parent.state["items_model"] = self.inventory_manager.retrieve_item_info(self.data["item_type"])
+            self.data["table"].setModel(self.parent.state["items_model"])
         else:
             utils.show_message("Error", "Cannot update quantity")
 
+        self.ui.qty_input.clear()

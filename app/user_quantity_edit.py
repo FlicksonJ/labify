@@ -7,14 +7,15 @@ from app.ui.ui_user_quantity_edit import Ui_UserQuantityEdit
 from app import utils
 
 class UserQuantityEdit(QWidget):
-    def __init__(self, inventory_manager, tray_icon, data: dict[str, str | QTableView]) -> None:
+    def __init__(self, parent, data: dict[str, str | QTableView]) -> None:
         super().__init__()
         self.ui = Ui_UserQuantityEdit()
         self.ui.setupUi(self)
 
-        self.inventory_manager = inventory_manager
+        self.parent = parent
+        self.inventory_manager = parent.inventory_manager
         self.data = data
-        self.tray_icon = tray_icon
+        self.tray_icon = parent.tray_icon
 
         self.ui.qty_input.setValidator(QDoubleValidator())
 
@@ -73,7 +74,9 @@ class UserQuantityEdit(QWidget):
         if self.inventory_manager.remove_qty_from_item(name, lab, location, qty):
             utils.show_message("Qty updated", f"Removed {qty} from the stock")
             self.inventory_manager.add_transaction(transaction)
-            self.data["table"].setModel(self.inventory_manager.retrieve_item_info(self.data["item_type"], with_qty=False))
+            self.parent.state["items_model"] = self.inventory_manager.retrieve_item_info(self.data["item_type"], with_qty=False)
+            self.data["table"].setModel(self.parent.state["items_model"])
         else:
             utils.show_message("Error", "Cannot update qty")
 
+        self.ui.qty_input.clear()

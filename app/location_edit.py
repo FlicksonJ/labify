@@ -5,15 +5,15 @@ from app import utils
 
 class LocationEdit(QWidget):
     def __init__(self, 
-                 inventory_manager, 
-                 locations: dict[str, list[str]], 
+                 parent,
                  data: dict[str, str | QTableView]) -> None:
         super().__init__()
         self.ui = Ui_LocationEdit()
         self.ui.setupUi(self)
         
-        self.locations = locations
-        self.inventory_manager = inventory_manager
+        self.parent = parent
+        self.locations = parent.state["location_data"]
+        self.inventory_manager = parent.inventory_manager
         self.data = data
 
         # Update locations
@@ -59,7 +59,8 @@ class LocationEdit(QWidget):
                 new_location
                 ):
             utils.show_message("Name Updated", f"Changed location from {current_lab}, {current_location} to {new_lab}, {new_location}")
-            self.data["table"].setModel(self.inventory_manager.retrieve_item_info(self.data["item_type"]))
+            self.parent.state["items_model"] = self.inventory_manager.retrieve_item_info(self.data["item_type"])
+            self.data["table"].setModel(self.parent.state["items_model"])
         else:
             utils.show_message("Error", "Cannot update location")
 

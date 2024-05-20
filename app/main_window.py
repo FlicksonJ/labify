@@ -30,6 +30,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # for managing user access control
         # `user_type`: admin, user
         # `item_type`: glassware, equipments, chemicals
+        # `inventory_page_func`: search, add, update, restock, delete
         self.state = {
             "username": "",
             "user_type": "", 
@@ -209,10 +210,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if not layout:
             layout = self.ui.verticalLayout_13
         # Update entry page inputs
-        self.name_edit = NameEdit(self.inventory_manager, data)
-        self.quantity_edit = QtyEdit(self.inventory_manager, self.tray_icon, data)
-        self.user_quantity_edit = UserQuantityEdit(self.inventory_manager, self.tray_icon, data)
-        self.location_edit = LocationEdit(self.inventory_manager, self.state["location_data"], data)
+        self.name_edit = NameEdit(self, data)
+        self.quantity_edit = QtyEdit(self, data)
+        self.user_quantity_edit = UserQuantityEdit(self, data)
+        self.location_edit = LocationEdit(self, data)
 
         if self.state["user_type"] == "user":
             layout.addWidget(self.user_quantity_edit)
@@ -656,7 +657,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
             "location": location
         }
 
-        self.quantity_restock = QtyRestock(self.inventory_manager, self.tray_icon, data)
+        self.quantity_restock = QtyRestock(self, data)
         layout = self.ui.verticalLayout_18
         layout.addWidget(self.quantity_restock)
 

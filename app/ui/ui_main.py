@@ -414,6 +414,7 @@ class Ui_MainWindow(object):
 "#add_entry_button, \n"
 "#update_entry_button,\n"
 "#restock_entry_button,\n"
+"#move_entry_button,\n"
 "#delete_entry_button {\n"
 "	background: rgb(52, 62, 162);\n"
 "	margin: 0;\n"
@@ -435,9 +436,10 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#add_entry_button:hover, \n"
-"#update_entry_button:hover,\n"
-"#restock_en"
-                        "try_button:hover,\n"
+"#update_entry_butto"
+                        "n:hover,\n"
+"#restock_entry_button:hover,\n"
+"#move_entry_button:hover,\n"
 "#delete_entry_button:hover {\n"
 "	background: rgb(0, 159, 161);\n"
 "	color: #fff;\n"
@@ -446,6 +448,7 @@ class Ui_MainWindow(object):
 "#add_entry_button:checked, \n"
 "#update_entry_button:checked,\n"
 "#restock_entry_button:checked,\n"
+"#move_entry_button:checked,\n"
 "#delete_entry_button:checked {\n"
 "	background: #fff;\n"
 "	color: rgb(52, 62, 162);\n"
@@ -476,10 +479,10 @@ class Ui_MainWindow(object):
 "	margin: 1px;\n"
 "}\n"
 "\n"
-"#search_bar_container:hover,\n"
+""
+                        "#search_bar_container:hover,\n"
 "#search_bar_container_2:hover,\n"
-"#search_bar_conta"
-                        "iner_3:hover,\n"
+"#search_bar_container_3:hover,\n"
 "#search_bar_container_4:hover,\n"
 "#search_bar_container_5:hover {\n"
 "	border: 2px solid rgb(0, 159, 161);\n"
@@ -512,10 +515,10 @@ class Ui_MainWindow(object):
 "#restock_entry_search_button:hover,\n"
 "#update_entry_search_input:hover,\n"
 "#update_entry_search_input_2:hover,\n"
-"#restock_entry_search_button:hover,\n"
+"#restock_entry_search_butto"
+                        "n:hover,\n"
 "#delete_entry_search_button:hover,\n"
-"#delete_entry_search_input:hover "
-                        "{\n"
+"#delete_entry_search_input:hover {\n"
 "	color: rgb(52, 62, 162);\n"
 "}\n"
 "\n"
@@ -557,11 +560,11 @@ class Ui_MainWindow(object):
 "	border-color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
-"#add_entry_cancel_button,\n"
+"#add_entry_cancel_b"
+                        "utton,\n"
 "#update_entry_cancel_button,\n"
 "#restock_entry_cancel_button,\n"
-"#delete"
-                        "_entry_delete_button,\n"
+"#delete_entry_delete_button,\n"
 "#delete_entry_cancel_button,\n"
 "#go_back_button {\n"
 "	color: rgb(224, 27, 36);\n"
@@ -604,11 +607,11 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QTableView QHeaderView::section {\n"
-"	background: rgb(0, 159, 161);\n"
+""
+                        "	background: rgb(0, 159, 161);\n"
 "	color: #fff;\n"
 "	font-size: 20pt;\n"
-"	gridline"
-                        "-color: transparent;\n"
+"	gridline-color: transparent;\n"
 "}\n"
 "\n"
 "QTableView QHeaderView::section:selected {\n"
@@ -650,13 +653,13 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#label_9 {\n"
-"	border-top-right-radius: 10px;\n"
+"	border-top-right-radius: 10px;"
+                        "\n"
 "}\n"
 "\n"
 "#label_14,#label_15,#label_16,#label_17 {\n"
 "	border-radius: 5px;\n"
-""
-                        "}")
+"}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_22 = QVBoxLayout(self.centralwidget)
@@ -1638,7 +1641,7 @@ class Ui_MainWindow(object):
         self.stackedWidget_4.addWidget(self.delete_entry_page)
         self.layoutWidget5 = QWidget(self.inventory_view_page)
         self.layoutWidget5.setObjectName(u"layoutWidget5")
-        self.layoutWidget5.setGeometry(QRect(40, 190, 211, 255))
+        self.layoutWidget5.setGeometry(QRect(40, 190, 211, 306))
         self.verticalLayout_9 = QVBoxLayout(self.layoutWidget5)
         self.verticalLayout_9.setSpacing(1)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
@@ -1679,6 +1682,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_9.addWidget(self.restock_entry_button)
 
+        self.move_entry_button = QPushButton(self.layoutWidget5)
+        self.item_manage.addButton(self.move_entry_button)
+        self.move_entry_button.setObjectName(u"move_entry_button")
+        self.move_entry_button.setCheckable(True)
+
+        self.verticalLayout_9.addWidget(self.move_entry_button)
+
         self.delete_entry_button = QPushButton(self.layoutWidget5)
         self.item_manage.addButton(self.delete_entry_button)
         self.delete_entry_button.setObjectName(u"delete_entry_button")
@@ -1689,7 +1699,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget2.raise_()
+        self.layoutWidget1.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -2039,9 +2049,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         self.login_button.setDefault(True)
-        self.stackedWidget_2.setCurrentIndex(1)
+        self.stackedWidget_2.setCurrentIndex(0)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)
         self.stackedWidget_4.setCurrentIndex(1)
@@ -2104,6 +2114,7 @@ class Ui_MainWindow(object):
         self.add_entry_button.setText(QCoreApplication.translate("MainWindow", u"Add New Item", None))
         self.update_entry_button.setText(QCoreApplication.translate("MainWindow", u"Edit Existing Item", None))
         self.restock_entry_button.setText(QCoreApplication.translate("MainWindow", u"Restock Item", None))
+        self.move_entry_button.setText(QCoreApplication.translate("MainWindow", u"Move Item Location", None))
         self.delete_entry_button.setText(QCoreApplication.translate("MainWindow", u"Remove Existing Item", None))
         self.time_label_2.setText(QCoreApplication.translate("MainWindow", u"12:00 AM", None))
         self.date_label_2.setText(QCoreApplication.translate("MainWindow", u"20 Feb, 2024", None))

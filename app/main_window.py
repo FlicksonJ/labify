@@ -115,6 +115,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.ui.move_entry_button.clicked.connect(self.show_move_entry_page)
         self.ui.move_entry_cancel_button.clicked.connect(self.handle_inventory_page)
+        self.ui.move_entry_search_button.clicked.connect(self.move_inventory_search)
+        self.ui.move_entry_search_input.returnPressed.connect(self.move_inventory_search)
 
         self.ui.delete_entry_button.clicked.connect(self.show_delete_entry_page)
         self.ui.delete_entry_cancel_button.clicked.connect(self.handle_inventory_page)
@@ -627,6 +629,10 @@ Use Edit Entry option to change the quantity of an existing item.""")
         self.ui.move_entry_label.setText(self.update_item_type_label())
         self.set_default_inventory_table(self.ui.move_entry_table)
         self.ui.move_entry_search_input.clear()
+    
+    def move_inventory_search(self):
+        search_term = self.ui.move_entry_search_input.text()
+        self.search_inventory(search_term, self.ui.move_entry_table)
 
     def show_restock_entry_page(self):
         """

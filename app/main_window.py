@@ -629,6 +629,11 @@ Use Edit Entry option to change the quantity of an existing item.""")
         self.ui.move_entry_label.setText(self.update_item_type_label())
         self.set_default_inventory_table(self.ui.move_entry_table)
         self.ui.move_entry_search_input.clear()
+
+        # Resize table headers
+        move_table_header = self.ui.move_entry_table.horizontalHeader()
+        move_table_header.resizeSection(0, 100)
+        move_table_header.resizeSection(1, 450) 
     
     def move_inventory_search(self):
         search_term = self.ui.move_entry_search_input.text()

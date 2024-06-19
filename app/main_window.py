@@ -30,7 +30,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # for managing user access control
         # `user_type`: admin, user
         # `item_type`: glassware, equipments, chemicals
-        # `inventory_page_func`: search, add, update, restock, delete
+        # `inventory_page_func`: search, add, update, restock, move, delete
         self.state = {
             "username": "",
             "user_type": "", 
@@ -113,6 +113,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.restock_entry_search_button.clicked.connect(self.restock_inventory_search)
         self.ui.restock_entry_search_input.returnPressed.connect(self.restock_inventory_search)
 
+        self.ui.move_entry_button.clicked.connect(self.show_move_entry_page)
+        self.ui.move_entry_cancel_button.clicked.connect(self.handle_inventory_page)
+
         self.ui.delete_entry_button.clicked.connect(self.show_delete_entry_page)
         self.ui.delete_entry_cancel_button.clicked.connect(self.handle_inventory_page)
         self.ui.delete_entry_search_button.clicked.connect(self.delete_inventory_search)
@@ -170,6 +173,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "add": "ADD NEW",
             "update": "EDIT EXISTING",
             "restock": "RESTOCK",
+            "move": "MOVE",
             "delete": "REMOVE EXISTING"
         }
 
@@ -611,6 +615,18 @@ Use Edit Entry option to change the quantity of an existing item.""")
     def user_update_inventory_search(self):
         search_term = self.ui.update_entry_search_input_2.text()
         self.search_inventory(search_term, self.ui.update_entry_table_2)
+    
+    def show_move_entry_page(self):
+        """
+        This slot is triggered when the move_entry_button is clicked.
+        Show move_entry_page
+        """
+
+        self.ui.stackedWidget_4.setCurrentWidget(self.ui.move_entry_page)
+        self.state["inventory_page_func"] = "move"
+        self.ui.move_entry_label.setText(self.update_item_type_label())
+        self.set_default_inventory_table(self.ui.move_entry_table)
+        self.ui.move_entry_search_input.clear()
 
     def show_restock_entry_page(self):
         """

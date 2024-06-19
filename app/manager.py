@@ -230,6 +230,9 @@ class InventoryManager:
         self.RETRIEVE_LAB_ID_SQL = """
         SELECT lab_id FROM Labs WHERE name = (?)
         """
+        self.RETRIEVE_LABS_SQL = """
+        SELECT name FROM Labs;
+        """
         self.RETRIEVE_LOCATIONS_SQL = """
         SELECT Labs.name AS lab_name, Locations.name AS location_name
         FROM Labs
@@ -322,13 +325,8 @@ class InventoryManager:
         self.create_tables()
         
         # @TODO: Change it and create locations at Installation
-        locations = {
-            "Lab1": ["A", "B", "C"],
-            "Lab2": ["A", "B", "C", "D"],
-        }
-        lab_names = list(locations.keys())
+        lab_names = ["Main lab", "Sub lab", "MSc lab", "Down lab", "Upstairs lab"]
         self.insert_labs(lab_names)
-        self.insert_locations(locations)
 
 
     def create_tables(self):
@@ -348,25 +346,52 @@ class InventoryManager:
             query.prepare(self.INSERT_LABS_SQL)
             query.addBindValue(lab)
             query.exec()
-
-    def insert_locations(self, locations: dict[str, list[str]]):
+    
+    def location_exists(self, lab: str, location: str) -> bool:
         query = QSqlQuery()
-        for lab_name, shelves in locations.items():
-            # Retrieve `lab_id` for the current lab
-            lab_id_query = QSqlQuery()
-            lab_id_query.prepare(self.RETRIEVE_LAB_ID_SQL)
-            lab_id_query.addBindValue(lab_name)
-            lab_id_query.exec()
-            lab_id_query.next()
-            lab_id = lab_id_query.value(0)
+        sql = """
+        SELECT 1 FROM Locations
+        WHERE name = (?) AND lab_id = (
+            SELECT lab_id FROM Labs
+            WHERE name = (?)
+        )
+        """
+        query.prepare(sql)
+        query.addBindValue(location)
+        query.addBindValue(lab)
+        query.exec()
 
-            # Insert locations for the current lab
-            for shelf in shelves:
-                # location_name = f"{lab_name}_{shelf}"
-                query.prepare(self.INSERT_LOCATIONS_SQL)
-                query.addBindValue(shelf)
-                query.addBindValue(lab_id)
-                query.exec()
+        if query.next():
+            return True
+        else:
+            return False
+
+    def insert_location(self, lab: str, location: str):
+        query = QSqlQuery()
+        # Retrieve `lab_id` for the current lab
+        lab_id_query = QSqlQuery()
+        lab_id_query.prepare(self.RETRIEVE_LAB_ID_SQL)
+        lab_id_query.addBindValue(lab)
+        lab_id_query.exec()
+        lab_id_query.next()
+        lab_id = lab_id_query.value(0)
+
+        # Insert locations for the current lab
+        query.prepare(self.INSERT_LOCATIONS_SQL)
+        query.addBindValue(location)
+        query.addBindValue(lab_id)
+        query.exec()
+
+    def retrieve_labs(self) -> list[str]:
+        query = QSqlQuery()
+        labs = []
+        query.exec(self.RETRIEVE_LABS_SQL)
+
+        while query.next():
+            lab_name = query.value("name")
+            labs.append(lab_name)
+        
+        return labs
 
     def retrieve_locations(self) -> dict[str, list[str]]:
         query = QSqlQuery()

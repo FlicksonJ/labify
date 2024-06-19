@@ -41,8 +41,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             }
 
         # Update locations
-        self.ui.item_lab_input.addItems(self.state["location_data"].keys())
-        self.update_locations(0)
+        self.ui.item_lab_input.addItems(self.inventory_manager.retrieve_labs())
+        # self.update_locations(0)
 
         # View login screen
         self.ui.stackedWidget.setCurrentWidget(self.ui.login_page)
@@ -438,7 +438,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.ui.add_entry_list.clear()
             self.ui.item_name_input.clear()
             self.ui.item_qty_input.clear()
-            self.update_locations(0)
+            self.update_locations()
 
 
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
@@ -507,7 +507,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         item_type = self.state["item_type"]
         name = self.ui.item_name_input.text()
         qty = self.ui.item_qty_input.text()
-        location = self.ui.item_location_input.currentText()
+        location = self.ui.item_location_input.text()
         lab = self.ui.item_lab_input.currentText()
 
         item_entry = {
@@ -517,6 +517,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "lab": lab
         }
 
+        # If the location is not already present under the Lab/Store, add the location
+        if not self.inventory_manager.location_exists(lab, location):
+            self.inventory_manager.insert_location(lab, location)
+            
+        # If the item is already present in the given location, show the error message
         if self.inventory_manager.check_item_location(name, lab, location):
             utils.show_message("Item exists!", f"""Item {name} already exists in {lab}, {location}.
 Use Edit Entry option to change the quantity of an existing item.""")
@@ -528,15 +533,11 @@ Use Edit Entry option to change the quantity of an existing item.""")
         # Clear current input values
         self.ui.item_name_input.clear()
         self.ui.item_qty_input.clear()
-        self.update_locations(0)
+        self.update_locations()
 
 
-    def update_locations(self, index):
-        selected_lab = self.ui.item_lab_input.currentText()
+    def update_locations(self):
         self.ui.item_location_input.clear()
-
-        if selected_lab in self.state["location_data"]:
-            self.ui.item_location_input.addItems(self.state["location_data"][selected_lab])
 
 
     def show_update_entry_page(self):

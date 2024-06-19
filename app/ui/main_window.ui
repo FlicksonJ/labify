@@ -277,13 +277,11 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 	color: rgb(52, 62, 162);
 }
 
-#item_location_input::drop-down,
 #item_lab_input::drop-down
 {
 	border: 0px;
 }
 
-#item_location_input::down-arrow,
 #item_lab_input::down-arrow
 {
 	image: url(:/icon/images/down-arrow.ico);
@@ -292,13 +290,11 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 	margin-right: 20px
 }
 
-#item_location_input:on,
 #item_lab_input:on
 {
 	border: 2px solid rgba(0, 159, 161, 10%);
 }
 
-#item_location_input QListView,
 #item_lab_input QListView
 {
 	font-size: 15pt;
@@ -308,28 +304,24 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 	outline: 0px;
 }
 
-#item_location_input QListView::item,
 #item_lab_input QListView::item
 {
 	padding-left: 10px;
 	background-color: rgb(251, 254, 255);
 }
 
-#item_location_input QListView::item:hover,
 #item_lab_input QListView::item:hover
 {
 	background: rgb(0, 159, 161);
 	color: rgb(251, 254, 255);
 }
 
-#item_location_input QListView::item:selected,
 #item_lab_input QListView::item:selected
 {
 	background: rgb(0, 159, 161);
 	color: rgb(251, 254, 255);
 }
 
-#item_location_input QListView,
 #item_lab_input QListView
 {
 	color: rgb(0, 159, 161);
@@ -1462,7 +1454,7 @@ QTableView::item:selected {
                     </rect>
                    </property>
                    <property name="currentIndex">
-                    <number>2</number>
+                    <number>4</number>
                    </property>
                    <widget class="QWidget" name="item_search_page">
                     <widget class="QWidget" name="verticalLayoutWidget_4">
@@ -2767,14 +2759,7 @@ padding: 5px;</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QComboBox" name="item_location_input">
-                             <property name="maximumSize">
-                              <size>
-                               <width>200</width>
-                               <height>16777215</height>
-                              </size>
-                             </property>
-                            </widget>
+                            <widget class="QLineEdit" name="item_location_input"/>
                            </item>
                           </layout>
                          </widget>

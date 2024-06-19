@@ -284,29 +284,25 @@ class Ui_MainWindow(object):
 "	color: rgb(52, 62, 162);\n"
 "}\n"
 "\n"
-"#item_location_input::drop-down,\n"
 "#item_lab_input::drop-down\n"
 "{\n"
 "	border: 0px;\n"
 "}\n"
 "\n"
-"#item_location_input::down-arrow,\n"
 "#item_lab_input::down-arrow\n"
 "{\n"
-"	im"
-                        "age: url(:/icon/images/down-arrow.ico);\n"
+"	image: url(:/icon/images/down-arrow.ico);\n"
 "	width: 15px;\n"
-"	height: 15px;\n"
+"	height: 15px"
+                        ";\n"
 "	margin-right: 20px\n"
 "}\n"
 "\n"
-"#item_location_input:on,\n"
 "#item_lab_input:on\n"
 "{\n"
 "	border: 2px solid rgba(0, 159, 161, 10%);\n"
 "}\n"
 "\n"
-"#item_location_input QListView,\n"
 "#item_lab_input QListView\n"
 "{\n"
 "	font-size: 15pt;\n"
@@ -316,30 +312,25 @@ class Ui_MainWindow(object):
 "	outline: 0px;\n"
 "}\n"
 "\n"
-"#item_location_input QListView::item,\n"
 "#item_lab_input QListView::item\n"
 "{\n"
 "	padding-left: 10px;\n"
 "	background-color: rgb(251, 254, 255);\n"
 "}\n"
 "\n"
-"#item_location_input QListView::item:hover,\n"
 "#item_lab_input QListView::item:hover\n"
 "{\n"
 "	background: rgb(0, 159, 161);\n"
 "	color: rgb(251, 254, 255);\n"
 "}\n"
 "\n"
-"#item_location_input QListView::item:selected,\n"
 "#item_lab_input QListView::item:selected\n"
 "{\n"
 "	background: rgb(0, 159, 161);\n"
 "	color: rgb(251, 254, 255);\n"
 "}\n"
 "\n"
-"#item_location_input QListView,\n"
-"#item_lab_i"
-                        "nput QListView\n"
+"#item_lab_input QListView\n"
 "{\n"
 "	color: rgb(0, 159, 161);\n"
 "}\n"
@@ -356,7 +347,8 @@ class Ui_MainWindow(object):
 "#inventory_type_input {\n"
 "	background: rgb(251, 254, 255);\n"
 "	color: rgb(0, 159, 161);\n"
-"	height: 40px;\n"
+"	heig"
+                        "ht: 40px;\n"
 "	border-radius: 5px;\n"
 "	font-size: 18pt;\n"
 "	padding-left: 10px;\n"
@@ -389,8 +381,7 @@ class Ui_MainWindow(object):
 "	outline: 0px;\n"
 "}\n"
 "\n"
-"#inventory_type_input QLis"
-                        "tView::item {\n"
+"#inventory_type_input QListView::item {\n"
 "	padding-left: 10px;\n"
 "	background-color: rgb(251, 254, 255);\n"
 "}\n"
@@ -402,7 +393,8 @@ class Ui_MainWindow(object):
 "\n"
 "#inventory_type_input QListView::item:selected {\n"
 "	background: rgb(0, 159, 161);\n"
-"	color: rgb(251, 254, 255);\n"
+"	col"
+                        "or: rgb(251, 254, 255);\n"
 "}\n"
 "\n"
 "#inventory_type_input QListView {\n"
@@ -436,8 +428,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#add_entry_button:hover, \n"
-"#update_entry_butto"
-                        "n:hover,\n"
+"#update_entry_button:hover,\n"
 "#restock_entry_button:hover,\n"
 "#move_entry_button:hover,\n"
 "#delete_entry_button:hover {\n"
@@ -449,7 +440,8 @@ class Ui_MainWindow(object):
 "#update_entry_button:checked,\n"
 "#restock_entry_button:checked,\n"
 "#move_entry_button:checked,\n"
-"#delete_entry_button:checked {\n"
+"#delete_ent"
+                        "ry_button:checked {\n"
 "	background: #fff;\n"
 "	color: rgb(52, 62, 162);\n"
 "}\n"
@@ -476,8 +468,7 @@ class Ui_MainWindow(object):
 "#search_bar_container_4,\n"
 "#search_bar_container_5,\n"
 "#search_bar_container_6 {\n"
-"	border: 1px solid rgb(0, 159"
-                        ", 161);\n"
+"	border: 1px solid rgb(0, 159, 161);\n"
 "	border-radius: 15px;\n"
 "	margin: 1px;\n"
 "}\n"
@@ -489,7 +480,8 @@ class Ui_MainWindow(object):
 "#search_bar_container_5:hover,\n"
 "#search_bar_container_6:hover {\n"
 "	border: 2px solid rgb(0, 159, 161);\n"
-"}\n"
+""
+                        "}\n"
 "\n"
 "#search_button,\n"
 "#search_bar_input,\n"
@@ -516,8 +508,7 @@ class Ui_MainWindow(object):
 "#search_button:hover,\n"
 "#search_bar_input:hover,\n"
 "#update_entry_search_button:hover,\n"
-"#update_entry_search_bu"
-                        "tton_2:hover,\n"
+"#update_entry_search_button_2:hover,\n"
 "#restock_entry_search_button:hover,\n"
 "#update_entry_search_input:hover,\n"
 "#update_entry_search_input_2:hover,\n"
@@ -526,7 +517,8 @@ class Ui_MainWindow(object):
 "#delete_entry_search_button:hover,\n"
 "#delete_entry_search_input:hover {\n"
 "	color: rgb(52, 62, 162);\n"
-"}\n"
+""
+                        "}\n"
 "\n"
 "#search_bar_input,\n"
 "#update_entry_search_input,\n"
@@ -555,8 +547,7 @@ class Ui_MainWindow(object):
 "#delete_entry_delete_button,\n"
 "#delete_entry_cancel_button,\n"
 "#go_back_button {\n"
-""
-                        "	border: 1px solid;\n"
+"	border: 1px solid;\n"
 "	margin: 0;\n"
 "	font-size: 18pt;\n"
 "	height: 40px;\n"
@@ -571,7 +562,8 @@ class Ui_MainWindow(object):
 "\n"
 "#add_entry_cancel_button,\n"
 "#update_entry_cancel_button,\n"
-"#restock_entry_cancel_button,\n"
+"#restock_entry_c"
+                        "ancel_button,\n"
 "#move_entry_cancel_button,\n"
 "#delete_entry_delete_button,\n"
 "#delete_entry_cancel_button,\n"
@@ -603,8 +595,7 @@ class Ui_MainWindow(object):
 "/* Table Styling */\n"
 "\n"
 "QTableView {\n"
-"	font-size"
-                        ": 20pt;\n"
+"	font-size: 20pt;\n"
 "	alternate-background-color: rgb(209, 235, 236);\n"
 "	border: none;\n"
 "	gridline-color: rgb(0, 159, 161);\n"
@@ -617,7 +608,8 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QTableView QHeaderView::section {\n"
-"	background: rgb(0, 159, 161);\n"
+"	background: rgb(0, 159, 161"
+                        ");\n"
 "	color: #fff;\n"
 "	font-size: 20pt;\n"
 "	gridline-color: transparent;\n"
@@ -648,8 +640,7 @@ class Ui_MainWindow(object):
 "	color: rgb(0, 159, 161);\n"
 "	gridline-color: rgb(0, 159, 161);\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
-"	m"
-                        "in-width: 500px;\n"
+"	min-width: 500px;\n"
 "}\n"
 "\n"
 "QTableView::item:selected {\n"
@@ -666,7 +657,8 @@ class Ui_MainWindow(object):
 "	border-top-right-radius: 10px;\n"
 "}\n"
 "\n"
-"#label_14,#label_15,#label_16,#label_17 {\n"
+"#label_14,#l"
+                        "abel_15,#label_16,#label_17 {\n"
 "	border-radius: 5px;\n"
 "}")
         self.centralwidget = QWidget(MainWindow)
@@ -1627,9 +1619,8 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_13.addWidget(self.item_lab_input)
 
-        self.item_location_input = QComboBox(self.add_entry_inputs)
+        self.item_location_input = QLineEdit(self.add_entry_inputs)
         self.item_location_input.setObjectName(u"item_location_input")
-        self.item_location_input.setMaximumSize(QSize(200, 16777215))
 
         self.horizontalLayout_13.addWidget(self.item_location_input)
 
@@ -1824,7 +1815,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget.raise_()
+        self.layoutWidget1.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -2179,7 +2170,7 @@ class Ui_MainWindow(object):
         self.stackedWidget_2.setCurrentIndex(0)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)
-        self.stackedWidget_4.setCurrentIndex(2)
+        self.stackedWidget_4.setCurrentIndex(4)
         self.cancel_button.setDefault(False)
 
 

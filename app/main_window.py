@@ -9,6 +9,7 @@ from app.user_quantity_edit import UserQuantityEdit
 from app.quantity_restock import QtyRestock
 from app.name_edit import NameEdit
 from app.location_edit import LocationEdit
+from app.move_item import MoveItem
 
 from app.manager import DatabaseManager
 from app import utils
@@ -115,6 +116,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.ui.move_entry_button.clicked.connect(self.show_move_entry_page)
         self.ui.move_entry_cancel_button.clicked.connect(self.handle_inventory_page)
+        self.ui.move_entry_table.clicked.connect(self.move_entry_table_clicked)
         self.ui.move_entry_search_button.clicked.connect(self.move_inventory_search)
         self.ui.move_entry_search_input.returnPressed.connect(self.move_inventory_search)
 
@@ -224,7 +226,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.state["user_type"] == "user":
             layout.addWidget(self.user_quantity_edit)
             if self.state["item_type"] == "chemical":
-                self.user_quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (ml/g):')
+                self.user_quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (L/g):')
             else:
                 self.user_quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
 
@@ -236,7 +238,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 layout.addWidget(self.quantity_edit)
                 self.quantity_edit.ui.qty_input.setText(str(data["qty"]))
                 if self.state["item_type"] == "chemical":
-                    self.quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (ml/g):')
+                    self.quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (L/g):')
                 else:
                     self.quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
                 layout.setStretch(0, 1)
@@ -485,7 +487,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.state["inventory_page_func"] = "add"
         self.ui.add_entry_label.setText(self.update_item_type_label())
         if self.state["item_type"] == "chemical":
-            self.ui.qty_label.setText("Qty (ml/g)")
+            self.ui.qty_label.setText("Qty (L/g)")
         else:
             self.ui.qty_label.setText("Qty (Pcs.)")
 
@@ -493,6 +495,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if not utils.validate_line_edit(self.ui.item_name_input):
             return
         if not utils.validate_line_edit(self.ui.item_qty_input):
+            return
+        if not utils.validate_line_edit(self.ui.item_location_input):
             return
 
 
@@ -638,6 +642,48 @@ Use Edit Entry option to change the quantity of an existing item.""")
     def move_inventory_search(self):
         search_term = self.ui.move_entry_search_input.text()
         self.search_inventory(search_term, self.ui.move_entry_table)
+    
+    def move_entry_table_clicked(self, index):
+        self.remove_current_update_input(self.ui.verticalLayout_24)
+        row = index.row()
+        column = index.column()
+
+        model = self.state["items_model"]
+        header = model.headerData(column, Qt.Horizontal)
+        name = model.index(row, 1).data()
+        user = self.state["username"]
+        qty = model.index(row, 2).data()
+        lab = model.index(row, 3).data()
+        location = model.index(row, 4).data()
+
+        data = {
+            "table": self.ui.move_entry_table,
+            "item_type": self.state["item_type"],
+            "header": header,
+            "user": user,
+            "name": name,
+            "qty": qty,
+            "lab": lab,
+            "location": location
+        }
+
+        self.move_item = MoveItem(self, data)
+        layout = self.ui.verticalLayout_24
+        layout.addWidget(self.move_item)
+
+        if self.state["item_type"] == "chemical":
+            self.move_item.ui.qty_label.setText(f'Qty - {data["name"]} (L/g):')
+        else:
+            self.move_item.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
+        layout.setStretch(0, 1)
+        layout.setStretch(2, 7)
+        layout.setStretch(3, 1)
+
+        self.move_item.ui.location_label.setText(f'Location ({data["name"]}):')
+        lab_index = self.move_item.ui.lab_input.findText(data["lab"])
+        self.move_item.ui.lab_input.setCurrentIndex(lab_index)
+        self.move_item.update_loc()
+        self.move_item.ui.location_input.setText(data["location"])
 
     def show_restock_entry_page(self):
         """
@@ -689,7 +735,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
         layout.addWidget(self.quantity_restock)
 
         if self.state["item_type"] == "chemical":
-            self.quantity_restock.ui.qty_label.setText(f'Qty - {data["name"]} (ml/g):')
+            self.quantity_restock.ui.qty_label.setText(f'Qty - {data["name"]} (L/g):')
         else:
             self.quantity_restock.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
         layout.setStretch(0, 1)

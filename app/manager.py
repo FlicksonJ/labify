@@ -325,7 +325,7 @@ class InventoryManager:
         self.create_tables()
         
         # @TODO: Change it and create locations at Installation
-        lab_names = ["Main lab", "Sub lab", "MSc lab", "Down lab", "Upstairs lab"]
+        lab_names = ["Main lab", "Sub lab", "MSc lab", "Down lab", "Upstairs lab", "Store"]
         self.insert_labs(lab_names)
 
 
@@ -594,6 +594,31 @@ class InventoryManager:
             return False
         else:
             return True
+    
+    def move_item(self,
+                  name: str,
+                  stock_type: str,
+                  current_lab: str,
+                  current_location: str,
+                  new_lab: str,
+                  new_location: str,
+                  qty: float) -> bool:
+        current_loc_id = self.retrieve_loc_id(current_lab, current_location)
+        new_loc_id = self.retrieve_loc_id(new_lab, new_location)
+        if current_loc_id == -1:
+            return False
+        if new_loc_id == -1:
+            return False
+
+        self.remove_qty_from_item(name, current_lab, current_location, qty)
+        if self.check_item_location(name, new_lab, new_location):
+            if not self.add_qty_to_item(name, new_lab, new_location, qty):
+                return False
+        else:
+            if not self.add_entry(stock_type, name, qty, new_location, new_lab):
+                return False
+
+        return True
 
     def update_qty(self,
                    name: str,

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'location_edit_inputKkxIwk.ui'
+## Form generated from reading UI file 'location_edit_inputKeTFjq.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.2
 ##
@@ -16,15 +16,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
-    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
-    QWidget)
+    QLineEdit, QPushButton, QSizePolicy, QSpacerItem,
+    QVBoxLayout, QWidget)
 from . import resources_rc
 
 class Ui_LocationEdit(object):
     def setupUi(self, LocationEdit):
         if not LocationEdit.objectName():
             LocationEdit.setObjectName(u"LocationEdit")
-        LocationEdit.resize(842, 87)
+        LocationEdit.resize(842, 95)
         LocationEdit.setMaximumSize(QSize(16777215, 100))
         LocationEdit.setStyleSheet(u"* {\n"
 "       background: #fff\n"
@@ -39,7 +39,6 @@ class Ui_LocationEdit(object):
 "\n"
 "QLineEdit {\n"
 "       border: 1px solid rgb(0, 159, 161);\n"
-"       border-radius: 10px;\n"
 "       padding-left: 10px;\n"
 "       color: rgb(0, 159, 161)\n"
 "}\n"
@@ -76,10 +75,10 @@ class Ui_LocationEdit(object):
 "}\n"
 "\n"
 "#location_input::drop-down,\n"
-"#lab_input::"
-                        "drop-down\n"
+"#lab_input::drop-down\n"
 "{\n"
-"       border: 0px;\n"
+"       borde"
+                        "r: 0px;\n"
 "}\n"
 "\n"
 "#location_input::down-arrow,\n"
@@ -131,8 +130,9 @@ class Ui_LocationEdit(object):
 
         self.horizontalLayout.addWidget(self.lab_input)
 
-        self.location_input = QComboBox(LocationEdit)
+        self.location_input = QLineEdit(LocationEdit)
         self.location_input.setObjectName(u"location_input")
+        self.location_input.setMinimumSize(QSize(0, 45))
         self.location_input.setMaximumSize(QSize(16777215, 45))
         self.location_input.setFont(font1)
 

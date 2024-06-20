@@ -17,29 +17,28 @@ class LocationEdit(QWidget):
         self.data = data
 
         # Update locations
-        self.ui.lab_input.addItems(self.locations.keys())
+        self.ui.lab_input.addItems(self.inventory_manager.retrieve_labs())
         self.ui.lab_input.currentIndexChanged.connect(self.update_loc)
 
         self.ui.update_location_button.clicked.connect(self.update_item_location)
 
-    def update_loc(self, index):
-        selected_lab = self.ui.lab_input.currentText()
+    def update_loc(self):
         self.ui.location_input.clear()
-
-        if selected_lab in self.locations:
-            self.ui.location_input.addItems(self.locations[selected_lab])
 
     def update_item_location(self):
         name = self.data["name"]
         current_lab = self.data["lab"]
         current_location = self.data["location"]
         new_lab = self.ui.lab_input.currentText()
-        new_location = self.ui.location_input.currentText()
+        new_location = self.ui.location_input.text()
 
         if current_lab == new_lab and current_location == new_location:
             utils.show_message("Error", "Change locations to update")
             return
 
+        if not self.inventory_manager.location_exists(new_lab, new_location):
+            self.inventory_manager.insert_location(new_lab, new_location)
+        
         if self.inventory_manager.check_item_location(name, new_lab, new_location):
             utils.show_message("Item exists!", f"Item {name} already exists in {new_lab}, {new_location}")
             return

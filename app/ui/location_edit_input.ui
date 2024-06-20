@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>842</width>
-    <height>87</height>
+    <height>95</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -33,7 +33,6 @@ QLabel {
 
 QLineEdit {
        border: 1px solid rgb(0, 159, 161);
-       border-radius: 10px;
        padding-left: 10px;
        color: rgb(0, 159, 161)
 }
@@ -147,7 +146,13 @@ QPushButton:hover{
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="location_input">
+      <widget class="QLineEdit" name="location_input">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>45</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
          <width>16777215</width>

@@ -253,9 +253,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.location_edit.ui.location_label.setText(f'Location ({data["name"]}):')
                 lab_index = self.location_edit.ui.lab_input.findText(data["lab"])
                 self.location_edit.ui.lab_input.setCurrentIndex(lab_index)
-                self.location_edit.update_loc(lab_index)
-                location_index = self.location_edit.ui.location_input.findText(data["location"])
-                self.location_edit.ui.location_input.setCurrentIndex(location_index)
+                self.location_edit.update_loc()
+                self.location_edit.ui.location_input.setText(data["location"])
 
                 layout.setStretch(0, 1)
                 layout.setStretch(2, 7)

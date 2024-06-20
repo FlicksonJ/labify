@@ -94,7 +94,7 @@ class QtyRestock(QWidget):
             utils.show_message("Error", "Qty value exceeds current stock value")
             return
 
-        if item_type == 'chemical' and (self.data["qty"] - qty) <= 250:
+        if item_type == 'chemical' and (self.data["qty"] - qty) <= 2.5:
             self.tray_icon.showMessage("Alert", f"{self.data['name']} is below margin level", QSystemTrayIcon.Information, 5000)
         elif (item_type == 'glassware' or item_type == 'equipment') and (self.data["qty"] - qty) <= 5:
             self.tray_icon.showMessage("Alert", f"{self.data['name']} is below margin level", QSystemTrayIcon.Information, 5000)

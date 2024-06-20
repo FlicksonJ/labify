@@ -1815,7 +1815,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget1.raise_()
+        self.layoutWidget2.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -2165,7 +2165,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         self.login_button.setDefault(True)
         self.stackedWidget_2.setCurrentIndex(0)
         self.inventory_type_input.setCurrentIndex(-1)

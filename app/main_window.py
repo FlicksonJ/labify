@@ -100,6 +100,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.add_entry_button.clicked.connect(self.show_add_entry_page)
         self.ui.add_entry_cancel_button.clicked.connect(self.handle_inventory_page)
         self.ui.add_entry_add_button.clicked.connect(self.add_entry)
+        self.ui.item_location_input.returnPressed.connect(self.add_entry)
         self.ui.item_lab_input.currentIndexChanged.connect(self.update_locations)
 
         self.ui.update_entry_button.clicked.connect(self.show_update_entry_page)
@@ -214,7 +215,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 widget.setParent(None)
 
     
-    def add_update_input(self, data: dict[str, str], layout: QVBoxLayout = None):
+    def add_update_input(self, data: dict[str, str | QTableView], layout: QVBoxLayout = None):
         if not layout:
             layout = self.ui.verticalLayout_13
         # Update entry page inputs

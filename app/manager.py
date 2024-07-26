@@ -203,7 +203,7 @@ class InventoryManager:
 
         self.INSERT_STOCK_TYPE_SQL = """
         INSERT OR IGNORE INTO StockType (type)
-        VALUES ('glassware'), ('chemical'), ('equipment')
+        VALUES (?)
         """
         self.INSERT_LABS_SQL = """
         INSERT OR IGNORE INTO Labs (name)
@@ -322,11 +322,13 @@ class InventoryManager:
         WHERE name = (?) AND location_id = (?)
         """
 
+        self.item_types = ["glassware", "chemical_salt", "chemical_liquid", "equipment"]
         self.create_tables()
+        self.insert_item_types(self.item_types)
         
         # @TODO: Change it and create locations at Installation
-        lab_names = ["Main lab", "Sub lab", "MSc lab", "Down lab", "Upstairs lab", "Store"]
-        self.insert_labs(lab_names)
+        self.lab_names = ["Main lab", "Sub lab", "MSc lab", "Down lab", "Upstairs lab", "Store"]
+        self.insert_labs(self.lab_names)
 
 
     def create_tables(self):
@@ -339,6 +341,13 @@ class InventoryManager:
 
         # Enter default stocktype values
         query.exec(self.INSERT_STOCK_TYPE_SQL)
+
+    def insert_item_types(self, item_types: list[str]):
+        query = QSqlQuery()
+        for item_type in item_types:
+            query.prepare(self.INSERT_STOCK_TYPE_SQL)
+            query.addBindValue(item_type)
+            query.exec()
 
     def insert_labs(self, lab_names: list[str]):
         query = QSqlQuery()

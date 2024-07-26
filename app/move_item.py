@@ -23,8 +23,21 @@ class MoveItem(QWidget):
         # Update locations
         self.ui.lab_input.addItems(self.inventory_manager.retrieve_labs())
 
+        self.ui.location_label.setText(f'Location ({data["name"]}):')
+        lab_index = self.ui.lab_input.findText(data["lab"])
+        self.ui.lab_input.setCurrentIndex(lab_index)
+        self.update_loc()
+        self.ui.location_input.setText(data["location"])
+
         self.ui.lab_input.currentIndexChanged.connect(self.update_loc)
         self.ui.move_item_button.clicked.connect(self.move_item)
+
+        if self.data["item_type"] == "chemical_liquid":
+            self.ui.qty_label.setText(f'Qty - {data["name"]} (Litre):')
+        elif self.data["item_type"] == "chemical_salt":
+            self.ui.qty_label.setText(f'Qty - {data["name"]} (gram):')
+        else:
+            self.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
 
     def update_loc(self):
         self.ui.location_input.clear()

@@ -20,6 +20,12 @@ class LocationEdit(QWidget):
         self.ui.lab_input.addItems(self.inventory_manager.retrieve_labs())
         self.ui.lab_input.currentIndexChanged.connect(self.update_loc)
 
+        self.ui.location_label.setText(f'Location ({data["name"]}):')
+        lab_index = self.ui.lab_input.findText(data["lab"])
+        self.ui.lab_input.setCurrentIndex(lab_index)
+        self.update_loc()
+        self.ui.location_input.setText(data["location"])
+
         self.ui.update_location_button.clicked.connect(self.update_item_location)
 
     def update_loc(self):

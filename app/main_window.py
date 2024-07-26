@@ -30,7 +30,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # for managing user access control
         # `user_type`: admin, user
-        # `item_type`: glassware, equipments, chemicals
+        # `item_type`: glassware, equipments, chemical_liquid, chemical_salt
         # `inventory_page_func`: search, add, update, restock, move, delete
         self.state = {
             "username": "",
@@ -89,6 +89,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.update_entry_search_button_2.clicked.connect(self.user_update_inventory_search)
         self.ui.update_entry_search_input_2.returnPressed.connect(self.user_update_inventory_search)
         self.ui.update_entry_table_2.clicked.connect(self.user_update_entry_table_clicked)
+        self.ui.user_item_type_input.currentTextChanged.connect(self.update_user_item_table)
 
         self.ui.inventory_type_input.currentTextChanged.connect(self.handle_inventory_page)
         # Change the value of inventory_type_input combo box to the default value
@@ -132,6 +133,25 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.time_label.setText(utils.get_time())
         self.ui.time_label_2.setText(utils.get_time())
 
+    def update_item_type_input(self):
+        # Format the item_type string
+        # eg: "chemical_liquid" -> "Chemical - Liquid"
+        item_types_formatted = [" - ".join(item.split("_")).title() for item in self.inventory_manager.item_types]
+        self.ui.inventory_type_input.clear()
+        
+        # With this in the ui it will show "Chemical - Liquid" but in the code 
+        # we can use "chemical_liquid" by using inventory_type_input.currentData()
+        for formatted, item in zip(item_types_formatted, self.inventory_manager.item_types):
+            self.ui.inventory_type_input.addItem(formatted, userData=item)
+
+    def update_user_item_type_input(self):
+        user_item_types = ["chemical_liquid", "chemical_salt"]
+        item_types_formatted = [" - ".join(item.split("_")).title() for item in user_item_types]
+        self.ui.user_item_type_input.clear()
+
+        for formatted, item in zip(item_types_formatted, user_item_types):
+            self.ui.user_item_type_input.addItem(formatted, userData=item)
+    
     def show_user_page(self):
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.user_page)
         self.ui.stackedWidget_5.setCurrentWidget(self.ui.update_entry_page_2)
@@ -147,6 +167,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         create_user_button = self.ui.create_user_button
         button_present = self.ui.horizontalLayout_2.count() > 1
         if self.state['user_type'] == 'admin':
+            # Update item_types:
+            self.update_item_type_input()
+
             self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_page_default)
             self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
             self.show_alert_notifications()
@@ -154,7 +177,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.ui.horizontalLayout_2.insertWidget(0, create_user_button)
                 create_user_button.show()
         elif self.state['user_type'] == 'user':
-            self.state['item_type'] = 'chemical'
+            self.update_user_item_type_input()
+            self.state['item_type'] = self.ui.user_item_type_input.currentData()
+
             self.set_default_inventory_table(self.ui.update_entry_table_2)
             table_header = self.ui.update_entry_table_2.horizontalHeader()
             table_header.resizeSection(0, 100)        
@@ -182,7 +207,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "delete": "REMOVE EXISTING"
         }
 
-        return f"{text[self.state['inventory_page_func']]} {self.state['item_type'].upper()}"
+        # @NOTE:
+        # If item_type is chemical_liquid then it will be formatted to Chemical only
+        # Because of length contraints - might change in the future.
+        item_type_formatted = self.state["item_type"].split("_")[0].upper()
+        return f"{text[self.state['inventory_page_func']]} {item_type_formatted}"
     
 
     def deselect_button_group(self):
@@ -226,38 +255,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if self.state["user_type"] == "user":
             layout.addWidget(self.user_quantity_edit)
-            if self.state["item_type"] == "chemical":
-                self.user_quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (L/g):')
-            else:
-                self.user_quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
 
-            # layout.setStretch(0, 1)
-            # layout.setStretch(1, 7)
-            # layout.setStretch(2, 1)
         else:
             if data["header"] == "Qty":
                 layout.addWidget(self.quantity_edit)
-                self.quantity_edit.ui.qty_input.setText(str(data["qty"]))
-                if self.state["item_type"] == "chemical":
-                    self.quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (L/g):')
-                else:
-                    self.quantity_edit.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
+
                 layout.setStretch(0, 1)
                 layout.setStretch(2, 7)
                 layout.setStretch(3, 1)
+
             elif data["header"] == "Name":
                 layout.addWidget(self.name_edit)
-                self.name_edit.ui.name_input.setText(data["name"])
+
                 layout.setStretch(0, 1)
                 layout.setStretch(2, 7)
                 layout.setStretch(3, 1)
+
             elif data["header"] == "Lab" or data["header"] == "Location":
                 layout.addWidget(self.location_edit)
-                self.location_edit.ui.location_label.setText(f'Location ({data["name"]}):')
-                lab_index = self.location_edit.ui.lab_input.findText(data["lab"])
-                self.location_edit.ui.lab_input.setCurrentIndex(lab_index)
-                self.location_edit.update_loc()
-                self.location_edit.ui.location_input.setText(data["location"])
 
                 layout.setStretch(0, 1)
                 layout.setStretch(2, 7)
@@ -445,7 +460,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
         self.ui.stackedWidget_4.setCurrentWidget(self.ui.item_search_page)
-        self.state["item_type"] = self.ui.inventory_type_input.currentText().lower()
+        self.state["item_type"] = self.ui.inventory_type_input.currentData()
         self.state["inventory_page_func"] = "search"
         self.deselect_button_group()
         
@@ -487,8 +502,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.stackedWidget_4.setCurrentWidget(self.ui.add_entry_page)
         self.state["inventory_page_func"] = "add"
         self.ui.add_entry_label.setText(self.update_item_type_label())
-        if self.state["item_type"] == "chemical":
-            self.ui.qty_label.setText("Qty (L/g)")
+        if self.state["item_type"] == "chemical_liquid":
+            self.ui.qty_label.setText("Qty (Litre)")
+        elif self.state["item_type"] == "chemical_salt":
+            self.ui.qty_label.setText("Qty (gram)")
         else:
             self.ui.qty_label.setText("Qty (Pcs.)")
 
@@ -615,6 +632,19 @@ Use Edit Entry option to change the quantity of an existing item.""")
 
         self.add_update_input(data, self.ui.verticalLayout_16)
 
+    def update_user_item_table(self):
+        """
+        This slot is triggered when the user_item_type_input is changed.
+        It will update the  current table model to the selected one.
+        """
+        self.remove_current_update_input(self.ui.verticalLayout_16)
+        self.state["item_type"] = self.ui.user_item_type_input.currentData()
+        self.state["items_model"] = self.inventory_manager.retrieve_item_info(self.state["item_type"],
+                                                with_qty=False)
+        if self.state["items_model"]:
+            self.ui.update_entry_table_2.setModel(self.state["items_model"])
+        
+
     def update_inventory_search(self):
         search_term = self.ui.update_entry_search_input.text()
         self.search_inventory(search_term, self.ui.update_entry_table)
@@ -633,6 +663,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
         self.state["inventory_page_func"] = "move"
         self.ui.move_entry_label.setText(self.update_item_type_label())
         self.set_default_inventory_table(self.ui.move_entry_table)
+        self.remove_current_update_input(self.ui.verticalLayout_24)
         self.ui.move_entry_search_input.clear()
 
         # Resize table headers
@@ -672,19 +703,9 @@ Use Edit Entry option to change the quantity of an existing item.""")
         layout = self.ui.verticalLayout_24
         layout.addWidget(self.move_item)
 
-        if self.state["item_type"] == "chemical":
-            self.move_item.ui.qty_label.setText(f'Qty - {data["name"]} (L/g):')
-        else:
-            self.move_item.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
         layout.setStretch(0, 1)
         layout.setStretch(2, 7)
         layout.setStretch(3, 1)
-
-        self.move_item.ui.location_label.setText(f'Location ({data["name"]}):')
-        lab_index = self.move_item.ui.lab_input.findText(data["lab"])
-        self.move_item.ui.lab_input.setCurrentIndex(lab_index)
-        self.move_item.update_loc()
-        self.move_item.ui.location_input.setText(data["location"])
 
     def show_restock_entry_page(self):
         """
@@ -696,6 +717,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
         self.state["inventory_page_func"] = "restock"
         self.ui.restock_entry_label.setText(self.update_item_type_label())
         self.set_default_inventory_table(self.ui.restock_entry_table)
+        self.remove_current_update_input(self.ui.verticalLayout_18)
         self.ui.restock_entry_search_input.clear()
 
         # Resize table headers
@@ -735,10 +757,6 @@ Use Edit Entry option to change the quantity of an existing item.""")
         layout = self.ui.verticalLayout_18
         layout.addWidget(self.quantity_restock)
 
-        if self.state["item_type"] == "chemical":
-            self.quantity_restock.ui.qty_label.setText(f'Qty - {data["name"]} (L/g):')
-        else:
-            self.quantity_restock.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
         layout.setStretch(0, 1)
         layout.setStretch(2, 7)
         layout.setStretch(3, 1)

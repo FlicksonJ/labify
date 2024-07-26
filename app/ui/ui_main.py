@@ -344,36 +344,42 @@ class Ui_MainWindow(object):
 "\n"
 "/* combo box */\n"
 "\n"
-"#inventory_type_input {\n"
+"#inventory_type_input,\n"
+"#user_item_type_input {\n"
 "	background: rgb(251, 254, 255);\n"
-"	color: rgb(0, 159, 161);\n"
-"	heig"
-                        "ht: 40px;\n"
+"	color: "
+                        "rgb(0, 159, 161);\n"
+"	height: 40px;\n"
 "	border-radius: 5px;\n"
 "	font-size: 18pt;\n"
 "	padding-left: 10px;\n"
 "}\n"
 "\n"
-"#inventory_type_input:hover {\n"
+"#inventory_type_input:hover,\n"
+"#user_type_input:hover {\n"
 "	color: rgb(52, 62, 162);\n"
 "}\n"
 "\n"
-"#inventory_type_input::drop-down {\n"
+"#inventory_type_input::drop-down,\n"
+"#user_item_type_input::drop-down {\n"
 "	border: 0px;\n"
 "}\n"
 "\n"
-"#inventory_type_input::down-arrow {\n"
+"#inventory_type_input::down-arrow,\n"
+"#user_item_type_input::down-arrow {\n"
 "	image: url(:/icon/images/down-arrow.ico);\n"
 "	width: 30px;\n"
 "	height: 30px;\n"
 "	margin-right: 20px\n"
 "}\n"
 "\n"
-"#inventory_type_input:on {\n"
+"#inventory_type_input:on,\n"
+"#user_item_type_input:on {\n"
 "	border: 2px solid rgba(0, 159, 161, 10%);\n"
 "}\n"
 "\n"
-"#inventory_type_input QListView{\n"
+"#inventory_type_input QListView,\n"
+"#user_item_type_input QListView{\n"
 "	font-size: 15pt;\n"
 "	border: 1px solid rgba(0, 0, 0, 10%);\n"
 "	padding: 3px;\n"
@@ -381,23 +387,27 @@ class Ui_MainWindow(object):
 "	outline: 0px;\n"
 "}\n"
 "\n"
-"#inventory_type_input QListView::item {\n"
+"#inventory_type_input QListView::item,\n"
+"#user_item_type_input QListView::item {\n"
 "	padding-left: 10px;\n"
-"	background-color: rgb(251, 254, 255);\n"
+"	background-color: rgb(251, 254,"
+                        " 255);\n"
 "}\n"
 "\n"
-"#inventory_type_input QListView::item:hover {\n"
+"#inventory_type_input QListView::item:hover,\n"
+"#user_item_type_input QListView::item:hover {\n"
 "	background: rgb(0, 159, 161);\n"
 "	color: rgb(251, 254, 255);\n"
 "}\n"
 "\n"
-"#inventory_type_input QListView::item:selected {\n"
+"#inventory_type_input QListView::item:selected,\n"
+"#user_item_type_input QListView::item:selected {\n"
 "	background: rgb(0, 159, 161);\n"
-"	col"
-                        "or: rgb(251, 254, 255);\n"
+"	color: rgb(251, 254, 255);\n"
 "}\n"
 "\n"
-"#inventory_type_input QListView {\n"
+"#inventory_type_input QListView,\n"
+"#user_item_type_input QListView {\n"
 "	color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
@@ -425,7 +435,8 @@ class Ui_MainWindow(object):
 "#delete_entry_button {\n"
 "	border-bottom-left-radius: 5px ;\n"
 "	border-bottom-right-radius: 5px ;\n"
-"}\n"
+""
+                        "}\n"
 "\n"
 "#add_entry_button:hover, \n"
 "#update_entry_button:hover,\n"
@@ -440,8 +451,7 @@ class Ui_MainWindow(object):
 "#update_entry_button:checked,\n"
 "#restock_entry_button:checked,\n"
 "#move_entry_button:checked,\n"
-"#delete_ent"
-                        "ry_button:checked {\n"
+"#delete_entry_button:checked {\n"
 "	background: #fff;\n"
 "	color: rgb(52, 62, 162);\n"
 "}\n"
@@ -467,7 +477,8 @@ class Ui_MainWindow(object):
 "#search_bar_container_3,\n"
 "#search_bar_container_4,\n"
 "#search_bar_container_5,\n"
-"#search_bar_container_6 {\n"
+""
+                        "#search_bar_container_6 {\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
 "	border-radius: 15px;\n"
 "	margin: 1px;\n"
@@ -480,8 +491,7 @@ class Ui_MainWindow(object):
 "#search_bar_container_5:hover,\n"
 "#search_bar_container_6:hover {\n"
 "	border: 2px solid rgb(0, 159, 161);\n"
-""
-                        "}\n"
+"}\n"
 "\n"
 "#search_button,\n"
 "#search_bar_input,\n"
@@ -507,7 +517,8 @@ class Ui_MainWindow(object):
 "\n"
 "#search_button:hover,\n"
 "#search_bar_input:hover,\n"
-"#update_entry_search_button:hover,\n"
+"#up"
+                        "date_entry_search_button:hover,\n"
 "#update_entry_search_button_2:hover,\n"
 "#restock_entry_search_button:hover,\n"
 "#update_entry_search_input:hover,\n"
@@ -517,8 +528,7 @@ class Ui_MainWindow(object):
 "#delete_entry_search_button:hover,\n"
 "#delete_entry_search_input:hover {\n"
 "	color: rgb(52, 62, 162);\n"
-""
-                        "}\n"
+"}\n"
 "\n"
 "#search_bar_input,\n"
 "#update_entry_search_input,\n"
@@ -545,7 +555,8 @@ class Ui_MainWindow(object):
 "#restock_entry_cancel_button,\n"
 "#move_entry_cancel_button,\n"
 "#delete_entry_delete_button,\n"
-"#delete_entry_cancel_button,\n"
+""
+                        "#delete_entry_cancel_button,\n"
 "#go_back_button {\n"
 "	border: 1px solid;\n"
 "	margin: 0;\n"
@@ -562,8 +573,7 @@ class Ui_MainWindow(object):
 "\n"
 "#add_entry_cancel_button,\n"
 "#update_entry_cancel_button,\n"
-"#restock_entry_c"
-                        "ancel_button,\n"
+"#restock_entry_cancel_button,\n"
 "#move_entry_cancel_button,\n"
 "#delete_entry_delete_button,\n"
 "#delete_entry_cancel_button,\n"
@@ -592,7 +602,8 @@ class Ui_MainWindow(object):
 "	margin-bottom: 30px;\n"
 "}\n"
 "\n"
-"/* Table Styling */\n"
+"/"
+                        "* Table Styling */\n"
 "\n"
 "QTableView {\n"
 "	font-size: 20pt;\n"
@@ -608,8 +619,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QTableView QHeaderView::section {\n"
-"	background: rgb(0, 159, 161"
-                        ");\n"
+"	background: rgb(0, 159, 161);\n"
 "	color: #fff;\n"
 "	font-size: 20pt;\n"
 "	gridline-color: transparent;\n"
@@ -638,7 +648,8 @@ class Ui_MainWindow(object):
 "\n"
 "QTableView::item {\n"
 "	color: rgb(0, 159, 161);\n"
-"	gridline-color: rgb(0, 159, 161);\n"
+"	gridline-color: rgb(0, 159"
+                        ", 161);\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
 "	min-width: 500px;\n"
 "}\n"
@@ -657,8 +668,7 @@ class Ui_MainWindow(object):
 "	border-top-right-radius: 10px;\n"
 "}\n"
 "\n"
-"#label_14,#l"
-                        "abel_15,#label_16,#label_17 {\n"
+"#label_14,#label_15,#label_16,#label_17 {\n"
 "	border-radius: 5px;\n"
 "}")
         self.centralwidget = QWidget(MainWindow)
@@ -907,7 +917,7 @@ class Ui_MainWindow(object):
 
         self.layoutWidget2 = QWidget(self.inventory_header)
         self.layoutWidget2.setObjectName(u"layoutWidget2")
-        self.layoutWidget2.setGeometry(QRect(980, 0, 571, 91))
+        self.layoutWidget2.setGeometry(QRect(970, 0, 571, 91))
         self.horizontalLayout_8 = QHBoxLayout(self.layoutWidget2)
         self.horizontalLayout_8.setSpacing(40)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
@@ -1815,7 +1825,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget2.raise_()
+        self.layoutWidget5.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -1883,6 +1893,19 @@ class Ui_MainWindow(object):
         self.transaction_history_button_2.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_10.addWidget(self.transaction_history_button_2)
+
+        self.user_item_type_input = QComboBox(self.inventory_header_2)
+        self.user_item_type_input.addItem("")
+        self.user_item_type_input.addItem("")
+        self.user_item_type_input.setObjectName(u"user_item_type_input")
+        sizePolicy9 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
+        sizePolicy9.setHorizontalStretch(0)
+        sizePolicy9.setVerticalStretch(0)
+        sizePolicy9.setHeightForWidth(self.user_item_type_input.sizePolicy().hasHeightForWidth())
+        self.user_item_type_input.setSizePolicy(sizePolicy9)
+        self.user_item_type_input.setMinimumSize(QSize(0, 0))
+
+        self.horizontalLayout_10.addWidget(self.user_item_type_input)
 
 
         self.verticalLayout_17.addWidget(self.inventory_header_2)
@@ -2044,11 +2067,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.widget = QWidget(self.layoutWidget7)
         self.widget.setObjectName(u"widget")
-        sizePolicy9 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
-        sizePolicy9.setHorizontalStretch(0)
-        sizePolicy9.setVerticalStretch(3)
-        sizePolicy9.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
-        self.widget.setSizePolicy(sizePolicy9)
+        sizePolicy10 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy10.setHorizontalStretch(0)
+        sizePolicy10.setVerticalStretch(3)
+        sizePolicy10.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
+        self.widget.setSizePolicy(sizePolicy10)
         self.widget.setStyleSheet(u"")
         self.label_2 = QLabel(self.widget)
         self.label_2.setObjectName(u"label_2")
@@ -2061,8 +2084,8 @@ class Ui_MainWindow(object):
 
         self.create_user_form = QWidget(self.layoutWidget7)
         self.create_user_form.setObjectName(u"create_user_form")
-        sizePolicy9.setHeightForWidth(self.create_user_form.sizePolicy().hasHeightForWidth())
-        self.create_user_form.setSizePolicy(sizePolicy9)
+        sizePolicy10.setHeightForWidth(self.create_user_form.sizePolicy().hasHeightForWidth())
+        self.create_user_form.setSizePolicy(sizePolicy10)
         self.verticalLayoutWidget_2 = QWidget(self.create_user_form)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
         self.verticalLayoutWidget_2.setGeometry(QRect(80, 70, 561, 611))
@@ -2165,11 +2188,11 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         self.login_button.setDefault(True)
         self.stackedWidget_2.setCurrentIndex(0)
         self.inventory_type_input.setCurrentIndex(-1)
-        self.stackedWidget_3.setCurrentIndex(3)
+        self.stackedWidget_3.setCurrentIndex(2)
         self.stackedWidget_4.setCurrentIndex(4)
         self.cancel_button.setDefault(False)
 
@@ -2240,6 +2263,9 @@ class Ui_MainWindow(object):
         self.date_label_2.setText(QCoreApplication.translate("MainWindow", u"20 Feb, 2024", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Chemical Usage Log", None))
         self.transaction_history_button_2.setText(QCoreApplication.translate("MainWindow", u"Transaction History", None))
+        self.user_item_type_input.setItemText(0, QCoreApplication.translate("MainWindow", u"Chemical - Salt", None))
+        self.user_item_type_input.setItemText(1, QCoreApplication.translate("MainWindow", u"Chemical - Liquid", None))
+
         self.update_entry_search_button_2.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"Click any cell of the table to select the item", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"TRANSACTION HISTORY", None))

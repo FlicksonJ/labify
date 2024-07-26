@@ -16,6 +16,8 @@ class NameEdit(QWidget):
         self.ui.update_name_button.clicked.connect(self.update_name)
         self.ui.name_input.returnPressed.connect(self.update_name)
 
+        self.ui.name_input.setText(data["name"])
+
 
     def update_name(self):
         if not utils.validate_line_edit(self.ui.name_input, "Please enter a name"):

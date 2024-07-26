@@ -21,6 +21,13 @@ class UserQuantityEdit(QWidget):
 
         self.ui.used_button.clicked.connect(self.remove_stock)
 
+        if self.data["item_type"] == "chemical_liquid":
+            self.ui.qty_label.setText(f'Qty - {data["name"]} (Litre):')
+        elif self.data["item_type"] == "chemical_salt":
+            self.ui.qty_label.setText(f'Qty - {data["name"]} (gram):')
+        else:
+            self.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
+
     
     def validate_qty_input(self) -> bool:
         if not utils.validate_line_edit(self.ui.qty_input, "Please enter a value"):

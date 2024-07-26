@@ -79,6 +79,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.create_user_button.clicked.connect(self.show_create_account_page)
         self.ui.cancel_button.clicked.connect(self.handle_cancel_button)
         self.ui.create_account_button.clicked.connect(self.handle_create_account)
+        self.ui.cu_confirm_password_input.returnPressed.connect(self.handle_create_account)
 
         self.ui.logout_button.clicked.connect(self.handle_logout)
         self.ui.transaction_history_button.clicked.connect(self.show_transaction_page)

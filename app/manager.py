@@ -286,7 +286,8 @@ class InventoryManager:
         JOIN Locations ON Items.location_id = Locations.loc_id
         JOIN Labs ON Locations.lab_id = Labs.lab_id
         WHERE (qty <= 5 AND StockType.type IN ('glassware', 'equipment')) OR
-              (qty <= 2.5 AND StockType.type = 'chemical')
+              (qty <= 2.5 AND StockType.type = 'chemical_liquid') OR
+              (qty <= 500 AND StockType.type = 'chemical_salt')
         """
         self.UPDATE_ITEM_NAME_SQL = """
         UPDATE Items

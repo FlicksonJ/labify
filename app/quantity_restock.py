@@ -103,7 +103,7 @@ class QtyRestock(QWidget):
 
         if item_type == 'chemical_liquid' and (self.data["qty"] - qty) <= 2.5:
             self.tray_icon.showMessage("Alert", f"{self.data['name']} is below margin level", QSystemTrayIcon.Information, 5000)
-        elif item_type == 'chemical_salt' and (self.data["qty"] - qty) <= 500:
+        elif item_type == 'chemical_salt' and (self.data["qty"] - qty) <= 250:
             self.tray_icon.showMessage("Alert", f"{self.data['name']} is below margin level", QSystemTrayIcon.Information, 5000)
         elif (item_type == 'glassware' or item_type == 'equipment') and (self.data["qty"] - qty) <= 5:
             self.tray_icon.showMessage("Alert", f"{self.data['name']} is below margin level", QSystemTrayIcon.Information, 5000)

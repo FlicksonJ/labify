@@ -23,7 +23,7 @@ class Ui_UserQuantityEdit(object):
     def setupUi(self, UserQuantityEdit):
         if not UserQuantityEdit.objectName():
             UserQuantityEdit.setObjectName(u"UserQuantityEdit")
-        UserQuantityEdit.resize(893, 89)
+        UserQuantityEdit.resize(893, 87)
         UserQuantityEdit.setMinimumSize(QSize(0, 55))
         UserQuantityEdit.setMaximumSize(QSize(16777215, 100))
         font = QFont()
@@ -38,6 +38,11 @@ class Ui_UserQuantityEdit(object):
 "	background: rgb(0, 159, 161);\n"
 "	padding-left: 5px;\n"
 "	padding-right: 5px;\n"
+"}\n"
+"\n"
+"#qty_label {\n"
+"	background: #fff;\n"
+"	color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "QLineEdit {\n"
@@ -82,7 +87,10 @@ class Ui_UserQuantityEdit(object):
         self.qty_label = QLabel(UserQuantityEdit)
         self.qty_label.setObjectName(u"qty_label")
         self.qty_label.setMaximumSize(QSize(16777215, 45))
-        self.qty_label.setFont(font)
+        font2 = QFont()
+        font2.setPointSize(18)
+        font2.setBold(True)
+        self.qty_label.setFont(font2)
         self.qty_label.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout.addWidget(self.qty_label)

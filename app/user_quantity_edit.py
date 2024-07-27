@@ -20,13 +20,14 @@ class UserQuantityEdit(QWidget):
         self.ui.qty_input.setValidator(QDoubleValidator())
 
         self.ui.used_button.clicked.connect(self.remove_stock)
+        self.ui.qty_input.returnPressed.connect(self.remove_stock)
 
         if self.data["item_type"] == "chemical_liquid":
-            self.ui.qty_label.setText(f'Qty - {data["name"]} (Litre):')
+            self.ui.qty_label.setText(f'{data["name"]} - Qty(Litre):')
         elif self.data["item_type"] == "chemical_salt":
-            self.ui.qty_label.setText(f'Qty - {data["name"]} (gram):')
+            self.ui.qty_label.setText(f'{data["name"]} - Qty(gram):')
         else:
-            self.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
+            self.ui.qty_label.setText(f'{data["name"]} - Qty(Pcs.):')
 
     
     def validate_qty_input(self) -> bool:
@@ -35,14 +36,14 @@ class UserQuantityEdit(QWidget):
 
         qty = self.ui.qty_input.text()
         try:
-            qty = int(qty)
-        except:
+            qty = float(qty)
+            assert qty > 0, f"Expected a value greater than 0, got {qty}"
+        except ValueError as e:
             utils.show_message("Error", "Not a valid number")
-            return False
-
-        if qty <= 0:
+            raise ValueError(e)
+        except AssertionError as e:
             utils.show_message("Error", "Enter a value greater than 0")
-            return False
+            raise AssertionError(e)
 
         return True
         
@@ -53,18 +54,19 @@ class UserQuantityEdit(QWidget):
 
         name = self.data["name"]
         user = self.data["user"]
-        lab = self.data["lab"]
         location = self.data["location"]
         qty = float(self.ui.qty_input.text())
         date = datetime.now().strftime('%Y-%m-%d')
         time = datetime.now().strftime('%I:%M %p')
-        action = "Taken"
+        action = "Taken From"
 
         if qty > float(self.data["qty"]):
             utils.show_message("Error", "Qty value exceeds current stock value")
             return
 
-        if (self.data["qty"] - qty) <= 250:
+        if self.data['item_type'] == 'chemical_salt' and (self.data["qty"] - qty) <= 250:
+            self.tray_icon.showMessage("Alert", f"{self.data['name']} is below margin level", QSystemTrayIcon.Information, 5000)
+        elif self.data['item_type'] == chemical_liquid and (self.data["qty"] - qty) <= 2.5:
             self.tray_icon.showMessage("Alert", f"{self.data['name']} is below margin level", QSystemTrayIcon.Information, 5000)
 
         transaction = {
@@ -74,11 +76,10 @@ class UserQuantityEdit(QWidget):
             "name": name,
             "qty": qty,
             "action": action,
-            "lab": lab,
             "location": location
         }
 
-        if self.inventory_manager.remove_qty_from_item(name, lab, location, qty):
+        if self.inventory_manager.remove_qty_from_item(name, location, qty):
             utils.show_message("Qty updated", f"Removed {qty} from the stock")
             self.inventory_manager.add_transaction(transaction)
             self.parent.state["items_model"] = self.inventory_manager.retrieve_item_info(self.data["item_type"], with_qty=False)

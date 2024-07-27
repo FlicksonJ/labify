@@ -167,7 +167,7 @@ class InventoryManager:
             stock_id INTEGER,
             location_id INT,
             FOREIGN KEY (stock_id) REFERENCES StockType(stock_id)
-            FOREIGN KEY (location_id) REFERENCES Locations(loc_id)
+            FOREIGN KEY (location_id) REFERENCES Store(loc_id)
             UNIQUE(name, location_id)
         )"""
         self.STOCK_TYPE_TABLE_SQL = """
@@ -175,13 +175,10 @@ class InventoryManager:
             stock_id INTEGER PRIMARY KEY,
             type VARCHAR(255) UNIQUE
         )"""
-        self.LOCATIONS_TABLE_SQL = """
-        CREATE TABLE IF NOT EXISTS Locations (
+        self.STORE_TABLE_SQL = """
+        CREATE TABLE IF NOT EXISTS Store (
             loc_id INTEGER PRIMARY KEY,
-            name VARCHAR(255),
-            lab_id INTEGER,
-            FOREIGN KEY (lab_id) REFERENCES Labs(lab_id)
-            UNIQUE(name, lab_id)
+            name VARCHAR(255) UNIQUE
         )"""
         self.LABS_TABLE_SQL = """        
         CREATE TABLE IF NOT EXISTS Labs (
@@ -197,7 +194,6 @@ class InventoryManager:
             name VARCHAR(255),
             qty REAL,
             action VARCHAR(50),
-            lab VARCHAR(50),
             location VARCHAR(50)
         )"""
 
@@ -209,20 +205,19 @@ class InventoryManager:
         INSERT OR IGNORE INTO Labs (name)
         VALUES (?)
         """
-        self.INSERT_LOCATIONS_SQL = """
-        INSERT OR IGNORE INTO Locations (name, lab_id)
-        VALUES (?, ?)
+        self.INSERT_LOCATION_SQL = """
+        INSERT OR IGNORE INTO Store (name)
+        VALUES (?)
         """
         self.INSERT_ITEM_SQL = """
         INSERT OR IGNORE INTO Items (name, qty, stock_id, location_id)
         VALUES (?, ?, 
                 (SELECT stock_id FROM StockType WHERE type = (?)),
-                (SELECT loc_id FROM Locations WHERE name = (?) AND lab_id = 
-                (SELECT lab_id FROM Labs WHERE name = (?))))
+                (SELECT loc_id FROM Store WHERE name = (?)))
         """
         self.INSERT_TRANSACTION_SQL = """
-        INSERT INTO Transactions (date, time, user, name, qty, action, lab, location)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO Transactions (date, time, user, name, qty, action, location)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
         """
         self.RETRIEVE_TRANSACTION_SQL = """
         SELECT * FROM Transactions
@@ -230,61 +225,52 @@ class InventoryManager:
         self.RETRIEVE_LAB_ID_SQL = """
         SELECT lab_id FROM Labs WHERE name = (?)
         """
-        self.RETRIEVE_LABS_SQL = """
-        SELECT name FROM Labs;
+        self.RETRIEVE_LOCATION_ID_SQL = """
+         SELECT loc_id FROM Store WHERE name = (?)
         """
-        self.RETRIEVE_LOCATIONS_SQL = """
-        SELECT Labs.name AS lab_name, Locations.name AS location_name
-        FROM Labs
-        INNER JOIN Locations ON Labs.lab_id = Locations.lab_id
+        self.RETRIEVE_LABS_SQL = """
+        SELECT name FROM Labs
+        """
+        self.RETRIEVE_LOCATION_SQL = """
+        SELECT name AS location_name
+        FROM Store
         """
         self.RETRIEVE_ITEM_INFO_SQL = """
         SELECT 
             ROW_NUMBER() OVER (ORDER BY Items.item_id) AS CID, 
             Items.name AS Name, 
             Items.qty AS Qty, 
-            Labs.name AS Lab,
-            Locations.name AS Location
+            Store.name AS Store
         FROM Items
         JOIN StockType ON Items.stock_id = StockType.stock_id
-        JOIN Locations ON Items.location_id = Locations.loc_id
-        JOIN Labs ON Locations.lab_id = Labs.lab_id
+        JOIN Store ON Items.location_id = Store.loc_id
         WHERE StockType.type = (?)
         """
         self.USER_RETRIEVE_ITEM_INFO_SQL = """
         SELECT 
             ROW_NUMBER() OVER (ORDER BY Items.item_id) AS CID, 
             Items.name AS Name, 
-            Labs.name AS Lab,
-            Locations.name AS Location
+            Store.name AS Store
         FROM Items
         JOIN StockType ON Items.stock_id = StockType.stock_id
-        JOIN Locations ON Items.location_id = Locations.loc_id
-        JOIN Labs ON Locations.lab_id = Labs.lab_id
+        JOIN Store ON Items.location_id = Store.loc_id
         WHERE StockType.type = (?)
         """
         self.RETRIEVE_ITEM_LOCATION_SQL = """
-        SELECT Labs.name AS Lab, Locations.name AS Location
+        SELECT Store.name AS Store
         FROM Items
-        JOIN Locations ON Items.location_id = Locations.loc_id
-        JOIN Labs ON Locations.lab_id = Labs.lab_id
+        JOIN Store ON Items.location_id = Store.loc_id
         WHERE Items.name = (?)
-        """
-        self.RETRIEVE_LOCATION_ID_SQL = """
-         SELECT loc_id FROM Locations WHERE name = (?) AND lab_id = 
-         (SELECT lab_id FROM Labs WHERE name = (?))
         """
         self.RETRIEVE_ALERTS_SQL = """
         SELECT 
             ROW_NUMBER() OVER (ORDER BY Items.item_id) AS CID, 
             Items.name AS Name, 
             Items.qty AS Qty, 
-            Labs.name AS Lab,
-            Locations.name AS Location
+            Store.name AS Store
         FROM Items
         JOIN StockType ON Items.stock_id = StockType.stock_id
-        JOIN Locations ON Items.location_id = Locations.loc_id
-        JOIN Labs ON Locations.lab_id = Labs.lab_id
+        JOIN Store ON Items.location_id = Store.loc_id
         WHERE (qty <= 5 AND StockType.type IN ('glassware', 'equipment')) OR
               (qty <= 2.5 AND StockType.type = 'chemical_liquid') OR
               (qty <= 500 AND StockType.type = 'chemical_salt')
@@ -328,7 +314,7 @@ class InventoryManager:
         self.insert_item_types(self.item_types)
         
         # @TODO: Change it and create locations at Installation
-        self.lab_names = ["Main lab", "Sub lab", "MSc lab", "Down lab", "Upstairs lab", "Store"]
+        self.lab_names = ["Main lab", "Sub lab", "MSc lab", "Down lab", "Upstairs lab"]
         self.insert_labs(self.lab_names)
 
 
@@ -336,12 +322,9 @@ class InventoryManager:
         query = QSqlQuery()
         query.exec(self.ITEMS_TABLE_SQL)
         query.exec(self.STOCK_TYPE_TABLE_SQL)
-        query.exec(self.LOCATIONS_TABLE_SQL)
+        query.exec(self.STORE_TABLE_SQL)
         query.exec(self.LABS_TABLE_SQL)
         query.exec(self.TRANSACTION_TABLE_SQL)
-
-        # Enter default stocktype values
-        query.exec(self.INSERT_STOCK_TYPE_SQL)
 
     def insert_item_types(self, item_types: list[str]):
         query = QSqlQuery()
@@ -357,18 +340,10 @@ class InventoryManager:
             query.addBindValue(lab)
             query.exec()
     
-    def location_exists(self, lab: str, location: str) -> bool:
+    def location_exists(self, location: str) -> bool:
         query = QSqlQuery()
-        sql = """
-        SELECT 1 FROM Locations
-        WHERE name = (?) AND lab_id = (
-            SELECT lab_id FROM Labs
-            WHERE name = (?)
-        )
-        """
-        query.prepare(sql)
+        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
         query.addBindValue(location)
-        query.addBindValue(lab)
         query.exec()
 
         if query.next():
@@ -376,20 +351,10 @@ class InventoryManager:
         else:
             return False
 
-    def insert_location(self, lab: str, location: str):
+    def insert_location(self, location: str):
         query = QSqlQuery()
-        # Retrieve `lab_id` for the current lab
-        lab_id_query = QSqlQuery()
-        lab_id_query.prepare(self.RETRIEVE_LAB_ID_SQL)
-        lab_id_query.addBindValue(lab)
-        lab_id_query.exec()
-        lab_id_query.next()
-        lab_id = lab_id_query.value(0)
-
-        # Insert locations for the current lab
-        query.prepare(self.INSERT_LOCATIONS_SQL)
+        query.prepare(self.INSERT_LOCATION_SQL)
         query.addBindValue(location)
-        query.addBindValue(lab_id)
         query.exec()
 
     def retrieve_labs(self) -> list[str]:
@@ -403,22 +368,18 @@ class InventoryManager:
         
         return labs
 
-    def retrieve_locations(self) -> dict[str, list[str]]:
+    def retrieve_locations(self) -> list[str]:
         query = QSqlQuery()
-        locations = {}
-        query.exec(self.RETRIEVE_LOCATIONS_SQL)
+        locations = []
+        query.exec(self.RETRIEVE_LOCATION_SQL)
 
         while query.next():
-            lab_name = query.value("lab_name")
             location_name = query.value("location_name")
-
-            if lab_name not in locations:
-                locations[lab_name] = []
-            locations[lab_name].append(location_name)
+            locations.append(location_name)
         
         return locations
 
-    def check_item_location(self, name: str, lab: str, location: str) -> bool:
+    def check_item_location(self, name: str, location: str) -> bool:
 
         item_exist = False
         query = QSqlQuery()
@@ -428,7 +389,7 @@ class InventoryManager:
 
         while query.next():
             # Check if item with same lab and location already exists in database
-            if query.value("Lab") == lab and query.value("Location") == location:
+            if query.value("Store") == location:
                item_exist = True 
 
         return item_exist
@@ -443,7 +404,6 @@ class InventoryManager:
         query.addBindValue(transaction["name"])
         query.addBindValue(transaction["qty"])
         query.addBindValue(transaction["action"])
-        query.addBindValue(transaction["lab"])
         query.addBindValue(transaction["location"])
         if not query.exec():
             print(query.lastError().text())
@@ -455,9 +415,8 @@ class InventoryManager:
     def add_entry(self, 
                   stock_type: str, 
                   name: str, 
-                  qty: str, 
-                  location: str, 
-                  lab: str) -> bool:
+                  qty: float, 
+                  location: str) -> bool:
         query = QSqlQuery()
 
         # insert new item into the Items table
@@ -466,25 +425,30 @@ class InventoryManager:
         query.addBindValue(qty)
         query.addBindValue(stock_type)
         query.addBindValue(location)
-        query.addBindValue(lab)
+
         if not query.exec():
-            print(query.lastError().text())
+            error = query.lastError()
+            print(f"Error adding new entry: {error.text()} ")
+            print(f"Driver error: {error.driverText()}")
+            print(f"Database error: {error.databaseText()}")
             return False
         else:
             return True
 
 
     def retrieve_item_info(self, stock_type: str, with_qty: bool = True) -> QSqlQueryModel | None:
+        model = QSqlQueryModel()
         query = QSqlQuery()
+
         if with_qty:
             query.prepare(self.RETRIEVE_ITEM_INFO_SQL)
         else:
             query.prepare(self.USER_RETRIEVE_ITEM_INFO_SQL)
+
         query.addBindValue(stock_type)
         if not query.exec():
             print(query.lastError().text())
 
-        model = QSqlQueryModel()
         model.setQuery(query)
 
         return model
@@ -500,13 +464,13 @@ class InventoryManager:
 
     def retrieve_transactions_info(self, user: str = 'admin') -> QSqlQueryModel | None:
         model = QSqlQueryModel()
+        query = QSqlQuery()
 
         # User 'admin' should be able to view all the transactions
         # and other users should only be able view their own transactions.
         if user == 'admin':
             model.setQuery(self.RETRIEVE_TRANSACTION_SQL)
         else:
-            query = QSqlQuery()
             query.prepare(self.RETRIEVE_TRANSACTION_SQL + " WHERE user = (?)")
             query.addBindValue(user)
             if not query.exec():
@@ -521,39 +485,24 @@ class InventoryManager:
 
     def update_item_name(self, 
                          current_name: str, 
-                         lab: str, 
                          location: str, 
                          new_name: str) -> bool:
-        loc_id = -1
         query = QSqlQuery()
-        query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
-        query.addBindValue(location)
-        query.addBindValue(lab)
-        query.exec()
-
-        while query.next():
-            loc_id = query.value("loc_id")
-
-        if loc_id == -1:
-            print(query.lastError().text())
-            return False
-
         query.prepare(self.UPDATE_ITEM_NAME_SQL)
         query.addBindValue(new_name)
         query.addBindValue(current_name)
-        query.addBindValue(loc_id)
+        query.addBindValue(location)
         if not query.exec():
             print(query.lastError().text())
             return False
         else:
             return True
 
-    def retrieve_loc_id(self, lab: str, location: str) -> int:
+    def retrieve_loc_id(self, location: str) -> int:
         loc_id = -1
         query = QSqlQuery()
         query.prepare(self.RETRIEVE_LOCATION_ID_SQL)
         query.addBindValue(location)
-        query.addBindValue(lab)
         query.exec()
         
         while query.next():
@@ -582,13 +531,11 @@ class InventoryManager:
 
     def update_item_location(self, 
                              name: str, 
-                             current_lab: str, 
                              current_location: str, 
-                             new_lab: str, 
                              new_location: str) -> bool:
 
-        current_loc_id = self.retrieve_loc_id(current_lab, current_location)
-        new_loc_id = self.retrieve_loc_id(new_lab, new_location)
+        current_loc_id = self.retrieve_loc_id(current_location)
+        new_loc_id = self.retrieve_loc_id(new_location)
         if current_loc_id == -1:
             return False
         if new_loc_id == -1:
@@ -605,6 +552,7 @@ class InventoryManager:
         else:
             return True
     
+    #@TODO: Update move_item feature
     def move_item(self,
                   name: str,
                   stock_type: str,
@@ -632,11 +580,10 @@ class InventoryManager:
 
     def update_qty(self,
                    name: str,
-                   lab: str,
                    location: str,
                    qty: float) -> bool:
 
-        loc_id = self.retrieve_loc_id(lab, location)
+        loc_id = self.retrieve_loc_id(location)
         if loc_id == -1:
             return False
 
@@ -653,11 +600,10 @@ class InventoryManager:
     
     def add_qty_to_item(self, 
                         name: str, 
-                        lab: str, 
                         location: str, 
                         qty: float) -> bool:
 
-        loc_id = self.retrieve_loc_id(lab, location)
+        loc_id = self.retrieve_loc_id(location)
         if loc_id == -1:
             return False
 
@@ -674,10 +620,9 @@ class InventoryManager:
 
     def remove_qty_from_item(self,
                              name: str,
-                             lab: str,
                              location: str,
                              qty: float) -> bool:
-        loc_id = self.retrieve_loc_id(lab, location)
+        loc_id = self.retrieve_loc_id(location)
         if loc_id == -1:
             return False
 
@@ -692,8 +637,8 @@ class InventoryManager:
         else:
             return True
 
-    def delete_item(self, name: str, lab: str, location: str) -> bool:
-        loc_id = self.retrieve_loc_id(lab, location)
+    def delete_item(self, name: str, location: str) -> bool:
+        loc_id = self.retrieve_loc_id(location)
         if loc_id == -1:
             return False
 

@@ -41,6 +41,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "items_model": None
             }
 
+        #TODO: Remove after ui change
         # Update locations
         self.ui.item_lab_input.addItems(self.inventory_manager.retrieve_labs())
         # self.update_locations(0)
@@ -103,7 +104,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.add_entry_cancel_button.clicked.connect(self.handle_inventory_page)
         self.ui.add_entry_add_button.clicked.connect(self.add_entry)
         self.ui.item_location_input.returnPressed.connect(self.add_entry)
-        self.ui.item_lab_input.currentIndexChanged.connect(self.update_locations)
 
         self.ui.update_entry_button.clicked.connect(self.show_update_entry_page)
         self.ui.update_entry_cancel_button.clicked.connect(self.handle_inventory_page)
@@ -272,7 +272,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 layout.setStretch(2, 7)
                 layout.setStretch(3, 1)
 
-            elif data["header"] == "Lab" or data["header"] == "Location":
+            elif data["header"]  == "Store":
                 layout.addWidget(self.location_edit)
 
                 layout.setStretch(0, 1)
@@ -456,7 +456,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.ui.add_entry_list.clear()
             self.ui.item_name_input.clear()
             self.ui.item_qty_input.clear()
-            self.update_locations()
+            self.ui.item_location_input.clear()
 
 
         self.ui.stackedWidget_3.setCurrentWidget(self.ui.inventory_view_page)
@@ -528,24 +528,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         item_type = self.state["item_type"]
         name = self.ui.item_name_input.text()
-        qty = self.ui.item_qty_input.text()
+        qty = float(self.ui.item_qty_input.text())
         location = self.ui.item_location_input.text()
-        lab = self.ui.item_lab_input.currentText()
 
         item_entry = {
             "name": name,
             "qty": qty,
-            "location": location,
-            "lab": lab
+            "location": location
         }
 
-        # If the location is not already present under the Lab/Store, add the location
-        if not self.inventory_manager.location_exists(lab, location):
-            self.inventory_manager.insert_location(lab, location)
+        # If the location is not already present under the Store, add the location
+        if not self.inventory_manager.location_exists(location):
+            self.inventory_manager.insert_location(location)
             
         # If the item is already present in the given location, show the error message
-        if self.inventory_manager.check_item_location(name, lab, location):
-            utils.show_message("Item exists!", f"""Item {name} already exists in {lab}, {location}.
+        if self.inventory_manager.check_item_location(name, location):
+            utils.show_message("Item exists!", f"""Item {name} already exists in store, {location}.
 Use Edit Entry option to change the quantity of an existing item.""")
             return
 
@@ -555,12 +553,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
         # Clear current input values
         self.ui.item_name_input.clear()
         self.ui.item_qty_input.clear()
-        self.update_locations()
-
-
-    def update_locations(self):
         self.ui.item_location_input.clear()
-
 
     def show_update_entry_page(self):
         """
@@ -590,8 +583,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
         name = model.index(row, 1).data()
         user = self.state["username"]
         qty = model.index(row, 2).data()
-        lab = model.index(row, 3).data()
-        location = model.index(row, 4).data()
+        location = model.index(row, 3).data()
 
         data = {
             "table": self.ui.update_entry_table,
@@ -600,7 +592,6 @@ Use Edit Entry option to change the quantity of an existing item.""")
             "user": user,
             "name": name,
             "qty": qty,
-            "lab": lab,
             "location": location
         }
 
@@ -615,9 +606,8 @@ Use Edit Entry option to change the quantity of an existing item.""")
         header = model.headerData(column, Qt.Horizontal)
         name = model.index(row, 1).data()
         user = self.state["username"]
-        lab = model.index(row, 2).data()
-        location = model.index(row, 3).data()
-        loc_id = self.inventory_manager.retrieve_loc_id(lab, location)
+        location = model.index(row, 2).data()
+        loc_id = self.inventory_manager.retrieve_loc_id(location)
         qty = self.inventory_manager.retrieve_qty(name, loc_id)
 
         data = {
@@ -627,7 +617,6 @@ Use Edit Entry option to change the quantity of an existing item.""")
             "user": user,
             "name": name,
             "qty": qty,
-            "lab": lab,
             "location": location
         }
 
@@ -676,6 +665,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
         search_term = self.ui.move_entry_search_input.text()
         self.search_inventory(search_term, self.ui.move_entry_table)
     
+    # @TODO: Update after ui change
     def move_entry_table_clicked(self, index):
         self.remove_current_update_input(self.ui.verticalLayout_24)
         row = index.row()
@@ -740,8 +730,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
         name = model.index(row, 1).data()
         user = self.state["username"]
         qty = model.index(row, 2).data()
-        lab = model.index(row, 3).data()
-        location = model.index(row, 4).data()
+        location = model.index(row, 3).data()
 
         data = {
             "table": self.ui.restock_entry_table,
@@ -750,7 +739,6 @@ Use Edit Entry option to change the quantity of an existing item.""")
             "user": user,
             "name": name,
             "qty": qty,
-            "lab": lab,
             "location": location
         }
 
@@ -761,7 +749,6 @@ Use Edit Entry option to change the quantity of an existing item.""")
         layout.setStretch(0, 1)
         layout.setStretch(2, 7)
         layout.setStretch(3, 1)
-
 
 
     @admin_access
@@ -796,8 +783,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
         row = current_index.row()
         model = self.state["items_model"]
         name = model.index(row, 1).data()
-        lab = model.index(row, 3).data()
-        location = model.index(row, 4).data()
+        location = model.index(row, 3).data()
 
         confirm = utils.show_dialog(
                 "Are you sure?",
@@ -806,7 +792,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
         if confirm == QMessageBox.No:
             return
 
-        if self.inventory_manager.delete_item(name, lab, location):
+        if self.inventory_manager.delete_item(name, location):
             utils.show_message("Item deleted", f"Item: {name} successfully deleted from the database")
             self.set_default_inventory_table(self.ui.delete_entry_table)
         else:

@@ -1267,7 +1267,7 @@ QTableView::item:selected {
                <item>
                 <widget class="QStackedWidget" name="stackedWidget_3">
                  <property name="currentIndex">
-                  <number>2</number>
+                  <number>3</number>
                  </property>
                  <widget class="QWidget" name="inventory_page_default">
                   <widget class="QLabel" name="label_4">
@@ -2547,9 +2547,9 @@ padding: 5px;</string>
                         <property name="title">
                          <string/>
                         </property>
-                        <layout class="QHBoxLayout" name="horizontalLayout_15">
+                        <layout class="QHBoxLayout" name="horizontalLayout_15" stretch="1,1,1,1">
                          <property name="spacing">
-                          <number>2</number>
+                          <number>10</number>
                          </property>
                          <property name="leftMargin">
                           <number>0</number>
@@ -2571,8 +2571,14 @@ padding: 5px;</string>
                              <verstretch>0</verstretch>
                             </sizepolicy>
                            </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>60</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
                            <property name="text">
-                            <string>No</string>
+                            <string>|</string>
                            </property>
                           </widget>
                          </item>
@@ -2580,7 +2586,7 @@ padding: 5px;</string>
                           <widget class="QLabel" name="label_12">
                            <property name="maximumSize">
                             <size>
-                             <width>550</width>
+                             <width>510</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -2615,40 +2621,21 @@ padding: 5px;</string>
                           </widget>
                          </item>
                          <item>
-                          <widget class="QLabel" name="label_10">
-                           <property name="minimumSize">
-                            <size>
-                             <width>0</width>
-                             <height>40</height>
-                            </size>
-                           </property>
-                           <property name="maximumSize">
-                            <size>
-                             <width>350</width>
-                             <height>16777215</height>
-                            </size>
-                           </property>
-                           <property name="text">
-                            <string>Lab</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
                           <widget class="QLabel" name="label_9">
                            <property name="sizePolicy">
-                            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
                              <horstretch>0</horstretch>
                              <verstretch>0</verstretch>
                             </sizepolicy>
                            </property>
                            <property name="minimumSize">
                             <size>
-                             <width>200</width>
+                             <width>0</width>
                              <height>40</height>
                             </size>
                            </property>
                            <property name="text">
-                            <string>Location</string>
+                            <string>Store Location</string>
                            </property>
                           </widget>
                          </item>
@@ -2694,7 +2681,7 @@ padding: 5px;</string>
                              </property>
                              <property name="sizeHint" stdset="0">
                               <size>
-                               <width>60</width>
+                               <width>70</width>
                                <height>20</height>
                               </size>
                              </property>
@@ -2753,23 +2740,7 @@ padding: 5px;</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QComboBox" name="item_lab_input">
-                             <property name="minimumSize">
-                              <size>
-                               <width>330</width>
-                               <height>0</height>
-                              </size>
-                             </property>
-                             <property name="maximumSize">
-                              <size>
-                               <width>350</width>
-                               <height>16777215</height>
-                              </size>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QLineEdit" name="item_location_input"/>
+                            <widget class="UppercaseLineEdit" name="item_location_input"/>
                            </item>
                           </layout>
                          </widget>
@@ -3880,9 +3851,15 @@ padding: 5px;</string>
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>UppercaseLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>upper_case_line_edit</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../../resources.qrc"/>
-  <include location="../../../../../resources.qrc"/>
  </resources>
  <connections/>
  <buttongroups>

@@ -21,6 +21,8 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QListWidget, QListWidgetItem, QMainWindow, QPushButton,
     QSizePolicy, QSpacerItem, QStackedWidget, QTableView,
     QVBoxLayout, QWidget)
+
+from app.ui.upper_case_line_edit import UppercaseLineEdit
 from . import resources_rc
 
 class Ui_MainWindow(object):
@@ -1544,19 +1546,20 @@ class Ui_MainWindow(object):
         self.add_entry_table_header = QGroupBox(self.verticalLayoutWidget_5)
         self.add_entry_table_header.setObjectName(u"add_entry_table_header")
         self.horizontalLayout_15 = QHBoxLayout(self.add_entry_table_header)
-        self.horizontalLayout_15.setSpacing(2)
+        self.horizontalLayout_15.setSpacing(10)
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
         self.horizontalLayout_15.setContentsMargins(0, 28, 0, 0)
         self.label_13 = QLabel(self.add_entry_table_header)
         self.label_13.setObjectName(u"label_13")
         sizePolicy6.setHeightForWidth(self.label_13.sizePolicy().hasHeightForWidth())
         self.label_13.setSizePolicy(sizePolicy6)
+        self.label_13.setMaximumSize(QSize(60, 16777215))
 
         self.horizontalLayout_15.addWidget(self.label_13)
 
         self.label_12 = QLabel(self.add_entry_table_header)
         self.label_12.setObjectName(u"label_12")
-        self.label_12.setMaximumSize(QSize(550, 16777215))
+        self.label_12.setMaximumSize(QSize(510, 16777215))
 
         self.horizontalLayout_15.addWidget(self.label_12)
 
@@ -1569,21 +1572,21 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_15.addWidget(self.qty_label)
 
-        self.label_10 = QLabel(self.add_entry_table_header)
-        self.label_10.setObjectName(u"label_10")
-        self.label_10.setMinimumSize(QSize(0, 40))
-        self.label_10.setMaximumSize(QSize(350, 16777215))
-
-        self.horizontalLayout_15.addWidget(self.label_10)
-
         self.label_9 = QLabel(self.add_entry_table_header)
         self.label_9.setObjectName(u"label_9")
-        sizePolicy6.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
-        self.label_9.setSizePolicy(sizePolicy6)
-        self.label_9.setMinimumSize(QSize(200, 40))
+        sizePolicy9 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Preferred)
+        sizePolicy9.setHorizontalStretch(0)
+        sizePolicy9.setVerticalStretch(0)
+        sizePolicy9.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
+        self.label_9.setSizePolicy(sizePolicy9)
+        self.label_9.setMinimumSize(QSize(0, 40))
 
         self.horizontalLayout_15.addWidget(self.label_9)
 
+        self.horizontalLayout_15.setStretch(0, 1)
+        self.horizontalLayout_15.setStretch(1, 1)
+        self.horizontalLayout_15.setStretch(2, 1)
+        self.horizontalLayout_15.setStretch(3, 1)
 
         self.verticalLayout_11.addWidget(self.add_entry_table_header)
 
@@ -1596,7 +1599,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_13.setSpacing(10)
         self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
         self.horizontalLayout_13.setContentsMargins(0, 10, 10, 0)
-        self.horizontalSpacer_5 = QSpacerItem(60, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_5 = QSpacerItem(70, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_13.addItem(self.horizontalSpacer_5)
 
@@ -1622,14 +1625,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_13.addWidget(self.item_qty_input)
 
-        self.item_lab_input = QComboBox(self.add_entry_inputs)
-        self.item_lab_input.setObjectName(u"item_lab_input")
-        self.item_lab_input.setMinimumSize(QSize(330, 0))
-        self.item_lab_input.setMaximumSize(QSize(350, 16777215))
-
-        self.horizontalLayout_13.addWidget(self.item_lab_input)
-
-        self.item_location_input = QLineEdit(self.add_entry_inputs)
+        self.item_location_input = UppercaseLineEdit(self.add_entry_inputs)
         self.item_location_input.setObjectName(u"item_location_input")
 
         self.horizontalLayout_13.addWidget(self.item_location_input)
@@ -1898,11 +1894,11 @@ class Ui_MainWindow(object):
         self.user_item_type_input.addItem("")
         self.user_item_type_input.addItem("")
         self.user_item_type_input.setObjectName(u"user_item_type_input")
-        sizePolicy9 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
-        sizePolicy9.setHorizontalStretch(0)
-        sizePolicy9.setVerticalStretch(0)
-        sizePolicy9.setHeightForWidth(self.user_item_type_input.sizePolicy().hasHeightForWidth())
-        self.user_item_type_input.setSizePolicy(sizePolicy9)
+        sizePolicy10 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
+        sizePolicy10.setHorizontalStretch(0)
+        sizePolicy10.setVerticalStretch(0)
+        sizePolicy10.setHeightForWidth(self.user_item_type_input.sizePolicy().hasHeightForWidth())
+        self.user_item_type_input.setSizePolicy(sizePolicy10)
         self.user_item_type_input.setMinimumSize(QSize(0, 0))
 
         self.horizontalLayout_10.addWidget(self.user_item_type_input)
@@ -2067,11 +2063,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.widget = QWidget(self.layoutWidget7)
         self.widget.setObjectName(u"widget")
-        sizePolicy10 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
-        sizePolicy10.setHorizontalStretch(0)
-        sizePolicy10.setVerticalStretch(3)
-        sizePolicy10.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
-        self.widget.setSizePolicy(sizePolicy10)
+        sizePolicy11 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy11.setHorizontalStretch(0)
+        sizePolicy11.setVerticalStretch(3)
+        sizePolicy11.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
+        self.widget.setSizePolicy(sizePolicy11)
         self.widget.setStyleSheet(u"")
         self.label_2 = QLabel(self.widget)
         self.label_2.setObjectName(u"label_2")
@@ -2084,8 +2080,8 @@ class Ui_MainWindow(object):
 
         self.create_user_form = QWidget(self.layoutWidget7)
         self.create_user_form.setObjectName(u"create_user_form")
-        sizePolicy10.setHeightForWidth(self.create_user_form.sizePolicy().hasHeightForWidth())
-        self.create_user_form.setSizePolicy(sizePolicy10)
+        sizePolicy11.setHeightForWidth(self.create_user_form.sizePolicy().hasHeightForWidth())
+        self.create_user_form.setSizePolicy(sizePolicy11)
         self.verticalLayoutWidget_2 = QWidget(self.create_user_form)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
         self.verticalLayoutWidget_2.setGeometry(QRect(80, 70, 561, 611))
@@ -2192,7 +2188,7 @@ class Ui_MainWindow(object):
         self.login_button.setDefault(True)
         self.stackedWidget_2.setCurrentIndex(0)
         self.inventory_type_input.setCurrentIndex(-1)
-        self.stackedWidget_3.setCurrentIndex(2)
+        self.stackedWidget_3.setCurrentIndex(3)
         self.stackedWidget_4.setCurrentIndex(4)
         self.cancel_button.setDefault(False)
 
@@ -2242,11 +2238,10 @@ class Ui_MainWindow(object):
         self.add_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Go Back", None))
         self.add_entry_add_button.setText(QCoreApplication.translate("MainWindow", u"Add", None))
         self.add_entry_table_header.setTitle("")
-        self.label_13.setText(QCoreApplication.translate("MainWindow", u"No", None))
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"|", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Name", None))
         self.qty_label.setText(QCoreApplication.translate("MainWindow", u"Qty", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Lab", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Location", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Store Location", None))
         self.add_entry_inputs.setTitle(QCoreApplication.translate("MainWindow", u"GroupBox", None))
         self.delete_entry_label.setText(QCoreApplication.translate("MainWindow", u"REMOVE EXISTING GLASSWARE", None))
         self.delete_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))

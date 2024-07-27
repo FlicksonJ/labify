@@ -41,11 +41,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "items_model": None
             }
 
-        #TODO: Remove after ui change
-        # Update locations
-        self.ui.item_lab_input.addItems(self.inventory_manager.retrieve_labs())
-        # self.update_locations(0)
-
         # View login screen
         self.ui.stackedWidget.setCurrentWidget(self.ui.login_page)
         self.ui.username_input.setFocus()
@@ -665,7 +660,6 @@ Use Edit Entry option to change the quantity of an existing item.""")
         search_term = self.ui.move_entry_search_input.text()
         self.search_inventory(search_term, self.ui.move_entry_table)
     
-    # @TODO: Update after ui change
     def move_entry_table_clicked(self, index):
         self.remove_current_update_input(self.ui.verticalLayout_24)
         row = index.row()
@@ -676,8 +670,7 @@ Use Edit Entry option to change the quantity of an existing item.""")
         name = model.index(row, 1).data()
         user = self.state["username"]
         qty = model.index(row, 2).data()
-        lab = model.index(row, 3).data()
-        location = model.index(row, 4).data()
+        location = model.index(row, 3).data()
 
         data = {
             "table": self.ui.move_entry_table,
@@ -686,7 +679,6 @@ Use Edit Entry option to change the quantity of an existing item.""")
             "user": user,
             "name": name,
             "qty": qty,
-            "lab": lab,
             "location": location
         }
 

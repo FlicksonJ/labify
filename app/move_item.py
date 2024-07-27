@@ -1,7 +1,6 @@
+from datetime import datetime
 from PySide6.QtGui import QDoubleValidator
 from PySide6.QtWidgets import QTableView, QWidget, QSystemTrayIcon
-
-from datetime import datetime
 
 from app.ui.ui_move_item import Ui_MoveItem
 from app import utils
@@ -20,81 +19,94 @@ class MoveItem(QWidget):
 
         self.ui.qty_input.setValidator(QDoubleValidator())
 
-        # Update locations
         self.ui.lab_input.addItems(self.inventory_manager.retrieve_labs())
 
-        self.ui.location_label.setText(f'Location ({data["name"]}):')
-        lab_index = self.ui.lab_input.findText(data["lab"])
-        self.ui.lab_input.setCurrentIndex(lab_index)
-        self.update_loc()
-        self.ui.location_input.setText(data["location"])
-
-        self.ui.lab_input.currentIndexChanged.connect(self.update_loc)
         self.ui.move_item_button.clicked.connect(self.move_item)
 
+        self.ui.item_location_label.setText(f"{data['name']} (Location-{data['location']})")
         if self.data["item_type"] == "chemical_liquid":
-            self.ui.qty_label.setText(f'Qty - {data["name"]} (Litre):')
+            self.ui.qty_label.setText(' Qty(Litre):')
         elif self.data["item_type"] == "chemical_salt":
-            self.ui.qty_label.setText(f'Qty - {data["name"]} (gram):')
+            self.ui.qty_label.setText(' Qty(gram):')
         else:
-            self.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
-
-    def update_loc(self):
-        self.ui.location_input.clear()
+            self.ui.qty_label.setText(' Qty(Pcs.):')
 
     def validate_qty_input(self) -> bool:
+        valid = True
         if not utils.validate_line_edit(self.ui.qty_input, "Please enter a value"):
-            return False
+            valid = False
 
         qty = self.ui.qty_input.text()
         try:
             qty = float(qty)
-        except:
+            assert qty > 0, f"Excpected a value greater than 0, got {qty}"
+        except ValueError as e:
             utils.show_message("Error", "Not a valid number")
-            return False
-
-        if qty <= 0:
+            valid = False
+            raise ValueError(e)
+        except AssertionError as e:
             utils.show_message("Error", "Enter a value greater than 0")
-            return False
-
-        return True
+            valid = False
+            raise AssertionError(e)
         
+        return valid
 
     def move_item(self):
         if not self.validate_qty_input():
             return
-        if not utils.validate_line_edit(self.ui.location_input, "Please enter a value"):
-            return
 
         name = self.data["name"]
+        user = self.data["user"]
         stock_type = self.data["item_type"]
-        current_lab = self.data["lab"]
         current_location = self.data["location"]
-        new_lab = self.ui.lab_input.currentText()
-        new_location = self.ui.location_input.text()
+        new_location = self.ui.lab_input.currentText()
         qty = float(self.ui.qty_input.text())
+        date = datetime.now().strftime('%Y-%m-%d')
+        time = datetime.now().strftime('%I:%M %p')
+        action = "Moved To"
 
+        transaction = {
+            "date": date,
+            "time": time,
+            "user": user,
+            "name": name,
+            "qty": qty,
+            "action": action,
+            "location": new_location
+        }
+
+        try:
+            assert isinstance(self.data["qty"], float)
+            assert qty < self.data["qty"], f"Expected a value less than the current stock value, got {qty}"
+        except AssertionError as e:
+            utils.show_message("Error", "Qty value exceeds current stock value")
+            raise AssertionError(e)
+
+        print(qty, self.data["qty"])
         if qty > float(self.data["qty"]):
             utils.show_message("Error", "Qty value exceeds current stock value")
             return
 
-        if current_lab == new_lab and current_location == new_location:
+        if current_location == new_location:
             utils.show_message("Error", "Change locations to update")
             return
 
-        if not self.inventory_manager.location_exists(new_lab, new_location):
-            self.inventory_manager.insert_location(new_lab, new_location)
+        if not self.inventory_manager.check_item_location(name, current_location):
+            utils.show_message("Error", f"Item {name} does not exist in store, {current_location}. Enter a valid location")
+            return
 
         if self.inventory_manager.move_item(name,
                                                 stock_type,
-                                                current_lab,
                                                 current_location,
-                                                new_lab,
                                                 new_location,
                                                 qty):
-            utils.show_message("Moved item location", f"Moved {name}({qty}L/g) to {new_lab} - {new_location}")
+            if self.data["item_type"] == "chemical_liquid":
+                utils.show_message("Moved item location", f"Moved {name}({qty} Litre) to {new_location}")
+            elif self.data["item_type"] == "chemical_salt":
+                utils.show_message("Moved item location", f"Moved {name}({qty} gram) to {new_location}")
             self.parent.state["items_model"] = self.inventory_manager.retrieve_item_info(self.data["item_type"])
-            self.data["table"].setModel(self.parent.state["items_model"])
+            self.data["table"].setModel(self.inventory_manager.retrieve_item_info(self.data["item_type"]))
+            self.inventory_manager.add_transaction(transaction)
         else:
             utils.show_message("Error", "Cannot move item")
 

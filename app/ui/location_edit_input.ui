@@ -116,7 +116,7 @@ QPushButton:hover{
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="location_input">
+      <widget class="UppercaseLineEdit" name="location_input">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -171,6 +171,13 @@ QPushButton:hover{
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>UppercaseLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>upper_case_line_edit</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

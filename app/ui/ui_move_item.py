@@ -31,10 +31,17 @@ class Ui_MoveItem(object):
 "}\n"
 "\n"
 "QLabel {\n"
-"       color: #fff;\n"
-"       background: rgb(0, 159, 161);\n"
+"       background: #fff;\n"
+"       color: rgb(0, 159, 161);\n"
 "       padding-left: 5px;\n"
 "       padding-right: 5px;\n"
+"		font-weight: bold;\n"
+"}\n"
+"\n"
+"#label {\n"
+"		font-weight: normal;\n"
+"       color: #fff;\n"
+"       background: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "QLineEdit {\n"
@@ -69,7 +76,8 @@ class Ui_MoveItem(object):
 "}\n"
 "\n"
 "#location_input:hover,\n"
-"#lab_input:hover\n"
+"#lab_inpu"
+                        "t:hover\n"
 "{\n"
 "       color: rgb(52, 62, 162);\n"
 "}\n"
@@ -77,8 +85,7 @@ class Ui_MoveItem(object):
 "#location_input::drop-down,\n"
 "#lab_input::drop-down\n"
 "{\n"
-"       borde"
-                        "r: 0px;\n"
+"       border: 0px;\n"
 "}\n"
 "\n"
 "#location_input::down-arrow,\n"
@@ -103,6 +110,7 @@ class Ui_MoveItem(object):
         self.label.setObjectName(u"label")
         font = QFont()
         font.setPointSize(15)
+        font.setBold(False)
         font.setItalic(True)
         self.label.setFont(font)
 
@@ -111,34 +119,20 @@ class Ui_MoveItem(object):
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setSpacing(30)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.location_label = QLabel(MoveItem)
-        self.location_label.setObjectName(u"location_label")
+        self.item_location_label = QLabel(MoveItem)
+        self.item_location_label.setObjectName(u"item_location_label")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.location_label.sizePolicy().hasHeightForWidth())
-        self.location_label.setSizePolicy(sizePolicy)
-        self.location_label.setMaximumSize(QSize(16777215, 45))
+        sizePolicy.setHeightForWidth(self.item_location_label.sizePolicy().hasHeightForWidth())
+        self.item_location_label.setSizePolicy(sizePolicy)
+        self.item_location_label.setMaximumSize(QSize(16777215, 45))
         font1 = QFont()
         font1.setPointSize(18)
-        self.location_label.setFont(font1)
+        font1.setBold(True)
+        self.item_location_label.setFont(font1)
 
-        self.horizontalLayout.addWidget(self.location_label)
-
-        self.lab_input = QComboBox(MoveItem)
-        self.lab_input.setObjectName(u"lab_input")
-        self.lab_input.setMaximumSize(QSize(16777215, 45))
-        self.lab_input.setFont(font1)
-
-        self.horizontalLayout.addWidget(self.lab_input)
-
-        self.location_input = QLineEdit(MoveItem)
-        self.location_input.setObjectName(u"location_input")
-        self.location_input.setMinimumSize(QSize(0, 45))
-        self.location_input.setMaximumSize(QSize(16777215, 45))
-        self.location_input.setFont(font1)
-
-        self.horizontalLayout.addWidget(self.location_input)
+        self.horizontalLayout.addWidget(self.item_location_label)
 
         self.qty_label = QLabel(MoveItem)
         self.qty_label.setObjectName(u"qty_label")
@@ -151,9 +145,24 @@ class Ui_MoveItem(object):
         self.qty_input = QLineEdit(MoveItem)
         self.qty_input.setObjectName(u"qty_input")
         self.qty_input.setMaximumSize(QSize(16777215, 45))
-        self.qty_input.setFont(font1)
+        font2 = QFont()
+        font2.setPointSize(18)
+        self.qty_input.setFont(font2)
 
         self.horizontalLayout.addWidget(self.qty_input)
+
+        self.label_2 = QLabel(MoveItem)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setFont(font1)
+
+        self.horizontalLayout.addWidget(self.label_2)
+
+        self.lab_input = QComboBox(MoveItem)
+        self.lab_input.setObjectName(u"lab_input")
+        self.lab_input.setMaximumSize(QSize(16777215, 45))
+        self.lab_input.setFont(font2)
+
+        self.horizontalLayout.addWidget(self.lab_input)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -162,7 +171,7 @@ class Ui_MoveItem(object):
         self.move_item_button = QPushButton(MoveItem)
         self.move_item_button.setObjectName(u"move_item_button")
         self.move_item_button.setMaximumSize(QSize(16777215, 45))
-        self.move_item_button.setFont(font1)
+        self.move_item_button.setFont(font2)
 
         self.horizontalLayout.addWidget(self.move_item_button)
 
@@ -178,8 +187,9 @@ class Ui_MoveItem(object):
     def retranslateUi(self, MoveItem):
         MoveItem.setWindowTitle(QCoreApplication.translate("MoveItem", u"Form", None))
         self.label.setText(QCoreApplication.translate("MoveItem", u"Enter the new location for the selected item", None))
-        self.location_label.setText(QCoreApplication.translate("MoveItem", u"Location:", None))
+        self.item_location_label.setText(QCoreApplication.translate("MoveItem", u"Item", None))
         self.qty_label.setText(QCoreApplication.translate("MoveItem", u"Qty", None))
+        self.label_2.setText(QCoreApplication.translate("MoveItem", u"Move To", None))
         self.move_item_button.setText(QCoreApplication.translate("MoveItem", u"Move Item", None))
     # retranslateUi
 

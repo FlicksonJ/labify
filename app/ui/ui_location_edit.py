@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLineEdit,
-    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QPushButton,
+    QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
+
+from app.ui.upper_case_line_edit import UppercaseLineEdit
 
 class Ui_LocationEdit(object):
     def setupUi(self, LocationEdit):
@@ -107,7 +108,7 @@ class Ui_LocationEdit(object):
 
         self.horizontalLayout.addWidget(self.location_label)
 
-        self.location_input = QLineEdit(LocationEdit)
+        self.location_input = UppercaseLineEdit(LocationEdit)
         self.location_input.setObjectName(u"location_input")
         self.location_input.setMinimumSize(QSize(0, 45))
         self.location_input.setMaximumSize(QSize(16777215, 45))

@@ -553,29 +553,29 @@ class InventoryManager:
         else:
             return True
     
-    #@TODO: Update move_item feature
     def move_item(self,
                   name: str,
                   stock_type: str,
-                  current_lab: str,
                   current_location: str,
-                  new_lab: str,
                   new_location: str,
                   qty: float) -> bool:
-        current_loc_id = self.retrieve_loc_id(current_lab, current_location)
-        new_loc_id = self.retrieve_loc_id(new_lab, new_location)
+
+        new_loc_id = -1
+        query = QSqlQuery()
+        query.prepare(self.RETRIEVE_LAB_ID_SQL)
+        query.addBindValue(new_location)
+        query.exec()
+        while query.next():
+            new_loc_id = query.value("lab_id")
+
+        current_loc_id = self.retrieve_loc_id(current_location)
         if current_loc_id == -1:
             return False
         if new_loc_id == -1:
             return False
 
-        self.remove_qty_from_item(name, current_lab, current_location, qty)
-        if self.check_item_location(name, new_lab, new_location):
-            if not self.add_qty_to_item(name, new_lab, new_location, qty):
-                return False
-        else:
-            if not self.add_entry(stock_type, name, qty, new_location, new_lab):
-                return False
+        if not self.remove_qty_from_item(name, current_location, qty):
+            return False
 
         return True
 

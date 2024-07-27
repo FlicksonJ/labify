@@ -37,6 +37,11 @@ class Ui_QtyRestock(object):
 "	padding-right: 5px;\n"
 "}\n"
 "\n"
+"#qty_label {\n"
+"	background: #fff;\n"
+"	color: rgb(0, 159, 161);\n"
+"}\n"
+"\n"
 "QLineEdit {\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
 "	border-radius: 10px;\n"
@@ -94,6 +99,7 @@ class Ui_QtyRestock(object):
         self.qty_label.setMaximumSize(QSize(356356, 45))
         font1 = QFont()
         font1.setPointSize(18)
+        font1.setBold(True)
         self.qty_label.setFont(font1)
         self.qty_label.setAlignment(Qt.AlignCenter)
 
@@ -102,7 +108,9 @@ class Ui_QtyRestock(object):
         self.qty_input = QLineEdit(QtyRestock)
         self.qty_input.setObjectName(u"qty_input")
         self.qty_input.setMaximumSize(QSize(200, 45))
-        self.qty_input.setFont(font1)
+        font2 = QFont()
+        font2.setPointSize(18)
+        self.qty_input.setFont(font2)
         self.qty_input.setInputMethodHints(Qt.ImhNone)
 
         self.horizontalLayout.addWidget(self.qty_input)
@@ -114,14 +122,14 @@ class Ui_QtyRestock(object):
         self.add_stock_button = QPushButton(QtyRestock)
         self.add_stock_button.setObjectName(u"add_stock_button")
         self.add_stock_button.setMaximumSize(QSize(134, 45))
-        self.add_stock_button.setFont(font1)
+        self.add_stock_button.setFont(font2)
 
         self.horizontalLayout.addWidget(self.add_stock_button)
 
         self.remove_stock_button = QPushButton(QtyRestock)
         self.remove_stock_button.setObjectName(u"remove_stock_button")
         self.remove_stock_button.setMaximumSize(QSize(161, 45))
-        self.remove_stock_button.setFont(font1)
+        self.remove_stock_button.setFont(font2)
 
         self.horizontalLayout.addWidget(self.remove_stock_button)
 

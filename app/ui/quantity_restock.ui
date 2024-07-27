@@ -37,6 +37,11 @@ QLabel {
 	padding-right: 5px;
 }
 
+#qty_label {
+	background: #fff;
+	color: rgb(0, 159, 161);
+}
+
 QLineEdit {
 	border: 1px solid rgb(0, 159, 161);
 	border-radius: 10px;
@@ -104,6 +109,7 @@ QPushButton {
        <property name="font">
         <font>
          <pointsize>18</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="text">

@@ -36,6 +36,11 @@ class Ui_NameEdit(object):
 "	padding-right: 5px;\n"
 "}\n"
 "\n"
+"#name_label {\n"
+"	background: #fff;\n"
+"	color: rgb(0, 159, 161);\n"
+"}\n"
+"\n"
 "QLineEdit {\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
 "	border-radius: 10px;\n"
@@ -120,7 +125,7 @@ class Ui_NameEdit(object):
     def retranslateUi(self, NameEdit):
         NameEdit.setWindowTitle(QCoreApplication.translate("NameEdit", u"Form", None))
         self.label.setText(QCoreApplication.translate("NameEdit", u"Enter the new name for the selected item", None))
-        self.name_label.setText(QCoreApplication.translate("NameEdit", u"Name", None))
+        self.name_label.setText(QCoreApplication.translate("NameEdit", u"New Name", None))
         self.update_name_button.setText(QCoreApplication.translate("NameEdit", u"Update Name", None))
     # retranslateUi
 

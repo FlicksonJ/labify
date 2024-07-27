@@ -31,6 +31,11 @@ QLabel {
 	padding-right: 5px;
 }
 
+#name_label {
+	background: #fff;
+	color: rgb(0, 159, 161);
+}
+
 QLineEdit {
 	border: 1px solid rgb(0, 159, 161);
 	border-radius: 10px;
@@ -94,7 +99,7 @@ QPushButton:hover{
         </font>
        </property>
        <property name="text">
-        <string>Name</string>
+        <string>New Name</string>
        </property>
       </widget>
      </item>

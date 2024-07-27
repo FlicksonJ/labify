@@ -487,11 +487,12 @@ class InventoryManager:
                          current_name: str, 
                          location: str, 
                          new_name: str) -> bool:
+        loc_id = self.retrieve_loc_id(location)
         query = QSqlQuery()
         query.prepare(self.UPDATE_ITEM_NAME_SQL)
         query.addBindValue(new_name)
         query.addBindValue(current_name)
-        query.addBindValue(location)
+        query.addBindValue(loc_id)
         if not query.exec():
             print(query.lastError().text())
             return False

@@ -20,14 +20,15 @@ class QtyEdit(QWidget):
         self.ui.qty_input.setValidator(QDoubleValidator())
 
         self.ui.update_button.clicked.connect(self.update_qty)
+        self.ui.qty_input.returnPressed.connect(self.update_qty)
 
         self.ui.qty_input.setText(str(data["qty"]))
         if self.data["item_type"] == "chemical_liquid":
-            self.ui.qty_label.setText(f'Qty - {data["name"]} (Litre):')
+            self.ui.qty_label.setText(f'{data["name"]} - New Qty(Litre):')
         elif self.data["item_type"] == "chemical_salt":
-            self.ui.qty_label.setText(f'Qty - {data["name"]} (gram):')
+            self.ui.qty_label.setText(f'{data["name"]} - New Qty(gram):')
         else:
-            self.ui.qty_label.setText(f'Qty - {data["name"]} (Pcs.):')
+            self.ui.qty_label.setText(f'{data["name"]} - New Qty(Pcs.):')
 
     
     def validate_qty_input(self) -> bool:
@@ -37,13 +38,13 @@ class QtyEdit(QWidget):
         qty = self.ui.qty_input.text()
         try:
             qty = float(qty)
-        except:
+            assert qty >= 0, f"Expected a positive value for qty, got {qty}"
+        except ValueError as e:
             utils.show_message("Error", "Not a valid number")
-            return False
-
-        if qty < 0:
+            raise ValueError(e)
+        except AssertionError as e:
             utils.show_message("Error", "Enter a value greater than 0")
-            return False
+            raise AssertionError(e)
 
         return True
         
@@ -53,11 +54,10 @@ class QtyEdit(QWidget):
             return
 
         name = self.data["name"]
-        lab = self.data["lab"]
         location = self.data["location"]
         qty = float(self.ui.qty_input.text())
 
-        if self.inventory_manager.update_qty(name, lab, location, qty):
+        if self.inventory_manager.update_qty(name, location, qty):
             utils.show_message("Quantity updated", f"Changed quantity to {qty}")
             self.parent.state["items_model"] = self.inventory_manager.retrieve_item_info(self.data["item_type"])
             self.data["table"].setModel(self.parent.state["items_model"])

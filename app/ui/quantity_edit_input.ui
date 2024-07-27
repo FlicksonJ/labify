@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>893</width>
-    <height>87</height>
+    <height>95</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,6 +23,11 @@ QLabel {
 	background: rgb(0, 159, 161);
 	padding-left: 5px;
 	padding-right: 5px;
+}
+
+#qty_label {
+	background: #fff;
+	color: rgb(0, 159, 161);
 }
 
 QLineEdit {
@@ -79,10 +84,11 @@ QPushButton:hover{
        <property name="font">
         <font>
          <pointsize>18</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="text">
-        <string>Qty</string>
+        <string>New Qty:</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

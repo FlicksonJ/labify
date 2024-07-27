@@ -23,7 +23,7 @@ class Ui_QtyEdit(object):
     def setupUi(self, QtyEdit):
         if not QtyEdit.objectName():
             QtyEdit.setObjectName(u"QtyEdit")
-        QtyEdit.resize(893, 87)
+        QtyEdit.resize(893, 95)
         QtyEdit.setStyleSheet(u"* {\n"
 "	background: #fff\n"
 "}\n"
@@ -33,6 +33,11 @@ class Ui_QtyEdit(object):
 "	background: rgb(0, 159, 161);\n"
 "	padding-left: 5px;\n"
 "	padding-right: 5px;\n"
+"}\n"
+"\n"
+"#qty_label {\n"
+"	background: #fff;\n"
+"	color: rgb(0, 159, 161);\n"
 "}\n"
 "\n"
 "QLineEdit {\n"
@@ -79,6 +84,7 @@ class Ui_QtyEdit(object):
         self.qty_label.setMaximumSize(QSize(16777215, 45))
         font1 = QFont()
         font1.setPointSize(18)
+        font1.setBold(True)
         self.qty_label.setFont(font1)
         self.qty_label.setAlignment(Qt.AlignCenter)
 
@@ -87,7 +93,9 @@ class Ui_QtyEdit(object):
         self.qty_input = QLineEdit(QtyEdit)
         self.qty_input.setObjectName(u"qty_input")
         self.qty_input.setMaximumSize(QSize(16777215, 45))
-        self.qty_input.setFont(font1)
+        font2 = QFont()
+        font2.setPointSize(18)
+        self.qty_input.setFont(font2)
 
         self.horizontalLayout.addWidget(self.qty_input)
 
@@ -98,7 +106,7 @@ class Ui_QtyEdit(object):
         self.update_button = QPushButton(QtyEdit)
         self.update_button.setObjectName(u"update_button")
         self.update_button.setMaximumSize(QSize(16777215, 45))
-        self.update_button.setFont(font1)
+        self.update_button.setFont(font2)
 
         self.horizontalLayout.addWidget(self.update_button)
 
@@ -114,7 +122,7 @@ class Ui_QtyEdit(object):
     def retranslateUi(self, QtyEdit):
         QtyEdit.setWindowTitle(QCoreApplication.translate("QtyEdit", u"Form", None))
         self.label.setText(QCoreApplication.translate("QtyEdit", u"Enter the new quantity of the selected item.", None))
-        self.qty_label.setText(QCoreApplication.translate("QtyEdit", u"Qty", None))
+        self.qty_label.setText(QCoreApplication.translate("QtyEdit", u"New Qty:", None))
         self.update_button.setText(QCoreApplication.translate("QtyEdit", u"Update Qty", None))
     # retranslateUi
 

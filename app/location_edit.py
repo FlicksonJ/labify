@@ -16,54 +16,49 @@ class LocationEdit(QWidget):
         self.inventory_manager = parent.inventory_manager
         self.data = data
 
-        # Update locations
-        self.ui.lab_input.addItems(self.inventory_manager.retrieve_labs())
-        self.ui.lab_input.currentIndexChanged.connect(self.update_loc)
-
-        self.ui.location_label.setText(f'Location ({data["name"]}):')
-        lab_index = self.ui.lab_input.findText(data["lab"])
-        self.ui.lab_input.setCurrentIndex(lab_index)
-        self.update_loc()
-        self.ui.location_input.setText(data["location"])
+        self.ui.location_label.setText(f'New Location ({data["name"]}):')
+        self.ui.location_input.clear()
+        try:
+            assert isinstance(data["location"], str), f"Expected a string for location, got {type(data['location'])}"
+            self.ui.location_input.setText(data["location"])
+        except AssertionError as e:
+            raise AssertionError(e)
 
         self.ui.update_location_button.clicked.connect(self.update_item_location)
-
-    def update_loc(self):
-        self.ui.location_input.clear()
+        self.ui.location_input.returnPressed.connect(self.update_item_location)
 
     def update_item_location(self):
         name = self.data["name"]
-        current_lab = self.data["lab"]
         current_location = self.data["location"]
-        new_lab = self.ui.lab_input.currentText()
         new_location = self.ui.location_input.text()
 
-        if current_lab == new_lab and current_location == new_location:
+        if not utils.validate_line_edit(self.ui.location_input, "Please enter a location"):
+            return
+
+        if current_location == new_location:
             utils.show_message("Error", "Change locations to update")
             return
 
-        if not self.inventory_manager.location_exists(new_lab, new_location):
-            self.inventory_manager.insert_location(new_lab, new_location)
+        if not self.inventory_manager.location_exists(new_location):
+            self.inventory_manager.insert_location(new_location)
         
-        if self.inventory_manager.check_item_location(name, new_lab, new_location):
-            utils.show_message("Item exists!", f"Item {name} already exists in {new_lab}, {new_location}")
+        if self.inventory_manager.check_item_location(name, new_location):
+            utils.show_message("Item exists!", f"Item {name} already exists in store, {new_location}")
             return
 
         confirm = utils.show_dialog(
                 "Are you sure?", 
-                f"Do you really want to update the location to {new_lab}, {new_location}?"
+                f"Do you really want to update the location to store, {new_location}?"
                 )
         if confirm == QMessageBox.No:
             return
 
         if self.inventory_manager.update_item_location(
                 name,
-                current_lab,
                 current_location,
-                new_lab,
                 new_location
                 ):
-            utils.show_message("Name Updated", f"Changed location from {current_lab}, {current_location} to {new_lab}, {new_location}")
+            utils.show_message("Name Updated", f"Changed location from store, {current_location} to store, {new_location}")
             self.parent.state["items_model"] = self.inventory_manager.retrieve_item_info(self.data["item_type"])
             self.data["table"].setModel(self.parent.state["items_model"])
         else:

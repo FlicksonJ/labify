@@ -31,6 +31,12 @@ QLabel {
        padding-right: 5px;
 }
 
+#location_label {
+	background: #fff;
+	color: rgb(0, 159, 161);
+	font-weight: bold;
+}
+
 QLineEdit {
        border: 1px solid rgb(0, 159, 161);
        padding-left: 10px;
@@ -56,37 +62,15 @@ QPushButton:hover{
        color: #fff;
 }
 
-#location_input,
-#lab_input
-{
+#location_input {
        color: rgb(0, 159, 161);
 }
 
-#location_input:hover,
-#lab_input:hover
-{
+#location_input:hover {
        color: rgb(52, 62, 162);
 }
 
-#location_input::drop-down,
-#lab_input::drop-down
-{
-       border: 0px;
-}
-
-#location_input::down-arrow,
-#lab_input::down-arrow
-{
-       image: url(:/icon/images/down-arrow.ico);
-       width: 15px;
-       height: 15px;
-       margin-right: 20px;
-		margin-left: 20px;
-}
-
-#location_input:on,
-#lab_input:on
-{
+#location_input:on {
        border: 2px solid rgba(0, 159, 161, 10%);
 }</string>
   </property>
@@ -100,7 +84,7 @@ QPushButton:hover{
       </font>
      </property>
      <property name="text">
-      <string>Enter the new location for the selected item</string>
+      <string>Enter the new location in the store for the selected item</string>
      </property>
     </widget>
    </item>
@@ -123,25 +107,11 @@ QPushButton:hover{
        <property name="font">
         <font>
          <pointsize>18</pointsize>
+         <bold>true</bold>
         </font>
        </property>
        <property name="text">
-        <string>Location:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="lab_input">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>45</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>18</pointsize>
-        </font>
+        <string>Store Location:</string>
        </property>
       </widget>
      </item>
@@ -201,8 +171,6 @@ QPushButton:hover{
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

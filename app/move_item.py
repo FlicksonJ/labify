@@ -72,7 +72,7 @@ class MoveItem(QWidget):
             "name": name,
             "qty": qty,
             "action": action,
-            "location": new_location
+            "location": f"{current_location} -> {new_location}"
         }
 
         try:
@@ -82,7 +82,6 @@ class MoveItem(QWidget):
             utils.show_message("Error", "Qty value exceeds current stock value")
             raise AssertionError(e)
 
-        print(qty, self.data["qty"])
         if qty > float(self.data["qty"]):
             utils.show_message("Error", "Qty value exceeds current stock value")
             return

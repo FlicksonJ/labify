@@ -13,11 +13,14 @@ class UserQuantityEdit(QWidget):
         self.ui.setupUi(self)
 
         self.parent = parent
+        self.location = parent.state["location_data"]
         self.inventory_manager = parent.inventory_manager
         self.data = data
         self.tray_icon = parent.tray_icon
 
         self.ui.qty_input.setValidator(QDoubleValidator())
+
+        self.ui.lab_input.addItems(self.inventory_manager.retrieve_labs())
 
         self.ui.used_button.clicked.connect(self.remove_stock)
         self.ui.qty_input.returnPressed.connect(self.remove_stock)
@@ -55,6 +58,7 @@ class UserQuantityEdit(QWidget):
         name = self.data["name"]
         user = self.data["user"]
         location = self.data["location"]
+        lab = self.ui.lab_input.currentText()
         qty = float(self.ui.qty_input.text())
         date = datetime.now().strftime('%Y-%m-%d')
         time = datetime.now().strftime('%I:%M %p')
@@ -66,7 +70,7 @@ class UserQuantityEdit(QWidget):
 
         if self.data['item_type'] == 'chemical_salt' and (self.data["qty"] - qty) <= 250:
             self.tray_icon.showMessage("Alert", f"{self.data['name']} is below margin level", QSystemTrayIcon.Information, 5000)
-        elif self.data['item_type'] == chemical_liquid and (self.data["qty"] - qty) <= 2.5:
+        elif self.data['item_type'] == 'chemical_liquid' and (self.data["qty"] - qty) <= 2.5:
             self.tray_icon.showMessage("Alert", f"{self.data['name']} is below margin level", QSystemTrayIcon.Information, 5000)
 
         transaction = {
@@ -76,7 +80,7 @@ class UserQuantityEdit(QWidget):
             "name": name,
             "qty": qty,
             "action": action,
-            "location": location
+            "location": lab
         }
 
         if self.inventory_manager.remove_qty_from_item(name, location, qty):

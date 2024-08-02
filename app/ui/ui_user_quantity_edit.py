@@ -15,16 +15,17 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLineEdit,
-    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
+    QLineEdit, QPushButton, QSizePolicy, QSpacerItem,
+    QVBoxLayout, QWidget)
+from . import resources_rc
 
 class Ui_UserQuantityEdit(object):
     def setupUi(self, UserQuantityEdit):
         if not UserQuantityEdit.objectName():
             UserQuantityEdit.setObjectName(u"UserQuantityEdit")
         UserQuantityEdit.resize(893, 87)
-        UserQuantityEdit.setMinimumSize(QSize(0, 55))
+        UserQuantityEdit.setMinimumSize(QSize(0, 87))
         UserQuantityEdit.setMaximumSize(QSize(16777215, 100))
         font = QFont()
         font.setPointSize(18)
@@ -40,7 +41,7 @@ class Ui_UserQuantityEdit(object):
 "	padding-right: 5px;\n"
 "}\n"
 "\n"
-"#qty_label {\n"
+"#qty_label, #lab_label {\n"
 "	background: #fff;\n"
 "	color: rgb(0, 159, 161);\n"
 "}\n"
@@ -70,11 +71,42 @@ class Ui_UserQuantityEdit(object):
 "	background: rgb(0, 159, 161);\n"
 "	color: #fff;\n"
 "}\n"
+"\n"
+"#lab_input\n"
+"{\n"
+"       color: rgb(0, 159, 161);\n"
+"}\n"
+"\n"
+"#lab_input:hover\n"
+"{\n"
+"       color: rgb(52, 62, 162);\n"
+"}\n"
+"\n"
+"#lab_input::drop-down\n"
+"{\n"
+"       border: 0px;\n"
+"}\n"
+"\n"
+"#lab_input::down-arrow\n"
+"{\n"
+"       image: u"
+                        "rl(:/icon/images/down-arrow.ico);\n"
+"       width: 15px;\n"
+"       height: 15px;\n"
+"       margin-right: 20px;\n"
+"		margin-left: 20px;\n"
+"}\n"
+"\n"
+"#lab_input:on\n"
+"{\n"
+"       border: 2px solid rgba(0, 159, 161, 10%);\n"
+"}\n"
 "")
         self.verticalLayout = QVBoxLayout(UserQuantityEdit)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.label = QLabel(UserQuantityEdit)
         self.label.setObjectName(u"label")
+        self.label.setMinimumSize(QSize(0, 24))
         font1 = QFont()
         font1.setPointSize(15)
         font1.setItalic(True)
@@ -102,6 +134,18 @@ class Ui_UserQuantityEdit(object):
 
         self.horizontalLayout.addWidget(self.qty_input)
 
+        self.lab_label = QLabel(UserQuantityEdit)
+        self.lab_label.setObjectName(u"lab_label")
+        self.lab_label.setFont(font2)
+
+        self.horizontalLayout.addWidget(self.lab_label)
+
+        self.lab_input = QComboBox(UserQuantityEdit)
+        self.lab_input.setObjectName(u"lab_input")
+        self.lab_input.setMinimumSize(QSize(150, 35))
+
+        self.horizontalLayout.addWidget(self.lab_input)
+
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
@@ -126,6 +170,7 @@ class Ui_UserQuantityEdit(object):
         UserQuantityEdit.setWindowTitle(QCoreApplication.translate("UserQuantityEdit", u"Form", None))
         self.label.setText(QCoreApplication.translate("UserQuantityEdit", u"Enter the quantity of item used.", None))
         self.qty_label.setText(QCoreApplication.translate("UserQuantityEdit", u"Qty", None))
+        self.lab_label.setText(QCoreApplication.translate("UserQuantityEdit", u"Lab", None))
         self.used_button.setText(QCoreApplication.translate("UserQuantityEdit", u"Used", None))
     # retranslateUi
 

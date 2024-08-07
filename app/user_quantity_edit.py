@@ -62,7 +62,7 @@ class UserQuantityEdit(QWidget):
         qty = float(self.ui.qty_input.text())
         date = datetime.now().strftime('%Y-%m-%d')
         time = datetime.now().strftime('%I:%M %p')
-        action = "Taken From"
+        action = "Used In"
 
         if qty > float(self.data["qty"]):
             utils.show_message("Error", "Qty value exceeds current stock value")

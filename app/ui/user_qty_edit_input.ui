@@ -171,7 +171,7 @@ QPushButton:hover{
         </font>
        </property>
        <property name="text">
-        <string>Lab</string>
+        <string>Used In Lab</string>
        </property>
       </widget>
      </item>
@@ -212,7 +212,7 @@ QPushButton:hover{
         </font>
        </property>
        <property name="text">
-        <string>Used</string>
+        <string>Confirm</string>
        </property>
       </widget>
      </item>

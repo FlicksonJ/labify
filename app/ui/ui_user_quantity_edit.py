@@ -170,7 +170,7 @@ class Ui_UserQuantityEdit(object):
         UserQuantityEdit.setWindowTitle(QCoreApplication.translate("UserQuantityEdit", u"Form", None))
         self.label.setText(QCoreApplication.translate("UserQuantityEdit", u"Enter the quantity of item used.", None))
         self.qty_label.setText(QCoreApplication.translate("UserQuantityEdit", u"Qty", None))
-        self.lab_label.setText(QCoreApplication.translate("UserQuantityEdit", u"Lab", None))
-        self.used_button.setText(QCoreApplication.translate("UserQuantityEdit", u"Used", None))
+        self.lab_label.setText(QCoreApplication.translate("UserQuantityEdit", u"Used In Lab", None))
+        self.used_button.setText(QCoreApplication.translate("UserQuantityEdit", u"Confirm", None))
     # retranslateUi
 

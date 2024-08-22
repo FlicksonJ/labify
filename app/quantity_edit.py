@@ -56,6 +56,11 @@ class QtyEdit(QWidget):
         name = self.data["name"]
         location = self.data["location"]
         qty = float(self.ui.qty_input.text())
+        current_qty = float(self.data["qty"])
+        
+        if current_qty == qty:
+            utils.show_message("Error", "Change the value of qty to update")
+            return
 
         if self.inventory_manager.update_qty(name, location, qty):
             utils.show_message("Quantity updated", f"Changed quantity to {qty}")

@@ -796,5 +796,8 @@ Use Edit Entry option to change the quantity of an existing item.""")
         This slot is triggered when the cancel_button is clicked.
         Go back to home_page
         """
+        self.ui.cu_username_input.clear()
+        self.ui.cu_password_input.clear()
+        self.ui.cu_confirm_password_input.clear()
         self.ui.stackedWidget_2.setCurrentWidget(self.ui.inventory_page)
 

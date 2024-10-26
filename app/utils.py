@@ -1,9 +1,16 @@
-from PySide6.QtCore import QAbstractTableModel, QSortFilterProxyModel
+from PySide6.QtCore import QAbstractTableModel, QSortFilterProxyModel, Qt
 from PySide6.QtGui import QValidator
+from PySide6.QtSql import QSqlQueryModel
 from PySide6.QtWidgets import QMessageBox, QLineEdit
 
+import sys
 from datetime import datetime
 from thefuzz import fuzz
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
+from reportlab.lib import colors
+from reportlab.platypus import Table, TableStyle
+
 
 
 # Check whether the input is upper case or digits
@@ -78,4 +85,48 @@ def fuzzy_search(model: QAbstractTableModel, search_term: str) -> QSortFilterPro
     proxy_model.setFilterRegularExpression(f"^(?:{regex_pattern})$")
 
     return proxy_model
+
+def create_pdf(title: str, file_path: str, model: QSqlQueryModel) -> None:
+    if not file_path.endswith('.pdf'):
+        file_path = file_path + '.pdf'
+    pdf = canvas.Canvas(file_path, pagesize=A4)
+    pdf.setTitle(title)
+    width, height = A4
+    margin = 50
+    line_height = 20
+    table_start_y = height - margin
+    max_rows_per_page = int((table_start_y - margin) / line_height) - 1
+
+    table_style = TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 10),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+    ])
+    
+    headers = [model.headerData(i, Qt.Horizontal) for i in range(model.columnCount())]
+    data = [headers]
+    for row in range(model.rowCount()):
+        row_data = [model.index(row, col).data() for col in range(model.columnCount())]
+        data.append(row_data)
+
+    for i in range(0, len(data), max_rows_per_page):
+        chunk = [headers] + data[i:i + max_rows_per_page]
+        table = Table(chunk)
+        table.setStyle(table_style)
+        table_width, table_height = table.wrap(0, 0)
+        x_position = (width - table_width) / 2
+
+        table.drawOn(pdf, x_position, table_start_y - line_height * len(chunk))
+
+        page_num = int(i / max_rows_per_page) + 1
+        pdf.drawString(width - margin, margin / 2, f"Page {page_num}")
+        pdf.showPage()
+
+    pdf.save()
+    print("PDF generated:", file_path)
 

@@ -1,7 +1,7 @@
 from PySide6.QtCore import QTimer, Qt 
 from PySide6.QtGui import QIcon, QDoubleValidator
 from PySide6.QtSql import QSqlQuery
-from PySide6.QtWidgets import QLayout, QMainWindow, QMenu, QMessageBox, QSystemTrayIcon, QTableView, QVBoxLayout 
+from PySide6.QtWidgets import QLayout, QMainWindow, QMenu, QMessageBox, QSystemTrayIcon, QTableView, QVBoxLayout, QFileDialog
 
 from app.ui.ui_main import Ui_MainWindow
 from app.quantity_edit import QtyEdit
@@ -123,6 +123,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.delete_entry_search_button.clicked.connect(self.delete_inventory_search)
         self.ui.delete_entry_search_input.returnPressed.connect(self.delete_inventory_search)
         self.ui.delete_entry_delete_button.clicked.connect(self.delete_entry)
+
+        self.ui.print_items_button.clicked.connect(self.print_items)
 
 
     def set_time(self):
@@ -440,7 +442,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
 
         # To avoid side effects from inventory_view_changed function
-        # Bug: The inventory_view_changed also changes the current value of the combo box,
+        #@NOTE: The inventory_view_changed also changes the current value of the combo box,
         # it will trigger the currentTextChanged signal and will connect to this slot.
         # Fix: check the currentIndex is not -1 before setting currentWidget
         if self.ui.inventory_type_input.currentIndex() == -1:
@@ -486,6 +488,28 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def view_inventory_search(self):
         search_term = self.ui.search_bar_input.text()
         self.search_inventory(search_term)
+
+    def print_items(self):
+        """
+        This slot is triggered when the print_items_button is clicked.
+        This will print the entries of the current selected item.
+        """
+        
+        file_path, _ = QFileDialog.getSaveFileName(
+            self, "Save PDF", "", "PDF Files (*.pdf);;All Files (*)"
+        )
+
+        if not file_path:
+            return
+
+        title = ''
+        if self.state['item_type'].startswith('chemical'):
+            title = 'Chemical'
+        else:
+            title = self.state['item_type'].title()
+
+        # generate pdf file
+        utils.create_pdf(title, file_path, self.state['items_model'])
 
     @admin_access
     def show_add_entry_page(self):

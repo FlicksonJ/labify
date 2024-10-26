@@ -29,6 +29,7 @@ pip install pyside6
 pip install bcrypt
 pip install itsdangerous
 pip install thefuzz
+pip install reportlab
 ``` 
 3. Run the application:
 ```

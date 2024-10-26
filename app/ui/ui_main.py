@@ -22,7 +22,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QSizePolicy, QSpacerItem, QStackedWidget, QTableView,
     QVBoxLayout, QWidget)
 
-from app.ui.upper_case_line_edit import UppercaseLineEdit
+from .upper_case_line_edit import UppercaseLineEdit
 from . import resources_rc
 
 class Ui_MainWindow(object):
@@ -458,7 +458,8 @@ class Ui_MainWindow(object):
 "	color: rgb(52, 62, 162);\n"
 "}\n"
 "\n"
-"#add_entry_add_button:hover{\n"
+"#add_entry_add_button:hover,\n"
+"#print_items_button:hover {\n"
 "	background: rgb(0, 159, 161);\n"
 "	color: #fff;\n"
 "}\n"
@@ -478,9 +479,9 @@ class Ui_MainWindow(object):
 "#search_bar_container_2,\n"
 "#search_bar_container_3,\n"
 "#search_bar_container_4,\n"
-"#search_bar_container_5,\n"
 ""
-                        "#search_bar_container_6 {\n"
+                        "#search_bar_container_5,\n"
+"#search_bar_container_6 {\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
 "	border-radius: 15px;\n"
 "	margin: 1px;\n"
@@ -518,9 +519,9 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#search_button:hover,\n"
-"#search_bar_input:hover,\n"
-"#up"
-                        "date_entry_search_button:hover,\n"
+"#se"
+                        "arch_bar_input:hover,\n"
+"#update_entry_search_button:hover,\n"
 "#update_entry_search_button_2:hover,\n"
 "#restock_entry_search_button:hover,\n"
 "#update_entry_search_input:hover,\n"
@@ -551,14 +552,15 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#add_entry_add_button,\n"
+"#print_items_button,\n"
 "#add_entry_cancel_button,\n"
 "#update_entry_cancel_button,\n"
 "#update_entry_cancel_button_2,\n"
 "#restock_entry_cancel_button,\n"
-"#move_entry_cancel_button,\n"
+"#move_"
+                        "entry_cancel_button,\n"
 "#delete_entry_delete_button,\n"
-""
-                        "#delete_entry_cancel_button,\n"
+"#delete_entry_cancel_button,\n"
 "#go_back_button {\n"
 "	border: 1px solid;\n"
 "	margin: 0;\n"
@@ -568,7 +570,8 @@ class Ui_MainWindow(object):
 "	margin-left: 20px;\n"
 "}\n"
 "\n"
-"#add_entry_add_button {\n"
+"#add_entry_add_button,\n"
+"#print_items_button {\n"
 "	color: rgb(0, 159, 161);\n"
 "	border-color: rgb(0, 159, 161);\n"
 "}\n"
@@ -599,13 +602,13 @@ class Ui_MainWindow(object):
 "	max-width: 350px;\n"
 "}\n"
 "\n"
-"#add_entry_list {\n"
+"#"
+                        "add_entry_list {\n"
 "	padding-top: 20px;\n"
 "	margin-bottom: 30px;\n"
 "}\n"
 "\n"
-"/"
-                        "* Table Styling */\n"
+"/* Table Styling */\n"
 "\n"
 "QTableView {\n"
 "	font-size: 20pt;\n"
@@ -648,10 +651,10 @@ class Ui_MainWindow(object):
 "    width: 30px;\n"
 "}\n"
 "\n"
-"QTableView::item {\n"
+""
+                        "QTableView::item {\n"
 "	color: rgb(0, 159, 161);\n"
-"	gridline-color: rgb(0, 159"
-                        ", 161);\n"
+"	gridline-color: rgb(0, 159, 161);\n"
 "	border: 1px solid rgb(0, 159, 161);\n"
 "	min-width: 500px;\n"
 "}\n"
@@ -1055,7 +1058,7 @@ class Ui_MainWindow(object):
         self.item_search_page.setObjectName(u"item_search_page")
         self.verticalLayoutWidget_4 = QWidget(self.item_search_page)
         self.verticalLayoutWidget_4.setObjectName(u"verticalLayoutWidget_4")
-        self.verticalLayoutWidget_4.setGeometry(QRect(19, -1, 1251, 491))
+        self.verticalLayoutWidget_4.setGeometry(QRect(19, -1, 1271, 531))
         self.verticalLayout_10 = QVBoxLayout(self.verticalLayoutWidget_4)
         self.verticalLayout_10.setSpacing(30)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
@@ -1065,20 +1068,18 @@ class Ui_MainWindow(object):
         self.search_bar_container = QWidget(self.verticalLayoutWidget_4)
         self.search_bar_container.setObjectName(u"search_bar_container")
         self.search_bar_container.setMinimumSize(QSize(0, 45))
-        self.horizontalLayoutWidget = QWidget(self.search_bar_container)
-        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(-1, 0, 681, 42))
-        self.horizontalLayout_11 = QHBoxLayout(self.horizontalLayoutWidget)
+        self.search_bar_container.setMaximumSize(QSize(16777215, 45))
+        self.horizontalLayout_11 = QHBoxLayout(self.search_bar_container)
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.horizontalLayout_11.setContentsMargins(0, 0, 0, 0)
-        self.search_bar_input = QLineEdit(self.horizontalLayoutWidget)
+        self.horizontalLayout_11.setContentsMargins(-1, 0, -1, 0)
+        self.search_bar_input = QLineEdit(self.search_bar_container)
         self.search_bar_input.setObjectName(u"search_bar_input")
         sizePolicy3.setHeightForWidth(self.search_bar_input.sizePolicy().hasHeightForWidth())
         self.search_bar_input.setSizePolicy(sizePolicy3)
 
         self.horizontalLayout_11.addWidget(self.search_bar_input)
 
-        self.line = QFrame(self.horizontalLayoutWidget)
+        self.line = QFrame(self.search_bar_container)
         self.line.setObjectName(u"line")
         self.line.setStyleSheet(u"background: rgb(0, 159, 161);\n"
 "margin-top: 8px;\n"
@@ -1089,7 +1090,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_11.addWidget(self.line)
 
-        self.search_button = QPushButton(self.horizontalLayoutWidget)
+        self.search_button = QPushButton(self.search_bar_container)
         self.search_button.setObjectName(u"search_button")
         sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
         sizePolicy4.setHorizontalStretch(0)
@@ -1105,9 +1106,17 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_9.addWidget(self.search_bar_container)
 
-        self.horizontalSpacer_3 = QSpacerItem(560, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_9.addItem(self.horizontalSpacer_3)
+
+        self.print_items_button = QPushButton(self.verticalLayoutWidget_4)
+        self.print_items_button.setObjectName(u"print_items_button")
+        self.print_items_button.setMaximumSize(QSize(16777215, 40))
+        self.print_items_button.setFont(font6)
+        self.print_items_button.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.horizontalLayout_9.addWidget(self.print_items_button)
 
 
         self.verticalLayout_10.addLayout(self.horizontalLayout_9)
@@ -1821,7 +1830,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.delete_entry_button)
 
         self.stackedWidget_3.addWidget(self.inventory_view_page)
-        self.layoutWidget5.raise_()
+        self.layoutWidget2.raise_()
         self.stackedWidget_4.raise_()
 
         self.verticalLayout_4.addWidget(self.stackedWidget_3)
@@ -2189,7 +2198,7 @@ class Ui_MainWindow(object):
         self.stackedWidget_2.setCurrentIndex(0)
         self.inventory_type_input.setCurrentIndex(-1)
         self.stackedWidget_3.setCurrentIndex(3)
-        self.stackedWidget_4.setCurrentIndex(4)
+        self.stackedWidget_4.setCurrentIndex(0)
         self.cancel_button.setDefault(False)
 
 
@@ -2222,6 +2231,7 @@ class Ui_MainWindow(object):
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"TRANSACTION HISTORY", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"ALERTS", None))
         self.search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
+        self.print_items_button.setText(QCoreApplication.translate("MainWindow", u"Print", None))
         self.update_entry_label.setText(QCoreApplication.translate("MainWindow", u"EDIT EXISTING GLASSWARE", None))
         self.update_entry_search_button.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.update_entry_cancel_button.setText(QCoreApplication.translate("MainWindow", u"Go Back", None))

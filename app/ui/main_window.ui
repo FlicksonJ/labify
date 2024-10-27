@@ -446,7 +446,8 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 }
 
 #add_entry_add_button:hover,
-#print_items_button:hover {
+#print_items_button:hover,
+#print_transactions_button:hover {
 	background: rgb(0, 159, 161);
 	color: #fff;
 }
@@ -538,6 +539,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 
 #add_entry_add_button,
 #print_items_button,
+#print_transactions_button,
 #add_entry_cancel_button,
 #update_entry_cancel_button,
 #update_entry_cancel_button_2,
@@ -555,7 +557,8 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 }
 
 #add_entry_add_button,
-#print_items_button {
+#print_items_button,
+#print_transactions_button {
 	color: rgb(0, 159, 161);
 	border-color: rgb(0, 159, 161);
 }
@@ -1270,7 +1273,7 @@ QTableView::item:selected {
                <item>
                 <widget class="QStackedWidget" name="stackedWidget_3">
                  <property name="currentIndex">
-                  <number>3</number>
+                  <number>1</number>
                  </property>
                  <widget class="QWidget" name="inventory_page_default">
                   <widget class="QLabel" name="label_4">
@@ -1299,31 +1302,58 @@ QTableView::item:selected {
                   </widget>
                  </widget>
                  <widget class="QWidget" name="transactions_page">
-                  <widget class="QWidget" name="layoutWidget">
+                  <widget class="QWidget" name="">
                    <property name="geometry">
                     <rect>
-                     <x>250</x>
-                     <y>110</y>
+                     <x>251</x>
+                     <y>111</y>
                      <width>1311</width>
-                     <height>461</height>
+                     <height>531</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_7">
                     <item>
-                     <widget class="QLabel" name="label_5">
-                      <property name="font">
-                       <font>
-                        <pointsize>25</pointsize>
-                        <fontweight>Light</fontweight>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(0, 159, 161)</string>
-                      </property>
-                      <property name="text">
-                       <string>TRANSACTION HISTORY</string>
-                      </property>
-                     </widget>
+                     <layout class="QHBoxLayout" name="horizontalLayout_27">
+                      <item>
+                       <widget class="QLabel" name="label_5">
+                        <property name="font">
+                         <font>
+                          <pointsize>25</pointsize>
+                          <fontweight>Light</fontweight>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(0, 159, 161)</string>
+                        </property>
+                        <property name="text">
+                         <string>TRANSACTION HISTORY</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_15">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="print_transactions_button">
+                        <property name="cursor">
+                         <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
+                        <property name="text">
+                         <string>Print</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </item>
                     <item>
                      <widget class="QTableView" name="transactions_table">

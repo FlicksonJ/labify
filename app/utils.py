@@ -109,7 +109,7 @@ def create_pdf(title: str, file_path: str, model: QSqlQueryModel) -> None:
     ])
     
     headers = [model.headerData(i, Qt.Horizontal) for i in range(model.columnCount())]
-    data = [headers]
+    data = []
     for row in range(model.rowCount()):
         row_data = [model.index(row, col).data() for col in range(model.columnCount())]
         data.append(row_data)

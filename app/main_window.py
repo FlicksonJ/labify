@@ -125,6 +125,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ui.delete_entry_delete_button.clicked.connect(self.delete_entry)
 
         self.ui.print_items_button.clicked.connect(self.print_items)
+        self.ui.print_transactions_button.clicked.connect(self.print_transactions)
 
 
     def set_time(self):
@@ -510,6 +511,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # generate pdf file
         utils.create_pdf(title, file_path, self.state['items_model'])
+
+    def print_transactions(self):
+        """
+        This slot is triggered when the print_transactions_button is clicked.
+        This will print the entries of the transactions table.
+        """
+
+        if self.transactions_model:
+            file_path, _ = QFileDialog.getSaveFileName(
+                self, "Save PDF", "", "PDF Files (*.pdf);;All Files (*)"
+            )
+
+            if not file_path:
+                return
+
+            title = 'Transactions History'
+
+            # generate pdf file
+            utils.create_pdf(title, file_path, self.transactions_model)
+
+        else:
+            utils.show_message("Error", "Unable to print transactions:\nTransaction history empty!")
+
 
     @admin_access
     def show_add_entry_page(self):

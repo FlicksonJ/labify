@@ -292,12 +292,12 @@ class InventoryManager:
         """
         self.UPDATE_ITEM_ADD_QTY_SQL = """
         UPDATE Items
-        SET qty = qty + (?)
+        SET qty = ROUND(qty + (?), 5)
         WHERE name = (?) AND location_id = (?)
         """
         self.UPDATE_ITEM_REMOVE_QTY_SQL = """
         UPDATE Items
-        SET qty = qty - (?)
+        SET qty = ROUND(qty - (?), 5)
         WHERE name = (?) AND location_id = (?)
         """
         self.GET_ITEM_QTY_SQL = """

@@ -3,13 +3,14 @@ from PySide6.QtGui import QValidator
 from PySide6.QtSql import QSqlQueryModel
 from PySide6.QtWidgets import QMessageBox, QLineEdit
 
-import sys
+import os
 from datetime import datetime
 from thefuzz import fuzz
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 from reportlab.platypus import Table, TableStyle
+from reportlab.lib.units import inch
 
 
 
@@ -86,13 +87,38 @@ def fuzzy_search(model: QAbstractTableModel, search_term: str) -> QSortFilterPro
 
     return proxy_model
 
+def _draw_header(c: canvas.Canvas, width: float, height: float, title: str) -> None:
+    header_img_path = os.path.abspath('./images/miclogo2024.jpg')
+    img_width, img_height = 4 * inch, 1 * inch
+    date_text = datetime.now().strftime("%d %B %Y")
+
+    c.drawImage(header_img_path, (width - img_width) / 2, height - 100, width=img_width, height=img_height)
+    c.setFont("Times-Bold", 18)
+    c.drawCentredString(width / 2, height - 125, "Department Of Chemistry - " + title)
+    c.setFont("Times-Roman", 12)
+    c.drawCentredString(width / 2, height - 140, date_text)
+
+    c.line(50, height - 150, width - 50, height - 150)
+
+def _draw_footer(c: canvas.Canvas, width: float, height: float, page_num: int) -> None:
+    footer_logo_path = os.path.abspath('./images/logo.ico')
+    logo_size = 0.3 * inch
+    c.drawImage(footer_logo_path, 50, 20, width=logo_size, height=logo_size)
+
+    c.setFont("Helvetica", 9)
+    c.drawString(50 + logo_size + 5, 30, "Powered by Labify © Dept of CS")
+
+    c.drawRightString(width - 50, 30, f"Page {page_num}")
+    c.rect(20, 20, width - 40, height - 40, stroke=1, fill=0)
+    c.rect(15, 15, width - 30, height - 30, stroke=1, fill=0)
+
 def create_pdf(title: str, file_path: str, model: QSqlQueryModel) -> None:
     if not file_path.endswith('.pdf'):
         file_path = file_path + '.pdf'
     pdf = canvas.Canvas(file_path, pagesize=A4)
     pdf.setTitle(title)
     width, height = A4
-    margin = 50
+    margin = 150
     line_height = 20
     table_start_y = height - margin
     max_rows_per_page = int((table_start_y - margin) / line_height) - 1
@@ -120,11 +146,14 @@ def create_pdf(title: str, file_path: str, model: QSqlQueryModel) -> None:
         table.setStyle(table_style)
         table_width, table_height = table.wrap(0, 0)
         x_position = (width - table_width) / 2
+        page_num = int(i / max_rows_per_page) + 1
+
+        if page_num == 1:
+            _draw_header(pdf, width, height, title)
+        _draw_footer(pdf, width, height, page_num)
 
         table.drawOn(pdf, x_position, table_start_y - line_height * len(chunk))
 
-        page_num = int(i / max_rows_per_page) + 1
-        pdf.drawString(width - margin, margin / 2, f"Page {page_num}")
         pdf.showPage()
 
     pdf.save()

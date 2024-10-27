@@ -505,9 +505,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         title = ''
         if self.state['item_type'].startswith('chemical'):
-            title = 'Chemical'
+            title = 'Chemical Stock'
         else:
-            title = self.state['item_type'].title()
+            title = self.state['item_type'].title() + ' Stock'
 
         # generate pdf file
         utils.create_pdf(title, file_path, self.state['items_model'])

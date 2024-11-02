@@ -11,9 +11,11 @@ It helps lab managers keep track of their inventory of glassware, chemicals, and
 ## Features
 
 - Track inventory levels
+- Admin and standard user accounts
 - Manage glassware, chemical and equipment stock. <br>
-  *(Management: Add, Edit, Remove)*
+  *(Management: Add, Edit, Restock, Move, Remove)*
 - Track transaction history.
+- Alert notifications.
 
 ## Installation
 

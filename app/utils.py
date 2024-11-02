@@ -118,7 +118,7 @@ def create_pdf(title: str, file_path: str, model: QSqlQueryModel) -> None:
     pdf = canvas.Canvas(file_path, pagesize=A4)
     pdf.setTitle(title)
     width, height = A4
-    margin = 150
+    margin = 170
     line_height = 20
     table_start_y = height - margin
     max_rows_per_page = int((table_start_y - margin) / line_height) - 1

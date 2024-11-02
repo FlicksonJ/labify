@@ -39,7 +39,7 @@ python3 main.py
 
 ## Usage
 
-Labify provides a user-friendly interface for managing your lab inventory. Simply launch the application and start adding, updating, or removing items from your inventory.
+Labify provides a user-friendly interface for managing your lab inventory. Simply launch the application and start adding, editing, moving, restocking, or removing items from your inventory.
 
 ## Acknowledgements
 
